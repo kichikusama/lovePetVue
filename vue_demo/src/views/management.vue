@@ -1,10 +1,10 @@
  <template>
-  <div>
+  <div class="flex">
     <el-row class="tac">
     <el-col :span="12">
       <h5>爱宠帮-平台</h5>
       <el-menu  router
-        default-active="2"
+        default-active="/management/users"
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose"
@@ -20,15 +20,8 @@
           <el-menu-item-group>
             <template slot="title">分组一</template>
             <el-menu-item index="/management/users">用户</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
+
           </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
-          <el-submenu index="1-4">
-            <template slot="title">选项4</template>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
-          </el-submenu>
         </el-submenu>
 
         <el-submenu index="2">
@@ -39,15 +32,9 @@
           <el-menu-item-group>
             <template slot="title">分组一</template>
             <el-menu-item index="/management/stores">门店</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
+
           </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
-          <el-submenu index="1-4">
-            <template slot="title">选项4</template>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
-          </el-submenu>
+
         </el-submenu>
 
         <el-submenu index="3">
@@ -100,6 +87,9 @@
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
+}
+.flex{
+  display: flex;
 }
 </style>
 <script>
