@@ -1,5 +1,5 @@
-const { addUser,getUsers } = require('../dao/usersDao.js');
-// 新增放映厅
+const {  } = require('../dao/usersDao.js');
+
 module.exports.addUser = async function (data) {
     const result = await addUser(data);
     if (result) {

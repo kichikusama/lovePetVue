@@ -1,6 +1,5 @@
-const { usersModel } = require("./Models/userModel.js");
+const {  } = require("./Models/usersModel.js");
 
-// 新增电影
 module.exports.addUser = async function (data) {
     console.log(data);
     const result = await usersModel.create(data);
