@@ -1,12 +1,26 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <!-- 引入路由的组件 -->
+    <router-view></router-view> 
+      <!-- <CounterCounter />
+      <br/>
+      <br/>
+      <TodolistWrap />
+      <br/>
+      <br/>
+      <StudentsStudentList /> -->
   </div>
 </template>
+<script>
+// import Todolist from './components/todolist/wrap.vue';
+// import g from './_globals.js';
+
+export default {
+  components:{
+    // Todolist,
+  }
+}
+</script>
 
 <style>
 #app {
