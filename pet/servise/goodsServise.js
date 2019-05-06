@@ -1,4 +1,4 @@
-const {  } = require('../dao/usersDao.js');
+const {  } = require('../dao/goodsDao.js');
 
 module.exports.addUser = async function (data) {
     const result = await addUser(data);

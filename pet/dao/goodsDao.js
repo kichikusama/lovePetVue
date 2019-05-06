@@ -1,4 +1,4 @@
-const {  } = require("./Models/usersModel.js");
+const {  } = require("./Models/goodsModel.js");
 
 module.exports.addUser = async function (data) {
     console.log(data);
