@@ -9,8 +9,6 @@ import StoreManagment from './views/storeManagement.vue'; // 门店管理员 界
 
 import Users from './components/users/users.vue'; // 用户管理 组件
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
-import Students from './components/students/studentList.vue';
-import Messages from './components/messages/message.vue';
 
 Vue.use(Router)
 
@@ -47,11 +45,6 @@ const router = new Router({
           path:'/management/stores',
           name:Stores,
           component:Stores,
-        },
-        {
-          path:'/management/students',
-          name:Students,
-          component:Students,
         }
       ]
     },
@@ -77,26 +70,13 @@ const router = new Router({
           path:'/storeManagement/stores',
           name:Stores,
           component:Stores,
-        },
-        {
-          path:'/storeManagement/students',
-          name:Students,
-          component:Students,
-        }
-      ]
+        }]
     },
     {   // 通过对象进行描述
       path: '/storeManagement/:username',
       name: 'StoreManagementWithParams',
       // component: storeManagement,
       component: () => import(/* webpackChunkName: "about" */ './views/storeManagement.vue')// 实现延迟加载
-
-    },
-
-    {
-      path:'/messages',
-      name:'Messages',
-      component:Messages,
     },
     {
       path: '/about',
@@ -109,16 +89,6 @@ const router = new Router({
   ],
   
 })
-// router.beforeResolve(( to,from,next ) => {
-//  next(); 
-// })
-// router.beforeEach((to, from, next) => {// 全局守卫
-//   // to and from are both route objects. must call `next`.
-//   // console.log(to);
-//   // console.log(from);
-//   next(true);// 调用 next()方法 是否允许访问
-  
-// })
 export default router;
 
 
