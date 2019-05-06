@@ -10,6 +10,8 @@ import StoreManagment from './views/storeManagement.vue'; // 门店管理员 界
 import Users from './components/users/users.vue'; // 用户管理 组件
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
 
+import Members from  './components/members/members.vue';//宠主列表
+
 Vue.use(Router)
 
 const router = new Router({
@@ -45,6 +47,10 @@ const router = new Router({
           path:'/management/stores',
           name:Stores,
           component:Stores,
+        },{
+          path:'/management/members',
+          name:Members,
+          component:Members,
         }
       ]
     },
