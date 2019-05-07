@@ -53,7 +53,12 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";  // 命名空间辅助函数
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "service"   // 从状态机中获取 数据
+);
 export default {
+
   data() {
     return {
       service: {
@@ -68,10 +73,6 @@ export default {
       }
     };
   },
-  methods: {
-    onSubmit() {
-      console.log("创建!");
-    }
-  }
+  
 };
 </script>
