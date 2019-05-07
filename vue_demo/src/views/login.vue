@@ -9,7 +9,7 @@
         <el-input></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="storeManagement_login">门店管理员 登录</el-button>
+        <el-button type="primary" @click="chooseServe_login">门店管理员 登录</el-button>
          <el-button type="primary" @click="management_login">平台管理员 登录</el-button>
         <el-button type="primary" @click="register">注册</el-button>
       </el-form-item>
@@ -28,8 +28,8 @@ export default {
     management_login() {
       this.$router.push(`/management`); // 跳转 平台管理员
     },
-     storeManagement_login() {
-      this.$router.push(`/storeManagement`); // 跳转 门店管理员
+     chooseServe_login() {
+      this.$router.push(`/chooseServe`); // 跳转 选择界面(新增门店，进入门店，进货管理)
     },
     register() {
       //   console.log(this);

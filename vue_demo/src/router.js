@@ -8,9 +8,14 @@ import Management from './views/management.vue'; // 平台管理员 主界面
 import StoreManagment from './views/storeManagement.vue'; // 门店管理员 界面
 
 import Users from './components/users/users.vue'; // 用户管理 组件
+import Auditing from './components/users/usersAuditing.vue'; // 用户审批 组件
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
 import AddService from './components/service/addService.vue';// 新增服务 组件
 import FindService from './components/service/findService.vue';// 查询服务 组件
+
+import chooseServe from './views/chooseServe';//选择界面(新增门店，进入门店，进货管理)
+import addStore from './views/addStore';//新增门店
+import stock from './views/stock';//进货管理
 
 Vue.use(Router)
 
@@ -22,40 +27,69 @@ const router = new Router({
       component: Login
     },
    
+
     {   // 通过对象进行描述
       path: '/login/:username/:password', // 接收参数
       name: 'LoginWithParams',
       component: Login
     },
+
+
+    {   // 通过对象进行描述
+      path: '/chooseServe', // 接收参数
+      name: 'chooseServe',
+      component: chooseServe
+    },
+    {   // 通过对象进行描述
+      path: '/addStore', // 接收参数
+      name: 'addStore',
+      component: addStore
+    },
+    {   // 通过对象进行描述
+      path: '/stock', // 接收参数
+      name: 'stock',
+      component: stock
+    },
+
     {   // 通过对象进行描述
       path: '/register',
       name: 'Register',
       component: Register
 
     },
+
+
     {   // 通过对象进行描述
       path: '/management',
       name: 'Management ',
       component: Management ,
       children:[ // children 属性配置二级路径
         {
-          path:'/management/users',
+          path:'/management/users',  // 用户列表 路由
           name:Users,
           component:Users,
         },
         {
-          path:'/management/stores',
+          path:'/management/auditing',   // 用户审批 路由
+          name:Auditing,
+          component:Auditing,
+        },
+        {
+          path:'/management/stores',  // 门店 路由
           name:Stores,
           component:Stores,
         }
       ]
     },
+
+
     {   // 通过对象进行描述
       path: '/management/:username',
       name: 'ManagementWithParams',
       // component: Management,
       component: () => import(/* webpackChunkName: "about" */ './views/management.vue')// 实现延迟加载
     },
+
 
     {   // 通过对象进行描述
       path: '/storeManagement',
@@ -78,12 +112,16 @@ const router = new Router({
           component:Stores,
         }]
     },
+
+
     {   // 通过对象进行描述
       path: '/storeManagement/:username',
       name: 'StoreManagementWithParams',
       // component: storeManagement,
       component: () => import(/* webpackChunkName: "about" */ './views/storeManagement.vue')// 实现延迟加载
     },
+
+    
     {
       path: '/about',
       name: 'about',
