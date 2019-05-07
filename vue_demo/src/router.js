@@ -17,6 +17,10 @@ import chooseServe from './views/chooseServe';//选择界面(新增门店，进�
 import addStore from './views/addStore';//新增门店
 import stock from './views/stock';//进货管理
 
+import MembersList from  './components/members/membersList.vue';//宠主列表
+
+import AddPets  from './components/pets/addPets' //新增宠物
+import PetsList from './components/pets/petsList' //宠物列表
 import AddGoods from "./components/goods/addGoods.vue" // 门店管理 新增商品
 
 Vue.use(Router)
@@ -28,7 +32,6 @@ const router = new Router({
       name: 'Login',
       component: Login
     },
-   
 
     {   // 通过对象进行描述
       path: '/login/:username/:password', // 接收参数
@@ -78,13 +81,17 @@ const router = new Router({
         },
         {
           path:'/management/auditing',   // 用户审批 路由
-          name:Auditing,
+          name:'Auditing',
           component:Auditing,
         },
         {
           path:'/management/stores',  // 门店 路由
-          name:Stores,
+          name:'managementStores',
           component:Stores,
+        },{
+          path:'/management/membersList', //宠主 路由
+          name:MembersList,
+          component:MembersList,
         }
       ]
     },
@@ -105,23 +112,33 @@ const router = new Router({
       children: [ // children 属性配置二级路径
         {
           path:'/storeManagement/AddService',
-          name:AddService,
+          name:'AddService',
           component:AddService,
         },
         {
           path:'/storeManagement/FindService',
-          name:FindService,
+          name:'FindService',
           component:FindService,
         },
         {
           path: '/storeManagement/stores',
-          name: 'Stores',
+          name: 'storeManagementStores',
           component: Stores,
         },
         {
           path: '/storeManagement/addGoods',
           name: 'AddGoods',
           component: AddGoods,
+        },
+        {
+          path:'/storeManagement/petsList',//宠物列表   路由
+          name:PetsList,
+          component:PetsList,
+        },
+        {
+          path: '/storeManagement/addPets',//新增宠物    路由
+          name: 'AddPets',
+          component: AddPets,
         }]
     },
 

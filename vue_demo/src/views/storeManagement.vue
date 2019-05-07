@@ -42,8 +42,8 @@
               <span>宠物管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="1-1">新增宠物</el-menu-item>
-              <el-menu-item index="1-2">查询宠物</el-menu-item>
+              <el-menu-item index="/storeManagement/addPets">新增宠物</el-menu-item>
+              <el-menu-item index="/storeManagement/petsList">宠物列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -56,6 +56,7 @@
               <el-menu-item index="1-1">订单列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
+          
         </el-menu>
         <router-view></router-view>
       </el-col>

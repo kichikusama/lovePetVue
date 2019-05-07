@@ -1,11 +1,27 @@
-const {  } = require("./Models/serviceModel.js");
+const { serviceModel } = require("./Models/serviceModel.js");
 
-module.exports.addUser = async function (data) {
+module.exports.addService = async function (data) {
     console.log(data);
-    const result = await usersModel.create(data);
-    console.log(result);
-    return result;
+    return await serviceModel.create(data);
 }
-module.exports.getUsers = async function () {
-    return await usersModel.find();
+module.exports.findService = async function () {
+    return await serviceModel.find();
+}
+module.exports.getService = async function ({ currentPage, eachPage }) {   
+    let count = await serviceModel.countDocuments(); // 获取总条数
+    let totalPage = Math.ceil(count / eachPage); // 总页数
+    // 获取当前页数的用户信息
+    let rows = await serviceModel
+        .find()
+        .skip((currentPage - 1) * eachPage)
+        .limit(eachPage - 0)
+
+    let pageData = {
+        currentPage: currentPage - 0, // 当前页面
+        eachPage, // 每页显示条数
+        totalPage, // 总页数
+        count, // 总条数
+        rows, // 学生信息
+    };
+    return pageData;
 }
