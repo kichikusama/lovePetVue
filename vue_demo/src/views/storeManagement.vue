@@ -2,7 +2,7 @@
   <div>
     <el-row class="tac">
       <h5>爱宠帮-门店</h5>
-      <el-col  style="display:flex;width:100%;" :span="12">
+      <el-col  style="display:flex;width:90%;" :span="12">
         
         <el-menu
           router
