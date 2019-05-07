@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const {  getUsers,addUser,searchUser } = require('../service/usersService.js');
+const {  getUsers,addUser,searchUser,deleteUserById } = require('../service/usersService.js');
 
 /* GET users listing. */
 
@@ -27,6 +27,11 @@ router.get('/searchUser', async function (req, res, next) {
   let yy =await searchUser(req.query);
   console.log("条件搜索用户："+ yy);
   res.send(yy);
+});
+
+//删除用户通过id
+router.get('/deleteUserById', async function (req, res, next) {
+  res.send(await deleteUserById(req.query))
 });
 
 module.exports = router;
