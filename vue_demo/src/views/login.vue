@@ -19,6 +19,7 @@
           style="width:100%;"
         >门店管理员 登录</el-button>
       </el-form-item>
+
       <el-form-item>
         <el-button
           type="primary"
@@ -28,6 +29,7 @@
           style="width:100%;"
         >平台管理员 登录</el-button>
       </el-form-item>
+      
       <span type="primary" @click="register">没有账号？立即注册</span>
     </el-form>
   </div>
@@ -102,9 +104,9 @@ export default {
         }
       }
     },
-
+    // 跳转 注册
     register() {
-      this.$router.push("/register"); // 跳转 注册
+      this.$router.push("/register"); 
     }
   }
 };

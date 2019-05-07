@@ -1,15 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
-const {  } = require('../servise/serviceServise.js');
+const { addService,getService } = require('../service/serviceService.js');
 
 /* GET users listing. */
-router.post('/addUser', async function(req, res, next) {
-  res.send(await addUser(req.body))
+router.post('/addService', async function(req, res, next) {
+  res.send(await addService(req.body))
 });
 
-router.get('/getUsers',async function(req, res, next) {
-  res.send(await getUsers())
+router.get('/getService',async function(req, res, next) {
+  res.send(await getService())
 });
 
 module.exports = router;
