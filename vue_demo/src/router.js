@@ -10,6 +10,8 @@ import StoreManagment from './views/storeManagement.vue'; // 门店管理员 界
 import Users from './components/users/users.vue'; // 用户管理 组件
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
 
+import AddGoods from "./components/goods/addGoods.vue" // 门店管理 新增商品
+
 Vue.use(Router)
 
 const router = new Router({
@@ -19,7 +21,7 @@ const router = new Router({
       name: 'Login',
       component: Login
     },
-   
+
     {   // 通过对象进行描述
       path: '/login/:username/:password', // 接收参数
       name: 'LoginWithParams',
@@ -34,17 +36,17 @@ const router = new Router({
     {   // 通过对象进行描述
       path: '/management',
       name: 'Management ',
-      component: Management ,
-      children:[ // children 属性配置二级路径
+      component: Management,
+      children: [ // children 属性配置二级路径
         {
-          path:'/management/users',
-          name:Users,
-          component:Users,
+          path: '/management/users',
+          name: 'Users',
+          component: Users,
         },
         {
-          path:'/management/stores',
-          name:Stores,
-          component:Stores,
+          path: '/management/stores',
+          name: 'Stores',
+          component: Stores,
         }
       ]
     },
@@ -58,18 +60,23 @@ const router = new Router({
 
     {   // 通过对象进行描述
       path: '/storeManagement',
-      name: 'StoreManagment ',
-      component: StoreManagment ,
-      children:[ // children 属性配置二级路径
+      name: 'StoreManagment',
+      component: StoreManagment,
+      children: [ // children 属性配置二级路径
         {
-          path:'/storeManagement/users',
-          name:Users,
-          component:Users,
+          path: '/storeManagement/users',
+          name: 'Users',
+          component: Users,
         },
         {
-          path:'/storeManagement/stores',
-          name:Stores,
-          component:Stores,
+          path: '/storeManagement/stores',
+          name: 'Stores',
+          component: Stores,
+        },
+        {
+          path: '/storeManagement/addGoods',
+          name: 'AddGoods',
+          component: AddGoods,
         }]
     },
     {   // 通过对象进行描述
@@ -87,7 +94,7 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')// 实现延迟加载
     }
   ],
-  
+
 })
 export default router;
 
