@@ -1,4 +1,12 @@
 <template>
+<div>
+  <el-autocomplete
+  v-model="state4"
+  :fetch-suggestions="querySearchAsync"
+  placeholder="请输入内容"
+  @select="handleSelect"
+></el-autocomplete>
+
   <el-table
     :data="service"
     border
@@ -54,6 +62,7 @@
       </template>
     </el-table-column>
   </el-table>
+  </div>
 </template>
 
 <script>
