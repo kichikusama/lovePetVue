@@ -1,19 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-// import counter from './store/counter';
-// import todolist from './store/todolist';
-// import students from './store/students.js';
 // import messages from './store/messages.js';
-
+import users from './store/users';  // 状态管理
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules:{
-      // counter,
-      // todolist,
-      // students,
       // messages,
+      users,
   }
 })

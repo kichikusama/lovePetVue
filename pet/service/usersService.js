@@ -11,8 +11,10 @@ module.exports.addUser = async function (data) {
     }
 }
 // 分页获取用户  get 请求方式  GM
-module.exports.getUsers = async function () {
-  return await getUsers(); 
+module.exports.getUsers = async function (data) {
+        let ss = await getUsers(data);
+    // console.log("ss:"+ss);
+  return ss; 
 }
 
 //搜索框 搜索用户 get 请求方式 GM

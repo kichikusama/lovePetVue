@@ -33,3 +33,5 @@ const usersSchema = new mongoose.Schema({
 mongoose.model('usersModel', usersSchema, "users");
 
 module.exports.usersModel = mongoose.model('usersModel');
+
+// db.users.insert({ userAcount:"mm", userPwd:"123",userPhone:"13645782341",userMail:"321456987@qq.com",userName:"zhangsan", userType:'0'})
