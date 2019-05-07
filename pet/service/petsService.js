@@ -1,7 +1,7 @@
-const {  } = require('../dao/usersDao.js');
+const { addPet } = require('../dao/petsDao.js');
 
-module.exports.addUser = async function (data) {
-    const result = await addUser(data);
+module.exports.addPet = async function (data) {
+    const result = await addPet(data);
     if (result) {
         return true;
     } else {

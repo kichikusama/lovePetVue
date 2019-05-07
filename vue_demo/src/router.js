@@ -19,7 +19,9 @@ import stock from './views/stock';//进货管理
 
 import MembersList from  './components/members/membersList.vue';//宠主列表
 
+import AddPets  from './components/pets/addPets' //新增宠物
 import PetsList from './components/pets/petsList' //宠物列表
+import AddGoods from "./components/goods/addGoods.vue" // 门店管理 新增商品
 
 Vue.use(Router)
 
@@ -66,12 +68,17 @@ const router = new Router({
     {   // 通过对象进行描述
       path: '/management',
       name: 'Management ',
-      component: Management ,
-      children:[ // children 属性配置二级路径
+      component: Management,
+      children: [ // children 属性配置二级路径
         {
-          path:'/management/users',  // 用户列表 路由
-          name:Users,
-          component:Users,
+          path: '/management/users',
+          name: 'Users',
+          component: Users,
+        },
+        {
+          path: '/management/stores',
+          name: 'Stores',
+          component: Stores,
         },
         {
           path:'/management/auditing',   // 用户审批 路由
@@ -101,9 +108,9 @@ const router = new Router({
 
     {   // 通过对象进行描述
       path: '/storeManagement',
-      name: 'StoreManagment ',
-      component: StoreManagment ,
-      children:[ // children 属性配置二级路径
+      name: 'StoreManagment',
+      component: StoreManagment,
+      children: [ // children 属性配置二级路径
         {
           path:'/storeManagement/AddService',
           name:AddService,
@@ -120,9 +127,19 @@ const router = new Router({
           component:Stores,
         },
         {
+          path: '/storeManagement/addGoods',
+          name: 'AddGoods',
+          component: AddGoods,
+        },
+        {
           path:'/storeManagement/petsList',//宠物列表   路由
           name:PetsList,
           component:PetsList,
+        },
+        {
+          path: '/storeManagement/addPets',//新增宠物    路由
+          name: 'AddPets',
+          component: AddPets,
         }]
     },
 
@@ -144,7 +161,7 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')// 实现延迟加载
     }
   ],
-  
+
 })
 export default router;
 
