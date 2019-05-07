@@ -106,7 +106,7 @@
 // <script>
 export default {
    computed: {
-    ...mapState(["goods", "currentPage", "totalPage", "count", "films"])
+    // ...mapState(["goods", "currentPage", "totalPage", "count", "films"])
   },
   methods: {
     onSubmit() {
