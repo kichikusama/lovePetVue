@@ -83,7 +83,7 @@
       </div>
       <div>
         <el-upload
-          action="http://localhost:3000/addGoodsImage"
+          action="/goods/addGoodsImage"
           list-type="picture-card"
           :on-preview="handlePictureCardPreview"
           :on-remove="handleRemove"
@@ -140,8 +140,8 @@ export default {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
     },
-    uploadSuccess(){
-    
+    uploadSuccess(msg){
+      console.log(msg);
     }
   }
 };
