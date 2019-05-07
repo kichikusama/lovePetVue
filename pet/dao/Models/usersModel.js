@@ -20,7 +20,7 @@ const usersSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'goodsModel'
     }],
-    serviceId: [{  // 门店 id
+    serviceId: [{  // 服务 id
         type: mongoose.Schema.Types.ObjectId,
         ref: 'serviceModel'
     }],

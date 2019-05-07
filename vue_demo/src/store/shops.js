@@ -20,11 +20,11 @@ export default ({
         }
     },
     actions: {
-        applyStoreAsync({ commit, state }) {
-            // const data =  await fetch(`/users/getUsers?currentPage=${state.currentPage}&eachPage=${state.eachPage}`)
-            //  .then(response => response.json());
+       async applyStoreAsync({ commit, state }) {
+            const data =  await fetch(`/users/getUsers?currentPage=${state.currentPage}&eachPage=${state.eachPage}`)
+             .then(response => response.json());
             console.log(state.state);
-            // commit('getUsers',data);
+            commit('getUsers',data);
         },
     }
 })

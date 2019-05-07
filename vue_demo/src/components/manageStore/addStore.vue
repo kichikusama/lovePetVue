@@ -14,7 +14,17 @@
           </div>
           <div class="input">
             <span>营业执照照片：</span>
-            <el-input v-model="state.shopLicenceImg" placeholder="请输入内容"></el-input>
+            <el-upload
+              action="/shops/addShopsImage"
+              list-type="picture-card"
+              :on-success="handlePictureCardPreview"
+              :on-remove="handleRemove"
+            >
+              <i class="el-icon-plus"></i>
+            </el-upload>
+            <el-dialog>
+              <img width="100%" :src="state.shopLicenceImg" alt>
+            </el-dialog>
           </div>
           <div class="input">
             <span>营业地址：</span>
@@ -34,7 +44,17 @@
           </div>
           <div class="input">
             <span>头图：</span>
-            <el-input v-model="state.shopImg" placeholder="请输入内容"></el-input>
+            <el-upload
+              action="/shops/addShopsImage"
+              list-type="picture-card"
+              :on-success="heardPictureCardPreview"
+              :on-remove="heardRemove"
+            >
+              <i class="el-icon-plus"></i>
+            </el-upload>
+            <el-dialog>
+              <img width="100%" :src="state.shopImg" alt>
+            </el-dialog>
           </div>
           <div class="input">
             <span>特色：</span>
@@ -44,9 +64,12 @@
             <span>佣金比例：</span>
             <el-input v-model="state.shopCommission" placeholder="请输入内容"></el-input>
           </div>
-          <div class="input">
-            <span>店员姓名：</span>
-            <el-input v-model="state.shopEmployee" placeholder="请输入内容"></el-input>
+          <div class="input member">
+            <el-button type="primary" @click="open">
+              注册店员
+              <i class="el-icon-upload el-icon--right"></i>
+            </el-button>
+            <p>xx,22,33</p>
           </div>
           <div class="primary">
             <el-button type="primary" @click="applyStoreAsync">主要按钮</el-button>
@@ -64,12 +87,39 @@ export default {
     ...mapState(["state"])
   },
   methods: {
-    ...mapActions(["applyStoreAsync"])
+    ...mapActions(["applyStoreAsync"]),
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+      this.state.shopLicenceImg = file.data.url;
+    },
+    heardRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    heardPictureCardPreview(file) {
+      this.state.shopImg = file.data.url;
+    },
+    open() {
+        this.$alert('<div><span>店员名称：</span><input  placeholder="请输入内容"></input></div><div><span>店员等级：</span><input  placeholder="请输入内容"></input></div><div><span>店员电话：</span><input  placeholder="请输入内容"></input></div>', '店员信息', {
+          dangerouslyUseHTMLString: true,
+           callback: (action,instance) => {
+            console.log(instance)
+          }
+        })
+      }
   }
 };
 </script>
   
 <style>
+p {
+  text-align: center;
+}
+.member {
+  display: flex;
+  justify-content: space-around;
+}
 .box-card {
   width: 100%;
   display: flex;

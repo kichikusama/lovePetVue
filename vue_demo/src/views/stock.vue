@@ -56,6 +56,9 @@
 .flex {
   display: flex;
 }
+h5{
+  width: 100%
+}
 </style>
 <script>
 export default {

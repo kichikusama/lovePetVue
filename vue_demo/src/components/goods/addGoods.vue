@@ -1,15 +1,15 @@
 <template>
-  <el-form class="common" ref="form" label-width="80px" size="mini">
+  <el-form v-model="goods" class="common" ref="form" label-width="80px" size="mini">
     <div class="container">
       <div style="padding:20px">
         <el-form-item label="商品名称">
-          <el-input v-model="goods.name"></el-input>
+          <el-input v-model="goods.name" clearable></el-input>
         </el-form-item>
         <el-form-item label="商品品类">
-          <el-input v-model="goods.type"></el-input>
+          <el-input v-model="goods.type" clearable></el-input>
         </el-form-item>
         <el-form-item label="商品材质">
-          <el-input v-model="goods.material"></el-input>
+          <el-input v-model="goods.material" clearable></el-input>
         </el-form-item>
         <el-form-item label="适用规格">
           <el-select v-model="goods.canFor" placeholder="请选择使用规格">
@@ -27,7 +27,7 @@
           </el-checkbox-group>
         </el-form-item>
         <el-form-item label="包装规格">
-          <el-input v-model="goods.size"></el-input>
+          <el-input v-model="goods.size" clearable></el-input>
         </el-form-item>
         <el-form-item label="商品口味">
           <el-checkbox-group v-model="goods.taste">
@@ -48,7 +48,7 @@
       </div>
       <div style="padding:20px">
         <el-form-item label="商品产地">
-          <el-input v-model="goods.region"></el-input>
+          <el-input v-model="goods.region" clearable></el-input>
         </el-form-item>
         <el-form-item label="出产日期">
           <el-col :span="24">
@@ -70,19 +70,29 @@
           </el-select>
         </el-form-item>
         <el-form-item label="供应商">
-          <el-input v-model="goods.supplier"></el-input>
+          <el-input v-model="goods.supplier" clearable></el-input>
         </el-form-item>
         <el-collapse>
           <el-collapse-item title="特殊说明" name="1">
-            <el-input v-model="goods.intro"></el-input>
+            <el-input v-model="goods.intro" clearable></el-input>
           </el-collapse-item>
         </el-collapse>
         <el-form-item label="商品价格">
-          <el-input v-model="goods.price"></el-input>
+          <el-input v-model="goods.price" clearable></el-input>
         </el-form-item>
       </div>
       <div>
-        
+        <el-upload
+          action="/goods/addGoodsImage"
+          list-type="picture-card"
+          :on-remove="handleRemove"
+          :on-success="uploadSuccess"
+        >
+          <i class="el-icon-plus"></i>
+        </el-upload>
+        <el-dialog :visible.sync="goods.dialogVisible">
+          <img width="100%" :src="goods.dialogImageUrl" alt>
+        </el-dialog>
       </div>
     </div>
     <el-form-item size="large">
@@ -95,29 +105,19 @@
 
 // <script>
 export default {
-  data() {
-    return {
-      goods: {
-        name: "",
-        type: "",
-        material:"",
-        canFor:"",
-        onlyFor:"",
-        size:"",
-        taste:"",
-        special:"",
-        region:"",
-        date:"",
-        time:"",
-        supplier:"",
-        intro:"",
-        price:"",
-        img:""
-      }
-    };
+   computed: {
+    // ...mapState(["goods", "currentPage", "totalPage", "count", "films"])
   },
   methods: {
     onSubmit() {
+      
+      console.log(this.goods.name);
+    },
+    handleRemove(file, fileList) {
+    },
+    uploadSuccess(msg) {
+      this.src = msg.data.src;
+      console.log(this.src);
     }
   }
 };
