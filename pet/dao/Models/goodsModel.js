@@ -5,7 +5,7 @@ const goodsSchema = new mongoose.Schema({
     goodsName:String, // 名称
     goodsType:String, // 品类
     goodsMaterial: String, // 材质或制作方法
-    goodsCanFor:String, // 使用规格（适用幼犬、成犬等）
+    goodsCanFor:String, // 适用规格（适用幼犬、成犬等）
     goodsOnlyFor:String, // 专属规格（贵宾专用、柯基专用等）
     goodsSize:String, // 包装规格（1kg、5kg等）
     goodsTaste:String, // 口味（鸡肉味、牛肉味等）

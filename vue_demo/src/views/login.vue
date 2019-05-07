@@ -8,7 +8,6 @@
      <el-form-item label="密码：">
         <el-input></el-input>
       </el-form-item>
-     
       <el-form-item>
         <el-button type="primary" @click="chooseServe_login">门店管理员 登录</el-button>
          <el-button type="primary" @click="management_login">平台管理员 登录</el-button>
