@@ -17,6 +17,8 @@ import chooseServe from './views/chooseServe';//选择界面(新增门店，进�
 import addStore from './views/addStore';//新增门店
 import stock from './views/stock';//进货管理
 
+import AddGoods from "./components/goods/addGoods.vue" // 门店管理 新增商品
+
 Vue.use(Router)
 
 const router = new Router({
@@ -62,12 +64,17 @@ const router = new Router({
     {   // 通过对象进行描述
       path: '/management',
       name: 'Management ',
-      component: Management ,
-      children:[ // children 属性配置二级路径
+      component: Management,
+      children: [ // children 属性配置二级路径
         {
-          path:'/management/users',  // 用户列表 路由
-          name:Users,
-          component:Users,
+          path: '/management/users',
+          name: 'Users',
+          component: Users,
+        },
+        {
+          path: '/management/stores',
+          name: 'Stores',
+          component: Stores,
         },
         {
           path:'/management/auditing',   // 用户审批 路由
@@ -93,9 +100,9 @@ const router = new Router({
 
     {   // 通过对象进行描述
       path: '/storeManagement',
-      name: 'StoreManagment ',
-      component: StoreManagment ,
-      children:[ // children 属性配置二级路径
+      name: 'StoreManagment',
+      component: StoreManagment,
+      children: [ // children 属性配置二级路径
         {
           path:'/storeManagement/AddService',
           name:AddService,
@@ -107,9 +114,14 @@ const router = new Router({
           component:FindService,
         },
         {
-          path:'/storeManagement/stores',
-          name:Stores,
-          component:Stores,
+          path: '/storeManagement/stores',
+          name: 'Stores',
+          component: Stores,
+        },
+        {
+          path: '/storeManagement/addGoods',
+          name: 'AddGoods',
+          component: AddGoods,
         }]
     },
 
@@ -131,7 +143,7 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')// 实现延迟加载
     }
   ],
-  
+
 })
 export default router;
 
