@@ -1,4 +1,4 @@
-const { getUsers,addUser,searchUser  } = require('../dao/usersDao.js');
+const { getUsers,addUser,searchUser,deleteUserById  } = require('../dao/usersDao.js');
 
 
 // 新增 用户  get 请求方式 GM
@@ -20,4 +20,14 @@ module.exports.getUsers = async function (data) {
 //搜索框 搜索用户 get 请求方式 GM
 module.exports.searchUser = async function (search) {
     return await searchUser(search);
+  }
+
+  //删除用户通过id
+module.exports.deleteUserById  = async function (data) {
+    let remove = await deleteUserById (data);
+    if(remove.ok){
+      return true
+    }else{
+      return false
+    }
   }
