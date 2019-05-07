@@ -11,14 +11,14 @@
       <el-dialog :visible.sync="dialogVisible">
         <img width="100%" :src="dialogImageUrl" alt="">
       </el-dialog>
-      <el-form-item label="品称" prop="name">
-        <el-input v-model="ruleForm.name"></el-input>
+      <el-form-item label="品称" prop="petsSpecies">
+        <el-input v-model="ruleForm.petsSpecies"></el-input>
       </el-form-item>
-      <el-form-item label="种类" prop="name">
-        <el-input v-model="ruleForm.name"></el-input>
+      <el-form-item label="种类" prop="petsType">
+        <el-input v-model="ruleForm.petsType"></el-input>
       </el-form-item>
-      <el-form-item label="体重" prop="name">
-        <el-input v-model="ruleForm.name"></el-input>
+      <el-form-item label="体重" prop="petsWeight">
+        <el-input v-model="ruleForm.petsWeight"></el-input>
       </el-form-item>
       <el-form-item label="生日" required>
         <el-col :span="11">
@@ -79,9 +79,9 @@
     data() {
       return {
         ruleForm: {
-          name: '',
-          region: '',
-          date1: '',
+          petsSpecies: '',
+          petsType: '',
+          petsWeight: '',
           date2: '',
           delivery: false,
           type: [],
@@ -89,21 +89,23 @@
           desc: ''
         },
         rules: {
-          name: [
-            { required: true, message: '请输入活动名称', trigger: 'blur' },
-            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          petsSpecies: [
+            { required: true, message: '请输入宠物品称', trigger: 'blur' },
+            { min: 1, max: 15, message: '长度在 1 到 15 个字符', trigger: 'blur' }
           ],
-          region: [
-            { required: true, message: '请选择活动区域', trigger: 'change' }
+          petsType: [
+           { required: true, message: '请输入宠物种类', trigger: 'blur' },
+            { min: 1, max: 15, message: '长度在 1 到 15 个字符', trigger: 'blur' }
           ],
-          date1: [
-            { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+          petsWeight: [
+            { required: true, message: '请输入宠物体重', trigger: 'blur' },
+            { min: 1, max: 15, message: '长度在 1 到 15 个字符', trigger: 'blur' }
           ],
           date2: [
             { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
           ],
           type: [
-            { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
+            { type: 'array', required: true, message: '请至少选择一一种规格', trigger: 'change' }
           ],
           resource: [
             { required: true, message: '请选择活动资源', trigger: 'change' }
@@ -123,7 +125,6 @@
             alert('submit!');
           } else {
             console.log('error submit!!');
-            
             return false;
           }
         });
@@ -138,7 +139,8 @@
         this.dialogImageUrl = file.url;
         this.dialogVisible = true;
       },
-      handleSuccess(){
+      handleSuccess(msg){
+        console.log(msg);
         
       }
     }

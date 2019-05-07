@@ -1,14 +1,14 @@
-const {  } = require('../dao/serviceDao.js');
+const { addService,getService } = require('../dao/serviceDao.js');
 
-module.exports.addUser = async function (data) {
-    const result = await addUser(data);
+module.exports.addService = async function (data) {
+    return await addService(); 
+}
+
+module.exports.getService = async function () {
+    const result = await getService(data);
     if (result) {
         return true;
     } else {
         return false;
     }
-}
-
-module.exports.getUsers = async function () {
-  return await getUsers(); 
 }

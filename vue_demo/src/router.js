@@ -82,12 +82,12 @@ const router = new Router({
         },
         {
           path:'/management/auditing',   // 用户审批 路由
-          name:Auditing,
+          name:'Auditing',
           component:Auditing,
         },
         {
           path:'/management/stores',  // 门店 路由
-          name:Stores,
+          name:'managementStores',
           component:Stores,
         },{
           path:'/management/membersList', //宠主 路由
@@ -113,18 +113,18 @@ const router = new Router({
       children: [ // children 属性配置二级路径
         {
           path:'/storeManagement/AddService',
-          name:AddService,
+          name:'AddService',
           component:AddService,
         },
         {
           path:'/storeManagement/FindService',
-          name:FindService,
+          name:'FindService',
           component:FindService,
         },
         {
-          path:'/storeManagement/stores',
-          name:Stores,
-          component:Stores,
+          path: '/storeManagement/stores',
+          name: 'storeManagementStores',
+          component: Stores,
         },
         {
           path: '/storeManagement/addGoods',

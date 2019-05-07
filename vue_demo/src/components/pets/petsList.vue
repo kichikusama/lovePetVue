@@ -6,12 +6,7 @@
     
     <el-main>
         <div>
-            <el-input placeholder="请输入内容" v-model="input3" class="input-with-select">
-                <el-select v-model="select" slot="prepend" placeholder="请选择">
-                <el-option label="餐厅名" value="1"></el-option>
-                <el-option label="订单号" value="2"></el-option>
-                <el-option label="用户电话" value="3"></el-option>
-                </el-select>
+            <el-input placeholder="请输入内容" class="input-with-select">
                 <el-button slot="append" icon="el-icon-search"></el-button>
             </el-input>
         </div>
@@ -56,12 +51,12 @@
       label="操作"
       width="100">
       <template slot-scope="scope">
-        <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-        <el-button type="text" size="small">编辑</el-button>
-      </template>
-    </el-table-column>
-  </el-table>
-</template>
+            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+            <el-button type="text" size="small">编辑</el-button>
+        </template>
+        </el-table-column>
+    </el-table>
+    </template>
     </el-main>
   </el-container>
 </template>
