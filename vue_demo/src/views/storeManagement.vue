@@ -2,7 +2,7 @@
   <div>
     <el-row class="tac">
       <h5>爱宠帮-门店</h5>
-      <el-col  style="display:flex;width:90%;" :span="12">
+      <el-col  style="display:flex;width:100%;" :span="12">
         
         <el-menu
           router
@@ -42,8 +42,7 @@
               <span>宠物管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="1-1">新增宠物</el-menu-item>
-              <el-menu-item index="1-2">查询宠物</el-menu-item>
+              <el-menu-item index="/storeManagement/petsList">宠物列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 

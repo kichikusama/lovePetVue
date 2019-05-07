@@ -19,6 +19,8 @@ import stock from './views/stock';//进货管理
 
 import MembersList from  './components/members/membersList.vue';//宠主列表
 
+import PetsList from './components/pets/petsList' //宠物列表
+
 Vue.use(Router)
 
 const router = new Router({
@@ -116,6 +118,11 @@ const router = new Router({
           path:'/storeManagement/stores',
           name:Stores,
           component:Stores,
+        },
+        {
+          path:'/storeManagement/petsList',//宠物列表   路由
+          name:PetsList,
+          component:PetsList,
         }]
     },
 

@@ -1,49 +1,46 @@
 <template>
-    <el-container>
-    <el-header style="text-align: center; ">
-      <h1>宠主列表</h1>
-    </el-header>
-    
-    <el-main>
-      <el-table :data="tableData">
-        <el-image
-      style="width: 100px; height: 100px"
-      :src="url"
-      prop="url"
-      :fit="fit"></el-image>
-        <el-table-column prop="memberImg" label="头图" width="120">
-        </el-table-column>
-        <el-table-column prop="memberAcount" label="昵称" width="120">
-        </el-table-column>
-        <el-table-column prop="memberName" label="真实姓名" width="120">
-        </el-table-column>
-        <el-table-column prop="memberPhone" label="手机号" width="120">
-        </el-table-column>
-        <el-table-column prop="memberCard" label="会员卡" width="120">
-        </el-table-column>
-        <el-table-column prop="memberAdd" label="送货地址" width="120">
-        </el-table-column>
-        <el-table-column prop="memberArea" label="区域" width="120">
-        </el-table-column>
-        <el-table-column prop="memberPoint" label="积分" width="120">
-        </el-table-column>
-        <el-table-column prop="memberPets" label="XXXXXXX" width="120">
-        </el-table-column>
-      </el-table>
-    </el-main>
-  </el-container>
+    <el-form ref="form" :model="sizeForm" label-width="80px" size="mini">
+  <el-form-item label="活动名称">
+    <el-input v-model="sizeForm.name"></el-input>
+  </el-form-item>
+  <el-form-item label="活动区域">
+    <el-select v-model="sizeForm.region" placeholder="请选择活动区域">
+      <el-option label="区域一" value="shanghai"></el-option>
+      <el-option label="区域二" value="beijing"></el-option>
+    </el-select>
+  </el-form-item>
+  <el-form-item label="活动时间">
+    <el-col :span="11">
+      <el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date1" style="width: 100%;"></el-date-picker>
+    </el-col>
+    <el-col class="line" :span="2">-</el-col>
+    <el-col :span="11">
+      <el-time-picker placeholder="选择时间" v-model="sizeForm.date2" style="width: 100%;"></el-time-picker>
+    </el-col>
+  </el-form-item>
+  <el-form-item label="活动性质">
+    <el-checkbox-group v-model="sizeForm.type">
+      <el-checkbox-button label="美食/餐厅线上活动" name="type"></el-checkbox-button>
+      <el-checkbox-button label="地推活动" name="type"></el-checkbox-button>
+      <el-checkbox-button label="线下主题活动" name="type"></el-checkbox-button>
+    </el-checkbox-group>
+  </el-form-item>
+  <el-form-item label="特殊资源">
+    <el-radio-group v-model="sizeForm.resource" size="medium">
+      <el-radio border label="线上品牌商赞助"></el-radio>
+      <el-radio border label="线下场地免费"></el-radio>
+    </el-radio-group>
+  </el-form-item>
+  <el-form-item size="large">
+    <el-button type="primary" @click="onSubmit">立即创建</el-button>
+    <el-button>取消</el-button>
+  </el-form-item>
+</el-form>
 </template>
 <script>
 export default {
   data() {
-      const item = {
-        memberImg: '2016-05-02',
-        memberAcount: '王小虎',
-        memberAdd: '上海市普陀区金沙江路 1518 弄'
-      };
-      return {
-        tableData: Array(8).fill(item)
-      }
+      
     }
 };
 </script>
