@@ -33,8 +33,8 @@
               <span>服务管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="1-1">新增服务</el-menu-item>
-              <el-menu-item index="1-2">查询服务</el-menu-item>
+              <el-menu-item index="/storeManagement/addservice">新增服务</el-menu-item>
+              <el-menu-item index="/storeManagement/findService">查询服务</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -79,13 +79,6 @@
 </style>
 <script>
 export default {
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    }
-  }
+  methods: {}
 };
 </script>
