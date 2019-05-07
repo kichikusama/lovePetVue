@@ -10,8 +10,8 @@ export default ({
     },
     mutations:{
         getUsers(state,payload){    // 分页获取用户
-            console.log(state);
-            console.log(payload);
+            // console.log(state);
+            // console.log(payload);
             Object.assign(state,payload);    
             // console.log(state);       
         },
@@ -22,14 +22,34 @@ export default ({
             // console.log(currentPage);
             
             return state.currentPage = currentPage;
-        }
+        },
+        // handleDelete:(state,payload)=>{  // 根据_id 删除用户
+        //     console.log(payload);
+            
+        //       return payload._id;
+        // }
+        // handleUpdate(state,payload) {   // 修改用户信息
+        //     console.log(state);
+            
+        //     console.log(payload);  // 所点击的用户所有信息 对象
+        //     // console.log(rows);         
+        // },
     },
     actions: {
         async usersListAsync({ commit ,state}) {
         const data =  await fetch(`/users/getUsers?currentPage=${state.currentPage}&eachPage=${state.eachPage}`)
          .then(response => response.json());
-        console.log(data);
+        // console.log(data);
         commit('getUsers',data);
         },
+        async deleteUserAsync({ dispatch },rows){
+             const id = rows._id; // 所删除用户的 id
+             const data =  await fetch(`/users/deleteUserById?_id=${id}`)
+             .then(response => response.json());
+             // dispatch 触发 actions, commit 触发 mutations
+             if(data){
+                dispatch("usersListAsync"); // 删除成功后 重新 fetch 请求数据
+             }
+        }
     }
 })

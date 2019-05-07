@@ -1,12 +1,12 @@
-const {  } = require('../dao/goodsDao.js');
+const { addGoods } = require('../dao/goodsDao.js');
 
-module.exports.addUser = async function (data) {
+module.exports.addGoods = async function (data) {
     const result = await addUser(data);
-    if (result) {
-        return true;
-    } else {
-        return false;
-    }
+    // if (result) {
+    //     return true;
+    // } else {
+    //     return false;
+    // }
 }
 
 module.exports.getUsers = async function () {
