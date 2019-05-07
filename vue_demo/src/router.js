@@ -9,6 +9,8 @@ import StoreManagment from './views/storeManagement.vue'; // 门店管理员 界
 
 import Users from './components/users/users.vue'; // 用户管理 组件
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
+import AddService from './components/service/addService.vue';// 新增服务 组件
+import FindService from './components/service/findService.vue';// 查询服务 组件
 
 Vue.use(Router)
 
@@ -53,7 +55,6 @@ const router = new Router({
       name: 'ManagementWithParams',
       // component: Management,
       component: () => import(/* webpackChunkName: "about" */ './views/management.vue')// 实现延迟加载
-
     },
 
     {   // 通过对象进行描述
@@ -62,9 +63,14 @@ const router = new Router({
       component: StoreManagment ,
       children:[ // children 属性配置二级路径
         {
-          path:'/storeManagement/users',
-          name:Users,
-          component:Users,
+          path:'/storeManagement/AddService',
+          name:AddService,
+          component:AddService,
+        },
+        {
+          path:'/storeManagement/FindService',
+          name:FindService,
+          component:FindService,
         },
         {
           path:'/storeManagement/stores',
