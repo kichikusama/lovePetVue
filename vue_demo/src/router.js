@@ -17,7 +17,8 @@ import chooseServe from './views/chooseServe';//选择界面(新增门店，进�
 import addStore from './views/addStore';//新增门店
 import stock from './views/stock';//进货管理
 
-import AddGoods from "./components/goods/addGoods.vue" // 门店管理 新增商品
+import AddGoods from "./components/goods/addGoods" // 门店管理 新增商品
+import GoodsList from "./components/goods/goodsList" // 门店管理 商品列表
 
 Vue.use(Router)
 
@@ -122,6 +123,11 @@ const router = new Router({
           path: '/storeManagement/addGoods',
           name: 'AddGoods',
           component: AddGoods,
+        },
+        {
+          path: '/storeManagement/goodsList',
+          name: 'GoodsList',
+          component: GoodsList,
         }]
     },
 
