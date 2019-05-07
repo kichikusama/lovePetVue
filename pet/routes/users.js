@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const {  getUsers,addUser,searchUser } = require('../servise/usersService.js');
+const {  getUsers,addUser,searchUser } = require('../service/usersService.js');
 
 /* GET users listing. */
 

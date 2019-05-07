@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const {  } = require('../servise/ordersServise.js');
+const {  } = require('../service/ordersService.js');
 
 /* GET users listing. */
 router.post('/addUser', async function(req, res, next) {
