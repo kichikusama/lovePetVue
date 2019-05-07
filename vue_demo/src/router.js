@@ -17,8 +17,16 @@ import chooseServe from './views/chooseServe';//选择界面(新增门店，进�
 import addStore from './views/addStore';//新增门店
 import stock from './views/stock';//进货管理
 
+<<<<<<< HEAD
 import AddGoods from "./components/goods/addGoods" // 门店管理 新增商品
 import GoodsList from "./components/goods/goodsList" // 门店管理 商品列表
+=======
+import MembersList from  './components/members/membersList.vue';//宠主列表
+
+import AddPets  from './components/pets/addPets' //新增宠物
+import PetsList from './components/pets/petsList' //宠物列表
+import AddGoods from "./components/goods/addGoods.vue" // 门店管理 新增商品
+>>>>>>> 3999e39c129b632528a251e675054578f03d8963
 
 Vue.use(Router)
 
@@ -29,7 +37,6 @@ const router = new Router({
       name: 'Login',
       component: Login
     },
-   
 
     {   // 通过对象进行描述
       path: '/login/:username/:password', // 接收参数
@@ -86,6 +93,10 @@ const router = new Router({
           path:'/management/stores',  // 门店 路由
           name:'managementStores',
           component:Stores,
+        },{
+          path:'/management/membersList', //宠主 路由
+          name:MembersList,
+          component:MembersList,
         }
       ]
     },
@@ -125,9 +136,20 @@ const router = new Router({
           component: AddGoods,
         },
         {
+<<<<<<< HEAD
           path: '/storeManagement/goodsList',
           name: 'GoodsList',
           component: GoodsList,
+=======
+          path:'/storeManagement/petsList',//宠物列表   路由
+          name:PetsList,
+          component:PetsList,
+        },
+        {
+          path: '/storeManagement/addPets',//新增宠物    路由
+          name: 'AddPets',
+          component: AddPets,
+>>>>>>> 3999e39c129b632528a251e675054578f03d8963
         }]
     },
 

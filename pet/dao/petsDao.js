@@ -1,8 +1,8 @@
-const {  } = require("./Models/petsModel.js");
+const { petsModel } = require("./Models/petsModel.js");
 
-module.exports.addUser = async function (data) {
+module.exports.addPet = async function (data) {
     console.log(data);
-    const result = await usersModel.create(data);
+    const result = await petsModel.create(data);
     console.log(result);
     return result;
 }
