@@ -1,6 +1,6 @@
 <template>
   <div style="width:90%;padding:20px">
-    <el-table :data="tableData" border style="width: 100%">
+    <!-- <el-table :data="tableData" border style="width: 100%">
       <el-table-column fixed prop="goodsName" label="名称" width="150"></el-table-column>
       <el-table-column prop="goodsType" label="品类" width="120"></el-table-column>
       <el-table-column prop="goodsMaterial" label="材质" width="120"></el-table-column>
@@ -21,7 +21,7 @@
           <el-button type="text" size="small">编辑</el-button>
         </template>
       </el-table-column>
-    </el-table>
+    </el-table> -->
     <!-- <el-pagination
       @size-change="setEachPage"
       @current-change="setCurrentPage"
