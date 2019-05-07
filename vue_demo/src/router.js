@@ -8,9 +8,10 @@ import Management from './views/management.vue'; // 平台管理员 主界面
 import StoreManagment from './views/storeManagement.vue'; // 门店管理员 界面
 
 import Users from './components/users/users.vue'; // 用户管理 组件
+import Auditing from './components/users/usersAuditing.vue'; // 用户审批 组件
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
 
-import Members from  './components/members/members.vue';//宠主列表
+import MembersList from  './components/members/membersList.vue';//宠主列表
 
 Vue.use(Router)
 
@@ -39,18 +40,23 @@ const router = new Router({
       component: Management ,
       children:[ // children 属性配置二级路径
         {
-          path:'/management/users',
+          path:'/management/users',  // 用户列表 路由
           name:Users,
           component:Users,
         },
         {
-          path:'/management/stores',
+          path:'/management/auditing',   // 用户审批 路由
+          name:Auditing,
+          component:Auditing,
+        },
+        {
+          path:'/management/stores',  // 门店 路由
           name:Stores,
           component:Stores,
         },{
-          path:'/management/members',
-          name:Members,
-          component:Members,
+          path:'/management/membersList', //宠主 路由
+          name:MembersList,
+          component:MembersList,
         }
       ]
     },
