@@ -20,7 +20,6 @@ const router = new Router({
       name: 'Login',
       component: Login
     },
-   
     {   // 通过对象进行描述
       path: '/login/:username/:password', // 接收参数
       name: 'LoginWithParams',
