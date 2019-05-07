@@ -19,11 +19,10 @@ import stock from './views/stock';//进货管理
 
 import AddGoods from "./components/goods/addGoods" // 门店管理 新增商品
 import GoodsList from "./components/goods/goodsList" // 门店管理 商品列表
-import MembersList from  './components/members/membersList.vue';//宠主列表
+import MembersList from './components/members/membersList.vue';//宠主列表
 
-import AddPets  from './components/pets/addPets' //新增宠物
+import AddPets from './components/pets/addPets' //新增宠物
 import PetsList from './components/pets/petsList' //宠物列表
-import AddGoods from "./components/goods/addGoods.vue" // 门店管理 新增商品
 
 Vue.use(Router)
 
@@ -82,18 +81,18 @@ const router = new Router({
           component: Stores,
         },
         {
-          path:'/management/auditing',   // 用户审批 路由
-          name:'Auditing',
-          component:Auditing,
+          path: '/management/auditing',   // 用户审批 路由
+          name: 'Auditing',
+          component: Auditing,
         },
         {
-          path:'/management/stores',  // 门店 路由
-          name:'managementStores',
-          component:Stores,
-        },{
-          path:'/management/membersList', //宠主 路由
-          name:MembersList,
-          component:MembersList,
+          path: '/management/stores',  // 门店 路由
+          name: 'managementStores',
+          component: Stores,
+        }, {
+          path: '/management/membersList', //宠主 路由
+          name: MembersList,
+          component: MembersList,
         }
       ]
     },
@@ -113,14 +112,14 @@ const router = new Router({
       component: StoreManagment,
       children: [ // children 属性配置二级路径
         {
-          path:'/storeManagement/AddService',
-          name:'AddService',
-          component:AddService,
+          path: '/storeManagement/AddService',
+          name: 'AddService',
+          component: AddService,
         },
         {
-          path:'/storeManagement/FindService',
-          name:'FindService',
-          component:FindService,
+          path: '/storeManagement/FindService',
+          name: 'FindService',
+          component: FindService,
         },
         {
           path: '/storeManagement/stores',
@@ -136,9 +135,11 @@ const router = new Router({
           path: '/storeManagement/goodsList',
           name: 'GoodsList',
           component: GoodsList,
-          path:'/storeManagement/petsList',//宠物列表   路由
-          name:PetsList,
-          component:PetsList,
+        },
+        {
+          path: '/storeManagement/petsList',//宠物列表   路由
+          name: PetsList,
+          component: PetsList,
         },
         {
           path: '/storeManagement/addPets',//新增宠物    路由
@@ -155,7 +156,7 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/storeManagement.vue')// 实现延迟加载
     },
 
-    
+
     {
       path: '/about',
       name: 'about',
