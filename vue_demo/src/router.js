@@ -10,6 +10,10 @@ import StoreManagment from './views/storeManagement.vue'; // 门店管理员 界
 import Users from './components/users/users.vue'; // 用户管理 组件
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
 
+import chooseServe from './views/chooseServe';//选择界面(新增门店，进入门店，进货管理)
+import addStore from './views/addStore';//新增门店
+import stock from './views/stock';//进货管理
+
 Vue.use(Router)
 
 const router = new Router({
@@ -20,17 +24,38 @@ const router = new Router({
       component: Login
     },
    
+
     {   // 通过对象进行描述
       path: '/login/:username/:password', // 接收参数
       name: 'LoginWithParams',
       component: Login
     },
+
+
+    {   // 通过对象进行描述
+      path: '/chooseServe', // 接收参数
+      name: 'chooseServe',
+      component: chooseServe
+    },
+    {   // 通过对象进行描述
+      path: '/addStore', // 接收参数
+      name: 'addStore',
+      component: addStore
+    },
+    {   // 通过对象进行描述
+      path: '/stock', // 接收参数
+      name: 'stock',
+      component: stock
+    },
+
     {   // 通过对象进行描述
       path: '/register',
       name: 'Register',
       component: Register
 
     },
+
+
     {   // 通过对象进行描述
       path: '/management',
       name: 'Management ',
@@ -48,6 +73,8 @@ const router = new Router({
         }
       ]
     },
+
+
     {   // 通过对象进行描述
       path: '/management/:username',
       name: 'ManagementWithParams',
@@ -55,6 +82,7 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/management.vue')// 实现延迟加载
 
     },
+
 
     {   // 通过对象进行描述
       path: '/storeManagement',
@@ -72,12 +100,16 @@ const router = new Router({
           component:Stores,
         }]
     },
+
+
     {   // 通过对象进行描述
       path: '/storeManagement/:username',
       name: 'StoreManagementWithParams',
       // component: storeManagement,
       component: () => import(/* webpackChunkName: "about" */ './views/storeManagement.vue')// 实现延迟加载
     },
+
+    
     {
       path: '/about',
       name: 'about',
