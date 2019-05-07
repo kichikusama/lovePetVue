@@ -11,9 +11,19 @@ import Users from './components/users/users.vue'; // 用户管理 组件
 import Auditing from './components/users/usersAuditing.vue'; // 用户审批 组件
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
 
-import chooseServe from './views/chooseServe';//选择界面(新增门店，进入门店，进货管理)
-import addStore from './views/addStore';//新增门店
-import stock from './views/stock';//进货管理
+//cq
+import ChooseServe from './views/chooseServe';//选择界面(新增门店，进入门店，进货管理)
+import ManageStore from './views/manageStore';//新增门店
+import Stock from './views/stock';//进货管理
+import Shop from './components/stock/shop';//新增商品
+import Serve from './components/stock/serve';//新增服务
+import Pet from './components/stock/pet'//新增宠物
+import AddStore from './components/manageStore/addStore'//新增门店
+import RevisionStore from './components/manageStore/revisionStore'//修改门店
+import DeleteStore from './components/manageStore/deleteStore'//删除门店
+import FindStore from './components/manageStore/findStore' //查找门店
+//cq
+
 
 Vue.use(Router)
 
@@ -32,22 +42,62 @@ const router = new Router({
       component: Login
     },
 
-
+    //cq
     {   // 通过对象进行描述
       path: '/chooseServe', // 接收参数
-      name: 'chooseServe',
-      component: chooseServe
+      name: 'ChooseServe',
+      component: ChooseServe
     },
     {   // 通过对象进行描述
-      path: '/addStore', // 接收参数
-      name: 'addStore',
-      component: addStore
+      path: '/manageStore', // 接收参数
+      name: 'ManageStore',
+      component: ManageStore,
+      children:[
+        {
+          path:'/manageStore/addStore',
+          name:'AddStore',
+          component:AddStore
+        },
+        {
+          path:'/manageStore/revisionStore',
+          name:'RevisionStore',
+          component:RevisionStore
+        },
+        {
+          path:'/manageStore/deleteStore',
+          name:'DeleteStore',
+          component:DeleteStore
+        },
+        {
+          path:'/manageStore/findStore',
+          name:'FindStore',
+          component:FindStore
+        }
+      ]
     },
     {   // 通过对象进行描述
       path: '/stock', // 接收参数
-      name: 'stock',
-      component: stock
+      name: 'Stock',
+      component: Stock,
+      children:[
+        {
+          path:'/stock/shop',
+          name:"Shop",
+          component:Shop,
+        },
+        {
+          path:'/stock/serve',
+          name:"Serve",
+          component:Serve
+        },
+        {
+          path:'/stock/pet',
+          name:"Pet",
+          component:Pet,
+        }
+      ]
     },
+    //cq
 
     {   // 通过对象进行描述
       path: '/register',
