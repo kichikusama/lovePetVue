@@ -82,7 +82,18 @@
         </el-form-item>
       </div>
       <div>
-        
+        <el-upload
+          action="http://localhost:3000/addGoodsImage"
+          list-type="picture-card"
+          :on-preview="handlePictureCardPreview"
+          :on-remove="handleRemove"
+          :on-success="uploadSuccess"
+        >
+          <i class="el-icon-plus"></i>
+        </el-upload>
+        <el-dialog :visible.sync="goods.dialogVisible">
+          <img width="100%" :src="goods.dialogImageUrl" alt>
+        </el-dialog>
       </div>
     </div>
     <el-form-item size="large">
@@ -100,24 +111,37 @@ export default {
       goods: {
         name: "",
         type: "",
-        material:"",
-        canFor:"",
-        onlyFor:"",
-        size:"",
-        taste:"",
-        special:"",
-        region:"",
-        date:"",
-        time:"",
-        supplier:"",
-        intro:"",
-        price:"",
-        img:""
+        material: "",
+        canFor: "",
+        onlyFor: [],
+        size: "",
+        taste: [],
+        special: [],
+        region: "",
+        date: "",
+        time: "",
+        supplier: "",
+        intro: "",
+        price: "",
+        img: "",
+        src: "",
+        dialogImageUrl: "",
+        dialogVisible: false
       }
     };
   },
   methods: {
-    onSubmit() {
+    onSubmit() {},
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+      console.log(file);
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
+    uploadSuccess(){
+    
     }
   }
 };
