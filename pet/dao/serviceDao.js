@@ -1,11 +1,9 @@
-const {  } = require("./Models/serviceModel.js");
+const { serviceModel } = require("./Models/serviceModel.js");
 
-module.exports.addUser = async function (data) {
+module.exports.addService = async function (data) {
     console.log(data);
-    const result = await usersModel.create(data);
-    console.log(result);
-    return result;
+    return await usersModel.create(data);
 }
-module.exports.getUsers = async function () {
-    return await usersModel.find();
+module.exports.getService = async function () {
+    return await serviceModel.find();
 }
