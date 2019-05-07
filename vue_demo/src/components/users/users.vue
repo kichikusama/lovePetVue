@@ -5,7 +5,7 @@
       <el-main>
         <div>
           <div style="margin-top: 15px;">
-            <el-input placeholder="搜索" v-model="input3" class="input-with-select">
+            <el-input placeholder="搜索"  class="input-with-select">
               <el-select v-model="select" slot="prepend" placeholder="请选择搜索条件">
                 <el-option label="姓名" value="1"></el-option>
                 <el-option label="电话" value="2"></el-option>
@@ -15,13 +15,13 @@
             </el-input>
           </div>
 
-          <el-table :data="tableData" style="width: 100%;text-align:center;">
+          <el-table :data="rows" style="width: 100%;text-align:center;">
             <el-table-column prop="userName" label="姓名" width="150"></el-table-column>
             <el-table-column prop="userPhone" label="联系方式" width="150"></el-table-column>
             <el-table-column prop="userMail" label="邮箱" width="150"></el-table-column>
             <el-table-column label="门店">
-              <el-table-column prop="stores[0]" label="门店1" width="120"></el-table-column>
-              <el-table-column prop="stores[1]" label="门店2" width="120"></el-table-column>
+              <el-table-column prop="" label="门店1" width="120"></el-table-column>
+              <el-table-column prop="" label="门店2" width="120"></el-table-column>
             </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
@@ -36,8 +36,7 @@
           </el-table>
 
           <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
+          
             :current-page="1"
             :page-sizes="[5, 10, 15, 20]"
             :page-size="10"
@@ -49,7 +48,13 @@
     </el-container>
   </div>
 </template>
+
 <script>
+import { createNamespacedHelpers } from "vuex";  // 命名空间辅助函数
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "users"   // 从状态机中获取 数据
+);
+
 export default {
   name: "Users",
   data() {
@@ -69,8 +74,52 @@ export default {
           userName: "lisi", // 姓名
           stores: ["爱宠帮-双流店", "爱宠帮-龙泉店"] // 门店
         }
-      ]
+      ],
+      select:'',  // 搜索条件
     };
+  },
+  watch: {
+    eachPage() {
+      //   console.log(eachPage);
+      this.usersListAsync();
+    },
+    currentPage() {
+      this.usersListAsync();
+      //  console.log(currentPage);
+    }
+  },
+  computed: {
+    ...mapState(["rows", "totalPage", "count", "eachPage", "currentPage"])
+    // eachPage: {
+    //   get: mapState(["eachPage"]).eachPage,
+    //   set: mapMutations(["setEachPage"]).setEachPage
+    // },
+    //  currentPage: {
+    //   get: mapState(["currentPage"]).currentPage,
+    //   set: mapMutations(["setCurrentPage"]).setCurrentPage
+    // }
+  },
+  methods: {
+    ...mapActions(["usersListAsync"]),
+    ...mapMutations(["setEachPage", "setCurrentPage"])
+    // pageChange(e) {
+    //   // 修改 currentPage来更改数据的请求
+    //   // console.log(e.target.value);
+    //   this.setCurrentPage(e.target.value);
+    //   this.usersListAsync();
+    // }
+    // clickCurrentPage(newPage){
+    //   this.setCurrentPage(newPage);
+    //   this.usersListAsync();
+    // }
+  },
+  mounted() {
+    // 生命周期函数
+    this.usersListAsync();
+    // console.log(this.films);
+
+    //   console.log(this.a); // 这里拿不到a : undefind
+    //   console.log(this); // this中 有a
   }
 };
 </script>
