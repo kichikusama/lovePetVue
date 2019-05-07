@@ -83,7 +83,7 @@
       </div>
       <div>
         <el-upload
-          action="/goods/addGoodsImage"
+          action="/goods/addImage"
           list-type="picture-card"
           :on-remove="handleRemove"
           :on-success="uploadSuccess"
@@ -96,30 +96,26 @@
       </div>
     </div>
     <el-form-item size="large">
-      <el-button type="primary" @click="onSubmit">立即新增</el-button>
-      <el-button>取消</el-button>
+      <el-button type="primary" :disabled="goods.flag"  @click="onSubmit">立即新增</el-button>
+      <el-button >取消</el-button>
     </el-form-item>
   </el-form>
 </template>
 
 
-// <script>
+<script>
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "goods"
+);
+
 export default {
    computed: {
-    ...mapState(["goods", "currentPage", "totalPage", "count", "films"])
+    ...mapState(["goods"])
   },
   methods: {
-    onSubmit() {
-      
-      console.log(this.goods.name);
-    },
-    handleRemove(file, fileList) {
-    },
-    uploadSuccess(msg) {
-      this.src = msg.data.src;
-      console.log(this.src);
-    }
-  }
+    ...mapMutations(["onSubmit", "handleRemove","uploadSuccess",])
+  },
 };
 </script>
 
