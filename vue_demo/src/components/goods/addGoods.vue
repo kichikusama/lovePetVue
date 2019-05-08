@@ -13,9 +13,9 @@
         </el-form-item>
         <el-form-item label="适用规格" prop="canFor">
           <el-select v-model="goods.goodsCanFor" placeholder="请选择使用规格">
-            <el-option label="6个月以下" value="kid"></el-option>
-            <el-option label="6个月以上" value="adult"></el-option>
-            <el-option label="所有" value="no"></el-option>
+            <el-option label="6个月以下" value="6个月以下"></el-option>
+            <el-option label="6个月以上" value="6个月以上"></el-option>
+            <el-option label="所有" value="所有"></el-option>
           </el-select>
         </el-form-item>
         <el-radio-group v-model="goods.goodsOnlyFor">
