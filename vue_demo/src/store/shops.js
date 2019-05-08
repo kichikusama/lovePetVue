@@ -1,4 +1,4 @@
-
+import shopServe from '../../servise/shops'
 
 
 export default ({
@@ -16,15 +16,14 @@ export default ({
             shopImg: '',
             shopFeature: '',
             shopCommission: '',
-            shopEmployee: '',
+            shopEmployee: [],
         }
     },
     actions: {
        async applyStoreAsync({ commit, state }) {
-            const data =  await fetch(`/users/getUsers?currentPage=${state.currentPage}&eachPage=${state.eachPage}`)
-             .then(response => response.json());
-            console.log(state.state);
-            commit('getUsers',data);
+           console.log(state.state)
+         const data= await shopServe.addShops(state.state)
+         console.log(11,data)
         },
     }
 })

@@ -23,7 +23,7 @@
         <el-button
           type="primary"
           @click="management_register"
-          style="width:100%;"
+          style="width:100%;background-color:green;"
           round
           :loading="isBtnLoading2"
         >平台管理员 注册</el-button>
@@ -42,7 +42,7 @@ export default {
       showTishi: false,
       tishi: "",
       isBtnLoading1: false,
-      isBtnLoading2: false,
+      isBtnLoading2: false
     };
   },
   methods: {
@@ -74,11 +74,11 @@ export default {
       }
     },
     // 平台管理员 注册
-    management_register(){
-       if (!this.username || !this.password) {
+    management_register() {
+      if (!this.username || !this.password) {
         this.$message.error("请输入用户名或密码");
       } else {
-           let data = { username: this.username, password: this.password };
+        let data = { username: this.username, password: this.password };
         console.log(data);
         if (data.username == 1 || data.password == 1) {
           this.tishi = "注册成功";
@@ -95,7 +95,6 @@ export default {
             1500
           );
         }
-
       }
     }
   }

@@ -65,14 +65,31 @@
             <el-input v-model="state.shopCommission" placeholder="请输入内容"></el-input>
           </div>
           <div class="input member">
-            <el-button type="primary" @click="open">
-              注册店员
-              <i class="el-icon-upload el-icon--right"></i>
-            </el-button>
-            <p>xx,22,33</p>
+            <el-button type="success" @click="dialogFormVisible = true">新增店员</el-button>
+
+            <el-dialog title="店员信息" :visible.sync="dialogFormVisible">
+              <el-form :model="form">
+                <el-form-item label="店员名称" :label-width="formLabelWidth">
+                  <el-input v-model="form.name" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="店员等级" :label-width="formLabelWidth">
+                  <el-input v-model="form.grade" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="店员号码" :label-width="formLabelWidth">
+                  <el-input v-model="form.phone" autocomplete="off"></el-input>
+                </el-form-item>
+              </el-form>
+              <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="arrpush">确 定</el-button>
+              </div>
+            </el-dialog>
+            <div class="meber">
+              <p v-for="item in arr" :key="item.empName">{{item.empName}}</p>
+            </div>
           </div>
           <div class="primary">
-            <el-button type="primary" @click="applyStoreAsync">主要按钮</el-button>
+            <el-button type="primary" @click="addShop">确认新增</el-button>
           </div>
         </el-form>
       </el-card>
@@ -83,11 +100,26 @@
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers("shops");
 export default {
+  data() {
+    return {
+      arr:[],
+      dialogFormVisible: false,
+      form: {
+        name: "",
+        grade:"",
+        phone:"",
+      },
+      formLabelWidth: "120px"
+    };
+  },
   computed: {
     ...mapState(["state"])
   },
   methods: {
     ...mapActions(["applyStoreAsync"]),
+    addShop(){
+      this.applyStoreAsync()
+    },
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
@@ -100,14 +132,11 @@ export default {
     heardPictureCardPreview(file) {
       this.state.shopImg = file.data.url;
     },
-    open() {
-        this.$alert('<div><span>店员名称：</span><input  placeholder="请输入内容"></input></div><div><span>店员等级：</span><input  placeholder="请输入内容"></input></div><div><span>店员电话：</span><input  placeholder="请输入内容"></input></div>', '店员信息', {
-          dangerouslyUseHTMLString: true,
-           callback: (action,instance) => {
-            console.log(instance)
-          }
-        })
-      }
+    arrpush(){
+      this.dialogFormVisible = false
+      this.arr.push({empName:this.form.name,empLevel:this.form.grade,empPhone:this.form.phone})
+      this.state.shopEmployee=this.arr
+    }
   }
 };
 </script>
@@ -130,6 +159,11 @@ p {
   width: 600px;
   display: flex;
   margin-top: 30px;
+}
+.meber{
+  width: 400px;
+  display: flex;
+  justify-content: space-between
 }
 span {
   width: 150px;
