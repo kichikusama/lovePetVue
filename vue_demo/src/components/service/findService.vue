@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width:100%;">
     <el-autocomplete
       v-model="state4"
       :fetch-suggestions="querySearchAsync"
@@ -43,21 +43,21 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
 export default {
   watch: {
     eachPage() {
-      this.getServiceByPageAsync();
+      this.getService();
     },
     currentPage() {
-      this.getServiceByPageAsync();
+      this.getService();
     }
   },
   computed: {
     ...mapState(["eachPage", "currentPage", "totalPage", "count", "films"])
   },
   methods: {
-    ...mapActions(["getServiceByPageAsync"]),
+    ...mapActions(["getService"]),
     ...mapMutations(["setEachPage", "setCurrentPage"])
   },
   mounted() {
-    this.getServiceByPageAsync();
+    this.getService();
   },
 
   data() {

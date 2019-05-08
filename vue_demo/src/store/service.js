@@ -35,9 +35,9 @@ export default {
     },
     actions: {
         async onSubmit(state, payload) {
-            await serServuse.addService(state)
+            await serServuse.addService(state.state.service)
         },
-        async getServiceByPageAsync(context) {
+        async getService(context) {
             const {
                 currentPage,
                 eachPage
