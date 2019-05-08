@@ -1,10 +1,7 @@
-const {  } = require("./Models/goodsModel.js");
+const { goodsModel } = require("./Models/goodsModel.js");
 
-module.exports.addUser = async function (data) {
-    console.log(data);
-    const result = await usersModel.create(data);
-    console.log(result);
-    return result;
+module.exports.addGoods = async function (data) {
+    return await goodsModel.create(data);
 }
 module.exports.getUsers = async function () {
     return await usersModel.find();

@@ -1,4 +1,11 @@
-const addGoodsImage = async () => await fetch(`/goods/`).then(response => response.json());
+const addGoods = async (data) => await fetch(`/goods/addGoods`,{
+    headers: { 
+        "Content-Type": "application/json"
+    },
+    method:'POST',
+    body:  JSON.stringify(data)
+}).then(response => response.json())
+
 export default {
-    addGoodsImage
+    addGoods
 }
