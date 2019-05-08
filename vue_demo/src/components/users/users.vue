@@ -84,13 +84,26 @@
           </div>
 
           <el-table :data="rows" center="all" style="width: 100%;text-align:center;">
-            <el-table-column prop="userName" label="姓名" width="100"></el-table-column>
+            <el-table-column prop="_id" label="ID" width="250"></el-table-column>           
+           
+            <el-table-column prop="userName" label="姓名" width="100"></el-table-column>           
+            <el-table-column prop="userAcount" label="登录名" width="100"></el-table-column>
             <el-table-column prop="userPhone" label="联系方式" width="130"></el-table-column>
             <el-table-column prop="userMail" label="邮箱" width="160"></el-table-column>
-            <el-table-column prop="userType" label="角色" width="60"></el-table-column>
-            <el-table-column label="服务类型">
+            <el-table-column prop="userType" label="角色" width="130"></el-table-column>
+            <el-table-column prop="userStatus" label="状态" width="130"></el-table-column>            
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <!-- <a href="#/management/usersIntroduce">查看详情</a> -->
+                 <el-button size="mini" @click="usersIntroduce(scope.row)">查看详情</el-button>
+                <!-- <el-button size="mini" @click="show(scope.row)">修改</el-button>
+                <el-button size="mini" type="danger" @click="deleteUserAsync(scope.row)">删除</el-button> -->
+              </template>
+            </el-table-column>
+
+            <!-- <el-table-column label="服务类型">
               <el-table-column prop="goodsId" label="商品" width="100">
-                <a href></a>
+                <a href="" >{{rows[0].goodsId[0].goodsName}}</a>
               </el-table-column>
               <el-table-column prop="serviceId" label="服务" width="100">
                 <a href>more</a>
@@ -98,22 +111,16 @@
               <el-table-column prop="petId" label="宠物" width="100">
                 <a href>more</a>
               </el-table-column>
-            </el-table-column>
+            </el-table-column>-->
 
-            <el-table-column label="门店">
+            <!-- <el-table-column label="门店">
               <el-table-column prop label="门店1" width="120">
                 <a href></a>
               </el-table-column>
               <el-table-column prop label="门店2" width="120">
                 <a href></a>
               </el-table-column>
-            </el-table-column>
-            <el-table-column label="操作">
-              <template slot-scope="scope">
-                <el-button size="mini" @click="show(scope.row)">修改</el-button>
-                <el-button size="mini" type="danger" @click="deleteUserAsync(scope.row)">删除</el-button>
-              </template>
-            </el-table-column>
+            </el-table-column>-->
           </el-table>
 
           <el-pagination
@@ -241,7 +248,7 @@ export default {
   },
   methods: {
     ...mapActions(["usersListAsync", "deleteUserAsync"]),
-    ...mapMutations(["setEachPage", "setCurrentPage", "handleUpdate"]), //,"handleDelete"
+    ...mapMutations(["setEachPage", "setCurrentPage", "handleUpdate","setUsersIntroduce"]), //,"handleDelete"
     // pageChange(e) {
     //   // 修改 currentPage来更改数据的请求
     //   // console.log(e.target.value);
@@ -257,6 +264,12 @@ export default {
       // console.log(rows);
       Object.assign(this.user, rows); // 更新 data中的user信息
       // console.log(this.user.userAcount);
+    },
+    usersIntroduce(userNow){  // 查看详情
+      // console.log(userNow);   
+      this.setUsersIntroduce(userNow);
+      this.$router.push({ path: `/management/usersIntroduce`}) // 跳转  /${userNow}
+           
     }
     // handleDelete:(index,row)=>{
     //   console.log(index);
