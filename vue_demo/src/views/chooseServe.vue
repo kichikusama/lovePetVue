@@ -1,6 +1,8 @@
+
 <template>
   <el-container>
     <el-header>爱宠邦</el-header>
+    
     <el-main>
       <div style=" display: flex;justify-content: space-around;">
         <el-col :span="6">
@@ -57,6 +59,7 @@
   </el-container>
 </template>
 <script>
+
 export default {
    data() {
       return {
