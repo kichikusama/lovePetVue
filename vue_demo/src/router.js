@@ -9,6 +9,8 @@ import StoreManagment from './views/storeManagement.vue'; // 门店管理员 界
 
 import Users from './components/users/users.vue'; // 用户管理 组件
 import Auditing from './components/users/usersAuditing.vue'; // 用户审批 组件
+import UsersIntroduce from './components/users/usersIntroduce.vue';// 用户详情 组件
+
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
 import AddService from './components/service/addService.vue';// 新增服务 组件
 import FindService from './components/service/findService.vue';// 查询服务 组件
@@ -115,23 +117,33 @@ const router = new Router({
     },
 
 
-    {   // 通过对象进行描述
+    {   // 平台管理 一级路由
       path: '/management',
       name: 'Management ',
       component: Management,
       children: [ // children 属性配置二级路径
         {
-          path: '/management/users',
+          path: '/management/users',  // GM  用户列表
           name: 'Users',
           component: Users,
         },
         {
-          path: '/management/stores',
-          name: 'Stores',
-          component: Stores,
+          path: '/management/usersIntroduce',  // GM 用户详情
+          name: 'UsersIntroduce',
+          component: UsersIntroduce,
         },
+        // {   // 通过对象进行描述
+        //   path: '/management/usersIntroduce/:userNow', //GM 用户详情 接收参数
+        //   name: 'UsersIntroduceWithParams',
+        //   component:UsersIntroduce,
+        // },
+        // {
+        //    path: '/management/usersIntroduce',
+        //    component:UsersIntroduce,
+        //    props: (route) => ({ query:111}) 
+        // },
         {
-          path: '/management/auditing',   // 用户审批 路由
+          path: '/management/auditing',   //GM 用户审批 路由
           name: 'Auditing',
           component: Auditing,
         },
@@ -156,7 +168,7 @@ const router = new Router({
     },
 
 
-    {   // 通过对象进行描述
+    {   // 门店管理 一级路由
       path: '/storeManagement',
       name: 'StoreManagment',
       component: StoreManagment,
