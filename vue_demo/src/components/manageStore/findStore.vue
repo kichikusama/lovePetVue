@@ -7,9 +7,9 @@
           <div style="margin-top: 15px;">
             <el-input placeholder="搜索" class="input-with-select">
               <el-select v-model="select" slot="prepend" placeholder="请选择搜索条件">
-                <el-option label="门店名称" value="1"></el-option>
-                <el-option label="电话" value="2"></el-option>
-                <el-option label="营业地址" value="3"></el-option>
+                <el-option label="门店名称" value="shopName"></el-option>
+                <el-option label="电话" value="shopTel"></el-option>
+                <el-option label="营业地址" value="shopAdd"></el-option>
               </el-select>
               <el-button slot="append" icon="el-icon-search"></el-button>
             </el-input>
@@ -57,7 +57,6 @@
             @size-change="setEachPage"
             @current-change="setCurPage"
             :current-page.sync="currentPage"
-            :page-size="eachPage"
             :page-sizes="[5, 15, 20, ]"
             layout="total, sizes, prev, pager, next, jumper"
             :total="total"
@@ -98,11 +97,12 @@ export default {
     },
      currentPage: {
       get: mapState(["currentPage"]).currentPage,
-      set: mapMutations(["setCurrentPage"]).setCurrentPage
+      set: mapMutations(["setCurPage"]).setCurPage
     }
   },
   methods: {
-    ...mapActions(["getShopsAsync", "deteleShopsAsync"])
+    ...mapActions(["getShopsAsync", "deteleShopsAsync"]),
+    ...mapMutations(["setEachPage", "setCurPage"]),
   },
   mounted() {
     // 生命周期函数
