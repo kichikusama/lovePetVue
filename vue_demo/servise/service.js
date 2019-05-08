@@ -1,7 +1,6 @@
 const addService = async (state) => await fetch(`/service/addService`, {
   headers: {
     "Content-Type": "application/json",
-    // 'Accept':"application/json",
   },
   method: 'POST',
   body: JSON.stringify(state)

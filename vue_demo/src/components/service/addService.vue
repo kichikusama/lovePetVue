@@ -68,20 +68,6 @@
     "service"   // 从状态机中获取 数据
   );
   export default {
-    // data() {
-    //   return {
-    //     service: {
-    //       serviceName: "",
-    //       serviceType: "",
-    //       serviceSchedule: "",
-    //       serviceCanFor: "",
-    //       serviceDetial: "",
-    //       serviceTime: "",
-    //       serviceLevel: "",
-    //       servicePrice: ""
-    //     }
-    //   };
-    // },
     computed: {
       ...mapState(["service"])
     },
