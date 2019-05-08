@@ -17,9 +17,9 @@ router.post('/addUser', async function(req, res, next) {
 //currentPage: this.pageData.currentPage,
 //   eachPage: this.pageData.eachPage,
 //},
-router.get('/getUsers',async function(req, res, next) {
-  console.log(req.query);
-  res.send(await getUsers(req.query));
+router.post('/getUsers',async function(req, res, next) {
+  console.log(req.body);
+  res.send(await getUsers(req.body));
 });
 
 // 通过搜索框 搜索用户  get请求方式 GM 

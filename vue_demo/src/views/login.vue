@@ -1,3 +1,4 @@
+
 <template>
   <div style="width:400px;margin:100px auto">
     <h1>登录</h1>
@@ -14,9 +15,9 @@
       <el-form-item label="密码：">
         <el-input
           placeholder="请输入密码"
-          show-password
           v-model="password"
           oninput="if(value.length>20)value=value.slice(0,20)"
+          show-password
         ></el-input>
       </el-form-item>
 
@@ -44,6 +45,7 @@
   </div>
 </template>
 <script>
+
 export default {
   name: "login",
   data() {
@@ -57,16 +59,20 @@ export default {
     };
   },
   methods: {
+    // 门店管理员 登录
     storeManagement_login() {
-      this.$refs.gain.focus() //input框自动获取焦点
+      this.$refs.gain.focus(); //input框自动获取焦点
       let data1 = { username: this.username, password: this.password };
+    
       if (!this.username || !this.password) {
         //输入为空判断
+        
         this.$message.error("请输入用户名或密码");
       } else if (!/^1[3456789]\d{9}$/.test(data1.username)) {
         //手机号判断
         this.$message.error("电话号格式错误");
-      } else if (data1.username == 0) {
+      } else if (data1.username == -1) {
+        
         this.$message.error("该用户不存在");
       } else if (!/^[0-9a-zA-Z]{6,20}$/.test(data1.password)) {
         // 密码格式判断
@@ -87,16 +93,18 @@ export default {
         );
       }
     },
+    // 平台管理员 登录
     management_login() {
-      this.$refs.gain.focus() //input框自动获取焦点
+      this.$refs.gain.focus(); //input框自动获取焦点
       let data2 = { username: this.username, password: this.password };
+
       if (!this.username || !this.password) {
         //输入为空判断
         this.$message.error("请输入用户名或密码");
       } else if (!/^1[3456789]\d{9}$/.test(data2.username)) {
         //手机号判断
         this.$message.error("电话号格式错误");
-      } else if (data2.username == 0) {
+      } else if (data2.username == -1) {
         this.$message.error("该用户不存在");
       } else if (!/^[0-9a-zA-Z]{6,20}$/.test(data2.password)) {
         // 密码格式判断

@@ -113,7 +113,6 @@ export default {
         this.$message.error("密码格式错误，密码由6-20位数字，字母组成");
       } else {
         console.log(data2);
-
         this.tishi = "注册成功";
         this.showTishi = true;
         this.username = "";
