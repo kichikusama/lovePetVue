@@ -8,12 +8,19 @@ export default {
         totalPage: "0", // 总页数
         count: "0", // 总条数
         rows: [], // 服务信息
+        service: {
+            serviceName: "",
+            serviceType: "",
+            serviceSchedule: "",
+            serviceCanFor: "",
+            serviceDetial: "",
+            serviceTime: "",
+            serviceLevel: "",
+            servicePrice: ""
+        }
     },
     mutations: {
-        addService:(state,payload)=>{
-            console.log(state);
-            console.log(payload);
-        },
+        
         getService: (state, payload) => {
             console.log(state);
             console.log(payload);
@@ -22,12 +29,23 @@ export default {
         setEachPage: (state, eachPage) => {
             return state.eachPage = eachPage;
         },
-        setCurrentPage: (state, currentPage) => {return state.currentPage = currentPage;}
+        setCurrentPage: (state, currentPage) => {
+            return state.currentPage = currentPage;
+        }
     },
     actions: {
-        async getServiceByPageAsync(context) {
-            const { currentPage, eachPage } = context.state;
-            const data = await serServuse.getService({ currentPage, eachPage });
+        async onSubmit(state, payload) {
+            await serServuse.addService(state.state.service)
+        },
+        async getService(context) {
+            const {
+                currentPage,
+                eachPage
+            } = context.state;
+            const data = await serServuse.getService({
+                currentPage,
+                eachPage
+            });
             console.log(data);
             context.commit("getService", data);
         }

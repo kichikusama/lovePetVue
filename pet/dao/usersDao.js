@@ -22,6 +22,8 @@ module.exports.getUsers = async function ({ currentPage, eachPage }) {
         count, // 总条数
         rows, // 学生信息
     };
+    // console.log(pageData);
+    
     return pageData;
 }
 

@@ -81,7 +81,7 @@ export default {
         setTimeout(
           function() {
             this.showTishi = false;
-            this.$router.push("/storeManagement");
+            this.$router.push("/chooseServe");
           }.bind(this),
           1500
         );
