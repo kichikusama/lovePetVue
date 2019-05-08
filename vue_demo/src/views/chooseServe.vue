@@ -33,7 +33,7 @@
             <div style="padding: 14px;">
               <div class="bottom clearfix">
                 <div style="height:40px"></div>
-                <el-button type="text" class="button" @click="addStore">新增门店</el-button>
+                <el-button type="text" class="button" @click="addStore">门店管理</el-button>
               </div>
             </div>
           </el-card>
@@ -84,7 +84,7 @@ export default {
       this.$router.push(`/storeManagement`); // 跳转到门店页面
     },
     addStore() {
-      this.$router.push(`/addStore`);
+      this.$router.push(`/manageStore`);
     },
     stock(){
       this.$router.push('/stock')

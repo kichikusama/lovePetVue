@@ -21,7 +21,7 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="/storeManagement/addGoods">新增商品</el-menu-item>
-              <el-menu-item index="1-2">查询商品</el-menu-item>
+              <el-menu-item index="/storeManagement/goodsList">查询商品</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 

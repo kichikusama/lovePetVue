@@ -32,7 +32,7 @@ export default ({
     },
     mutations: {
         onSubmit(state, payload) {
-
+            
         },
         handleRemove(state, payload) {
             state.goods.src = "";
