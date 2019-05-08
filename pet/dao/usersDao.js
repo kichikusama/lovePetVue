@@ -40,7 +40,6 @@ module.exports.searchUser = async function ({ type, text }) {
 //删除电影时通过id
 module.exports.deleteUserById = async function (_id ) {
     console.log(_id);
-    
     let data = await usersModel.deleteOne({ _id }, (err, data) => { });
     console.log(data);   
     return data;
