@@ -39,7 +39,7 @@ export default ({
         async usersListAsync({ commit ,state}) {
         const data =  await fetch(`/users/getUsers?currentPage=${state.currentPage}&eachPage=${state.eachPage}`)
          .then(response => response.json());
-        // console.log(data);
+        console.log(data);
         commit('getUsers',data);
         },
         async deleteUserAsync({ dispatch },rows){

@@ -1,4 +1,4 @@
-const {  } = require("./Models/shopsModel.js");
+const { shopsModel } = require("./Models/shopsModel.js");
 
 module.exports.addUser = async function (data) {
     console.log(data);
@@ -6,6 +6,6 @@ module.exports.addUser = async function (data) {
     console.log(result);
     return result;
 }
-module.exports.getUsers = async function () {
-    return await usersModel.find();
+module.exports.addShop = async function (data) {
+    return await shopsModel.create(data);
 }

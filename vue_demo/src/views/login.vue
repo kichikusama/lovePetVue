@@ -20,13 +20,13 @@
         >门店管理员 登录</el-button>
       </el-form-item>
 
-      <el-form-item>
+      <el-form-item >
         <el-button
           type="primary"
           @click="management_login"
           round
           :loading="isBtnLoading2"
-          style="width:100%;"
+          style="width:100%;background-color:green;"
         >平台管理员 登录</el-button>
       </el-form-item>
       
@@ -72,7 +72,7 @@ export default {
           setTimeout(
             function() {
               this.showTishi = false;
-              this.$router.push("/storeManagement");
+              this.$router.push("/chooseServe");
             }.bind(this),
             1500
           );
@@ -81,7 +81,7 @@ export default {
     },
     management_login() {
       if (!this.username || !this.password) {
-        this.$message.error("请输入用户名或密码");
+        // this.$message.error("请输入用户名或密码");
       } else {
         let data = { username: this.username, password: this.password };
         console.log(data);
