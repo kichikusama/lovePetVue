@@ -5,10 +5,5 @@ module.exports.addService = async function (data) {
 }
 
 module.exports.getService = async function () {
-    const result = await getService(data);
-    if (result) {
-        return true;
-    } else {
-        return false;
-    }
+    return await getService(data);
 }
