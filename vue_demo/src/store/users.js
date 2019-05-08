@@ -1,3 +1,4 @@
+import usersService from '../../servise/users';
 export default ({
     // 命名空间 
     namespaced: true,
@@ -7,6 +8,7 @@ export default ({
         totalPage: '0', // 总页数
         count: '0', // 总条数
         rows: [], // 信息
+        usersIndroduce:{}, // 用户详情需要使用
     },
     mutations:{
         getUsers(state,payload){    // 分页获取用户
@@ -23,6 +25,11 @@ export default ({
             
             return state.currentPage = currentPage;
         },
+        setUsersIntroduce:(state,userNow) =>{  // 第二个参数 为 传递的参数，传什么就是什么
+            // console.log(state);
+            Object.assign(state,{usersIndroduce:userNow})
+            // return state.usersIndroduce = userNow;      
+        }
         // handleDelete:(state,payload)=>{  // 根据_id 删除用户
         //     console.log(payload);
             
@@ -36,12 +43,18 @@ export default ({
         // },
     },
     actions: {
-        async usersListAsync({ commit ,state}) {
-        const data =  await fetch(`/users/getUsers?currentPage=${state.currentPage}&eachPage=${state.eachPage}`)
-         .then(response => response.json());
+        async usersListAsync({ commit, state }) {
+          const data= await usersService.getUsers({currentPage:state.currentPage,eachPage:state.eachPage});
+          console.log(data);
+          commit('getUsers',data);
+         },
+
+        // async usersListAsync({ commit ,state}) {
+        // const data =  await fetch(`/users/getUsers?currentPage=${state.currentPage}&eachPage=${state.eachPage}`)
+        //  .then(response => response.json());
         // console.log(data);
-        commit('getUsers',data);
-        },
+        // commit('getUsers',data);
+        // },
         async deleteUserAsync({ dispatch },rows){
              const id = rows._id; // 所删除用户的 id
              const data =  await fetch(`/users/deleteUserById?_id=${id}`)

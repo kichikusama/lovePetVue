@@ -84,27 +84,43 @@
           </div>
 
           <el-table :data="rows" center="all" style="width: 100%;text-align:center;">
-            <el-table-column prop="userName" label="姓名" width="100"></el-table-column>
-            <el-table-column prop="userPhone" label="联系方式" width="100"></el-table-column>
-            <el-table-column prop="userMail" label="邮箱" width="100"></el-table-column>
-            <el-table-column prop="userType" label="角色" width="100"></el-table-column>
-            <el-table-column prop="goodsId" label="商品" width="100"></el-table-column>
-            <el-table-column prop="serviceId" label="服务" width="100"></el-table-column>
-            <el-table-column prop="petId" label="宠物" width="100"></el-table-column>
-            <el-table-column label="门店">
-              <el-table-column prop label="门店1" width="120"></el-table-column>
-              <el-table-column prop label="门店2" width="120"></el-table-column>
-            </el-table-column>
+            <el-table-column prop="_id" label="ID" width="250"></el-table-column>           
+           
+            <el-table-column prop="userName" label="姓名" width="100"></el-table-column>           
+            <el-table-column prop="userAcount" label="登录名" width="100"></el-table-column>
+            <el-table-column prop="userPhone" label="联系方式" width="130"></el-table-column>
+            <el-table-column prop="userMail" label="邮箱" width="160"></el-table-column>
+            <el-table-column prop="userType" label="角色" width="130"></el-table-column>
+            <el-table-column prop="userStatus" label="状态" width="130"></el-table-column>            
             <el-table-column label="操作">
               <template slot-scope="scope">
-                <el-button size="mini" @click="deleteUserAsync(scope.row)">修改</el-button>
-                <el-button
-                  size="mini"
-                  type="danger"
-                  @click="deleteUserAsync(scope.row)"
-                >删除</el-button>
+                <!-- <a href="#/management/usersIntroduce">查看详情</a> -->
+                 <el-button size="mini" @click="usersIntroduce(scope.row)">查看详情</el-button>
+                <!-- <el-button size="mini" @click="show(scope.row)">修改</el-button>
+                <el-button size="mini" type="danger" @click="deleteUserAsync(scope.row)">删除</el-button> -->
               </template>
             </el-table-column>
+
+            <!-- <el-table-column label="服务类型">
+              <el-table-column prop="goodsId" label="商品" width="100">
+                <a href="" >{{rows[0].goodsId[0].goodsName}}</a>
+              </el-table-column>
+              <el-table-column prop="serviceId" label="服务" width="100">
+                <a href>more</a>
+              </el-table-column>
+              <el-table-column prop="petId" label="宠物" width="100">
+                <a href>more</a>
+              </el-table-column>
+            </el-table-column>-->
+
+            <!-- <el-table-column label="门店">
+              <el-table-column prop label="门店1" width="120">
+                <a href></a>
+              </el-table-column>
+              <el-table-column prop label="门店2" width="120">
+                <a href></a>
+              </el-table-column>
+            </el-table-column>-->
           </el-table>
 
           <el-pagination
@@ -114,6 +130,75 @@
             layout="total, sizes, prev, pager, next, jumper"
             :total="count-0"
           ></el-pagination>
+
+          <div>
+            <el-dialog title="修改用户信息" :visible="isShow">
+              <el-form formGroup="validateForm" inline size="small">
+                <el-form-item label="昵称">
+                  <el-input v-model="user.userAcount" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="密码">
+                  <el-input value="******" disabled></el-input>
+                </el-form-item>
+              </el-form>
+              <el-form formGroup="validateForm" inline size="small">
+                <el-form-item label="姓名">
+                  <el-input v-model="user.userName" disabled></el-input>
+                </el-form-item>
+
+                <el-form-item label="角色">
+                  <el-input v-model="user.userType" disabled></el-input>
+                </el-form-item>
+              </el-form>
+              <el-form formGroup="validateForm" inline size="small">
+                <el-form-item label="手机">
+                  <el-input v-model="user.userPhone" disabled></el-input>
+                </el-form-item>
+
+                <el-form-item label="邮箱">
+                  <el-input v-model="user.userMail" disabled></el-input>
+                </el-form-item>
+              </el-form>
+              <el-form>
+                <el-form-item label="状态" label-width="120">
+                  <el-radio-group v-model="user.userStatus">
+                    <el-radio :label="0">申请中</el-radio>
+                    <el-radio :label="1">已审批</el-radio>
+                    <el-radio :label="2">未审批</el-radio>
+                  </el-radio-group>
+                </el-form-item>
+              </el-form>
+              <el-form inline>
+                <el-form-item label="门店">
+                  <el-input></el-input>
+                </el-form-item>
+              </el-form>
+              <el-form inline>
+                <el-form-item label="商品">
+                  <el-input></el-input>
+                </el-form-item>
+              </el-form>
+              <el-form inline>
+                <el-form-item label="服务">
+                  <el-input></el-input>
+                </el-form-item>
+              </el-form>
+              <el-form inline>
+                <el-form-item label="宠物">
+                  <el-input></el-input>
+                </el-form-item>
+              </el-form>
+              <el-form formGroup="validateForm" inline size="small">
+                <el-form-item>
+                  <el-button type="primary">确认修改</el-button>
+                </el-form-item>
+
+                <el-form-item>
+                  <el-button type="primary" @click="isShow=!isShow">取消</el-button>
+                </el-form-item>
+              </el-form>
+            </el-dialog>
+          </div>
         </div>
       </el-main>
     </el-container>
@@ -131,7 +216,21 @@ export default {
   data() {
     return {
       isShow: false, // 弹窗是否显示
-      select: "" // 搜索条件
+      select: "", // 搜索条件
+      user: {
+        // 修改用户时需要的数据
+        userAcount: "", // 登录名
+        userPwd: "", // 密码
+        userPhone: "", // 手机号
+        userMail: "", // 邮箱
+        userName: "", // 姓名
+        userType: "1",
+        userStatus: 1, // 申请中：0; 可用：1； 不可用：2；
+        shopId: [],
+        goodsId: [],
+        serviceId: [],
+        petId: []
+      }
     };
   },
   watch: {
@@ -142,25 +241,14 @@ export default {
     currentPage() {
       this.usersListAsync();
       //  console.log(currentPage);
-    },
-    // rows(){
-    //   this.deleteUserAsync();
-    // }
+    }
   },
   computed: {
     ...mapState(["rows", "totalPage", "count", "eachPage", "currentPage"])
-    // eachPage: {
-    //   get: mapState(["eachPage"]).eachPage,
-    //   set: mapMutations(["setEachPage"]).setEachPage
-    // },
-    //  currentPage: {
-    //   get: mapState(["currentPage"]).currentPage,
-    //   set: mapMutations(["setCurrentPage"]).setCurrentPage
-    // }
   },
   methods: {
-    ...mapActions(["usersListAsync","deleteUserAsync"]),
-    ...mapMutations(["setEachPage", "setCurrentPage","handleUpdate"]), //,"handleDelete"
+    ...mapActions(["usersListAsync", "deleteUserAsync"]),
+    ...mapMutations(["setEachPage", "setCurrentPage", "handleUpdate","setUsersIntroduce"]), //,"handleDelete"
     // pageChange(e) {
     //   // 修改 currentPage来更改数据的请求
     //   // console.log(e.target.value);
@@ -171,14 +259,22 @@ export default {
     //   this.setCurrentPage(newPage);
     //   this.usersListAsync();
     // }
-    show() {
-      this.isShow = true;
-      console.log(this.isShow);
+    show(rows) {
+      this.isShow = !this.isShow;
+      // console.log(rows);
+      Object.assign(this.user, rows); // 更新 data中的user信息
+      // console.log(this.user.userAcount);
     },
+    usersIntroduce(userNow){  // 查看详情
+      // console.log(userNow);   
+      this.setUsersIntroduce(userNow);
+      this.$router.push({ path: `/management/usersIntroduce`}) // 跳转  /${userNow}
+           
+    }
     // handleDelete:(index,row)=>{
     //   console.log(index);
     //   console.log(row);
-      
+
     // }
   },
   mounted() {

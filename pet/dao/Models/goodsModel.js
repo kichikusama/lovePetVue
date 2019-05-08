@@ -15,7 +15,7 @@ const goodsSchema = new mongoose.Schema({
     goodsTime:String, // 保质期
     goodsSupplier:String, // 供应商
     goodsIntro:String, // 特色说明
-    goodsPrice:Number, // 价格
+    goodsPrice:String, // 价格
     goodsImg:String, // 图片
 })
 

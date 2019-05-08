@@ -16,7 +16,7 @@ router.post('/addImage', async function (req, res, next) {
 
 // 新增商品
 router.post('/addGoods', async function (req, res, next) {
-  res.send(await addUser(req.body))
+  res.send(await addGoods(req.body))
 });
 
 router.get('/getUsers', async function (req, res, next) {
