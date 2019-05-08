@@ -20,10 +20,10 @@ export default ({
         }
     },
     actions: {
-       async applyStoreAsync({ commit, state }) {
-           console.log(state.state)
-         const data= await shopServe.addShops(state.state)
-         console.log(11,data)
+        async applyStoreAsync({ commit, state }) {
+            console.log(state.state)
+            const data = await shopServe.addShops(state.state)
+            console.log(11, data)
         },
     }
 })

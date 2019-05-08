@@ -1,4 +1,5 @@
 import goodsSer from "../../servise/goods";
+import { Message } from 'element-ui';
 export default ({
     // 命名空间 
     namespaced: true,
@@ -26,9 +27,13 @@ export default ({
             context.commit("getGoodsByPage", data);
         },
         async deleteGoodsByPageAsync({ dispatch }, data) {
-            console.log(data);
-           const result =  await goodsSer.deleteGoodsByPage(data);
-           console.log(result);
+            const result = await goodsSer.deleteGoodsByPage(data);
+            if (result) {
+                dispatch("getGoodsByPageAsync");
+            } else {
+                Message.warning("修改成功！")
+            }
+            
         },
     }
 })

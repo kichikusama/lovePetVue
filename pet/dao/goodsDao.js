@@ -22,6 +22,6 @@ module.exports.getGoodsByPage = async function ({ currentPage, eachPage }) {
     return goodsData;
 }
 
-module.exports.deleteGoodsByPage = async function (data) {
+module.exports.deleteGoodsByPage = async function ({data}) {
     return await goodsModel.deleteOne({ _id: data });
 }

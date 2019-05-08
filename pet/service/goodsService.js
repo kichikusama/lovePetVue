@@ -15,5 +15,9 @@ module.exports.getGoodsByPage = async function (goods) {
 
 module.exports.deleteGoodsByPage = async function (data) {
     const result =  await deleteGoodsByPage(data); 
-    console.log(result);
+    if(result.ok){
+        return true
+    } else{
+        return false;
+    }
   }
