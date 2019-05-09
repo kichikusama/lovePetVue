@@ -17,10 +17,10 @@ const usersSchema = new mongoose.Schema({
     serviceId:Array,
     petId: Array,
 
-    // shopId: [{  // 门店 id
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'shopsModel'
-    // }],
+    shopId: [{  // 门店 id
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'shopsModel'
+    }],
     // goodsId: [{  // 商品 id
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'goodsModel'
