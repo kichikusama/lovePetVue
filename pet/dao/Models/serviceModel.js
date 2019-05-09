@@ -10,6 +10,8 @@ const serviceSchema = new mongoose.Schema({
     serviceTime:String, // 耗时（正常耗时）
     serviceLevel:String, // 服务员等级（普通，高级价格等）
     servicePrice:Number, // 价格
+    userId:String, // 门店管理员的 id
+    shopId:String // 门店 id
 })
 
 mongoose.model('serviceModel', serviceSchema, "service");
