@@ -156,7 +156,7 @@ export default {
     usersIntroduce(userNow){  // 查看详情
       // console.log(userNow);   
       this.setUsersIntroduce(userNow);
-      this.$router.push({ path: `/management/usersIntroduce`}) // 跳转  /${userNow}
+      // this.$router.push({ path: `/management/usersIntroduce`}) // 跳转  /${userNow}
            
     }
     // handleDelete:(index,row)=>{
