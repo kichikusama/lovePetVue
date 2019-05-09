@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const {  getUsers,addUser,searchUser,deleteUserById } = require('../service/usersService.js');
+const {  getUsers,addUser,searchUser,deleteUserById,loginUser } = require('../service/usersService.js');
 
 /* GET users listing. */
 
@@ -24,10 +24,18 @@ router.post('/getUsers',async function(req, res, next) {
 
 // 通过搜索框 搜索用户  get请求方式 GM 
 router.post('/searchUser', async function (req, res, next) {
-  console.log(req.body);
+  // console.log(req.body);
   
   let yy =await searchUser(req.body);
   // console.log("条件搜索用户："+ yy);
+  res.send(yy);
+});
+
+// 登录查询  post请求方式 GM 
+router.post('/loginUser', async function (req, res, next) {
+  console.log(req.body);
+  let yy =await loginUser(req.body);
+  // console.log("登录用户："+ yy);
   res.send(yy);
 });
 

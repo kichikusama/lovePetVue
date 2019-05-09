@@ -2,7 +2,7 @@
 <template>
   <el-container>
     <el-header>爱宠邦</el-header>
-    
+
     <el-main>
       <div style=" display: flex;justify-content: space-around;">
         <el-col :span="6">
@@ -12,7 +12,7 @@
               class="image"
             >
             <div style="padding: 14px;">
-              <el-select v-model="value" clearable >
+              <el-select v-model="value" clearable>
                 <el-option
                   v-for="item in shops"
                   :key="item._id"
@@ -35,6 +35,9 @@
             <div style="padding: 14px;">
               <div class="bottom clearfix">
                 <div style="height:40px"></div>
+                <div>
+                  <h2>{{userId}}</h2>
+                </div>
                 <el-button type="text" class="button" @click="addStore">门店管理</el-button>
               </div>
             </div>
@@ -64,7 +67,31 @@ const { mapState,mapActions, mapMutations } = createNamespacedHelpers("shops");
 export default {
    data() {
       return {
-        value: '选择门店'
+         userId: "",  // 保存 cookie 
+        value: '选择门店',
+         options: [
+        {
+          value: "选项1",
+          label: "黄金糕"
+        },
+        {
+          value: "选项2",
+          label: "双皮奶"
+        },
+        {
+          value: "选项3",
+          label: "蚵仔煎"
+        },
+        {
+          value: "选项4",
+          label: "龙须面"
+        },
+        {
+          value: "选项5",
+          label: "北京烤鸭"
+        }
+        ],
+     
       }
     },
   computed: {
@@ -78,13 +105,18 @@ export default {
     addStore() {
       this.$router.push(`/manageStore`);
     },
-    stock(){
-      this.$router.push('/stock')
+    stock() {
+      this.$router.push("/stock");
     },
   },
   mounted() {
-    this.getAllShopsAsync()
-  },
+    var ca = document.cookie.split("=");  // cookie
+    this.userId = ca[1];
+     this.getAllShopsAsync()
+  }
+  
+
+  
 };
 </script>
 <style>

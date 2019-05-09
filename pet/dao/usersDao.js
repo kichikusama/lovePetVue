@@ -38,7 +38,12 @@ module.exports.searchUser = async function ({ searchType, select }) {
         [searchType]: { $regex: [select], $options: '$i' }
     })
 }
-
+module.exports.loginUser = async function (user) {
+    // console.log(user);
+    let xx = await usersModel.find(user);
+    console.log("xx:"+xx);  
+    return xx
+}
 //删除电影时通过id
 module.exports.deleteUserById = async function (_id ) {
     console.log(_id);
