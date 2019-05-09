@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { addPets, getPets,deletePetByPage} = require('../service/petsService.js');
+const { addPets, getPets,deletePetByPage,getAllPets} = require('../service/petsService.js');
 
 const { uploadFile } = require("../util/upload.js");
 
@@ -22,6 +22,11 @@ router.post('/addPets', async function (req, res, next) {
 //渲染列表
 router.get('/getPets', async function (req, res, next) {
   res.send(await getPets())
+});
+
+//渲染分页列表
+router.post('/getAllPets', async function (req, res, next) {
+  res.send(await getAllPets(req.body))
 });
 
 //删除

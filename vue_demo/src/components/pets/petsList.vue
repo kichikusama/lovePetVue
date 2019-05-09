@@ -6,22 +6,25 @@
 
     <el-main>
       <div>
-        <el-input placeholder="请输入内容" class="input-with-select" v-model="search">
-          <el-select v-model="select" slot="prepend" placeholder="请选择搜索条件">
-              <el-option label="品称" value="1"></el-option>
-              <el-option label="种类" value="2"></el-option>
-              <el-option label="颜色" value="3"></el-option>
-            </el-select>
-          <el-button slot="append" icon="el-icon-search"></el-button>
+        <el-input placeholder="请输入内容" class="input-with-select" v-model="text">
+          <el-select v-model="type" slot="prepend" placeholder="请选择搜索条件">
+            <el-option label="品称" value="petsSpecies"></el-option>
+            <el-option label="种类" value="petsType"></el-option>
+            <el-option label="颜色" value="petsColor"></el-option>
+          </el-select>
+          <el-button
+            slot="append"
+            icon="el-icon-search"
+            @click="getPetsByAllPageAsync({type,text})"
+          ></el-button>
         </el-input>
       </div>
       <template>
-        <el-table :data="data" border style="width: 100%">
-          
+        <el-table :data="pets" border style="width: 100%">
           <el-table-column fixed prop="petsImg" label="图片" width="100">
             <template slot-scope="scope">
-            <img style="width:80px;height:80px" :src="scope.row.petsImg" alt>
-          </template>
+              <img style="width:80px;height:80px" :src="scope.row.petsImg" alt>
+            </template>
           </el-table-column>
           <el-table-column prop="petsSpecies" label=" 品称" width="120"></el-table-column>
           <el-table-column prop="petsType" label="种类" width="120"></el-table-column>
@@ -38,6 +41,15 @@
             </template>
           </el-table-column>
         </el-table>
+
+        <el-pagination
+          @size-change="setEachPage"
+          @current-change="setCurPage"
+          :current-page="currentPage-0"
+          :page-sizes="[1, 2, 3, ]"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="total"
+        ></el-pagination>
       </template>
     </el-main>
   </el-container>
@@ -46,21 +58,48 @@
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers("pets");
 export default {
-  computed: {
-    ...mapState(["data","pets"])
-  },
   data() {
     return {
-      search:"",
-      select:""
+      search: "",
+      select: "",
+      text:"",
+      type:""
     };
   },
-  methods: {
-    ...mapMutations(["handleClick", "mounted","getPetsByPage"]),
-    ...mapActions(["deletePetByPageAsync","getPetsByPageAsync"])
+  watch: {
+    eachPage() {
+      this.getPetsByAllPageAsync({ type: this.type, text: this.text });
+    },
+    currentPage() {
+      this.getPetsByAllPageAsync({ type: this.type, text: this.text });
+    }
   },
-  mounted(){
-    this.getPetsByPageAsync()
+  computed: {
+    ...mapState(["pets", "total"]),
+    eachPage: {
+      get: mapState(["eachPage"]).eachPage,
+      set: mapMutations(["setEachPage"]).setEachPage
+    },
+    currentPage: {
+      get: mapState(["currentPage"]).currentPage,
+      set: mapMutations(["setCurPage"]).setCurPage
+    }
+  },
+
+  methods: {
+    ...mapMutations([
+      "handleClick",,
+      "setEachPage",
+      "setCurPage"
+    ]),
+    ...mapActions([
+      "deletePetByPageAsync",
+      "getPetsByPageAsync",
+      "getPetsByAllPageAsync"
+    ])
+  },
+  mounted() {
+    this.getPetsByAllPageAsync();
   }
 };
 </script>
