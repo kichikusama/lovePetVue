@@ -6,8 +6,8 @@
     <el-form label-width="80px">
       <el-form-item label="手机号：">
         <el-input
-          placeholder="请输入账号"
-          v-model="username"
+          placeholder="请输入手机号"
+          v-model="userPhone"
           oninput="if(value.length>11)value=value.slice(0,11)"
           ref="gain"
         ></el-input>
@@ -15,26 +15,30 @@
       <el-form-item label="密码：">
         <el-input
           placeholder="请输入密码"
-          v-model="password"
+          v-model="userPwd"
           oninput="if(value.length>20)value=value.slice(0,20)"
-          show-password
-        >
-       
-        </el-input>
+          show-userPwd
+        ></el-input>
       </el-form-item>
 
       <el-form-item>
         <el-button
           type="primary"
-          @click="storeManagement_login"
+          @click="storeManagement_login({userPhone,userPwd})"
           round
           :loading="isBtnLoading"
           style="width:100%;"
         >门店管理员 登录</el-button>
       </el-form-item>
 
-     
       <span type="primary" @click="register">没有账号？立即注册</span>
+      <!-- <el-button
+          type="primary"
+          @click="checkCookie"
+          round
+          :loading="isBtnLoading"
+          style="width:100%;"
+        >cookie</el-button> -->
     </el-form>
   </div>
 </template>
@@ -42,74 +46,91 @@
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers("users");
 
-
 export default {
   name: "login",
   data() {
     return {
-      username: "",
-      password: "",
+      userPhone: "",
+      userPwd: "",
       showTishi: false,
       tishi: "",
-      isBtnLoading: false, //设置登录成功是跳转页面按钮的加载效果
-     
+      isBtnLoading: false //设置登录成功是跳转页面按钮的加载效果
     };
   },
-   computed: {
-    ...mapState("state")
+  computed: {
+    ...mapState(["isLogin"])
   },
   methods: {
-     ...mapMutations(["storeManagement_login", "management_login"]),
+    //  ...mapMutations(["storeManagement_login", "management_login"]),
+    ...mapActions(["loginAsync"]),
     // 门店管理员 登录
-    storeManagement_login() {
+    storeManagement_login(user) {
       this.$refs.gain.focus(); //input框自动获取焦点
-      let data1 = { username: this.username, password: this.password };
+      let data1 = { userPhone: this.userPhone, userPwd: this.userPwd };
 
-      if (!this.username || !this.password) {
+      if (!this.userPhone || !this.userPwd) {
         //输入为空判断
 
         this.$message.error("请输入用户名或密码");
-      } else if (!/^1[3456789]\d{9}$/.test(data1.username)) {
+      } else if (!/^1[3456789]\d{9}$/.test(data1.userPhone)) {
         //手机号判断
         this.$message.error("电话号格式错误");
-      } else if (data1.username == -1) {
+      } else if (data1.userPhone == -1) {
         this.$message.error("该用户不存在");
-      } else if (!/^[0-9a-zA-Z]{6,20}$/.test(data1.password)) {
+      } else if (!/^[0-9a-zA-Z]{6,20}$/.test(data1.userPwd)) {
         // 密码格式判断
         this.$message.error("密码格式错误，密码由6-20位数字，字母组成");
-      } else if (data1.password == 0) {
+      } else if (data1.userPwd == 0) {
         this.$message.error("密码不正确");
       } else {
         this.isBtnLoading = true;
-        this.tishi = "登录成功";
+
         this.showTishi = true;
         // 跳转 门店管理员
-        setTimeout(
-          function() {
-            this.showTishi = false;
-            this.$router.push("/chooseServe");
-          }.bind(this),
-          1500
-        );
+        this.loginAsync(user).then(res => {
+          console.log(res);
+          if (res.length>0) {
+            this.tishi = "登录成功";
+             document.cookie = "id="  + res[0]._id ;
+            // this.checkCookie(res[0]._id); // 创建cookie
+            this.$router.push("/chooseServe"); // 跳转页面
+          }
+        });
+
+        // setTimeout(
+        //   function() {
+        //     this.showTishi = false;
+        //    this.loginAsync(user);
+
+        //     console.log(this.isLogin);
+
+        //     if (this.isLogin) {
+        //       this.tishi = "登录成功";
+        //       this.setCookie("userId", this.userPhone);  // 创建cookie
+        //       this.$router.push("/chooseServe");  // 跳转页面
+        //     }
+        //   }.bind(this),
+        //   1500
+        // );
       }
     },
     // // 平台管理员 登录
     // management_login() {
     //   this.$refs.gain.focus(); //input框自动获取焦点
-    //   let data2 = { username: this.username, password: this.password };
+    //   let data2 = { userPhone: this.userPhone, userPwd: this.userPwd };
 
-    //   if (!this.username || !this.password) {
+    //   if (!this.userPhone || !this.userPwd) {
     //     //输入为空判断
     //     this.$message.error("请输入用户名或密码");
-    //   } else if (!/^1[3456789]\d{9}$/.test(data2.username)) {
+    //   } else if (!/^1[3456789]\d{9}$/.test(data2.userPhone)) {
     //     //手机号判断
     //     this.$message.error("电话号格式错误");
-    //   } else if (data2.username == -1) {
+    //   } else if (data2.userPhone == -1) {
     //     this.$message.error("该用户不存在");
-    //   } else if (!/^[0-9a-zA-Z]{6,20}$/.test(data2.password)) {
+    //   } else if (!/^[0-9a-zA-Z]{6,20}$/.test(data2.userPwd)) {
     //     // 密码格式判断
     //     this.$message.error("密码格式错误，密码由6-20位数字，字母组成");
-    //   } else if (data2.password == 0) {
+    //   } else if (data2.userPwd == 0) {
     //     this.$message.error("密码不正确");
     //   } else {
     //     this.isBtnLoading2 = true;
@@ -130,13 +151,7 @@ export default {
       this.$router.push("/register");
     },
     // cookie
-    setCookie(cname, cvalue, exdays) {
-      // 创建 cookie
-      var d = new Date();
-      d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-      var expires = "expires=" + d.toGMTString();
-      document.cookie = cname + "=" + cvalue + "; " + expires;
-    }
+    
   }
 };
 </script>
