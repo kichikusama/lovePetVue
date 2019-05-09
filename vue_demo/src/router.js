@@ -91,9 +91,9 @@ const router = new Router({
       component: Stock,
       children:[
         {
-          path:'/stock/shop',
-          name:"Shop",
-          component:Shop,
+          path:'/stock/addGoods',
+          name:"AddGoods",
+          component:AddGoods,
         },
         {
           path:'/stock/serve',
@@ -187,11 +187,6 @@ const router = new Router({
           path: '/storeManagement/stores',
           name: 'storeManagementStores',
           component: Stores,
-        },
-        {
-          path: '/storeManagement/addGoods',
-          name: 'AddGoods',
-          component: AddGoods,
         },
         {
           path: '/storeManagement/goodsList',

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { addService,getService,deleteServiceById } = require('../service/serviceService.js');
+const { addService,getService,deteleService } = require('../service/serviceService.js');
 
 //新增
 router.post('/addService', async function(req, res, next) {
@@ -13,7 +13,9 @@ router.get('/getService',async function(req, res, next) {
 });
 
 //删除服务通过id
-router.get('/deleteServiceById', async function (req, res, next) {
-  res.send(await deleteServiceById(req.query))
+router.get('/deteleService', async function (req, res, next) {
+  // console.log(req.query);
+  
+  res.send(await deteleService(req.query))
 });
 module.exports = router;
