@@ -1,7 +1,7 @@
 const { getUsers,addUser,searchUser,deleteUserById  } = require('../dao/usersDao.js');
 
 
-// 新增 用户  get 请求方式 GM
+// 新增 用户  POST 请求方式 GM
 module.exports.addUser = async function (data) {
     const result = await addUser(data);
     if (result) {

@@ -58,6 +58,12 @@ export default ({
             // console.log(data);
             commit('searchUser', data);
         },
+         // 新增用户
+         async addUserAsync({ commit, state },info) {              
+            const data = await usersService.addUser(info);
+            console.log(data);
+            // commit('addUser', data);
+        },
         // async usersListAsync({ commit ,state}) {
         // const data =  await fetch(`/users/getUsers?currentPage=${state.currentPage}&eachPage=${state.eachPage}`)
         //  .then(response => response.json());
