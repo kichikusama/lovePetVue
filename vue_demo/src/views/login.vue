@@ -39,13 +39,10 @@
   </div>
 </template>
 <script>
-<<<<<<< HEAD
-=======
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers("users");
 
 
->>>>>>> 56d68580865a7aba1f791282c18a638f439b2807
 export default {
   name: "login",
   data() {
