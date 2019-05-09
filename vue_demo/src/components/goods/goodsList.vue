@@ -1,5 +1,15 @@
 <template>
   <div style="width:90%;padding:20px">
+    <div style="margin-top: 15px;">
+      <el-input placeholder="请输入内容" v-model="text" class="input-with-select">
+        <el-select v-model="type" slot="prepend" placeholder="请选择">
+          <el-option label="名称" value="goodsName"></el-option>
+          <el-option label="产地" value="goodsRegion"></el-option>
+          <el-option label="价格" value="goodsPrice"></el-option>
+        </el-select>
+        <el-button slot="append" @click="searchAsync({text,type})" icon="el-icon-search"></el-button>
+      </el-input>
+    </div>
     <el-table :data="goods" border style="width: 100%">
       <el-table-column fixed prop="goodsName" label="名称" width="150"></el-table-column>
       <el-table-column prop="goodsType" label="品类" width="120"></el-table-column>
@@ -31,7 +41,7 @@
       @size-change="setEachPage"
       @current-change="setCurrentPage"
       :current-page="currentPage-0"
-      :page-sizes="[1,2,3,4,5]"
+      :page-sizes="[5,4,3,2,1]"
       layout="total, sizes, prev, pager, next, jumper"
       :total="count-0"
     ></el-pagination>
@@ -52,6 +62,12 @@ export default {
       this.getGoodsByPageAsync();
     }
   },
+  data() {
+    return {
+      type: "",
+      text: ""
+    };
+  },
   computed: {
     ...mapState(["totalPage", "count", "goods"]),
     eachPage: {
@@ -64,7 +80,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["getGoodsByPageAsync", "deleteGoodsByPageAsync"]),
+    ...mapActions([
+      "getGoodsByPageAsync",
+      "deleteGoodsByPageAsync",
+      "searchAsync"
+    ]),
     ...mapMutations(["setEachPage", "setCurrentPage"])
   },
   mounted() {

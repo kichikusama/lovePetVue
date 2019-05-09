@@ -33,7 +33,13 @@ export default ({
             } else {
                 Message.warning("修改成功！")
             }
-            
         },
+        async searchAsync({ dispatch }, data) {
+           const result =  await goodsSer.searchGoodsByType(data);
+           console.log(result);
+           
+          
+
+        }
     }
 })
