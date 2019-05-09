@@ -28,10 +28,10 @@
           round
           :loading="isBtnLoading"
           style="width:100%;"
-        >门店管理员 登录</el-button>
+        >登录</el-button>
       </el-form-item>
 
-      <span type="primary" @click="register">没有账号？立即注册</span>
+      <span type="primary" ><a href="#" @click.prevent="register">没有账号？立即注册</a></span>
       <!-- <el-button
           type="primary"
           @click="checkCookie"
@@ -85,7 +85,7 @@ export default {
       } else {
         this.isBtnLoading = true;
 
-        this.showTishi = true;
+        // this.showTishi = true;
         // 跳转 门店管理员
         this.loginAsync(user).then(res => {
           console.log(res);
@@ -93,7 +93,13 @@ export default {
             this.tishi = "登录成功";
              document.cookie = "id="  + res[0]._id ;
             // this.checkCookie(res[0]._id); // 创建cookie
-            this.$router.push("/chooseServe"); // 跳转页面
+            if(res[0].userType == "1"){
+              this.$router.push("/management"); // 跳转 平台管理 页面
+            }else if(res[0].userType == "0"&&res[0].userStatus == "1"){
+               this.$router.push("/chooseServe"); // 跳转页面
+            }else{
+              alert("账号审核中，请耐心等待...");
+            }
           }
         });
 

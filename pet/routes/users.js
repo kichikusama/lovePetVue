@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const {  getUsers,addUser,searchUser,deleteUserById,loginUser } = require('../service/usersService.js');
+const {  getUsers,addUser,searchUser,deleteUserById,loginUser,auditing } = require('../service/usersService.js');
 
 /* GET users listing. */
 
@@ -22,6 +22,10 @@ router.post('/getUsers',async function(req, res, next) {
   res.send(await getUsers(req.body));
 });
 
+router.post('/auditingUsers',async function(req, res, next) {
+  // console.log(req.body);
+  res.send(await auditing());
+});
 // 通过搜索框 搜索用户  get请求方式 GM 
 router.post('/searchUser', async function (req, res, next) {
   // console.log(req.body);

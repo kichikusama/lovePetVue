@@ -11,7 +11,7 @@ module.exports.getUsers = async function ({ currentPage, eachPage }) {
     let totalPage = Math.ceil(count / eachPage); // 总页数
     // 获取当前页数的用户信息
     let rows = await usersModel
-        .find()
+        .find({userType:"0"})   // 只查找 门店管理员
         .skip((currentPage - 1) * eachPage)
         .limit(eachPage - 0)
 
@@ -26,6 +26,11 @@ module.exports.getUsers = async function ({ currentPage, eachPage }) {
     
     return pageData;
 
+}
+module.exports.auditing = async function () {     
+    let rows = await usersModel.find({userStatus:"0",userType:"0"})   // 待审批用户
+    console.log(rows);  
+    return rows;
 }
 // 通过 名字 查询用户
 // 通过 电话 查询用户
