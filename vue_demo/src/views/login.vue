@@ -45,7 +45,6 @@
   </div>
 </template>
 <script>
-
 export default {
   name: "login",
   data() {
@@ -63,16 +62,15 @@ export default {
     storeManagement_login() {
       this.$refs.gain.focus(); //input框自动获取焦点
       let data1 = { username: this.username, password: this.password };
-    
+
       if (!this.username || !this.password) {
         //输入为空判断
-        
+
         this.$message.error("请输入用户名或密码");
       } else if (!/^1[3456789]\d{9}$/.test(data1.username)) {
         //手机号判断
         this.$message.error("电话号格式错误");
       } else if (data1.username == -1) {
-        
         this.$message.error("该用户不存在");
       } else if (!/^[0-9a-zA-Z]{6,20}$/.test(data1.password)) {
         // 密码格式判断
@@ -128,6 +126,14 @@ export default {
     // 跳转 注册
     register() {
       this.$router.push("/register");
+    },
+    // cookie
+    setCookie(cname, cvalue, exdays) {
+      // 创建 cookie
+      var d = new Date();
+      d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+      var expires = "expires=" + d.toGMTString();
+      document.cookie = cname + "=" + cvalue + "; " + expires;
     }
   }
 };
