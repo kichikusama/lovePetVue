@@ -51,14 +51,7 @@
           <el-input v-model="goods.region" clearable></el-input>
         </el-form-item>
         <el-form-item label="出产日期" prop="date">
-          <el-col :span="24">
-            <el-date-picker
-              type="date"
-              placeholder="选择日期"
-              v-model="goods.date"
-              style="width: 100%;"
-            ></el-date-picker>
-          </el-col>
+          <el-date-picker v-model="goods.goodsDate" placeholder="选择日期" format="yyyy 年 MM 月 dd 日"></el-date-picker>
         </el-form-item>
         <el-form-item label="保质期" prop="time">
           <el-select v-model="goods.time" placeholder="请选择使用规格">
@@ -108,7 +101,7 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers("goods");
 
 export default {
   computed: {
-    ...mapState(["goods"])
+    ...mapState(["goods", "goodsFlag"])
   },
   data() {
     return {
