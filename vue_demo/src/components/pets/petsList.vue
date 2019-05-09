@@ -29,7 +29,7 @@
           <el-table-column fixed="right" label="操作" width="100">
             <template slot-scope="scope">
               <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
-              <el-button @click="handleDelete()" type="text" size="small">删除</el-button>
+              <el-button @click="deletePetByPageAsync(scope.row._id)" type="text" size="small">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -50,7 +50,8 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["handleClick", "mounted","getPetsByPage","handleDelete"])
+    ...mapMutations(["handleClick", "mounted","getPetsByPage"]),
+    ...mapActions(["deletePetByPageAsync"])
   },
   mounted(){
     this.getPetsByPage()

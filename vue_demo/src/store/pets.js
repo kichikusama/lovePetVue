@@ -1,5 +1,4 @@
 import serPets from "../../servise/pets";
-import serGetPets from "../../servise/pets"
 import { Message } from 'element-ui';
 export default {
     namespaced: true,
@@ -39,11 +38,8 @@ export default {
         handleClick(row) {
             console.log(row);
         },
-        handleDelete(){
-            console.log(this)
-        },
         async getPetsByPage(state, payload){
-            const result = await serGetPets.getPets();
+            const result = await serPets.getPets();
             Object.assign(state.data, result);
             console.log(state.data);
             if (result) {
@@ -59,6 +55,19 @@ export default {
             const data = await serPets.getPets({ currentPage, eachPage });
             console.log(data);
             context.commit("getPets", data);
-        }
+        },
+    
+        async deletePetByPageAsync({ dispatch }, data) {
+            const result = await serPets.deletePetByPage(data);
+            console.log(result);
+            
+            if (result) {
+                Message.warning("修改成功！")
+                // dispatch("getGoodsByPageAsync");
+            } else {
+                Message.warning("修改失败！")
+            }
+            
+        },
     }
 }

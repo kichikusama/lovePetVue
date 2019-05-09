@@ -7,3 +7,7 @@ module.exports.addPets = async function (data) {
 module.exports.getPets = async function () {
     return await petsModel.find();
 }
+
+module.exports.deletePetByPage = async function ({data}) {
+    return await petsModel.deleteOne({ _id: data });
+}
