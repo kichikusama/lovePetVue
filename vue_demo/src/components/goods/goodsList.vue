@@ -22,7 +22,7 @@
       </el-table-column>
       <el-table-column fixed="right" label="操作" width="200">
         <template slot-scope="scope">
-          <el-button size="mini" >编辑</el-button>
+          <el-button size="mini">编辑</el-button>
           <el-button size="mini" type="danger" @click="deleteGoodsByPageAsync(scope.row._id)">删除</el-button>
         </template>
       </el-table-column>
@@ -40,7 +40,9 @@
 
 <script>
 import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions, mapMutations } = createNamespacedHelpers("goodsList");
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "goodsList"
+);
 export default {
   watch: {
     eachPage() {
@@ -51,9 +53,9 @@ export default {
     }
   },
   computed: {
-    ...mapState(["totalPage","count","goods"]),
+    ...mapState(["totalPage", "count", "goods"]),
     eachPage: {
-      get:mapState(["eachPage"]).eachPage,
+      get: mapState(["eachPage"]).eachPage,
       set: mapMutations(["setEachPage"]).setEachPage
     },
     currentPage: {
@@ -62,8 +64,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["getGoodsByPageAsync","deleteGoodsByPageAsync"]),
-    ...mapMutations(["setEachPage", "setCurrentPage"]),
+    ...mapActions(["getGoodsByPageAsync", "deleteGoodsByPageAsync"]),
+    ...mapMutations(["setEachPage", "setCurrentPage"])
   },
   mounted() {
     this.getGoodsByPageAsync();

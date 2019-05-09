@@ -32,7 +32,7 @@ export default ({
             count: '0', // 总条数
             goods: [], // 信息
         },
-        a:1
+        a: 1
     },
     mutations: {
         onSubmit(state, payload) {
@@ -50,23 +50,8 @@ export default ({
         uploadSuccess(state, payload) {
             state.goods.goodsImg = payload.data.url;
         },
-        getGoodsByPage: (state, payload) => {
-            Object.assign(state, {goodsList:payload})
-        },
-        setEachPage: (state, eachPage) => {
-            state.goodsList.currentPage = 1;
-            state.goodsList.eachPage = eachPage
-            console.log(state.goodsList.eachPage)
-        },
-        setCurrentPage: (state, currentPage) => state.goodsList.currentPage = currentPage
     },
     actions: {
-        async getGoodsByPageAsync(context) {
-            console.log(context.state.goodsList);
-            const { currentPage, eachPage } = context.state.goodsList;
-            const data = await goodsSer.getGoodsByPage({ currentPage, eachPage });
-            console.log(data);
-            context.commit("getGoodsByPage", data);
-        }
+
     }
 })
