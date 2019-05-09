@@ -11,7 +11,7 @@
             active-text-color="#ffd04b"
             text-color="#fff"
           >
-            <el-menu-item index="1" @click="show">新增用户</el-menu-item>
+            <el-menu-item index="1" >新增用户</el-menu-item>
             <el-submenu index="2" title="处理中心">
               <el-menu-item index="2-1">待审核</el-menu-item>
               <el-menu-item index="2-2">已审核</el-menu-item>
@@ -46,25 +46,6 @@
                 <el-form-item label="发票">
                   <el-checkbox formControlName="invoice">需要发票</el-checkbox>
                 </el-form-item>
-
-                <!-- <el-form-item label="使用折扣">
-                  <el-checkbox-group formControlName="discount">
-                    <el-checkbox label="discount1">折扣1</el-checkbox>
-                    <el-checkbox label="discount2">折扣2</el-checkbox>
-                    <el-checkbox label="discount3">折扣3</el-checkbox>
-                    <el-checkbox label="禁用">vip 折扣</el-checkbox>
-                  </el-checkbox-group>
-                </el-form-item>-->
-
-                <!-- <el-form-item
-                  label="配送时间"
-                >
-                  <el-select placeholder="请选择" formControlName="time">
-                    <el-option label="尽快配送" value="now"></el-option>
-                    <el-option label="夜间配送" value="night"></el-option>
-                  </el-select>
-                </el-form-item>-->
-
                 <el-form-item>
                   <el-button type="primary">提交</el-button>
                 </el-form-item>
@@ -73,13 +54,13 @@
           </div>
 
           <div style="margin-top: 15px;">
-            <el-input placeholder="搜索" class="input-with-select">
-              <el-select v-model="select" slot="prepend" placeholder="请选择搜索条件">
-                <el-option label="姓名" value="1"></el-option>
-                <el-option label="电话" value="2"></el-option>
-                <el-option label="门店" value="3"></el-option>
+            <el-input placeholder="搜索" v-model="select" class="input-with-select">
+              <el-select v-model="searchType" slot="prepend" placeholder="请选择搜索条件" style="width:150px">
+                <el-option label="姓名" value="userName"></el-option>
+                <el-option label="电话" value="userPhone"></el-option>
+                <el-option label="账号" value="userAcount"></el-option>
               </el-select>
-              <el-button slot="append" icon="el-icon-search"></el-button>
+              <el-button slot="append" icon="el-icon-search" @click="searchUserAsync({searchType,select})"></el-button>
             </el-input>
           </div>
 
@@ -94,33 +75,11 @@
             <el-table-column prop="userStatus" label="状态" width="130"></el-table-column>            
             <el-table-column label="操作">
               <template slot-scope="scope">
-                <!-- <a href="#/management/usersIntroduce">查看详情</a> -->
                  <el-button size="mini" @click="usersIntroduce(scope.row)">查看详情</el-button>
-                <!-- <el-button size="mini" @click="show(scope.row)">修改</el-button>
-                <el-button size="mini" type="danger" @click="deleteUserAsync(scope.row)">删除</el-button> -->
+            
+                <!-- <el-button size="mini" type="danger" @click="deleteUserAsync(scope.row)">删除</el-button> -->
               </template>
             </el-table-column>
-
-            <!-- <el-table-column label="服务类型">
-              <el-table-column prop="goodsId" label="商品" width="100">
-                <a href="" >{{rows[0].goodsId[0].goodsName}}</a>
-              </el-table-column>
-              <el-table-column prop="serviceId" label="服务" width="100">
-                <a href>more</a>
-              </el-table-column>
-              <el-table-column prop="petId" label="宠物" width="100">
-                <a href>more</a>
-              </el-table-column>
-            </el-table-column>-->
-
-            <!-- <el-table-column label="门店">
-              <el-table-column prop label="门店1" width="120">
-                <a href></a>
-              </el-table-column>
-              <el-table-column prop label="门店2" width="120">
-                <a href></a>
-              </el-table-column>
-            </el-table-column>-->
           </el-table>
 
           <el-pagination
@@ -131,74 +90,7 @@
             :total="count-0"
           ></el-pagination>
 
-          <div>
-            <el-dialog title="修改用户信息" :visible="isShow">
-              <el-form formGroup="validateForm" inline size="small">
-                <el-form-item label="昵称">
-                  <el-input v-model="user.userAcount" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="密码">
-                  <el-input value="******" disabled></el-input>
-                </el-form-item>
-              </el-form>
-              <el-form formGroup="validateForm" inline size="small">
-                <el-form-item label="姓名">
-                  <el-input v-model="user.userName" disabled></el-input>
-                </el-form-item>
-
-                <el-form-item label="角色">
-                  <el-input v-model="user.userType" disabled></el-input>
-                </el-form-item>
-              </el-form>
-              <el-form formGroup="validateForm" inline size="small">
-                <el-form-item label="手机">
-                  <el-input v-model="user.userPhone" disabled></el-input>
-                </el-form-item>
-
-                <el-form-item label="邮箱">
-                  <el-input v-model="user.userMail" disabled></el-input>
-                </el-form-item>
-              </el-form>
-              <el-form>
-                <el-form-item label="状态" label-width="120">
-                  <el-radio-group v-model="user.userStatus">
-                    <el-radio :label="0">申请中</el-radio>
-                    <el-radio :label="1">已审批</el-radio>
-                    <el-radio :label="2">未审批</el-radio>
-                  </el-radio-group>
-                </el-form-item>
-              </el-form>
-              <el-form inline>
-                <el-form-item label="门店">
-                  <el-input></el-input>
-                </el-form-item>
-              </el-form>
-              <el-form inline>
-                <el-form-item label="商品">
-                  <el-input></el-input>
-                </el-form-item>
-              </el-form>
-              <el-form inline>
-                <el-form-item label="服务">
-                  <el-input></el-input>
-                </el-form-item>
-              </el-form>
-              <el-form inline>
-                <el-form-item label="宠物">
-                  <el-input></el-input>
-                </el-form-item>
-              </el-form>
-              <el-form formGroup="validateForm" inline size="small">
-                <el-form-item>
-                  <el-button type="primary">确认修改</el-button>
-                </el-form-item>
-
-                <el-form-item>
-                  <el-button type="primary" @click="isShow=!isShow">取消</el-button>
-                </el-form-item>
-              </el-form>
-            </el-dialog>
-          </div>
+         
         </div>
       </el-main>
     </el-container>
@@ -216,6 +108,7 @@ export default {
   data() {
     return {
       isShow: false, // 弹窗是否显示
+      searchType:'',
       select: "", // 搜索条件
       user: {
         // 修改用户时需要的数据
@@ -247,7 +140,7 @@ export default {
     ...mapState(["rows", "totalPage", "count", "eachPage", "currentPage"])
   },
   methods: {
-    ...mapActions(["usersListAsync", "deleteUserAsync"]),
+    ...mapActions(["usersListAsync", "deleteUserAsync","searchUserAsync"]),
     ...mapMutations(["setEachPage", "setCurrentPage", "handleUpdate","setUsersIntroduce"]), //,"handleDelete"
     // pageChange(e) {
     //   // 修改 currentPage来更改数据的请求
@@ -259,12 +152,7 @@ export default {
     //   this.setCurrentPage(newPage);
     //   this.usersListAsync();
     // }
-    show(rows) {
-      this.isShow = !this.isShow;
-      // console.log(rows);
-      Object.assign(this.user, rows); // 更新 data中的user信息
-      // console.log(this.user.userAcount);
-    },
+   
     usersIntroduce(userNow){  // 查看详情
       // console.log(userNow);   
       this.setUsersIntroduce(userNow);

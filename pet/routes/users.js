@@ -18,14 +18,16 @@ router.post('/addUser', async function(req, res, next) {
 //   eachPage: this.pageData.eachPage,
 //},
 router.post('/getUsers',async function(req, res, next) {
-  console.log(req.body);
+  // console.log(req.body);
   res.send(await getUsers(req.body));
 });
 
 // 通过搜索框 搜索用户  get请求方式 GM 
-router.get('/searchUser', async function (req, res, next) {
-  let yy =await searchUser(req.query);
-  console.log("条件搜索用户："+ yy);
+router.post('/searchUser', async function (req, res, next) {
+  console.log(req.body);
+  
+  let yy =await searchUser(req.body);
+  // console.log("条件搜索用户："+ yy);
   res.send(yy);
 });
 
