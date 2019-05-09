@@ -111,12 +111,19 @@ export default {
   },
   mounted() {
     // 生命周期函数
-    console.log(document.cookie)
-    var ca = document.cookie.split(';');
-    var arr = ca[1].split("=");
-    this.userId=arr[1]
+    let userId;
+    for(let item of document.cookie){
+      if(item==';'){
+       var ca= document.cookie.split(';');
+        userId=ca[0].split('=')[1];
+        break
+      }else if(item=='='){
+        userId=document.cookie.split('=')[1]
+      }
+    }
+    this.userId=userId
     this.getShopsAsync({userId:this.userId});
-   
+    console.log(this.userId)
     // console.log(this.films);
     //   console.log(this.a); // 这里拿不到a : undefind
     //   console.log(this); // this中 有a

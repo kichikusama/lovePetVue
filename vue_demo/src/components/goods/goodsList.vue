@@ -120,6 +120,20 @@ export default {
     }
   },
   mounted() {
+    let userId;
+    let shopsId;
+    for(let item of document.cookie){
+      if(item==';'){
+       var ca= document.cookie.split(';');
+        userId=ca[0].split('=')[1];
+        shopsId=ca[1].split('=')[1]
+        break
+      }else if(item=='='){
+        userId=document.cookie.split('=')[1]
+      }
+    }
+    console.log(shopsId)
+    // this.userId=userId
     this.getGoodsByPageAsync();
   }
 };
