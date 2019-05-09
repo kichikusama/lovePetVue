@@ -38,4 +38,4 @@ mongoose.model('usersModel', usersSchema, "users");
 
 module.exports.usersModel = mongoose.model('usersModel');
 
-// db.users.insert({ userAcount:"gm", userPwd:"888888",userPhone:"13668151543",userMail:"321456987@qq.com",userName:"mmm", userType:'0',userStatus:"0"})
+// db.users.insert({ userAcount:"BBB", userPwd:"123456",userPhone:"13468151543",userMail:"5671456987@qq.com",userName:"bbb", userType:'0',userStatus:"1"})

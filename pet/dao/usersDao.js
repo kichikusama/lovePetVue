@@ -11,7 +11,7 @@ module.exports.getUsers = async function ({ currentPage, eachPage }) {
     let totalPage = Math.ceil(count / eachPage); // 总页数
     // 获取当前页数的用户信息
     let rows = await usersModel
-        .find({userType:"0"})   // 只查找 门店管理员
+        .find({userType:"0",userStatus:"1"})   // 只查找 门店管理员,且状态值为可用
         .skip((currentPage - 1) * eachPage)
         .limit(eachPage - 0)
 

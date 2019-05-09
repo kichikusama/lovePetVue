@@ -1,9 +1,9 @@
 <template>
   <div el-container direction="vertical" class="demo-box">
-    <div el-header style="width:100%;height:62px">
-      <h2>用户详情</h2>
+    <div el-header style="width:100%;">
+      <h3>用户详情</h3>
     </div>
-    <div el-main style="width:100%;background-color:rgb(215, 222, 236);position:relative">
+    <div el-main style="width:100%;background-color:#EBEEF5;position:relative">
       <div style="width:300px;">
         <i class="istyle el-icon-custom"></i>
         <br>
@@ -16,24 +16,29 @@
       </div>
       <div class="box1">
         <div class="shop">
-          <el-button @click="show1 = !show1">门店</el-button>
+          <el-table :data="usersIndroduce.shopId" style="width: 1000px;">
+             <el-table-column type="index" label="序号" width="100"></el-table-column>
+            <el-table-column prop="shopName" label="名称" width="150"></el-table-column>
+            <el-table-column prop="shopLicenceNum" label="营业执照号码" width="150"></el-table-column>
+            <el-table-column prop="shopAdd" label="营业地址" width="150"></el-table-column>
+            <el-table-column prop="shopCommission" label="佣金比例" width="100"></el-table-column>
+            <el-table-column prop="shopCorporate" label="法人" width="100"></el-table-column>
+            <el-table-column prop="" label="经营时长" width="100"></el-table-column>
+            <el-table-column prop="" label="月销量" ></el-table-column>
+
+          </el-table>
+          <!-- <el-button @click="show1 = !show1">门店</el-button>
           <div>
             <el-collapse-transition>
               <div v-show="show1">
                 <div class="transition-box">
-                  <el-table :data="usersIndroduce.shopId" style="width: 500px;">
-                    <el-table-column prop="shopName" label="名称" width="80"></el-table-column>
-                    <el-table-column prop="shopLicenceNum" label="营业执照号码" width="80"></el-table-column>
-                    <el-table-column prop="shopAdd" label="营业地址" width="80"></el-table-column>
-                    <el-table-column prop="shopCommission" label="佣金比例" width="80"></el-table-column>
-                    <el-table-column prop="shopCorporate" label="法人" width="80"></el-table-column>
-                  </el-table>
+                  
                 </div>
               </div>
             </el-collapse-transition>
-          </div>
+          </div>-->
         </div>
-        <div class="goods">
+        <!-- <div class="goods">
           <el-button @click="show2 = !show2">商品</el-button>
           <div>
             <el-collapse-transition>
@@ -80,7 +85,7 @@
               </div>
             </el-collapse-transition>
           </div>
-        </div>
+        </div>-->
       </div>
       <div class="menu">
         <el-dropdown>
@@ -89,15 +94,14 @@
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item >
-                  <a  @click="show()">修改</a>
+            <el-dropdown-item>
+              <a @click="show()">修改</a>
             </el-dropdown-item>
             <el-dropdown-item>
-                  <a  >删除用户</a>
+              <a>删除用户</a>
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-      
       </div>
       <div>
         <el-dialog title="修改用户信息" :visible="isShow">
@@ -237,14 +241,14 @@ export default {
   width: 1000px;
   height: 300px;
   position: relative;
-  margin-top: 100px;
+  /* margin-top: 100px; */
 }
 .shop {
-  width: 200px;
+  /* width: 200px; */
 
-  position: absolute;
+  /* position: absolute;
   top: -43px;
-  left: 20px;
+  left: 20px; */
 }
 .goods {
   width: 300px;

@@ -33,6 +33,7 @@ export default ({
 
             return state.currentPage = currentPage;
         },
+        // 将 所点击用户的信息保存在状态机中
         setUsersIntroduce: (state, userNow) => {  // 第二个参数 为 传递的参数，传什么就是什么
             // console.log(state);
             Object.assign(state, { usersIndroduce: userNow })
