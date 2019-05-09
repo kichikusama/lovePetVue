@@ -83,10 +83,10 @@ export default {
   },
   watch: {
     eachPage() {
-      this.getShopsAsync();
+      this.getShopsAsync({type:this.type,text:this.text});
     },
     currentPage() {
-      this.getShopsAsync();
+      this.getShopsAsync({type:this.type,text:this.text});
     }
   },
   computed: {

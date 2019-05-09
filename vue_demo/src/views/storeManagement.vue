@@ -1,7 +1,7 @@
  <template>
   <div>
     <el-row>
-      <h1 :v-model="id">爱宠帮-门店</h1>
+      <h1 id="id" :v-model="id">爱宠帮-门店</h1>
       <input  type="hidden">
       <el-col class="container" style="display:flex" :span="24">
         <el-menu
@@ -70,7 +70,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this)
     this.id = this.$route.params.storeId;
   },
 };
