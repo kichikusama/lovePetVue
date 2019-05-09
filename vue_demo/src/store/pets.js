@@ -16,7 +16,8 @@ export default {
             petCharacter: "", // 性格
             petsWeight: "", // 体重（5kg、10kg等）
             petsImg: "", // 图片
-        }
+        },
+        data:[]  //数据
     },
     mutations: {
         handleRemove: (state, payload) => {
@@ -38,15 +39,15 @@ export default {
         handleClick(row) {
             console.log(row);
         },
+        handleDelete(){
+            console.log(this)
+        },
         async getPetsByPage(state, payload){
             const result = await serGetPets.getPets();
-            Object.assign(state, payload);
-            console.log(state.pets);
-            
-            
+            Object.assign(state.data, result);
+            console.log(state.data);
             if (result) {
                 Message.success("获取成功！");
-
             } else {
                 Message.warning("获取失败！")
             }
