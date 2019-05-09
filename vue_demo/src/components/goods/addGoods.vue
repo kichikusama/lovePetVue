@@ -1,5 +1,5 @@
 <template>
-  <el-form v-model="goods" :rules="rules" class="common" ref="form" label-width="80px" size="mini">
+  <el-form v-model="goods" class="common" ref="form" label-width="80px" size="mini">
     <div class="container">
       <div style="padding:20px">
         <el-form-item label="商品名称" prop="name">
@@ -20,10 +20,10 @@
         </el-form-item>
         <el-form-item label="专属规格" prop="onlyFor">
           <el-radio-group v-model="goods.goodsOnlyFor">
-            <el-radio :label="3">贵宾</el-radio>
-            <el-radio :label="6">柯基</el-radio>
-            <el-radio :label="9">哈士奇</el-radio>
-            <el-radio :label="12">所有</el-radio>
+            <el-radio label="贵宾">贵宾</el-radio>
+            <el-radio label="柯基">柯基</el-radio>
+            <el-radio label="哈士奇">哈士奇</el-radio>
+            <el-radio label="所有">所有</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="包装规格" prop="size">

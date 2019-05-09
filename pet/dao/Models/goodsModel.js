@@ -17,6 +17,8 @@ const goodsSchema = new mongoose.Schema({
     goodsIntro:String, // 特色说明
     goodsPrice:String, // 价格
     goodsImg:String, // 图片
+    userId:String, // 门店管理员 id
+    shopId:String // 门店 id
 })
 
 mongoose.model('goodsModel', goodsSchema, "goods");

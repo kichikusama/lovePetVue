@@ -10,17 +10,9 @@ export default ({
         eachPage:5,//每页显示条数
         shops:[],
     },
-<<<<<<< HEAD
-    actions: {
-        async applyStoreAsync({ commit, state }) {
-            console.log(state.state)
-            const data = await shopServe.addShops(state.state)
-            console.log(11, data)
-=======
     mutations: {
         getShops: (state, payload) => {
             Object.assign(state, payload)
->>>>>>> c169d67f0b68e197fec3d2722ece2aaa810dcd0f
         },
         setEachPage: (state, eachPage) => state.eachPage = eachPage,
        setCurPage:(state,currentPage)=>  state.currentPage = currentPage, 
