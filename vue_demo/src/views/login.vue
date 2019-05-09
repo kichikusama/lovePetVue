@@ -66,21 +66,21 @@ export default {
     // 门店管理员 登录
     storeManagement_login(user) {
       this.$refs.gain.focus(); //input框自动获取焦点
-      let data1 = { userPhone: this.userPhone, userPwd: this.userPwd };
+      let data = { userPhone: this.userPhone, userPwd: this.userPwd };
 
       if (!this.userPhone || !this.userPwd) {
         //输入为空判断
 
         this.$message.error("请输入用户名或密码");
-      } else if (!/^1[3456789]\d{9}$/.test(data1.userPhone)) {
+      } else if (!/^1[356789]\d{9}$/.test(data.userPhone)) {
         //手机号判断
         this.$message.error("电话号格式错误");
-      } else if (data1.userPhone == -1) {
+      } else if (data.userPhone == -1) {
         this.$message.error("该用户不存在");
-      } else if (!/^[0-9a-zA-Z]{6,20}$/.test(data1.userPwd)) {
+      } else if (!/^[0-9a-zA-Z]{6,20}$/.test(data.userPwd)) {
         // 密码格式判断
         this.$message.error("密码格式错误，密码由6-20位数字，字母组成");
-      } else if (data1.userPwd == 0) {
+      } else if (data.userPwd == 0) {
         this.$message.error("密码不正确");
       } else {
         this.isBtnLoading = true;
@@ -89,9 +89,9 @@ export default {
         // 跳转 门店管理员
         this.loginAsync(user).then(res => {
           console.log(res);
-          if (res.length>0) {
+          if (res.length > 0) {
             this.tishi = "登录成功";
-             document.cookie = "id="  + res[0]._id ;
+            document.cookie = "id=" + res[0]._id;
             // this.checkCookie(res[0]._id); // 创建cookie
             if(res[0].userType == "1"){
               this.$router.push("/management"); // 跳转 平台管理 页面
@@ -102,62 +102,13 @@ export default {
             }
           }
         });
-
-        // setTimeout(
-        //   function() {
-        //     this.showTishi = false;
-        //    this.loginAsync(user);
-
-        //     console.log(this.isLogin);
-
-        //     if (this.isLogin) {
-        //       this.tishi = "登录成功";
-        //       this.setCookie("userId", this.userPhone);  // 创建cookie
-        //       this.$router.push("/chooseServe");  // 跳转页面
-        //     }
-        //   }.bind(this),
-        //   1500
-        // );
       }
     },
-    // // 平台管理员 登录
-    // management_login() {
-    //   this.$refs.gain.focus(); //input框自动获取焦点
-    //   let data2 = { userPhone: this.userPhone, userPwd: this.userPwd };
-
-    //   if (!this.userPhone || !this.userPwd) {
-    //     //输入为空判断
-    //     this.$message.error("请输入用户名或密码");
-    //   } else if (!/^1[3456789]\d{9}$/.test(data2.userPhone)) {
-    //     //手机号判断
-    //     this.$message.error("电话号格式错误");
-    //   } else if (data2.userPhone == -1) {
-    //     this.$message.error("该用户不存在");
-    //   } else if (!/^[0-9a-zA-Z]{6,20}$/.test(data2.userPwd)) {
-    //     // 密码格式判断
-    //     this.$message.error("密码格式错误，密码由6-20位数字，字母组成");
-    //   } else if (data2.userPwd == 0) {
-    //     this.$message.error("密码不正确");
-    //   } else {
-    //     this.isBtnLoading2 = true;
-    //     this.tishi = "登录成功";
-    //     this.showTishi = true;
-    //     // 跳转 平台管理员
-    //     setTimeout(
-    //       function() {
-    //         this.showTishi = false;
-    //         this.$router.push("/management");
-    //       }.bind(this),
-    //       1500
-    //     );
-    //   }
-    // },
     // 跳转 注册
     register() {
       this.$router.push("/register");
-    },
+    }
     // cookie
-    
   }
 };
 </script>
