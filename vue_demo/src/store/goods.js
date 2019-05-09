@@ -24,19 +24,22 @@ export default ({
         goodsFlag: {
             dialogImageUrl: "",
             dialogVisible: false,
-        }
-        // currentPage: '1', // 当前页面
-        // eachPage: '5', // 每页显示条数
-        // totalPage: '0', // 总页数
-        // count: '0', // 总条数
-        // goods: [], // 信息
+        },
+        goodsList: {
+            currentPage: '1', // 当前页面
+            eachPage: '5', // 每页显示条数
+            totalPage: '0', // 总页数
+            count: '0', // 总条数
+            goods: [], // 信息
+        },
+        a: 1
     },
     mutations: {
         onSubmit(state, payload) {
             const result = goodsSer.addGoods(state.goods);
             if (result) {
                 Message.success("新增成功！");
-                
+
             } else {
                 Message.warning("新增成功！")
             }
@@ -49,8 +52,6 @@ export default ({
         },
     },
     actions: {
-        async addGoods() {
-            
-        }
+
     }
 })

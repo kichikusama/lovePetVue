@@ -7,6 +7,7 @@ export default {
         eachPage: "10", // 每页显示条数
         totalPage: "0", // 总页数
         count: "0", // 总条数
+        data:[],
         service: {
             serviceName: "",
             serviceType: "",
@@ -21,7 +22,7 @@ export default {
 
     mutations: {
         getService: (state, payload) => {
-            Object.assign(state, payload)
+            Object.assign(state, {data:payload})
         },
         // setEachPage: (state, eachPage) => {
         //     return state.eachPage = eachPage;
@@ -35,17 +36,14 @@ export default {
             await serServuse.addService(state.state.service)
         },
         async getServiceAsync(context) {
-            // await serServuse.getService(state.state)
-
-            console.log(258);
-            
+            const data = await serServuse.getService(context.state.service)
             // const {
             //     currentPage,
             //     eachPage
             // } = context.state;
             // const data = await serServuse.getService({currentPage,eachPage});
             // console.log(data);
-            // context.commit("getService", data);
+            context.commit("getService", data);
         }
     }
 }

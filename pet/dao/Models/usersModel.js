@@ -11,8 +11,19 @@ const usersSchema = new mongoose.Schema({
         type: String,
         default: "1" // 门店管理员 ：0； 平台管理员：1；
     },
+<<<<<<< HEAD
     userStatus: Number, // 申请中：0; 可用：1； 不可用：2；
     // shopId: Array,
+=======
+    userStatus: {
+        type: String,
+        default: "0" // 申请中：0; 可用：1； 不可用：2；
+    },
+    shopId: [{  // 门店 id
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'shopsModel'
+    }],
+>>>>>>> 55178bf217e3096336ed0a0e8f5115db515da20d
     // goodsId:Array,
     // serviceId:Array,
     // petId: Array,

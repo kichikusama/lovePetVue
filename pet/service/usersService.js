@@ -30,4 +30,4 @@ module.exports.deleteUserById  = async function (data) {
     }else{
       return false
     }
-  }
+}
