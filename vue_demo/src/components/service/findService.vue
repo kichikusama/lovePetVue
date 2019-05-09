@@ -41,7 +41,7 @@ export default {
     ...mapActions(["getServiceAsync"]),
     
       handleClick(row) {
-        console.log(row);
+        console.log(row._id);
       }
   
   },
