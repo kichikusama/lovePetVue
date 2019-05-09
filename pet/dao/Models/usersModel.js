@@ -16,11 +16,6 @@ const usersSchema = new mongoose.Schema({
     goodsId:Array,
     serviceId:Array,
     petId: Array,
-
-    shopId: [{  // 门店 id
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'shopsModel'
-    }],
     // goodsId: [{  // 商品 id
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'goodsModel'
@@ -38,5 +33,6 @@ const usersSchema = new mongoose.Schema({
 mongoose.model('usersModel', usersSchema, "users");
 
 module.exports.usersModel = mongoose.model('usersModel');
+
 
 // db.users.insert({ userAcount:"mm", userPwd:"111111",userPhone:"13111882937",userMail:"321456987@qq.com",userName:"zhangsan", userType:'0',userStatus:"0"})

@@ -35,7 +35,6 @@
       layout="total, sizes, prev, pager, next, jumper"
       :total="count-0"
     ></el-pagination>
-    <el-button size="mini" type="danger" @click="add">删除</el-button>
   </div>
 </template>
 
@@ -45,11 +44,6 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
   "goodsList"
 );
 export default {
-  data() {
-    return {
-      id:""
-    }
-  },
   watch: {
     eachPage() {
       this.getGoodsByPageAsync();
@@ -72,14 +66,15 @@ export default {
   methods: {
     ...mapActions(["getGoodsByPageAsync", "deleteGoodsByPageAsync"]),
     ...mapMutations(["setEachPage", "setCurrentPage"]),
-    add(){
-      console.log(this.id)
-    }
   },
   mounted() {
     this.getGoodsByPageAsync();
-    this.id=document.querySelector("#id").getAttribute("v-model")
-    console.log(this.$route.params.storeId)
+    console.log(document.cookie);
+    
+    var ca = document.cookie.split(';');
+   
+    var arr = ca[1].split("=");
+    console.log(arr[1]);
   },
   
 };

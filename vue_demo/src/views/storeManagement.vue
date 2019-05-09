@@ -1,7 +1,7 @@
  <template>
   <div>
     <el-row>
-      <h1 id="id" :v-model="id">爱宠帮-门店</h1>
+      <h1>爱宠帮-门店</h1>
       <input  type="hidden">
       <el-col class="container" style="display:flex" :span="24">
         <el-menu
@@ -64,13 +64,8 @@
 
 <script>
 export default {
-  data() {
-    return {
-      id:""
-    }
-  },
   mounted() {
-    this.id = this.$route.params.storeId;
+     document.cookie = "shopId="+this.$route.params.storeId
   },
 };
 </script>
