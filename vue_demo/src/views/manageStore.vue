@@ -17,20 +17,6 @@
                   </template>
                 </el-menu-item>
 
-                <el-menu-item index="/manageStore/revisionStore">
-                  <template slot="title">
-                    <i class="el-icon-edit"></i>
-                    <span>修改门店</span>
-                  </template>
-                </el-menu-item>
-
-                <el-menu-item index="/manageStore/deleteStore">
-                  <template slot="title">
-                    <i class="el-icon-location"></i>
-                    <span>删除门店</span>
-                  </template>
-                </el-menu-item>
-
                 <el-menu-item index="/manageStore/findStore">
                   <template slot="title">
                     <i class="el-icon-location"></i>

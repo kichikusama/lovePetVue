@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { addPet } = require('../service/petsService.js');
+const { addPets, getPets} = require('../service/petsService.js');
 
 const { uploadFile } = require("../util/upload.js");
 
@@ -14,12 +14,14 @@ router.post('/addImage', async function (req, res, next) {
 });
 
 /* GET users listing. */
-router.post('/addPet', async function (req, res, next) {
-  res.send(await addPet(req.body))
+router.post('/addPets', async function (req, res, next) {
+  res.send(await addPets(req.body))
 });
 
-router.get('/getUsers', async function (req, res, next) {
-  res.send(await getUsers())
+router.get('/getPets', async function (req, res, next) {
+  console.log(await getPets());
+  
+  res.send(await getPets())
 });
 
 module.exports = router;

@@ -89,7 +89,7 @@
             </div>
           </div>
           <div class="primary">
-            <el-button type="primary" @click="addShop">确认新增</el-button>
+            <el-button type="primary" @click="addShop(state)">确认新增</el-button>
           </div>
         </el-form>
       </el-card>
@@ -98,27 +98,49 @@
 </template>
 <script>
 import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions, mapMutations } = createNamespacedHelpers("shops");
+const { mapActions, mapMutations } = createNamespacedHelpers("shops");
 export default {
   data() {
     return {
-      arr:[],
+      arr: [],
       dialogFormVisible: false,
       form: {
         name: "",
-        grade:"",
-        phone:"",
+        grade: "",
+        phone: ""
       },
-      formLabelWidth: "120px"
+      formLabelWidth: "120px",
+      state: {
+        shopName: "",
+        shopLicenceNum: "",
+        shopLicenceImg: "",
+        shopAdd: "",
+        shopLocation: "",
+        shopCorporate: "",
+        shopTel: "",
+        shopImg: "",
+        shopFeature: "",
+        shopCommission: "",
+        shopEmployee: []
+      }
     };
-  },
-  computed: {
-    ...mapState(["state"])
   },
   methods: {
     ...mapActions(["applyStoreAsync"]),
-    addShop(){
-      this.applyStoreAsync()
+    addShop(data) {
+      this.applyStoreAsync(data);
+      this.open(this.state.shopName)
+    },
+    open(name) {
+      const h = this.$createElement;
+      this.$notify({
+        title: name+"门店",
+        message: h(
+          "i",
+          { style: "color: teal" },
+          "新增成功！"
+        )
+      });
     },
     handleRemove(file, fileList) {
       console.log(file, fileList);
@@ -132,10 +154,14 @@ export default {
     heardPictureCardPreview(file) {
       this.state.shopImg = file.data.url;
     },
-    arrpush(){
-      this.dialogFormVisible = false
-      this.arr.push({empName:this.form.name,empLevel:this.form.grade,empPhone:this.form.phone})
-      this.state.shopEmployee=this.arr
+    arrpush() {
+      this.dialogFormVisible = false;
+      this.arr.push({
+        empName: this.form.name,
+        empLevel: this.form.grade,
+        empPhone: this.form.phone
+      });
+      this.state.shopEmployee = this.arr;
     }
   }
 };
@@ -160,10 +186,10 @@ p {
   display: flex;
   margin-top: 30px;
 }
-.meber{
+.meber {
   width: 400px;
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 span {
   width: 150px;

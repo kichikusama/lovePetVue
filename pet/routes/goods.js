@@ -3,7 +3,7 @@ var router = express.Router();
 
 let { uploadFile } = require("../util/upload.js");
 
-const { addGoods } = require('../service/goodsService.js');
+const { addGoods,getGoodsByPage,deleteGoodsByPage } = require('../service/goodsService.js');
 
 // 新增图片
 router.post('/addImage', async function (req, res, next) {
@@ -19,8 +19,13 @@ router.post('/addGoods', async function (req, res, next) {
   res.send(await addGoods(req.body))
 });
 
-router.get('/getUsers', async function (req, res, next) {
-  res.send(await getUsers())
+// 分页查询
+router.get('/getGoodsByPage', async function (req, res, next) {
+  res.send(await getGoodsByPage(req.query))
 });
 
+// 
+router.get('/deleteGoodsByPage', async function (req, res, next) {
+  res.send(await deleteGoodsByPage(req.query))
+});
 module.exports = router;
