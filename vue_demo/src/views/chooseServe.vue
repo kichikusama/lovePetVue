@@ -12,12 +12,12 @@
               class="image"
             >
             <div style="padding: 14px;">
-              <el-select v-model="value" clearable placeholder="请选择门店">
+              <el-select v-model="value" clearable >
                 <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
+                  v-for="item in shops"
+                  :key="item._id"
+                  :label="item.shopName"
+                  :value="item._id"
                 ></el-option>
               </el-select>
               <div class="bottom clearfix">
@@ -59,40 +59,32 @@
   </el-container>
 </template>
 <script>
-
+import { createNamespacedHelpers } from "vuex";
+const { mapState,mapActions, mapMutations } = createNamespacedHelpers("shops");
 export default {
    data() {
       return {
-        options: [{
-          value: '选项1',
-          label: '黄金糕'
-        }, {
-          value: '选项2',
-          label: '双皮奶'
-        }, {
-          value: '选项3',
-          label: '蚵仔煎'
-        }, {
-          value: '选项4',
-          label: '龙须面'
-        }, {
-          value: '选项5',
-          label: '北京烤鸭'
-        }],
-        value: '黄金糕'
+        value: '选择门店'
       }
     },
+  computed: {
+    ...mapState(["shops"]),
+  },
   methods: {
+    ...mapActions(["getAllShopsAsync"]),
     storeManagement_login() {
-      this.$router.push(`/storeManagement`); // 跳转到门店页面
+      this.$router.push(`/storeManagement/${this.value}`); // 跳转到门店页面
     },
     addStore() {
       this.$router.push(`/manageStore`);
     },
     stock(){
       this.$router.push('/stock')
-    }
-  }
+    },
+  },
+  mounted() {
+    this.getAllShopsAsync()
+  },
 };
 </script>
 <style>

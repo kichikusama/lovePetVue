@@ -169,7 +169,7 @@ const router = new Router({
 
 
     {   // 门店管理 一级路由
-      path: '/storeManagement',
+      path: '/storeManagement/:storeId',
       name: 'StoreManagment',
       component: StoreManagment,
       children: [ // children 属性配置二级路径
@@ -195,7 +195,7 @@ const router = new Router({
         },
         {
           path: '/storeManagement/petsList',//宠物列表   路由
-          name: PetsList,
+          name: "PetsList",
           component: PetsList,
         },
         {
@@ -204,8 +204,6 @@ const router = new Router({
           component: AddPets,
         }]
     },
-
-
     {   // 通过对象进行描述
       path: '/storeManagement/:username',
       name: 'StoreManagementWithParams',

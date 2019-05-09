@@ -7,7 +7,7 @@
           <el-option label="产地" value="goodsRegion"></el-option>
           <el-option label="价格" value="goodsPrice"></el-option>
         </el-select>
-        <el-button slot="append" @click="searchAsync({text,type})" icon="el-icon-search"></el-button>
+        <el-button slot="append" @click="getGoodsByPageAsync({text,type})" icon="el-icon-search"></el-button>
       </el-input>
     </div>
     <el-table :data="goods" border style="width: 100%">
@@ -54,12 +54,17 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
   "goodsList"
 );
 export default {
+  data() {
+    return {
+      id: ""
+    };
+  },
   watch: {
     eachPage() {
-      this.getGoodsByPageAsync();
+      this.getGoodsByPageAsync({ text: this.text, type: this.type });
     },
     currentPage() {
-      this.getGoodsByPageAsync();
+      this.getGoodsByPageAsync({ text: this.text, type: this.type });
     }
   },
   data() {

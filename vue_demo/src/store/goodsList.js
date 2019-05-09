@@ -21,10 +21,9 @@ export default ({
         setCurrentPage: (state, currentPage) => state.currentPage = currentPage,
     },
     actions: {
-        async getGoodsByPageAsync(context) {
-            const { currentPage, eachPage } = context.state;
-            const data = await goodsSer.getGoodsByPage({ currentPage, eachPage });
-            context.commit("getGoodsByPage", data);
+        async getGoodsByPageAsync({ commit, state }, search) {
+            const data = await goodsSer.getGoodsByPage({currentPage:state.currentPage,eachPage:state.eachPage,...search})
+            commit("getGoodsByPage", data);
         },
         async deleteGoodsByPageAsync({ dispatch }, data) {
             const result = await goodsSer.deleteGoodsByPage(data);
@@ -35,10 +34,8 @@ export default ({
             }
         },
         async searchAsync({ dispatch }, data) {
-           const result =  await goodsSer.searchGoodsByType(data);
-           console.log(result);
-           
-          
+            const result = await goodsSer.searchGoodsByType(data);
+            console.log(result);
 
         }
     }

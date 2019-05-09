@@ -20,8 +20,8 @@ router.post('/addGoods', async function (req, res, next) {
 });
 
 // 分页查询
-router.get('/getGoodsByPage', async function (req, res, next) {
-  res.send(await getGoodsByPage(req.query))
+router.post('/getGoodsByPage', async function (req, res, next) {
+  res.send(await getGoodsByPage(req.body))
 });
 
 // 
