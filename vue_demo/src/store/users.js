@@ -9,8 +9,15 @@ export default ({
         count: '0', // 总条数
         rows: [], // 信息
         usersIndroduce: {}, // 用户详情需要使用
+        isLogin:false  // 登录状态
     },
     mutations: {
+        isLogin:(state,payload)=>{
+            // console.log(payload);
+            
+            return state.isLogin = payload
+            //  Object.assign(state.isLogin = payload)  // 登录状态修改
+        },
         getUsers(state, payload) {    // 分页获取用户
             // console.log(state);
             // console.log(payload);
@@ -46,6 +53,15 @@ export default ({
         // },
     },
     actions: {
+        // 登录 //按姓名和密码查找用户
+        async loginAsync({ commit, state },user) {
+            console.log(user)
+            
+            const inUser = await usersService.loginUser(user);
+            // console.log("data:"+data);
+            return inUser;
+            // commit("isLogin",isLogin);
+        },
         // 分页获取用户
         async usersListAsync({ commit, state }) {
             const data = await usersService.getUsers({ currentPage: state.currentPage, eachPage: state.eachPage });

@@ -13,14 +13,14 @@
                 <el-menu-item index="/manageStore/addStore">
                   <template slot="title">
                     <i class="el-icon-share"></i>
-                    <span>新增门店</span>
+                    <span >新增门店</span>
                   </template>
                 </el-menu-item>
 
                 <el-menu-item index="/manageStore/findStore">
                   <template slot="title">
                     <i class="el-icon-location"></i>
-                    <span>查找门店</span>
+                    <span >查找门店</span>
                   </template>
                 </el-menu-item>
               </el-menu>

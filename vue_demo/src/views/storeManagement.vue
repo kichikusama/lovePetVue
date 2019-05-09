@@ -1,11 +1,9 @@
  <template>
   <div>
-    <el-row >
-      <h1>爱宠帮-门店</h1>
-      <el-col 
-      class="container"
-       style="display:flex"
-      :span="24">
+    <el-row>
+      <h1 id="id" :v-model="id">爱宠帮-门店</h1>
+      <input  type="hidden">
+      <el-col class="container" style="display:flex" :span="24">
         <el-menu
           router
           default-active="2"
@@ -17,7 +15,7 @@
           <el-submenu index="/storeManagement">
             <template slot="title">
               <i class="el-icon-location"></i>
-              <span>商品管理</span>
+              <span style="color:red">商品管理</span>
             </template>
             <el-menu-item-group>
               <el-menu-item index="/storeManagement/addGoods">新增商品</el-menu-item>
@@ -28,7 +26,7 @@
           <el-submenu index="2">
             <template slot="title">
               <i class="el-icon-location"></i>
-              <span>服务管理</span>
+              <span style="color:red">服务管理</span>
             </template>
             <el-menu-item-group>
               <el-menu-item index="/storeManagement/addservice">新增服务</el-menu-item>
@@ -39,7 +37,7 @@
           <el-submenu index="3">
             <template slot="title">
               <i class="el-icon-location"></i>
-              <span>宠物管理</span>
+              <span style="color:red">宠物管理</span>
             </template>
             <el-menu-item-group>
               <el-menu-item index="/storeManagement/addPets">新增宠物</el-menu-item>
@@ -50,34 +48,39 @@
           <el-submenu index="4">
             <template slot="title">
               <i class="el-icon-location"></i>
-              <span>订单管理</span>
+              <span style="color:red">订单管理</span>
             </template>
             <el-menu-item-group>
               <el-menu-item index="1-1">订单列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          
         </el-menu>
         <router-view></router-view>
       </el-col>
-      
     </el-row>
     <!-- <router-view></router-view> -->
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      id:""
+    }
+  },
+  mounted() {
+    this.id = this.$route.params.storeId;
+  },
+};
+</script>
+
 <style>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 600px;
-  
 }
-.container{
+.container {
   width: 100%;
 }
 </style>
-<script>
-export default {
-  methods: {}
-};
-</script>
