@@ -10,3 +10,5 @@ const getUsers = async (data) => await fetch(`/users/getUsers`,{
 export default {
   getUsers,
 }
+
+// 
