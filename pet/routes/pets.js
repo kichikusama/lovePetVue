@@ -25,8 +25,7 @@ router.get('/getPets', async function (req, res, next) {
 });
 
 //删除
-router.post('/deletePetByPage', async function (req, res, next) {
-  console.log(44444444);
+router.get('/deletePetByPage', async function (req, res, next) {
   res.send(await deletePetByPage(req.query))
 });
 

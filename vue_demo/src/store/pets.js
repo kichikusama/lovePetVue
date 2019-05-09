@@ -38,32 +38,22 @@ export default {
         handleClick(row) {
             console.log(row);
         },
-        async getPetsByPage(state, payload){
-            const result = await serPets.getPets();
-            Object.assign(state.data, result);
-            console.log(state.data);
-            if (result) {
-                Message.success("获取成功！");
-            } else {
-                Message.warning("获取失败！")
-            }
+        getPetsByPage(state, payload){
+            Object.assign(state.data,payload );
         }
     },
     actions: {
         async getPetsByPageAsync(context) {
-            const { currentPage, eachPage } = context.state;
-            const data = await serPets.getPets({ currentPage, eachPage });
-            console.log(data);
-            context.commit("getPets", data);
+            const data = await serPets.getPets();
+            context.commit("getPetsByPage", data);
         },
     
-        async deletePetByPageAsync({ dispatch }, data) {
+        async deletePetByPageAsync({dispatch} ,data) {
             const result = await serPets.deletePetByPage(data);
-            console.log(result);
             
             if (result) {
                 Message.warning("修改成功！")
-                // dispatch("getGoodsByPageAsync");
+                dispatch("getPetsByPageAsync");
             } else {
                 Message.warning("修改失败！")
             }

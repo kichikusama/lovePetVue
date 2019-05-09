@@ -6,7 +6,12 @@
 
     <el-main>
       <div>
-        <el-input placeholder="请输入内容" class="input-with-select">
+        <el-input placeholder="请输入内容" class="input-with-select" v-model="search">
+          <el-select v-model="select" slot="prepend" placeholder="请选择搜索条件">
+              <el-option label="品称" value="1"></el-option>
+              <el-option label="种类" value="2"></el-option>
+              <el-option label="颜色" value="3"></el-option>
+            </el-select>
           <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
       </div>
@@ -46,15 +51,16 @@ export default {
   },
   data() {
     return {
-     
+      search:"",
+      select:""
     };
   },
   methods: {
     ...mapMutations(["handleClick", "mounted","getPetsByPage"]),
-    ...mapActions(["deletePetByPageAsync"])
+    ...mapActions(["deletePetByPageAsync","getPetsByPageAsync"])
   },
   mounted(){
-    this.getPetsByPage()
+    this.getPetsByPageAsync()
   }
 };
 </script>
