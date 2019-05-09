@@ -1,11 +1,9 @@
  <template>
   <div>
-    <el-row >
-      <h1>爱宠帮-门店</h1>
-      <el-col 
-      class="container"
-       style="display:flex"
-      :span="24">
+    <el-row>
+      <h1 :v-model="id">爱宠帮-门店</h1>
+      <input  type="hidden">
+      <el-col class="container" style="display:flex" :span="24">
         <el-menu
           router
           default-active="2"
@@ -56,28 +54,34 @@
               <el-menu-item index="1-1">订单列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          
         </el-menu>
         <router-view></router-view>
       </el-col>
-      
     </el-row>
     <!-- <router-view></router-view> -->
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      id:""
+    }
+  },
+  mounted() {
+    console.log(this)
+    this.id = this.$route.params.storeId;
+  },
+};
+</script>
+
 <style>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 600px;
-  
 }
-.container{
+.container {
   width: 100%;
 }
 </style>
-<script>
-export default {
-  methods: {}
-};
-</script>
