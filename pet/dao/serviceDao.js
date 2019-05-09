@@ -6,7 +6,7 @@ module.exports.addService = async function (data) {
 //获取列表
 module.exports.getService = async function () {
     let a= await serviceModel.find();
-    console.log(a);
+    // console.log(a);
     return a;
     
 }
@@ -30,9 +30,7 @@ module.exports.findService = async function ({ currentPage, eachPage }) {
     return pageData;
 }
 //通过ID删除服务
-module.exports.deleteServiceById = async function (_id ) {
-    console.log(_id);
-    let data = await servicesModel.deleteOne({ _id }, (err, data) => { });
-    console.log(data);   
-    return data;
+module.exports.deteleService = async function ({id}) {
+    // console.log(id)
+    return await serviceModel.deleteOne({ _id:id }, (err, data) => { })
 }

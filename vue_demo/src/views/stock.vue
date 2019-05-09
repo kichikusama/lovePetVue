@@ -17,7 +17,7 @@
                     <span style="color:red">商品管理</span>
                   </template>
                   <el-menu-item-group>
-                    <el-menu-item index="/stock/shop">新增商品</el-menu-item>
+                    <el-menu-item index="/stock/addGoods">新增商品</el-menu-item>
                   </el-menu-item-group>
                 </el-submenu>
 
