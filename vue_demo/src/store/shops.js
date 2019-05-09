@@ -21,8 +21,8 @@ export default ({
         async applyStoreAsync({ commit, state },shop) {
             await shopServe.addShops(shop)
         },//增加门店
-        async getShopsAsync({ commit, state },) {
-            const data = await shopServe.getShops({currentPage:state.currentPage,eachPage:state.eachPage})
+        async getShopsAsync({ commit, state },search) {
+            const data = await shopServe.getShops({currentPage:state.currentPage,eachPage:state.eachPage,...search})
             commit("getShops", data)
         },//获取所有门店
         async deteleShopsAsync({ dispatch,commit, state },id) {
