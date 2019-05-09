@@ -1,12 +1,16 @@
 var express = require('express');
 var router = express.Router();
 
-const { addService,getService,deteleService } = require('../service/serviceService.js');
+const { addService,getService,deteleService,getServiceBypage } = require('../service/serviceService.js');
 
 //新增
 router.post('/addService', async function(req, res, next) {
   res.send(await addService(req.body))
 });
+
+router.post('/getServiceBypage',async function(req, res, next) {
+  res.send(await getServiceBypage(req.body))
+});//获取当前管理员所有门店（具有分页）
 
 router.get('/getService',async function(req, res, next) {
   res.send(await getService())

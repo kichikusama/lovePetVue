@@ -7,6 +7,15 @@ const getUsers = async (data) => await fetch(`/users/getUsers`,{
     body:  JSON.stringify(data)
 }).then(response => response.json())
 
+const auditingUsers = async () => await fetch(`/users/auditingUsers`,{  // 获取 待审批 用户
+  headers: { 
+      "Content-Type": "application/json",
+      "Accept":"application/json",
+  },
+  method:'POST',
+  // body:  JSON.stringify(data)
+}).then(response => response.json())
+
 const searchUser = async (data) => await fetch(`/users/searchUser`,{
   headers: { 
       "Content-Type": "application/json",
@@ -39,5 +48,6 @@ export default {
   getUsers,
   searchUser,
   addUser,
-  loginUser
+  loginUser,
+  auditingUsers
 }

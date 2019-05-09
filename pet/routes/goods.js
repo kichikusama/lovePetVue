@@ -3,7 +3,9 @@ var router = express.Router();
 
 let { uploadFile } = require("../util/upload.js");
 
-const { addGoods,getGoodsByPage,deleteGoodsByPage } = require('../service/goodsService.js');
+const { addGoods,getGoodsByPage,
+  deleteGoodsByPage,getGoodsById,
+  updateGoodsById} = require('../service/goodsService.js');
 
 // 新增图片
 router.post('/addImage', async function (req, res, next) {
@@ -20,12 +22,22 @@ router.post('/addGoods', async function (req, res, next) {
 });
 
 // 分页查询
-router.get('/getGoodsByPage', async function (req, res, next) {
-  res.send(await getGoodsByPage(req.query))
+router.post('/getGoodsByPage', async function (req, res, next) {
+  res.send(await getGoodsByPage(req.body))
 });
 
-// 
+// 通过 id 删除数据
 router.get('/deleteGoodsByPage', async function (req, res, next) {
   res.send(await deleteGoodsByPage(req.query))
 });
+
+// 通过 id 获取数据
+router.get('/getGoodsById', async function (req, res, next) {
+  res.send(await getGoodsById(req.query))
+});
+
+router.post('/updateGoodsById', async function (req, res, next) {
+  res.send(await updateGoodsById(req.body))
+});
+
 module.exports = router;

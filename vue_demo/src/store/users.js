@@ -4,12 +4,13 @@ export default ({
     namespaced: true,
     state: {
         currentPage: '1', // 当前页面
-        eachPage: '4', // 每页显示条数
+        eachPage: '5', // 每页显示条数
         totalPage: '0', // 总页数
         count: '0', // 总条数
         rows: [], // 信息
         usersIndroduce: {}, // 用户详情需要使用
-        isLogin:false  // 登录状态
+        isLogin:false,  // 登录状态
+        auditingUsers:[]
     },
     mutations: {
         isLogin:(state,payload)=>{
@@ -39,18 +40,10 @@ export default ({
         },
         searchUser:(state,payload)=>{
             Object.assign(state,{rows:payload})
+        },
+        getAuditingUsers:(state,payload)=>{
+            Object.assign(state,{auditingUsers:payload})
         }
-        // handleDelete:(state,payload)=>{  // 根据_id 删除用户
-        //     console.log(payload);
-
-        //       return payload._id;
-        // }
-        // handleUpdate(state,payload) {   // 修改用户信息
-        //     console.log(state);
-
-        //     console.log(payload);  // 所点击的用户所有信息 对象
-        //     // console.log(rows);         
-        // },
     },
     actions: {
         // 登录 //按姓名和密码查找用户
@@ -68,6 +61,12 @@ export default ({
             // console.log(data);
             commit('getUsers', data);
         },
+          // 获取 待审批 用户
+          async auditingUsersAsync({ commit, state }) {
+            const data = await usersService.auditingUsers();
+            console.log(data);
+            commit('getAuditingUsers', data);
+        },
         // 按条件搜索用户
         async searchUserAsync({ commit, state },info) {              
             const data = await usersService.searchUser(info);
@@ -75,17 +74,13 @@ export default ({
             commit('searchUser', data);
         },
          // 新增用户
-         async addUserAsync({ commit, state },info) {              
-            const data = await usersService.addUser(info);
-            console.log(data);
-            // commit('addUser', data);
+         async addUserAsync({ commit, state },add) {  
+             console.log(add);
+                         
+            const isRegister = await usersService.addUser(add);
+            return isRegister;     
+           
         },
-        // async usersListAsync({ commit ,state}) {
-        // const data =  await fetch(`/users/getUsers?currentPage=${state.currentPage}&eachPage=${state.eachPage}`)
-        //  .then(response => response.json());
-        // console.log(data);
-        // commit('getUsers',data);
-        // },
         async deleteUserAsync({ dispatch }, rows) {
             const id = rows._id; // 所删除用户的 id
             const data = await fetch(`/users/deleteUserById?_id=${id}`)

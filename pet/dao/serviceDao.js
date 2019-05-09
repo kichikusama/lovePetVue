@@ -11,21 +11,30 @@ module.exports.getService = async function () {
     
 }
 
-module.exports.findService = async function ({ currentPage, eachPage }) {   
-    let count = await serviceModel.countDocuments(); // 获取总条数
-    let totalPage = Math.ceil(count / eachPage); // 总页数
-    // 获取当前页数的用户信息
-    let rows = await serviceModel
-        .find()
-        .skip((currentPage - 1) * eachPage)
-        .limit(eachPage - 0)
-
+module.exports.getServiceBypage = async function ({ currentPage, eachPage, type, text }) {
+    let total; // 获取总条数
+    // 获取当前页数的服务信息
+    let data;
+    if (text) {
+        data = await serviceModel
+            .find({
+                [type]: { $regex: [text], $options: '$i' }
+            })
+            .skip((currentPage - 1) * eachPage).limit(eachPage - 0);
+        let counts = await serviceModel
+            .find({
+                [type]: { $regex: [text], $options: '$i' }
+            })
+            total = counts.length
+    } else {
+        data = await serviceModel.find().skip((currentPage - 1) * eachPage).limit(eachPage - 0);
+        total = await serviceModel.countDocuments();
+    }
     let pageData = {
         currentPage: currentPage - 0, // 当前页面
         eachPage, // 每页显示条数
-        totalPage, // 总页数
-        count, // 总条数
-        rows, // 学生信息
+        total, // 总条数
+        data, // 服务信息
     };
     return pageData;
 }

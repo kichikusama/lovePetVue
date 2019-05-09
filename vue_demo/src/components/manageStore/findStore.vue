@@ -111,6 +111,7 @@ export default {
   },
   mounted() {
     // 生命周期函数
+    console.log(document.cookie)
     var ca = document.cookie.split(';');
     var arr = ca[1].split("=");
     this.userId=arr[1]
