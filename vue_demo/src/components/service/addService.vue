@@ -5,10 +5,11 @@
         <el-input v-model="service.serviceName"></el-input>
       </el-form-item>
       <el-form-item label="服务类型">
-        <el-select v-model="service.region" placeholder="请选择服务类型">
+        <el-select v-model="service.serviceType" placeholder="请选择服务类型">
           <el-option label="宠物造型" value="宠物造型"></el-option>
           <el-option label="宠物美容" value="宠物美容"></el-option>
           <el-option label="宠物寄养" value="宠物寄养"></el-option>
+          <el-option label="宠物医疗" value="宠物医疗"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="排期">
@@ -32,8 +33,8 @@
       </el-form-item>
       <el-form-item label="适用规格">
         <el-select v-model="service.serviceCanFor" placeholder="请选择适用规格">
-          <el-option label="幼犬" value="幼犬"></el-option>
-          <el-option label="成犬" value="成犬"></el-option>
+          <el-option label="幼宠" value="幼宠"></el-option>
+          <el-option label="成宠" value="成宠"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="服务规格">
@@ -63,19 +64,24 @@
 </template>
 
 <script>
-  import { createNamespacedHelpers } from "vuex";  // 命名空间辅助函数
-  const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
-    "service"   // 从状态机中获取 数据
-  );
-  export default {
-    computed: {
-      ...mapState(["service"])
-    },
-    methods: {
-      ...mapActions(["onSubmit"]),
-      add(){
-        this.onSubmit()
-      }
+import { Message } from "element-ui";
+import { createNamespacedHelpers } from "vuex"; // 命名空间辅助函数
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "service" // 从状态机中获取 数据
+);
+export default {
+  computed: {
+    ...mapState(["service"])
+  },
+  methods: {
+    ...mapActions(["onSubmit"]),
+    add() {
+      this.onSubmit(),
+        this.$message({
+          message: "恭喜你，新增成功",
+          type: "success"
+        });
     }
   }
+};
 </script>

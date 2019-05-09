@@ -5,13 +5,13 @@
       <el-main>
         <div>
           <div style="margin-top: 15px;">
-            <el-input placeholder="搜索" class="input-with-select">
-              <el-select v-model="select" slot="prepend" placeholder="请选择搜索条件">
+            <el-input placeholder="搜索" class="input-with-select" v-model="text">
+              <el-select v-model="type" slot="prepend" placeholder="请选择搜索条件" >
                 <el-option label="门店名称" value="shopName"></el-option>
                 <el-option label="电话" value="shopTel"></el-option>
                 <el-option label="营业地址" value="shopAdd"></el-option>
               </el-select>
-              <el-button slot="append" icon="el-icon-search"></el-button>
+              <el-button slot="append" icon="el-icon-search"  @click="getShopsAsync({type,text})"></el-button>
             </el-input>
           </div>
 
@@ -77,7 +77,8 @@ export default {
   name: "shops",
   data() {
     return {
-      select: "" // 搜索条件
+      type: "", // 搜索条件
+      text:"",
     };
   },
   watch: {
@@ -103,6 +104,9 @@ export default {
   methods: {
     ...mapActions(["getShopsAsync", "deteleShopsAsync"]),
     ...mapMutations(["setEachPage", "setCurPage"]),
+    // add(){
+    //   this.getShopsAsync({select:select,text:text});
+    // }
   },
   mounted() {
     // 生命周期函数

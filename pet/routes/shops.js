@@ -19,7 +19,6 @@ router.post('/addShop', async function(req, res, next) {
 });//添加门店
 
 router.post('/getShop',async function(req, res, next) {
-  console.log(req.body)
   res.send(await getShop(req.body))
 });//获取所有门店
 

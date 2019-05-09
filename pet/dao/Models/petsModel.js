@@ -10,8 +10,6 @@ const petsSchema = new mongoose.Schema({
     petCharacter:String, // 性格
     petsWeight:String, // 体重（5kg、10kg等）
     petsImg:String, // 图片
-    userId:String, // 门店管理员的 id
-    shopId:String // 门店 id
 })
 
 mongoose.model('petsModel', petsSchema, "pets");
