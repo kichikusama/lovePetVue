@@ -1,23 +1,26 @@
 const { shopsModel } = require("./Models/shopsModel.js");
 
-module.exports.getShopBypage = async function ({ currentPage, eachPage, type, text }) {
+module.exports.getShopBypage = async function ({ currentPage, eachPage, type, text ,userId}) {
     let total; // 获取总条数
     // 获取当前页数的电影信息
     let shops;
     if (text) {
         shops = await shopsModel
             .find({
-                [type]: { $regex: [text], $options: '$i' }
+                [type]: { $regex: [text], $options: '$i' },
+                userId
             })
             .skip((currentPage - 1) * eachPage).limit(eachPage - 0);
         let counts = await shopsModel
             .find({
-                [type]: { $regex: [text], $options: '$i' }
+                [type]: { $regex: [text], $options: '$i' },
+                userId
             })
             total = counts.length
     } else {
-        shops = await shopsModel.find().skip((currentPage - 1) * eachPage).limit(eachPage - 0);
-        total = await shopsModel.countDocuments();
+        shops = await shopsModel.find({userId}).skip((currentPage - 1) * eachPage).limit(eachPage - 0);
+        let counts = await shopsModel.find({userId});
+        total = counts.length
     }
     let pageData = {
         currentPage: currentPage - 0, // 当前页面

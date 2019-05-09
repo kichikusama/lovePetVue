@@ -16,7 +16,8 @@ const shopsSchema = new mongoose.Schema({
         empName:String, // 店员姓名
         empLevel:String, // 店员等级
         empPhone:String, // 店员电话
-    }]
+    }],
+    userId: String
 })
 
 mongoose.model('shopsModel', shopsSchema, "shops");

@@ -12,6 +12,9 @@
       <el-form-item label="活动形式">
         <el-input v-model="formLabelAlign.type"></el-input>
       </el-form-item>-->
+      <el-form-item label="姓名：">
+        <el-input v-model="name" placeholder="请输入姓名"></el-input>
+      </el-form-item>
       <el-form-item label="手机号：">
         <el-input
           v-model="username"
@@ -19,6 +22,13 @@
           oninput="if(value.length>11)value=value.slice(0,11)"
           ref="gain"
         ></el-input>
+      </el-form-item>
+      <el-form-item label="邮箱：">
+        <el-input v-model="mailbox" placeholder="请输入邮箱"></el-input>
+      </el-form-item>
+      <el-form-item label="登录名：">
+        <el-input v-model="acount" placeholder="请输入登录名"></el-input>
+        <span style="font-size:12px">为你的账号取一个昵称吧</span>
       </el-form-item>
       <el-form-item label="密码：">
         <el-input
@@ -28,13 +38,6 @@
           oninput="if(value.length>20)value=value.slice(0,20)"
         ></el-input>
       </el-form-item>
-      <el-form-item label="姓名：">
-        <el-input v-model="name" placeholder="请输入姓名"></el-input>
-      </el-form-item>
-      <el-form-item label="邮箱：">
-        <el-input v-model="mailbox" placeholder="请输入邮箱"></el-input>
-      </el-form-item>
-
       <el-form-item>
         <el-button
           type="primary"
@@ -42,35 +45,60 @@
           style="width:100%;background-color:green;"
           round
           :loading="isBtnLoading"
-        >注册</el-button>
+        >提交</el-button>
       </el-form-item>
 
-      <span type="primary" @click="login">已有账号？立即登录</span>
+      <span type="primary" >
+        <a href="#" @click.prevent="login">已有账号？立即登录</a>
+        </span>
     </el-form>
   </div>
 </template>
 <script>
+import { createNamespacedHelpers } from "vuex"; // 命名空间辅助函数
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "users" // 从状态机中获取 数据
+);
 export default {
   name: "Register",
   data() {
     return {
       labelPosition: "right",
+      add: {
+        userName: "",
+        userPhone: "",
+        userMail: "",
+        userAcount: "",
+        userPwd: ""
+      },
       username: "", //账号
       password: "", //密码
       name: "", //姓名
       mailbox: "", //邮箱
+      acount: "",
+
       showTishi: false,
       tishi: "",
       isBtnLoading: false //设置注册成功时跳转页面按钮的加载效果
     };
   },
   methods: {
+    ...mapActions(["addUserAsync"]),
     login() {
       this.$router.push("/");
     },
 
     // 门店管理员 注册
     storeManagement_register() {
+      // console.log("in");
+      let add = {
+        userName: this.name,
+        userPhone: this.username,
+        userMail: this.mailbox,
+        userAcount: this.acount,
+        userPwd: this.password
+      };
+
       this.$refs.gain.focus(); //input框自动获取焦点
       let data = {
         username: this.username,
@@ -103,18 +131,24 @@ export default {
       } else {
         console.log(data);
         this.tishi = "注册成功";
-        this.showTishi = true;
+        // this.showTishi = true;
         this.username = "";
         this.password = "";
         this.isBtnLoading = true;
+        this.addUserAsync(add).then(res => {
+          if (res) {
+            alert("审核中，请耐心等待...");
+            //  this.showTishi = false;
+             this.$router.push("/");
+          }
+        });
         /*注册成功之后再跳回登录页*/
-        setTimeout(
-          function() {
-            this.showTishi = false;
-            this.$router.push("/");
-          }.bind(this),
-          1500
-        );
+        // setTimeout(
+        //   function() {
+           
+        //   }.bind(this),
+        //   1500
+        // );
       }
     }
   }

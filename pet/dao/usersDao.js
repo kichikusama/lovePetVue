@@ -3,7 +3,8 @@ const { usersModel } = require("./Models/usersModel.js");
 
 // 新增 用户  post 请求方式 GM
 module.exports.addUser = async function (users) {
-    return await usersModel.create(users);
+    // return await usersModel.create(users);
+    await shopsModel.find({users})
 }
 // 分页获取用户 get 请求方式 GM
 module.exports.getUsers = async function ({ currentPage, eachPage }) {   
@@ -11,7 +12,7 @@ module.exports.getUsers = async function ({ currentPage, eachPage }) {
     let totalPage = Math.ceil(count / eachPage); // 总页数
     // 获取当前页数的用户信息
     let rows = await usersModel
-        .find()
+        .find({userType:"0"})   // 只查找 门店管理员
         .skip((currentPage - 1) * eachPage)
         .limit(eachPage - 0)
 
@@ -22,10 +23,15 @@ module.exports.getUsers = async function ({ currentPage, eachPage }) {
         count, // 总条数
         rows, // 学生信息
     };
-    console.log(pageData);
+    // console.log(pageData);
     
     return pageData;
 
+}
+module.exports.auditing = async function () {     
+    let rows = await usersModel.find({userStatus:"0",userType:"0"})   // 待审批用户
+    console.log(rows);  
+    return rows;
 }
 // 通过 名字 查询用户
 // 通过 电话 查询用户
@@ -41,7 +47,7 @@ module.exports.searchUser = async function ({ searchType, select }) {
 module.exports.loginUser = async function (user) {
     // console.log(user);
     let xx = await usersModel.find(user);
-    console.log("xx:"+xx);  
+    // console.log("xx:"+xx);  
     return xx
 }
 //删除电影时通过id
