@@ -91,9 +91,9 @@ const router = new Router({
       component: Stock,
       children:[
         {
-          path:'/stock/shop',
-          name:"Shop",
-          component:Shop,
+          path:'/stock/addGoods',
+          name:"AddGoods",
+          component:AddGoods,
         },
         {
           path:'/stock/serve',
@@ -169,7 +169,7 @@ const router = new Router({
 
 
     {   // 门店管理 一级路由
-      path: '/storeManagement',
+      path: '/storeManagement/:storeId',
       name: 'StoreManagment',
       component: StoreManagment,
       children: [ // children 属性配置二级路径
@@ -187,11 +187,6 @@ const router = new Router({
           path: '/storeManagement/stores',
           name: 'storeManagementStores',
           component: Stores,
-        },
-        {
-          path: '/storeManagement/addGoods',
-          name: 'AddGoods',
-          component: AddGoods,
         },
         {
           path: '/storeManagement/goodsList',

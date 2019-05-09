@@ -11,17 +11,11 @@ const usersSchema = new mongoose.Schema({
         type: String,
         default: "0" // 门店管理员 ：0； 平台管理员：1；
     },
-    userStatus: {
-        type: String,
-        default: "0" // 申请中：0; 可用：1； 不可用：2；
-    },
-    shopId: [{  // 门店 id
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'shopsModel'
-    }],
-    // goodsId:Array,
-    // serviceId:Array,
-    // petId: Array,
+    userStatus: Number, // 申请中：0; 可用：1； 不可用：2；
+    shopId: Array,
+    goodsId:Array,
+    serviceId:Array,
+    petId: Array,
 
     shopId: [{  // 门店 id
         type: mongoose.Schema.Types.ObjectId,

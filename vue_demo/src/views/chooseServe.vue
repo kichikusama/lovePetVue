@@ -12,12 +12,12 @@
               class="image"
             >
             <div style="padding: 14px;">
-              <el-select v-model="value" clearable placeholder="请选择门店">
+              <el-select v-model="value" clearable>
                 <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
+                  v-for="item in shops"
+                  :key="item._id"
+                  :label="item.shopName"
+                  :value="item._id"
                 ></el-option>
               </el-select>
               <div class="bottom clearfix">
@@ -39,7 +39,6 @@
                   <h2>{{userId}}</h2>
                 </div>
                 <el-button type="text" class="button" @click="addStore">门店管理</el-button>
-               
               </div>
             </div>
           </el-card>
@@ -63,11 +62,14 @@
   </el-container>
 </template>
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapState,mapActions, mapMutations } = createNamespacedHelpers("shops");
 export default {
-  data() {
-    return {
-      userId: "",  // 保存 cookie 
-      options: [
+   data() {
+      return {
+         userId: "",  // 保存 cookie 
+        value: '选择门店',
+         options: [
         {
           value: "选项1",
           label: "黄金糕"
@@ -88,13 +90,17 @@ export default {
           value: "选项5",
           label: "北京烤鸭"
         }
-      ],
-      value: "黄金糕"
-    };
+        ],
+     
+      }
+    },
+  computed: {
+    ...mapState(["shops"]),
   },
   methods: {
+    ...mapActions(["getAllShopsAsync"]),
     storeManagement_login() {
-      this.$router.push(`/storeManagement`); // 跳转到门店页面
+      this.$router.push(`/storeManagement/${this.value}`); // 跳转到门店页面
     },
     addStore() {
       this.$router.push(`/manageStore`);
@@ -106,7 +112,11 @@ export default {
   mounted() {
     var ca = document.cookie.split("=");  // cookie
     this.userId = ca[1];
+     this.getAllShopsAsync()
   }
+  
+
+  
 };
 </script>
 <style>

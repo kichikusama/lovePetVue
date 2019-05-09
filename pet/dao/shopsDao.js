@@ -1,6 +1,6 @@
 const { shopsModel } = require("./Models/shopsModel.js");
 
-module.exports.getShop = async function ({ currentPage, eachPage, type, text }) {
+module.exports.getShopBypage = async function ({ currentPage, eachPage, type, text }) {
     let total; // 获取总条数
     // 获取当前页数的电影信息
     let shops;
@@ -27,6 +27,10 @@ module.exports.getShop = async function ({ currentPage, eachPage, type, text }) 
     };
     return pageData;
 }
+module.exports.getShop = async function () {
+    return await shopsModel.find();
+}
+
 module.exports.addShop = async function (data) {
     return await shopsModel.create(data);
 }

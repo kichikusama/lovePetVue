@@ -33,7 +33,8 @@ export default {
     },
     actions: {
         async onSubmit(state, payload) {
-            await serServuse.addService(state.state.service)
+            await serServuse.addService(state.state.service);
+            
         },
         async getServiceAsync(context) {
             const data = await serServuse.getService(context.state.service)
@@ -44,6 +45,13 @@ export default {
             // const data = await serServuse.getService({currentPage,eachPage});
             // console.log(data);
             context.commit("getService", data);
-        }
+        },
+        async deteleServiceAsync({ dispatch,commit, state },id) {
+            const data = await serServuse.deteleService(id)
+            if(data.ok==1){
+                dispatch("getServiceAsync")
+            }
+            // commit("getShops", data)
+        },//删除指定门店
     }
 }

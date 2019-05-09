@@ -13,7 +13,10 @@ export default ({
     mutations: {
         getShops: (state, payload) => {
             Object.assign(state, payload)
-        },
+        },//获取当前管理员所有的门店（具有分页）
+        getAllShops: (state, payload) => {
+            Object.assign(state, {shops:payload})
+        },//获取当前管理员所有的门店
         setEachPage: (state, eachPage) => state.eachPage = eachPage,
        setCurPage:(state,currentPage)=>  state.currentPage = currentPage, 
     },
@@ -22,9 +25,9 @@ export default ({
             await shopServe.addShops(shop)
         },//增加门店
         async getShopsAsync({ commit, state },search) {
-            const data = await shopServe.getShops({currentPage:state.currentPage,eachPage:state.eachPage,...search})
+            const data = await shopServe.getShopsBypage({currentPage:state.currentPage,eachPage:state.eachPage,...search})
             commit("getShops", data)
-        },//获取所有门店
+        },//获取所有门店(具有分页)
         async deteleShopsAsync({ dispatch,commit, state },id) {
             const data = await shopServe.deteleShops(id)
             if(data.ok==1){
@@ -32,5 +35,9 @@ export default ({
             }
             // commit("getShops", data)
         },//删除指定门店
+        async getAllShopsAsync({ commit, state }) {
+            const data = await shopServe.getShops()
+            commit("getAllShops", data)
+        },//获取所有门店(具有分页)
     }
 })
