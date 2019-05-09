@@ -89,7 +89,7 @@
             </div>
           </div>
           <div class="primary">
-            <el-button type="primary" @click="addShop">确认新增</el-button>
+            <el-button type="primary" @click="addShop(state)">确认新增</el-button>
           </div>
         </el-form>
       </el-card>
@@ -98,7 +98,7 @@
 </template>
 <script>
 import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions, mapMutations } = createNamespacedHelpers("shops");
+const { mapActions, mapMutations } = createNamespacedHelpers("shops");
 export default {
   data() {
     return {
@@ -109,16 +109,26 @@ export default {
         grade:"",
         phone:"",
       },
-      formLabelWidth: "120px"
+      formLabelWidth: "120px",
+      state: {
+            shopName: '',
+            shopLicenceNum: '',
+            shopLicenceImg: '',
+            shopAdd: '',
+            shopLocation: '',
+            shopCorporate: '',
+            shopTel: '',
+            shopImg: '',
+            shopFeature: '',
+            shopCommission: '',
+            shopEmployee: [],
+        }
     };
-  },
-  computed: {
-    ...mapState(["state"])
   },
   methods: {
     ...mapActions(["applyStoreAsync"]),
-    addShop(){
-      this.applyStoreAsync()
+    addShop(data){
+      this.applyStoreAsync(data)
     },
     handleRemove(file, fileList) {
       console.log(file, fileList);

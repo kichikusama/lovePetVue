@@ -11,9 +11,9 @@
       <el-table-column prop="serviceLevel" label="服务员等级" width="120"></el-table-column>
       <el-table-column prop="servicePrice" label="价格" width="120"></el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
-        <template >
-          <el-button type="text" size="big">更改</el-button>
-          <el-button type="text" size="big">删除</el-button>
+        <template slot-scope="scope">
+          <el-button @click="handleClick(scope.row)"  type="text" size="big">更改</el-button>
+          <el-button  type="text" size="big">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -39,6 +39,11 @@ export default {
   },
   methods: {
     ...mapActions(["getServiceAsync"]),
+    
+      handleClick(row) {
+        console.log(row);
+      }
+  
   },
   mounted(){
     this.getServiceAsync()
