@@ -4,7 +4,7 @@ module.exports.addGoods = async function (data) {
     return await goodsModel.create(data);
 }
 module.exports.getGoodsByPage = async function ({ currentPage, eachPage, type, text }) {
-    let totalPage; 
+    let totalPage;
     let goods;
     let count;
     if (text) {
@@ -36,4 +36,12 @@ module.exports.getGoodsByPage = async function ({ currentPage, eachPage, type, t
 
 module.exports.deleteGoodsByPage = async function ({ data }) {
     return await goodsModel.deleteOne({ _id: data });
+}
+
+module.exports.getGoodsById = async function ({ _id }) {
+    return await goodsModel.find({ _id });
+}
+
+module.exports.updateGoodsById = async function ({ _id, data }) {
+    return await goodsModel.updateOne({ _id }, data);
 }

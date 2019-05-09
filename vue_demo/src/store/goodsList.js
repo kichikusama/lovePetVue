@@ -9,10 +9,18 @@ export default ({
         totalPage: '0', // 总页数
         count: '0', // 总条数
         goods: [], // 信息
+        form: {
+            _id: "",
+            goodsName: "",
+            goodsSize: "",
+            goodsSupplier: "",
+            goodsPrice: ""
+        },
+        dialogFormVisible: false,
     },
     mutations: {
         getGoodsByPage: (state, payload) => {
-            Object.assign(state, payload)
+            Object.assign(state, payload);
         },
         setEachPage: (state, eachPage) => {
             state.currentPage = 1;
@@ -22,7 +30,7 @@ export default ({
     },
     actions: {
         async getGoodsByPageAsync({ commit, state }, search) {
-            const data = await goodsSer.getGoodsByPage({currentPage:state.currentPage,eachPage:state.eachPage,...search})
+            const data = await goodsSer.getGoodsByPage({ currentPage: state.currentPage, eachPage: state.eachPage, ...search })
             commit("getGoodsByPage", data);
         },
         async deleteGoodsByPageAsync({ dispatch }, data) {
@@ -33,10 +41,16 @@ export default ({
                 Message.warning("修改成功！")
             }
         },
-        async searchAsync({ dispatch }, data) {
-            const result = await goodsSer.searchGoodsByType(data);
-            console.log(result);
-
+        async getGoodsByIdAsync({ commit }, id) {
+            const [result] = await goodsSer.getGoodsById(id);
+            commit("getGoodsByPage", { form: result })
+        },
+        async updateGoodsByIdAsync({ state, commit }, payload) {
+            const result = await goodsSer.updateGoodsById({ data: state.form, _id: payload })
+            if (result) {
+                const data = await goodsSer.getGoodsByPage({ currentPage: state.currentPage, eachPage: state.eachPage })
+                commit("getGoodsByPage", data);
+            }
         }
     }
 })
