@@ -3,7 +3,7 @@
     <el-dialog title="修改服务" :visible.sync="dialogFormVisible">
       <el-form :model="form" class="updateForm">
         <el-form-item label="服务名称" style="width:500px" :label-width="formLabelWidth">
-          <el-input disabled v-model="form.serviceName" autocomplete="off"></el-input>
+          <el-input v-model="form.serviceName" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="服务类别" style="width:500px" :label-width="formLabelWidth">
           <el-input v-model="form.serviceType" autocomplete="off"></el-input>
@@ -43,14 +43,14 @@
       <el-table-column fixed="right" label="操作" width="110">
         <template slot-scope="scope">
           <el-button type="text" @click="handleClick(scope.row)" size="small">删除</el-button>
-          <el-button type="text" @click="revise(scope.row)" size="small">更改</el-button>
+          <el-button type="text" @click="update(scope.row)" size="small">更改</el-button>
         </template>
       </el-table-column>
     </el-table>
     <el-pagination
       @size-change="setEachPage"
       @current-change="setCurPage"
-      :current-page.sync="currentPage"
+      :current-page="currentPage-0"
       :page-sizes="[5, 3, 1, ]"
       layout="total, sizes, prev, pager, next, jumper"
       :total="total"
@@ -59,8 +59,6 @@
 </template>
 
 <script>
-import { MessageBox } from "element-ui";
-import { Message } from "element-ui";
 import { createNamespacedHelpers } from "vuex"; // 命名空间辅助函数
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
   "service" // 从状态机中获取 数据
@@ -70,7 +68,10 @@ export default {
   data() {
     return {
       type: "",
-      text: ""
+      text: "",
+      id: "",
+      formLabelWidth: "120px",
+      dialogFormVisible: false
     };
   },
   watch: {
@@ -82,7 +83,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["data", "total"]),
+    ...mapState(["data", "count", "total", "form"]),
     eachPage: {
       get: mapState(["eachPage"]).eachPage,
       set: mapMutations(["setEachPage"]).setEachPage
@@ -93,18 +94,41 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["setEachPage", "setCurPage"]),
+    ...mapMutations(["setEachPage", "setCurPage", "getServiceById"]),
     ...mapActions([
       "getServiceAsync",
       "getAllServiceAsync",
-      "deteleServiceAsync"
+      "deteleServiceAsync",
+      "updateServiceByIdAsync",
+      "getServiceByIdAsync"
     ]),
     handleClick(row) {
       this.deteleServiceAsync(row._id);
     },
-    revise(row) {}
+    update(payload) {
+      this.dialogFormVisible = true;
+      this.getServiceByIdAsync(payload);
+    },
+    comfire(id) {
+      this.updateServiceByIdAsync(id);
+      this.dialogFormVisible = false;
+    }
   },
   mounted() {
+    let userId;
+    let shopsId;
+    for (let item of document.cookie) {
+      if (item == ";") {
+        var ca = document.cookie.split(";");
+        userId = ca[0].split("=")[1];
+        shopsId = ca[1].split("=")[1];
+        break;
+      } else if (item == "=") {
+        userId = document.cookie.split("=")[1];
+      }
+    }
+    console.log(shopsId);
+    this.userId = userId;
     this.getAllServiceAsync();
   }
 };
