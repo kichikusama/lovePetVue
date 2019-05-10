@@ -27,11 +27,7 @@
           <el-option label="供应商" value="goodsSupplier"></el-option>
           <el-option label="价格" value="goodsPrice"></el-option>
         </el-select>
-        <el-button
-          slot="append"
-          @click="getGoodsByPageAsync({text,type})"
-          icon="el-icon-search"
-        ></el-button>
+        <el-button slot="append" @click="getGoodsByPageAsync({text,type})" icon="el-icon-search"></el-button>
       </el-input>
     </div>
     <el-table :data="goods" border style="width: 100%">
@@ -86,13 +82,13 @@ export default {
     eachPage() {
       this.getGoodsByPageAsync({
         text: this.text,
-        type: this.type,
+        type: this.type
       });
     },
     currentPage() {
       this.getGoodsByPageAsync({
         text: this.text,
-        type: this.type,
+        type: this.type
       });
     }
   },
@@ -102,7 +98,7 @@ export default {
       text: "",
       id: "",
       formLabelWidth: "120px",
-      dialogFormVisible: false,
+      dialogFormVisible: false
       // shopId: "",
       // userId: ""
     };
@@ -136,21 +132,19 @@ export default {
     }
   },
   mounted() {
-    // let userId;
-    // let shopsId;
-    // for (let item of document.cookie) {
-    //   if (item == ";") {
-    //     var ca = document.cookie.split(";");
-    //     userId = ca[0].split("=")[1];
-    //     shopsId = ca[1].split("=")[1];
-    //     break;
-    //   } else if (item == "=") {
-    //     userId = document.cookie.split("=")[1];
-    //   }
-    // }
-    // this.userId = userId;
-    // this.shopId = shopsId;
-    this.getGoodsByPageAsync();
+    let userId;
+    let shopsId;
+    for (let item of document.cookie) {
+      if (item == ";") {
+        var ca = document.cookie.split(";");
+        userId = ca[0].split("=")[1];
+        shopsId = ca[1].split("=")[1];
+        break;
+      } else if (item == "=") {
+        userId = document.cookie.split("=")[1];
+      }
+    }
+    this.getGoodsByPageAsync({ shopId: shopsId });
   }
 };
 </script>

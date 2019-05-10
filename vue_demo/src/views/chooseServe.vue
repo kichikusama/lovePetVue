@@ -1,17 +1,19 @@
 
 <template>
   <el-container>
-    <el-header>爱宠邦</el-header>
+    <el-header style="font-size:40px; color:white;height:80px;font-weight:bold;background-color:green;">爱宠邦</el-header>
 
     <el-main>
-      <div style=" display: flex;justify-content: space-around;">
+      <div style="display: flex;justify-content: space-around;">
         <el-col :span="6">
-          <el-card :body-style="{ padding: '0px' }" shadow="always">
+          <el-card  shadow="always" style="width:100%;height:100%;">
             <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+              src="../../img/进入门店.jpg"
               class="image"
+              style="width:100%;height:100%"
             >
-            <div style="padding: 14px;">
+            
+            <div style="padding: 14px;" >
               <el-select v-model="value" clearable>
                 <el-option
                   v-for="item in shops"
@@ -20,40 +22,44 @@
                   :value="item._id"
                 ></el-option>
               </el-select>
-              <div class="bottom clearfix">
-                <el-button type="text" class="button" @click="storeManagement_login">进入门店</el-button>
+              <div style="height:40px"></div>
+              <div class="bottom clearfix;" >
+                <el-button type="primary" class="button" @click="storeManagement_login"  style="font-size:20px;background-color:green;">进入门店</el-button>
               </div>
             </div>
           </el-card>
         </el-col>
         <el-col :span="6">
-          <el-card :body-style="{ padding: '0px' }" shadow="always">
+          <el-card  shadow="always" style="width:100%;height:100%;" >
             <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+              src="../../img/门店管理.jpg"
               class="image"
+             style="width:100%;height:100%"
             >
+            <div style="height:100px"></div>
             <div style="padding: 14px;">
-              <div class="bottom clearfix">
-                <div style="height:40px"></div>
-                <el-button type="text" class="button" @click="addStore">门店管理</el-button>
+              <div class="bottom clearfix" style="display: flex;justify-content: space-around;" >
+              
+                <el-button type="primary" class="button" @click="addStore"  style="font-size:20px;background-color:green;">门店管理</el-button>
               </div>
             </div>
           </el-card>
         </el-col>
         <el-col :span="6">
-          <el-card :body-style="{ padding: '0px' }" shadow="always">
+          <el-card  shadow="always" style="width:100%;height:100%;">
             <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+              src="../../img/进货管理.jpg"
               class="image"
+              style="width:100%;height:100%"
             >
+            <div style="height:147px"></div>
             <div style="padding: 14px;">
-              <div class="bottom clearfix">
-                <div style="height:40px"></div>
-                <el-button type="text" class="button" @click="stock">进货管理</el-button>
+              <div class="bottom clearfix" style="display: flex;justify-content: space-around;">
+                <el-button type="primary" class="button" @click="stock"  style="font-size:20px;background-color:green;">进货管理</el-button>
               </div>
             </div>
           </el-card>
-        </el-col>>
+        </el-col>
       </div>
     </el-main>
   </el-container>

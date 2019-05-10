@@ -10,6 +10,8 @@ import StoreManagment from './views/storeManagement.vue'; // 门店管理员 界
 import Users from './components/users/users.vue'; // 用户管理 组件
 import Auditing from './components/users/usersAuditing.vue'; // 用户审批 组件
 import UsersIntroduce from './components/users/usersIntroduce.vue';// 用户详情 组件
+import DisabledUsers from './components/users/usersDisabled.vue'; // 违规用户 组件
+import SomeRules from './components/users/someRules.vue'; // 管理须知 组件
 
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
 //李东岳
@@ -104,9 +106,9 @@ const router = new Router({
           component:Serve
         },
         {
-          path:'/stock/pet',
-          name:"Pet",
-          component:Pet,
+          path: '/stock/addPets',//新增宠物    路由
+          name: 'AddPets',
+          component: AddPets,
         }
       ]
     },
@@ -131,20 +133,20 @@ const router = new Router({
           component: Users,
         },
         {
+          path: '/management/disabledUsers',  // GM  违规用户列表
+          name: 'DisabledUsers',
+          component: DisabledUsers,
+        },
+        {
+          path: '/management/someRules',  // GM  用户须知 组件
+          name: 'SomeRules',
+          component: SomeRules,
+        },
+        {
           path: '/management/usersIntroduce',  // GM 用户详情
           name: 'UsersIntroduce',
           component: UsersIntroduce,
         },
-        // {   // 通过对象进行描述
-        //   path: '/management/usersIntroduce/:userNow', //GM 用户详情 接收参数
-        //   name: 'UsersIntroduceWithParams',
-        //   component:UsersIntroduce,
-        // },
-        // {
-        //    path: '/management/usersIntroduce',
-        //    component:UsersIntroduce,
-        //    props: (route) => ({ query:111}) 
-        // },
         {
           path: '/management/auditing',   //GM 用户审批 路由
           name: 'Auditing',
@@ -210,11 +212,6 @@ const router = new Router({
           path: '/storeManagement/petsList',//宠物列表   路由
           name: "PetsList",
           component: PetsList,
-        },
-        {
-          path: '/storeManagement/addPets',//新增宠物    路由
-          name: 'AddPets',
-          component: AddPets,
         }]
     },
     {   // 通过对象进行描述

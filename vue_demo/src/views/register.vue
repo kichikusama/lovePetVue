@@ -31,7 +31,7 @@
       <el-form-item label="证件照：">
         <div class="input">
           <el-upload
-            action="/users/addUser"
+            action="/users/addUserImage"
             list-type="picture-card"
             :on-success="handlePictureCardPreview"
             :on-remove="handleRemove"
@@ -103,17 +103,10 @@ export default {
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
-    handlePictureCardPreview(file, a) {
-      console.log(a);
-
-      this.add.image = a.name;
-    },
-    //  heardPictureCardPreview(file) {
     //    this.add.image = file.data.url;
     // },
     // 门店管理员 注册
     storeManagement_register() {
-      // console.log("in");
       let add = {
         userName: this.name,
         userPhone: this.username,

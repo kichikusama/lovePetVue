@@ -11,6 +11,14 @@ module.exports.getPets = async function () {
 module.exports.deletePetByPage = async function ({data}) {
     return await petsModel.deleteOne({ _id: data });
 }
+//通过id获取
+module.exports.getPetsById = async function ({ _id }) {
+    return await petsModel.find({ _id });
+}
+//通过id修改对应数据
+module.exports.updatePetsById = async function ({ _id, data }) {
+    return await petsModel.updateOne({ _id }, data);
+}
 
 module.exports.getAllPets = async function ({ currentPage, eachPage, type, text }) {
     let total; // 获取总条数

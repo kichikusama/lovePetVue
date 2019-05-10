@@ -1,4 +1,4 @@
-const getUsers = async (data) => await fetch(`/users/getUsers`,{
+const getUsers = async (data) => await fetch(`/users/getUsers`,{  // 分页查询用户
     headers: { 
         "Content-Type": "application/json",
         "Accept":"application/json",
@@ -16,7 +16,16 @@ const auditingUsers = async () => await fetch(`/users/auditingUsers`,{  // 获�
   // body:  JSON.stringify(data)
 }).then(response => response.json())
 
-const searchUser = async (data) => await fetch(`/users/searchUser`,{
+  const disabledUsers = async () => await fetch(`/users/disabledUsers`,{  // 获取 违规 用户
+  headers: { 
+      "Content-Type": "application/json",
+      "Accept":"application/json",
+  },
+  method:'POST',
+  // body:  JSON.stringify(data)
+}).then(response => response.json())
+
+const adoptUsers = async (data) => await fetch(`/users/adoptUsersById`,{  // 审批 用户  即修改用户的 userStatus
   headers: { 
       "Content-Type": "application/json",
       "Accept":"application/json",
@@ -25,7 +34,27 @@ const searchUser = async (data) => await fetch(`/users/searchUser`,{
   body:  JSON.stringify(data)
 }).then(response => response.json())
 
-const getShops = async (data) => await fetch(`/shops/getShopById`,{
+
+const againstUsers = async (data) => await fetch(`/users/againstUsersById`,{  // 用户违规状态 即修改用户的 userStatus
+  headers: { 
+      "Content-Type": "application/json",
+      "Accept":"application/json",
+  },
+  method:'POST',
+  body:  JSON.stringify(data)
+}).then(response => response.json())
+
+
+const searchUser = async (data) => await fetch(`/users/searchUser`,{  // 条件查询用户
+  headers: { 
+      "Content-Type": "application/json",
+      "Accept":"application/json",
+  },
+  method:'POST',
+  body:  JSON.stringify(data)
+}).then(response => response.json())
+
+const getShops = async (data) => await fetch(`/shops/getShopById`,{  // 获取门店信息
   headers: { 
       "Content-Type": "application/json",
       "Accept":"application/json",
@@ -60,4 +89,7 @@ export default {
   loginUser,
   auditingUsers,
   getShops,
+  adoptUsers,
+  disabledUsers,
+  againstUsers
 }
