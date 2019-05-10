@@ -6,12 +6,16 @@
         <div>
           <div style="margin-top: 15px;">
             <el-input placeholder="搜索" class="input-with-select" v-model="text">
-              <el-select v-model="type" slot="prepend" placeholder="请选择搜索条件" >
+              <el-select v-model="type" slot="prepend" placeholder="请选择搜索条件">
                 <el-option label="门店名称" value="shopName"></el-option>
                 <el-option label="电话" value="shopTel"></el-option>
                 <el-option label="营业地址" value="shopAdd"></el-option>
               </el-select>
+<<<<<<< HEAD
+              <el-button slot="append" icon="el-icon-search" @click="getShopsAsync({type,text})"></el-button>
+=======
               <el-button slot="append" icon="el-icon-search"  @click="getShopsAsync({type,text,userId})"></el-button>
+>>>>>>> 18283c6d6d6dab3ac60716d581f5f9ff84a97835
             </el-input>
           </div>
 
@@ -78,33 +82,44 @@ export default {
   data() {
     return {
       type: "", // 搜索条件
+<<<<<<< HEAD
+      text: ""
+=======
       text:"",
       userId:'',
+>>>>>>> 18283c6d6d6dab3ac60716d581f5f9ff84a97835
     };
   },
   watch: {
     eachPage() {
+<<<<<<< HEAD
+      this.getShopsAsync({ type: this.type, text: this.text });
+    },
+    currentPage() {
+      this.getShopsAsync({ type: this.type, text: this.text });
+=======
       this.getShopsAsync({type:this.type,text:this.text,userId:this.userId});
     },
     currentPage() {
       this.getShopsAsync({type:this.type,text:this.text,userId:this.userId});
+>>>>>>> 18283c6d6d6dab3ac60716d581f5f9ff84a97835
     }
   },
   computed: {
-    ...mapState(["shops", "total",]),
+    ...mapState(["shops", "total"]),
     // ...mapMutations(["setEachPage", "setCurPage"])
     eachPage: {
       get: mapState(["eachPage"]).eachPage,
       set: mapMutations(["setEachPage"]).setEachPage
     },
-     currentPage: {
+    currentPage: {
       get: mapState(["currentPage"]).currentPage,
       set: mapMutations(["setCurPage"]).setCurPage
     }
   },
   methods: {
     ...mapActions(["getShopsAsync", "deteleShopsAsync"]),
-    ...mapMutations(["setEachPage", "setCurPage"]),
+    ...mapMutations(["setEachPage", "setCurPage"])
     // add(){
     //   this.getShopsAsync({select:select,text:text});
     // }

@@ -1,5 +1,25 @@
 <template>
   <div style="width:100%;">
+    <el-dialog title="修改服务" :visible.sync="dialogFormVisible">
+      <el-form :model="form" class="updateForm">
+        <el-form-item label="服务名称" style="width:500px" :label-width="formLabelWidth">
+          <el-input disabled v-model="form.serviceName" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="服务类别" style="width:500px" :label-width="formLabelWidth">
+          <el-input v-model="form.serviceType" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="服务规格" style="width:500px" :label-width="formLabelWidth">
+          <el-input v-model="form.serviceDetial" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="服务价格" style="width:500px" :label-width="formLabelWidth">
+          <el-input v-model="form.servicePrice" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible= false">取 消</el-button>
+        <el-button type="primary" @click="comfire(form._id)">确 定</el-button>
+      </div>
+    </el-dialog>
     <div style="margin-top: 15px;">
       <el-input placeholder="搜索" class="input-with-select" v-model="text">
         <el-select v-model="type" slot="prepend" placeholder="请选择搜索条件">
@@ -39,7 +59,7 @@
 </template>
 
 <script>
-import { MessageBox } from 'element-ui';
+import { MessageBox } from "element-ui";
 import { Message } from "element-ui";
 import { createNamespacedHelpers } from "vuex"; // 命名空间辅助函数
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
@@ -49,7 +69,7 @@ export default {
   name: "service",
   data() {
     return {
-      type: "", 
+      type: "",
       text: ""
     };
   },
@@ -74,10 +94,15 @@ export default {
   },
   methods: {
     ...mapMutations(["setEachPage", "setCurPage"]),
-    ...mapActions(["getServiceAsync", "getAllServiceAsync","deteleServiceAsync"]),
+    ...mapActions([
+      "getServiceAsync",
+      "getAllServiceAsync",
+      "deteleServiceAsync"
+    ]),
     handleClick(row) {
       this.deteleServiceAsync(row._id);
-    }
+    },
+    revise(row) {}
   },
   mounted() {
     this.getAllServiceAsync();
