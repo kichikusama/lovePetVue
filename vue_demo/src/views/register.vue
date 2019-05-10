@@ -34,7 +34,7 @@
         <div class="input">
         
           <el-upload
-            action="/users/addUser"
+            action="/users/addUserImage"
             list-type="picture-card"
             :on-success="handlePictureCardPreview"
             :on-remove="handleRemove"
@@ -107,10 +107,10 @@ export default {
    handleRemove(file, fileList) {
       console.log(file, fileList);
     },
-   handlePictureCardPreview(file,a) {
-     console.log(a);
+   handlePictureCardPreview(file) {
+    //  console.log(file);
      
-      this.add.image = a.name;
+      this.add.image = file.data.url;
     },
     //  heardPictureCardPreview(file) {
     //    this.add.image = file.data.url;

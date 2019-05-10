@@ -11,8 +11,10 @@ export default ({
         rows: [], // 信息
         usersIndroduce: {}, // 用户详情需要使用
         isLogin:false,  // 登录状态
-        auditingUsers:[],
+        auditingUsers:[], // 待审批用户
+        disabledUsers:[],  // 违规用户
         shops:[], // 门店数据
+
     },
     mutations: {
         isLogin:(state,payload)=>{
@@ -37,7 +39,7 @@ export default ({
         },
         // 将 所点击用户的信息保存在状态机中
         setUsersIntroduce: (state, userNow) => {  // 第二个参数 为 传递的参数，传什么就是什么
-            // console.log(state);
+            console.log(userNow);
             Object.assign(state, { usersIndroduce: userNow })
             // return state.usersIndroduce = userNow;      
         },
@@ -49,6 +51,9 @@ export default ({
         },
         getShopsByUserId:(state,payload)=>{  // 设置门店数据
             Object.assign(state,{shops:payload});
+        },
+        getDisabledUsers:(state,payload)=>{  // 设置 违规用户数据
+            Object.assign(state,{disabledUsers:payload});
         }
     },
     actions: {
@@ -67,11 +72,33 @@ export default ({
             // console.log(data);
             commit('getUsers', data);
         },
-          // 获取 待审批 用户
+        // 获取 待审批 用户
           async auditingUsersAsync({ commit, state }) {
             const data = await usersService.auditingUsers();
-            console.log(data);
+            // console.log(data);
             commit('getAuditingUsers', data);
+        },
+         // 获取 违规 用户
+         async disabledUsersAsync({ commit, state }) {
+            const data = await usersService.disabledUsers();
+            console.log(data);
+            commit('getDisabledUsers', data);
+        },
+        //审批用户通过  即 修改 
+        async adoptUsersAsync({dispatch, state },idAndStatus) {
+            const isAdopt = await usersService.adoptUsers(idAndStatus);
+            if(isAdopt){
+                dispatch("auditingUsersAsync");  // 修改成功后 重新获取数据
+            }
+            // commit('getAuditingUsers', data);
+        },
+         //审批用户违规状态  即 修改 
+        async againstUsersAsync({dispatch, state },idAndStatusAndReason) {
+            const isagainst = await usersService.againstUsers(idAndStatusAndReason);
+            if(isagainst){
+                dispatch("usersListAsync");  // 修改成功后 重新获取数据
+            }
+            // commit('getAuditingUsers', data);
         },
         // 按条件搜索用户
         async searchUserAsync({ commit, state },info) {              
@@ -102,8 +129,9 @@ export default ({
             // console.log(info);                       
             // const data = await usersService.getShops(info);
             const data = await shopService.getShopsBypage(info);
-            console.log(data);
+            // console.log(data);
             commit('getShopsByUserId', data.shops);
         },
+        // 
     }
 })

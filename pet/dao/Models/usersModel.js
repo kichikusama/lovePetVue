@@ -13,10 +13,13 @@ const usersSchema = new mongoose.Schema({
     },
     userStatus:{   // 
         type: String,
-        default: "1" // 
+        default: "2" // 
     }, // 申请中：0; 可用：1； 不可用：2；
     image:String,  // 证件照
-
+    againstReason:{  // 违规原因     可不填写
+        type:String,
+        default:"-"
+    }
     // goodsId: [{  // 商品 id
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'goodsModel'

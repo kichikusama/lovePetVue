@@ -32,7 +32,12 @@ module.exports.getUsers = async function ({ currentPage, eachPage }) {
 }
 module.exports.auditing = async function () {     
     let rows = await usersModel.find({userStatus:"0",userType:"0"})   // 待审批用户
-    console.log(rows);  
+    // console.log(rows);  
+    return rows;
+}
+module.exports.disabledUsers  = async function () {     
+    let rows = await usersModel.find({userStatus:"2",userType:"0"})   // 待审批用户
+    // console.log(rows);  
     return rows;
 }
 // 通过 名字 查询用户
@@ -59,4 +64,11 @@ module.exports.deleteUserById = async function (_id ) {
     console.log(data);   
     return data;
 }
-
+ //通过Id修改  待审批用户状态
+module.exports.adoptUsersById = async function (idAndStatus) {
+    return await usersModel.update({ _id: idAndStatus._id }, { userStatus: idAndStatus.userStatus})
+}
+ //通过Id修改 违规用户状态
+ module.exports.againstUsersById= async function (idAndStatusAndReason) {
+    return await usersModel.update({ _id: idAndStatusAndReason._id }, { userStatus: idAndStatusAndReason.userStatus,againstReason:idAndStatusAndReason.againstReason})
+}
