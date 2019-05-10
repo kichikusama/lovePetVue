@@ -1,7 +1,7 @@
 
 <template>
   <el-container>
-    <el-header>爱宠邦</el-header>
+    <el-header style="font-size:40px; color:white;height:80px;font-weight:bold;background-color:green;">爱宠邦</el-header>
 
     <el-main>
       <div style="display: flex;justify-content: space-around;">
@@ -12,7 +12,7 @@
               class="image"
               style="width:100%;height:100%"
             >
-            <div style="height:40px"></div>
+            
             <div style="padding: 14px;" >
               <el-select v-model="value" clearable>
                 <el-option
@@ -22,8 +22,9 @@
                   :value="item._id"
                 ></el-option>
               </el-select>
-              <div class="bottom clearfix">
-                <el-button type="text" class="button" @click="storeManagement_login"  style="font-size:26px;">进入门店</el-button>
+              <div style="height:40px"></div>
+              <div class="bottom clearfix;" >
+                <el-button type="primary" class="button" @click="storeManagement_login"  style="font-size:20px;background-color:green;">进入门店</el-button>
               </div>
             </div>
           </el-card>
@@ -35,11 +36,11 @@
               class="image"
              style="width:100%;height:100%"
             >
-            <div style="height:52px"></div>
+            <div style="height:100px"></div>
             <div style="padding: 14px;">
-              <div class="bottom clearfix">
-                <div style="height:40px"></div>
-                <el-button type="text" class="button" @click="addStore"  style="font-size:26px;">门店管理</el-button>
+              <div class="bottom clearfix" style="display: flex;justify-content: space-around;" >
+              
+                <el-button type="primary" class="button" @click="addStore"  style="font-size:20px;background-color:green;">门店管理</el-button>
               </div>
             </div>
           </el-card>
@@ -51,11 +52,10 @@
               class="image"
               style="width:100%;height:100%"
             >
-            <div style="height:76px"></div>
+            <div style="height:147px"></div>
             <div style="padding: 14px;">
-              <div class="bottom clearfix">
-                <div style="height:40px"></div>
-                <el-button type="text" class="button" @click="stock"  style="font-size:26px">进货管理</el-button>
+              <div class="bottom clearfix" style="display: flex;justify-content: space-around;">
+                <el-button type="primary" class="button" @click="stock"  style="font-size:20px;background-color:green;">进货管理</el-button>
               </div>
             </div>
           </el-card>
