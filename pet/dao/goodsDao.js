@@ -50,6 +50,10 @@ module.exports.updateGoodsById = async function ({ _id, data }) {
     return await goodsModel.updateOne({ _id }, data);
 }
 
-module.exports.getGoodsByShopId = async function (shopId) {
-    return await goodsModel.find(shopId)
+module.exports.getGoodsByUserId = async function ({ userId }) {
+    return await goodsModel.find({ userId, shopId: "" })
+}
+
+module.exports.addShopIdToGoods = async function ({ goodsIds, shopId }) {
+   return await goodsModel.update({ _id: { $in: goodsIds } }, { shopId })
 }

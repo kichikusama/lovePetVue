@@ -5,7 +5,8 @@ let { uploadFile } = require("../util/upload.js");
 
 const { addGoods,getGoodsByPage,
   deleteGoodsByPage,getGoodsById,
-  updateGoodsById,getGoodsByShopId} = require('../service/goodsService.js');
+  updateGoodsById,getGoodsByUserId,
+  addShopIdToGoods} = require('../service/goodsService.js');
 
 // 新增图片
 router.post('/addImage', async function (req, res, next) {
@@ -41,8 +42,13 @@ router.post('/updateGoodsById', async function (req, res, next) {
 });
 
 // 通过 shopid 获取数据
-router.get('/getGoodsByShopId', async function (req, res, next) {
-  res.send(await getGoodsByShopId(req.query))
+router.get('/getGoodsByUserId', async function (req, res, next) {
+  res.send(await getGoodsByUserId(req.query))
+});
+
+// 向商品身上添加 shopId
+router.post('/addShopIdToGoods', async function (req, res, next) {
+  res.send(await addShopIdToGoods(req.body))
 });
 
 module.exports = router;

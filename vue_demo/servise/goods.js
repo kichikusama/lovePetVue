@@ -27,12 +27,24 @@ const updateGoodsById = async (data) => await fetch(`/goods/updateGoodsById`, {
     body: JSON.stringify(data)
 }).then(response => response.json())
 
-const getGoodsByShopId = async (shopId) => await fetch(`/goods/getGoodsByShopId?shopId=${shopId}`).then(response => response.json());
+const getGoodsByUserId = async (userId) => await fetch(`/goods/getGoodsByUserId?userId=${userId}`).then(response => response.json());
+
+const addShopIdToGoods = async (data) => await fetch(`/goods/addShopIdToGoods`, {
+    headers: {
+        "Content-Type": "application/json",
+        // 'Accept':"application/json",
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+}).then(response => response.json())
+
+
 
 
 
 export default {
     addGoods, getGoodsByPage, 
     deleteGoodsByPage, getGoodsById,
-    updateGoodsById,getGoodsByShopId
+    updateGoodsById,getGoodsByUserId,
+    addShopIdToGoods
 }

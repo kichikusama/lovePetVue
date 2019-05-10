@@ -20,6 +20,7 @@ export default ({
             goodsIntro: "",
             goodsPrice: "",
             goodsImg: "",
+            shopId:"",
             userId: ""
         },
         goodsFlag: {
