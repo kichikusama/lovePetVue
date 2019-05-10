@@ -22,28 +22,21 @@ export default {
 
     mutations: {
         getService: (state, payload) => {
-            Object.assign(state, {data:payload})
+            Object.assign(state, payload)
         },
-        // setEachPage: (state, eachPage) => {
-        //     return state.eachPage = eachPage;
-        // },
-        // setCurrentPage: (state, currentPage) => {
-        //     return state.currentPage = currentPage;
-        // }
+        setEachPage: (state, eachPage) => {
+            return state.eachPage = eachPage;
+        },
+        setCurrentPage: (state, currentPage) => {
+            return state.currentPage = currentPage;
+        }
     },
     actions: {
         async onSubmit(state, payload) {
             await serServuse.addService(state.state.service);
-            
         },
         async getServiceAsync(context) {
             const data = await serServuse.getService(context.state.service)
-            // const {
-            //     currentPage,
-            //     eachPage
-            // } = context.state;
-            // const data = await serServuse.getService({currentPage,eachPage});
-            // console.log(data);
             context.commit("getService", data);
         },
         async deteleServiceAsync({ dispatch,commit, state },id) {
@@ -51,7 +44,10 @@ export default {
             if(data.ok==1){
                 dispatch("getServiceAsync")
             }
-            // commit("getShops", data)
-        },//删除指定门店
+        },//删除指定服务
+        async getAllServiceAsync({ commit, state },search) {
+            const data = await serServuse.getServiceBypage({currentPage:state.currentPage,eachPage:state.eachPage,...search})
+            commit("getService", data)
+        },//获取所有服务(具有分页)
     }
 }

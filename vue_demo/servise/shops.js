@@ -17,13 +17,13 @@ const getShopsBypage = async (data) => await fetch(`/shops/getShopBypage`,{
 }).then(response => response.json())//查看所有门店（具有分页）
 
 
-const getShops = async () => await fetch(`/shops/getShop`,{
+const getShops = async (data) => await fetch(`/shops/getShop`,{
   headers: { 
       "Content-Type": "application/json",
       // 'Accept':"application/json",
   },
   method:'POST',
-  body:  JSON.stringify()
+  body:  JSON.stringify(data)
 }).then(response => response.json())//查看当前管理员所有门店
 
 

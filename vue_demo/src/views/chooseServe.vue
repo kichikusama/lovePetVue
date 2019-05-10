@@ -35,9 +35,6 @@
             <div style="padding: 14px;">
               <div class="bottom clearfix">
                 <div style="height:40px"></div>
-                <div>
-                  <h2>{{userId}}</h2>
-                </div>
                 <el-button type="text" class="button" @click="addStore">门店管理</el-button>
               </div>
             </div>
@@ -69,29 +66,7 @@ export default {
       return {
          userId: "",  // 保存 cookie 
         value: '选择门店',
-         options: [
-        {
-          value: "选项1",
-          label: "黄金糕"
-        },
-        {
-          value: "选项2",
-          label: "双皮奶"
-        },
-        {
-          value: "选项3",
-          label: "蚵仔煎"
-        },
-        {
-          value: "选项4",
-          label: "龙须面"
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭"
-        }
-        ],
-     
+        useId:'',
       }
     },
   computed: {
@@ -100,7 +75,8 @@ export default {
   methods: {
     ...mapActions(["getAllShopsAsync"]),
     storeManagement_login() {
-      this.$router.push(`/storeManagement/${this.value}`); // 跳转到门店页面
+      this.$router.push(`/storeManagement`); // 跳转到门店页面
+      document.cookie = "shopId=" + this.value;
     },
     addStore() {
       this.$router.push(`/manageStore`);
@@ -108,15 +84,34 @@ export default {
     stock() {
       this.$router.push("/stock");
     },
+
   },
   mounted() {
-    var ca = document.cookie.split("=");  // cookie
-    this.userId = ca[1];
-     this.getAllShopsAsync()
-  }
-  
+    let userId;
+    for(let item of document.cookie){
+      if(item==';'){
+       var ca= document.cookie.split(';');
+        userId=ca[0].split('=')[1];
+        break
+      }else if(item=='='){
+        userId=document.cookie.split('=')[1]
+      }
+    }
+    this.userId=userId
+    // console.log(this.userId)
+    //  var ca = document.cookie.split('=');
+    // this.userId=ca[1];
+    // for(var i=0; i<ca.length; i++) {
+    //     var c = ca[i].trim();
+    //     if (c.indexOf(name)==0) { return c.substring(name.length,c.length); }
+    // }
 
-  
+
+
+    // var ca = document.cookie;  // cookie   .split("=")
+    // this.userId = ca;//[1]
+     this.getAllShopsAsync({userId:this.userId})
+  }
 };
 </script>
 <style>

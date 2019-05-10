@@ -11,16 +11,12 @@ const usersSchema = new mongoose.Schema({
         type: String,
         default: "0" // 门店管理员 ：0； 平台管理员：1；
     },
-    userStatus: Number, // 申请中：0; 可用：1； 不可用：2；
-    shopId: Array,
-    goodsId:Array,
-    serviceId:Array,
-    petId: Array,
+    userStatus:{   // 
+        type: String,
+        default: "1" // 
+    }, // 申请中：0; 可用：1； 不可用：2；
+    image:String,  // 证件照
 
-    shopId: [{  // 门店 id
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'shopsModel'
-    }],
     // goodsId: [{  // 商品 id
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'goodsModel'
@@ -39,4 +35,5 @@ mongoose.model('usersModel', usersSchema, "users");
 
 module.exports.usersModel = mongoose.model('usersModel');
 
-// db.users.insert({ userAcount:"mm", userPwd:"111111",userPhone:"13111882937",userMail:"321456987@qq.com",userName:"zhangsan", userType:'0',userStatus:"0"})
+// db.users.insert({ userAcount:"BBB", userPwd:"123456",userPhone:"13468151543",userMail:"5671456987@qq.com",userName:"bbb", userType:'0',userStatus:"1"})
+// db.users.insert({ userAcount:"gm", userPwd:"888888",userPhone:"13668151543",userMail:"321456987@qq.com",userName:"mmm", userType:'0',userStatus:"0"})
