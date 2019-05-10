@@ -22,6 +22,7 @@ const shopsSchema = new mongoose.Schema({
         type:String,
         default:"0",
     }//0为审核中；1为可用
+    
 })
 
 mongoose.model('shopsModel', shopsSchema, "shops");
