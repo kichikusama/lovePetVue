@@ -11,11 +11,7 @@
                 <el-option label="电话" value="shopTel"></el-option>
                 <el-option label="营业地址" value="shopAdd"></el-option>
               </el-select>
-<<<<<<< HEAD
-              <el-button slot="append" icon="el-icon-search" @click="getShopsAsync({type,text})"></el-button>
-=======
               <el-button slot="append" icon="el-icon-search"  @click="getShopsAsync({type,text,userId})"></el-button>
->>>>>>> 18283c6d6d6dab3ac60716d581f5f9ff84a97835
             </el-input>
           </div>
 
@@ -82,27 +78,16 @@ export default {
   data() {
     return {
       type: "", // 搜索条件
-<<<<<<< HEAD
-      text: ""
-=======
       text:"",
       userId:'',
->>>>>>> 18283c6d6d6dab3ac60716d581f5f9ff84a97835
     };
   },
   watch: {
     eachPage() {
-<<<<<<< HEAD
-      this.getShopsAsync({ type: this.type, text: this.text });
-    },
-    currentPage() {
-      this.getShopsAsync({ type: this.type, text: this.text });
-=======
       this.getShopsAsync({type:this.type,text:this.text,userId:this.userId});
     },
     currentPage() {
       this.getShopsAsync({type:this.type,text:this.text,userId:this.userId});
->>>>>>> 18283c6d6d6dab3ac60716d581f5f9ff84a97835
     }
   },
   computed: {
