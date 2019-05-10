@@ -18,7 +18,7 @@ const goodsSchema = new mongoose.Schema({
     goodsPrice:String, // 价格
     goodsImg:String, // 图片
     userId:String, // 门店管理员 id
-    shopId:String // 门店 id
+    shopId:Array // 门店 id 集合
 })
 
 

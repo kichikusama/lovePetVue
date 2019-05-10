@@ -20,8 +20,8 @@ export default ({
             goodsIntro: "",
             goodsPrice: "",
             goodsImg: "",
-            shopId:"",
-            userId: ""
+            shopId:[],
+            userId: "",
         },
         goodsFlag: {
             dialogImageUrl: "",

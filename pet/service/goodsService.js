@@ -47,10 +47,6 @@ module.exports.getGoodsByUserId = async function (userId) {
 }
 
 module.exports.addShopIdToGoods = async function (data) {
-    const result = await addShopIdToGoods(data);
-    if (result.ok) {
-        return true
-    } else {
-        return false;
-    }
+    return await addShopIdToGoods(data);
+
 }

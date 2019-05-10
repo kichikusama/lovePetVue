@@ -29,7 +29,7 @@
         </el-select>
         <el-button
           slot="append"
-          @click="getGoodsByPageAsync({text,type,shopId:shopId})"
+          @click="getGoodsByPageAsync({text,type})"
           icon="el-icon-search"
         ></el-button>
       </el-input>
@@ -57,7 +57,11 @@
       <el-table-column fixed="right" label="操作" width="200">
         <template slot-scope="scope">
           <el-button @click="handleUpdate(scope.row._id)" size="mini">编辑</el-button>
-          <el-button size="mini" type="danger" @click="deleteGoodsByPageAsync(scope.row._id)">删除</el-button>
+          <el-button
+            size="mini"
+            type="danger"
+            @click="deleteGoodsByPageAsync({_id:scope.row._id})"
+          >删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -83,14 +87,12 @@ export default {
       this.getGoodsByPageAsync({
         text: this.text,
         type: this.type,
-        shopId: this.shopId
       });
     },
     currentPage() {
       this.getGoodsByPageAsync({
         text: this.text,
         type: this.type,
-        shopId: this.shopId
       });
     }
   },
@@ -101,8 +103,8 @@ export default {
       id: "",
       formLabelWidth: "120px",
       dialogFormVisible: false,
-      shopId: "",
-      userId: ""
+      // shopId: "",
+      // userId: ""
     };
   },
   computed: {
@@ -134,21 +136,21 @@ export default {
     }
   },
   mounted() {
-    let userId;
-    let shopsId;
-    for (let item of document.cookie) {
-      if (item == ";") {
-        var ca = document.cookie.split(";");
-        userId = ca[0].split("=")[1];
-        shopsId = ca[1].split("=")[1];
-        break;
-      } else if (item == "=") {
-        userId = document.cookie.split("=")[1];
-      }
-    }
-    this.userId = userId;
-    this.shopId = shopsId;
-    this.getGoodsByPageAsync({ shopId: this.shopId });
+    // let userId;
+    // let shopsId;
+    // for (let item of document.cookie) {
+    //   if (item == ";") {
+    //     var ca = document.cookie.split(";");
+    //     userId = ca[0].split("=")[1];
+    //     shopsId = ca[1].split("=")[1];
+    //     break;
+    //   } else if (item == "=") {
+    //     userId = document.cookie.split("=")[1];
+    //   }
+    // }
+    // this.userId = userId;
+    // this.shopId = shopsId;
+    this.getGoodsByPageAsync();
   }
 };
 </script>
