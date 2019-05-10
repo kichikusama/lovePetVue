@@ -35,8 +35,8 @@ export default ({
             }
             // commit("getShops", data)
         },//删除指定门店
-        async getAllShopsAsync({ commit, state }) {
-            const data = await shopServe.getShops()
+        async getAllShopsAsync({ commit, state },useId) {
+            const data = await shopServe.getShops(useId)
             commit("getAllShops", data)
         },//获取所有门店(具有分页)
     }

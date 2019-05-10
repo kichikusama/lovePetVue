@@ -1,7 +1,8 @@
 <template>
   <div class="main">
+     <h3>用户列表</h3>
     <el-container>
-      <h3>用户列表</h3>
+     
       <el-main>
         <div>
           <el-menu
@@ -13,8 +14,10 @@
           >
             <el-menu-item index="1">新增用户</el-menu-item>
             <el-submenu index="2">
-              <template slot="title">处理中心</template>
-              <el-menu-item index="/management/auditing" @click="auditing">待审核 <b style="color:red;font-size:10px">+1</b></el-menu-item>
+              <template slot="title">
+                <span @mouseenter="auditing">处理中心</span>
+               </template>
+              <el-menu-item index="/management/auditing" @click="skipTo">待审核 <b style="color:red;font-size:10px">+{{auditingUsers.length}}</b></el-menu-item>
               <el-menu-item index="2-2">已审核</el-menu-item>
             </el-submenu>
             <el-menu-item index="3">
@@ -75,19 +78,17 @@
           </div>
 
           <el-table :data="rows" center="all" style="width: 100%;text-align:center;">
-            <el-table-column type="index" label="序号" width="50"></el-table-column>
-           
-
+            <el-table-column type="index" label="序号" width="100"></el-table-column>
             <el-table-column prop="userName" label="姓名" width="100"></el-table-column>
             <el-table-column prop="userAcount" label="登录名" width="100"></el-table-column>
-            <el-table-column prop="userPhone" label="联系方式" width="130"></el-table-column>
-            <el-table-column prop="userMail" label="邮箱" width="160"></el-table-column>
-            <el-table-column prop="userType" label="角色" width="60"></el-table-column>
-            <el-table-column prop="userStatus" label="状态" width="60"></el-table-column>
-            <el-table-column label="门店">
+            <el-table-column prop="userPhone" label="联系方式" width="200"></el-table-column>
+            <el-table-column prop="userMail" label="邮箱" width="200"></el-table-column>
+            <el-table-column prop="userType" label="角色" width="100"></el-table-column>
+            <el-table-column prop="userStatus" label="状态" width="100"></el-table-column>
+            <!-- <el-table-column label="门店">
               <el-table-column prop label="门店1" width="120"></el-table-column>
               <el-table-column prop label="门店2" width="120"></el-table-column>
-            </el-table-column>
+            </el-table-column> -->
 
             <el-table-column label="操作">
               <template slot-scope="scope">
@@ -148,10 +149,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(["rows", "totalPage", "count", "eachPage", "currentPage"])
+    ...mapState(["rows", "totalPage", "count", "eachPage", "currentPage","auditingUsers"])
   },
   methods: {
-    ...mapActions(["usersListAsync", "deleteUserAsync", "searchUserAsync","auditingUsersAsync"]),
+    ...mapActions(["usersListAsync", "deleteUserAsync", "searchUserAsync","auditingUsersAsync","getShopsAsync"]),
     ...mapMutations([
       "setEachPage",
       "setCurrentPage",
@@ -159,27 +160,25 @@ export default {
       "setUsersIntroduce"
     ]), //,"handleDelete"
 
-    usersIntroduce(userNow) {
-      // 查看详情
-      // console.log(userNow);
-      this.setUsersIntroduce(userNow);
-      // this.$router.push({ path: `/management/usersIntroduce`}) // 跳转  /${userNow}
+    usersIntroduce(userNow) { // 查看详情    
+      console.log(userNow);
+      this.setUsersIntroduce(userNow); // 将 所点击用户的信息保存在状态机中
+      this.getShopsAsync({currentPage:1,eachPage:5,userId:userNow._id});// 根据用户id获取门店信息
+      this.$router.push({ path: `/management/usersIntroduce`}) // 跳转  /${userNow}
     },
     auditing(){
-      this.auditingUsersAsync();
-      this.$router.push({ path: `/management/auditing`})
+      // console.log("in");
+      
+      this.auditingUsersAsync(); // 请求 待审核 用户数据
+    },
+    skipTo(){
+      this.$router.push({ path: `/management/auditing`})  // 跳转 审核 组件
     }
-    // handleDelete:(index,row)=>{
-    //   console.log(index);
-    //   console.log(row);
-
-    // }
   },
   mounted() {
     // 生命周期函数
     this.usersListAsync();
     // console.log(this.films);
-
     //   console.log(this.a); // 这里拿不到a : undefind
     //   console.log(this); // this中 有a
   }

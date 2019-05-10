@@ -27,7 +27,7 @@
           <el-option label="产地" value="goodsRegion"></el-option>
           <el-option label="价格" value="goodsPrice"></el-option>
         </el-select>
-        <el-button slot="append" @click="getGoodsByPageAsync({text,type})" icon="el-icon-search"></el-button>
+        <el-button slot="append" @click="getGoodsByPageAsync({text,type,shopId:this.shopId})" icon="el-icon-search"></el-button>
       </el-input>
     </div>
     <el-table :data="goods" border style="width: 100%">
@@ -88,11 +88,13 @@ export default {
       text: "",
       id: "",
       formLabelWidth: "120px",
-      dialogFormVisible: false
+      dialogFormVisible: false,
+      shopId: "",
+      userId: ""
     };
   },
   computed: {
-    ...mapState(["totalPage", "count", "goods", "form","shopId"]),
+    ...mapState(["totalPage", "count", "goods", "form"]),
     eachPage: {
       get: mapState(["eachPage"]).eachPage,
       set: mapMutations(["setEachPage"]).setEachPage
@@ -120,7 +122,21 @@ export default {
     }
   },
   mounted() {
-    this.getGoodsByPageAsync();
+    let userId;
+    let shopsId;
+    for (let item of document.cookie) {
+      if (item == ";") {
+        var ca = document.cookie.split(";");
+        userId = ca[0].split("=")[1];
+        shopsId = ca[1].split("=")[1];
+        break;
+      } else if (item == "=") {
+        userId = document.cookie.split("=")[1];
+      }
+    }
+    this.userId = userId;
+    this.shopId = shopsId;
+    this.getGoodsByPageAsync(this.shopId);
   }
 };
 </script>

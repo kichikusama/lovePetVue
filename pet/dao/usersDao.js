@@ -3,7 +3,10 @@ const { usersModel } = require("./Models/usersModel.js");
 
 // 新增 用户  post 请求方式 GM
 module.exports.addUser = async function (users) {
+    console.log(users);
+    
     return await usersModel.create(users);
+   
 }
 // 分页获取用户 get 请求方式 GM
 module.exports.getUsers = async function ({ currentPage, eachPage }) {   
@@ -11,7 +14,7 @@ module.exports.getUsers = async function ({ currentPage, eachPage }) {
     let totalPage = Math.ceil(count / eachPage); // 总页数
     // 获取当前页数的用户信息
     let rows = await usersModel
-        .find({userType:"0"})   // 只查找 门店管理员
+        .find({userType:"0",userStatus:"1"})   // 只查找 门店管理员,且状态值为可用
         .skip((currentPage - 1) * eachPage)
         .limit(eachPage - 0)
 
@@ -22,7 +25,7 @@ module.exports.getUsers = async function ({ currentPage, eachPage }) {
         count, // 总条数
         rows, // 学生信息
     };
-    console.log(pageData);
+    // console.log(pageData);
     
     return pageData;
 
@@ -46,7 +49,7 @@ module.exports.searchUser = async function ({ searchType, select }) {
 module.exports.loginUser = async function (user) {
     // console.log(user);
     let xx = await usersModel.find(user);
-    console.log("xx:"+xx);  
+    // console.log("xx:"+xx);  
     return xx
 }
 //删除电影时通过id
