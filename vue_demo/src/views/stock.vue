@@ -37,7 +37,7 @@
                     <span style="color:red">宠物管理</span>
                   </template>
                   <el-menu-item-group>
-                    <el-menu-item index="/stock/pet">新增宠物</el-menu-item>
+                    <el-menu-item index="/stock/addPets">新增宠物</el-menu-item>
                   </el-menu-item-group>
                 </el-submenu>
               </el-menu>
