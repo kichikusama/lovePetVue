@@ -1,6 +1,6 @@
 const { addGoods, getGoodsByPage,
     deleteGoodsByPage, getGoodsById,
-    updateGoodsById } = require('../dao/goodsDao.js');
+    updateGoodsById, getGoodsByShopId } = require('../dao/goodsDao.js');
 
 module.exports.addGoods = async function (data) {
     const result = await addGoods(data);
@@ -24,6 +24,10 @@ module.exports.deleteGoodsByPage = async function (data) {
     }
 }
 
+module.exports.getGoodsByPage = async function (goods) {
+    return await getGoodsByPage(goods);
+}
+
 module.exports.getGoodsById = async function (goods) {
     return await getGoodsById(goods);
 }
@@ -35,4 +39,8 @@ module.exports.updateGoodsById = async function (data) {
     } else {
         return false;
     }
+}
+
+module.exports.getGoodsByShopId = async function (shopId) {
+    return await getGoodsByShopId(shopId);
 }

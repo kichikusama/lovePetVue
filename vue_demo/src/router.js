@@ -29,7 +29,8 @@ import FindStore from './components/manageStore/findStore' //查找门店
 //cq
 
 
-import AddGoods from "./components/goods/addGoods" // 门店管理 新增商品
+import AddGoods from "./components/goods/addGoods" // 门店管理 商品进货
+import AddShopGoods from "./components/goods/addShopGoods" // 门店新增商品
 import GoodsList from "./components/goods/goodsList" // 门店管理 商品列表
 import MembersList from './components/members/membersList.vue';//宠主列表
 
@@ -187,6 +188,11 @@ const router = new Router({
           path: '/storeManagement/stores',
           name: 'storeManagementStores',
           component: Stores,
+        },
+        {
+          path: '/storeManagement/addShopGoods',
+          name: 'AddShopGoods',
+          component: AddShopGoods,
         },
         {
           path: '/storeManagement/goodsList',

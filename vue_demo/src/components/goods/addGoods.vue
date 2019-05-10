@@ -94,7 +94,6 @@
     </el-form-item>
   </el-form>
 </template>
-db.shops.insert({shopName:'123',userId:'5cd4009e25e710ed6a27d758'})
 
 <script>
 import { createNamespacedHelpers } from "vuex";

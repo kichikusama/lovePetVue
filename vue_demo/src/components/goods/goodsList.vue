@@ -24,10 +24,14 @@
       <el-input placeholder="请输入内容" v-model="text" class="input-with-select">
         <el-select v-model="type" slot="prepend" placeholder="请选择">
           <el-option label="名称" value="goodsName"></el-option>
-          <el-option label="产地" value="goodsRegion"></el-option>
+          <el-option label="供应商" value="goodsSupplier"></el-option>
           <el-option label="价格" value="goodsPrice"></el-option>
         </el-select>
-        <el-button slot="append" @click="getGoodsByPageAsync({text,type,shopId:this.shopId})" icon="el-icon-search"></el-button>
+        <el-button
+          slot="append"
+          @click="getGoodsByPageAsync({text,type,shopId:shopId})"
+          icon="el-icon-search"
+        ></el-button>
       </el-input>
     </div>
     <el-table :data="goods" border style="width: 100%">
@@ -76,10 +80,18 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
 export default {
   watch: {
     eachPage() {
-      this.getGoodsByPageAsync({ text: this.text, type: this.type });
+      this.getGoodsByPageAsync({
+        text: this.text,
+        type: this.type,
+        shopId: this.shopId
+      });
     },
     currentPage() {
-      this.getGoodsByPageAsync({ text: this.text, type: this.type });
+      this.getGoodsByPageAsync({
+        text: this.text,
+        type: this.type,
+        shopId: this.shopId
+      });
     }
   },
   data() {
@@ -136,11 +148,10 @@ export default {
     }
     this.userId = userId;
     this.shopId = shopsId;
-    this.getGoodsByPageAsync(this.shopId);
+    this.getGoodsByPageAsync({ shopId: this.shopId });
   }
 };
 </script>
-db.goods.insert({goodsName:234,shopId:'5cd42c64119884258f11efaf', userId:"5cd4009e25e710ed6a27d758"})
 
 <style scoped>
 .updateForm {

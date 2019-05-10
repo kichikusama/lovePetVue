@@ -5,7 +5,7 @@ let { uploadFile } = require("../util/upload.js");
 
 const { addGoods,getGoodsByPage,
   deleteGoodsByPage,getGoodsById,
-  updateGoodsById} = require('../service/goodsService.js');
+  updateGoodsById,getGoodsByShopId} = require('../service/goodsService.js');
 
 // 新增图片
 router.post('/addImage', async function (req, res, next) {
@@ -38,6 +38,11 @@ router.get('/getGoodsById', async function (req, res, next) {
 
 router.post('/updateGoodsById', async function (req, res, next) {
   res.send(await updateGoodsById(req.body))
+});
+
+// 通过 shopid 获取数据
+router.get('/getGoodsByShopId', async function (req, res, next) {
+  res.send(await getGoodsByShopId(req.query))
 });
 
 module.exports = router;

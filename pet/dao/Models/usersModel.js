@@ -16,19 +16,6 @@ const usersSchema = new mongoose.Schema({
         default: "1" // 
     }, // 申请中：0; 可用：1； 不可用：2；
     image:String,  // 证件照
-
-    // goodsId: [{  // 商品 id
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'goodsModel'
-    // }],
-    // serviceId: [{  // 服务 id
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'serviceModel'
-    // }],
-    // petId: [{  // 宠物 id
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'petsModel'
-    // }],
 })
 
 

@@ -32,7 +32,7 @@ export default ({
     },
     actions: {
         async getGoodsByPageAsync({ commit, state }, search) {
-            const data = await goodsSer.getGoodsByPage({ currentPage: state.currentPage, eachPage: state.eachPage, ...search })
+            const data = await goodsSer.getGoodsByPage({ currentPage: state.currentPage, eachPage: state.eachPage, ...search });
             commit("getGoodsByPage", data);
         },
         async deleteGoodsByPageAsync({ dispatch }, data) {

@@ -27,6 +27,12 @@ const updateGoodsById = async (data) => await fetch(`/goods/updateGoodsById`, {
     body: JSON.stringify(data)
 }).then(response => response.json())
 
+const getGoodsByShopId = async (shopId) => await fetch(`/goods/getGoodsByShopId?shopId=${shopId}`).then(response => response.json());
+
+
+
 export default {
-    addGoods, getGoodsByPage, deleteGoodsByPage, getGoodsById,updateGoodsById
+    addGoods, getGoodsByPage, 
+    deleteGoodsByPage, getGoodsById,
+    updateGoodsById,getGoodsByShopId
 }
