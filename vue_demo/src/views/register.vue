@@ -30,6 +30,22 @@
         <el-input v-model="acount" placeholder="请输入登录名"></el-input>
         <span style="font-size:12px">为你的账号取一个昵称吧</span>
       </el-form-item>
+      <el-form-item label="证件照：">
+        <div class="input">
+        
+          <el-upload
+            action="/users/addUser"
+            list-type="picture-card"
+            :on-success="handlePictureCardPreview"
+            :on-remove="handleRemove"
+          >
+            <i class="el-icon-plus"></i>
+          </el-upload>
+          <el-dialog>
+            <img width="100%" :src="add.image" alt>
+          </el-dialog>
+        </div>
+      </el-form-item>
       <el-form-item label="密码：">
         <el-input
           v-model="password"
@@ -48,9 +64,9 @@
         >提交</el-button>
       </el-form-item>
 
-      <span type="primary" >
+      <span type="primary">
         <a href="#" @click.prevent="login">已有账号？立即登录</a>
-        </span>
+      </span>
     </el-form>
   </div>
 </template>
@@ -69,7 +85,8 @@ export default {
         userPhone: "",
         userMail: "",
         userAcount: "",
-        userPwd: ""
+        userPwd: "",
+        image:"",
       },
       username: "", //账号
       password: "", //密码
@@ -87,7 +104,17 @@ export default {
     login() {
       this.$router.push("/");
     },
-
+   handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+   handlePictureCardPreview(file,a) {
+     console.log(a);
+     
+      this.add.image = a.name;
+    },
+    //  heardPictureCardPreview(file) {
+    //    this.add.image = file.data.url;
+    // },
     // 门店管理员 注册
     storeManagement_register() {
       // console.log("in");
@@ -96,7 +123,8 @@ export default {
         userPhone: this.username,
         userMail: this.mailbox,
         userAcount: this.acount,
-        userPwd: this.password
+        userPwd: this.password,
+        image:this.add.image
       };
 
       this.$refs.gain.focus(); //input框自动获取焦点
@@ -139,13 +167,13 @@ export default {
           if (res) {
             alert("审核中，请耐心等待...");
             //  this.showTishi = false;
-             this.$router.push("/");
+            this.$router.push("/");
           }
         });
         /*注册成功之后再跳回登录页*/
         // setTimeout(
         //   function() {
-           
+
         //   }.bind(this),
         //   1500
         // );

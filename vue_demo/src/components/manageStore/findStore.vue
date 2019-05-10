@@ -11,7 +11,7 @@
                 <el-option label="电话" value="shopTel"></el-option>
                 <el-option label="营业地址" value="shopAdd"></el-option>
               </el-select>
-              <el-button slot="append" icon="el-icon-search"  @click="getShopsAsync({type,text})"></el-button>
+              <el-button slot="append" icon="el-icon-search"  @click="getShopsAsync({type,text,userId})"></el-button>
             </el-input>
           </div>
 
@@ -79,14 +79,15 @@ export default {
     return {
       type: "", // 搜索条件
       text:"",
+      userId:'',
     };
   },
   watch: {
     eachPage() {
-      this.getShopsAsync({type:this.type,text:this.text});
+      this.getShopsAsync({type:this.type,text:this.text,userId:this.userId});
     },
     currentPage() {
-      this.getShopsAsync({type:this.type,text:this.text});
+      this.getShopsAsync({type:this.type,text:this.text,userId:this.userId});
     }
   },
   computed: {
@@ -110,7 +111,12 @@ export default {
   },
   mounted() {
     // 生命周期函数
-    this.getShopsAsync();
+    console.log(document.cookie)
+    var ca = document.cookie.split(';');
+    var arr = ca[1].split("=");
+    this.userId=arr[1]
+    this.getShopsAsync({userId:this.userId});
+   
     // console.log(this.films);
     //   console.log(this.a); // 这里拿不到a : undefind
     //   console.log(this); // this中 有a

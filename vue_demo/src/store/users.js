@@ -1,4 +1,5 @@
 import usersService from '../../servise/users';
+import shopService from '../../servise/shops';
 export default ({
     // 命名空间 
     namespaced: true,
@@ -10,7 +11,8 @@ export default ({
         rows: [], // 信息
         usersIndroduce: {}, // 用户详情需要使用
         isLogin:false,  // 登录状态
-        auditingUsers:[]
+        auditingUsers:[],
+        shops:[], // 门店数据
     },
     mutations: {
         isLogin:(state,payload)=>{
@@ -44,6 +46,9 @@ export default ({
         },
         getAuditingUsers:(state,payload)=>{
             Object.assign(state,{auditingUsers:payload})
+        },
+        getShopsByUserId:(state,payload)=>{  // 设置门店数据
+            Object.assign(state,{shops:payload});
         }
     },
     actions: {
@@ -82,6 +87,7 @@ export default ({
             return isRegister;     
            
         },
+        // 删除用户
         async deleteUserAsync({ dispatch }, rows) {
             const id = rows._id; // 所删除用户的 id
             const data = await fetch(`/users/deleteUserById?_id=${id}`)
@@ -90,6 +96,14 @@ export default ({
             if (data) {
                 dispatch("usersListAsync"); // 删除成功后 重新 fetch 请求数据
             }
-        }
+        },
+        // 根据用户 id 获取门店信息
+        async getShopsAsync({ commit, state },info) { 
+            // console.log(info);                       
+            // const data = await usersService.getShops(info);
+            const data = await shopService.getShopsBypage(info);
+            console.log(data);
+            commit('getShopsByUserId', data.shops);
+        },
     }
 })

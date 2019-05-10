@@ -69,29 +69,6 @@ export default {
       return {
          userId: "",  // 保存 cookie 
         value: '选择门店',
-         options: [
-        {
-          value: "选项1",
-          label: "黄金糕"
-        },
-        {
-          value: "选项2",
-          label: "双皮奶"
-        },
-        {
-          value: "选项3",
-          label: "蚵仔煎"
-        },
-        {
-          value: "选项4",
-          label: "龙须面"
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭"
-        }
-        ],
-     
       }
     },
   computed: {
@@ -108,15 +85,22 @@ export default {
     stock() {
       this.$router.push("/stock");
     },
+
   },
   mounted() {
-    var ca = document.cookie.split("=");  // cookie
-    this.userId = ca[1];
+    
+    
+    // for(var i=0; i<ca.length; i++) {
+    //     var c = ca[i].trim();
+    //     if (c.indexOf(name)==0) { return c.substring(name.length,c.length); }
+    // }
+
+
+
+    // var ca = document.cookie;  // cookie   .split("=")
+    // this.userId = ca;//[1]
      this.getAllShopsAsync()
   }
-  
-
-  
 };
 </script>
 <style>

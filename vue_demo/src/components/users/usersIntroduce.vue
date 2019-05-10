@@ -5,18 +5,26 @@
     </div>
     <div el-main style="width:100%;background-color:#EBEEF5;position:relative">
       <div style="width:300px;">
-        <i class="istyle el-icon-custom"></i>
+        <i class="istyle el-icon-custom">
+            <img :src="usersIndroduce.image" alt style="width:100px;height:100px">
+        </i>
         <br>
-        <span>
-          姓名：
+        <span style="font-size:14px;color:#909399">
+          用户名：
           <b>{{usersIndroduce.userName}}</b>
         </span>
-        <br>
-        <span>ID:{{usersIndroduce._id}}</span>
+        <div>
+          <span class="textStyle">等级：</span>
+           <template v-for="item in shops">
+              <img :key="item._id" src="../../assets/icon/star_1.png" style="width:16px;height:16px" alt="">
+           </template>
+        </div>
+       
+        <span style="font-size:12px;color:#909399">ID:{{usersIndroduce._id}}</span>
       </div>
       <div class="box1">
         <div class="shop">
-          <el-table :data="usersIndroduce.shopId" style="width: 1000px;">
+          <el-table :data="shops" style="width: 1000px;">
              <el-table-column type="index" label="序号" width="100"></el-table-column>
             <el-table-column prop="shopName" label="名称" width="150"></el-table-column>
             <el-table-column prop="shopLicenceNum" label="营业执照号码" width="150"></el-table-column>
@@ -89,7 +97,7 @@
       </div>
       <div class="menu">
         <el-dropdown>
-          <span class="el-dropdown-link">
+          <span class="el-dropdown-link" style="color:#909399">
             设置
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
@@ -196,11 +204,7 @@ export default {
   watch: {},
   computed: {
     ...mapState([
-      "rows",
-      "totalPage",
-      "count",
-      "eachPage",
-      "currentPage",
+      "shops",
       "usersIndroduce"
     ])
   },
@@ -243,12 +247,8 @@ export default {
   position: relative;
   /* margin-top: 100px; */
 }
-.shop {
-  /* width: 200px; */
-
-  /* position: absolute;
-  top: -43px;
-  left: 20px; */
+.textStyle{
+  font-size:14px;color:#909399
 }
 .goods {
   width: 300px;
@@ -292,6 +292,6 @@ export default {
   display: inline-block;
   width: 100px;
   height: 100px;
-  border: 1px solid;
+  border: 1px solid #909399;
 }
 </style>

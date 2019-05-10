@@ -121,7 +121,8 @@ export default {
         shopImg: "",
         shopFeature: "",
         shopCommission: "",
-        shopEmployee: []
+        shopEmployee: [],
+        userId:'',
       }
     };
   },
@@ -163,7 +164,14 @@ export default {
       });
       this.state.shopEmployee = this.arr;
     }
-  }
+  },
+  mounted() {
+    var ca = document.cookie.split(';');
+    var arr = ca[1].split("=");
+    console.log(arr);
+    
+    this.state.userId=arr[1]
+  },
 };
 </script>
   

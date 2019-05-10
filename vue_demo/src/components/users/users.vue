@@ -14,8 +14,10 @@
           >
             <el-menu-item index="1">新增用户</el-menu-item>
             <el-submenu index="2">
-              <template slot="title">处理中心</template>
-              <el-menu-item index="/management/auditing" @click="auditing">待审核 <b style="color:red;font-size:10px">+1</b></el-menu-item>
+              <template slot="title">
+                <span @mouseenter="auditing">处理中心</span>
+               </template>
+              <el-menu-item index="/management/auditing" @click="skipTo">待审核 <b style="color:red;font-size:10px">+{{auditingUsers.length}}</b></el-menu-item>
               <el-menu-item index="2-2">已审核</el-menu-item>
             </el-submenu>
             <el-menu-item index="3">
@@ -147,10 +149,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(["rows", "totalPage", "count", "eachPage", "currentPage"])
+    ...mapState(["rows", "totalPage", "count", "eachPage", "currentPage","auditingUsers"])
   },
   methods: {
-    ...mapActions(["usersListAsync", "deleteUserAsync", "searchUserAsync","auditingUsersAsync"]),
+    ...mapActions(["usersListAsync", "deleteUserAsync", "searchUserAsync","auditingUsersAsync","getShopsAsync"]),
     ...mapMutations([
       "setEachPage",
       "setCurrentPage",
@@ -159,12 +161,17 @@ export default {
     ]), //,"handleDelete"
 
     usersIntroduce(userNow) { // 查看详情    
-      // console.log(userNow);
+      console.log(userNow);
       this.setUsersIntroduce(userNow); // 将 所点击用户的信息保存在状态机中
+      this.getShopsAsync({currentPage:1,eachPage:5,userId:userNow._id});// 根据用户id获取门店信息
       this.$router.push({ path: `/management/usersIntroduce`}) // 跳转  /${userNow}
     },
     auditing(){
+      // console.log("in");
+      
       this.auditingUsersAsync(); // 请求 待审核 用户数据
+    },
+    skipTo(){
       this.$router.push({ path: `/management/auditing`})  // 跳转 审核 组件
     }
   },
