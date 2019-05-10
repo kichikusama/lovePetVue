@@ -48,8 +48,6 @@ export default ({
     actions: {
         // 登录 //按姓名和密码查找用户
         async loginAsync({ commit, state },user) {
-            console.log(user)
-            
             const inUser = await usersService.loginUser(user);
             // console.log("data:"+data);
             return inUser;

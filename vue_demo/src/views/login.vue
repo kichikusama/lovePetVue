@@ -88,7 +88,6 @@ export default {
         // this.showTishi = true;
         // 跳转 门店管理员
         this.loginAsync(user).then(res => {
-          console.log(res);
           if (res.length > 0) {
             this.tishi = "登录成功";
             document.cookie = "id=" + res[0]._id;

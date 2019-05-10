@@ -63,13 +63,13 @@
 </template>
 <script>
 import { createNamespacedHelpers } from "vuex";
-const { mapState,mapActions, mapMutations } = createNamespacedHelpers("shops");
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers("shops");
 export default {
-   data() {
-      return {
-         userId: "",  // 保存 cookie 
-        value: '选择门店',
-         options: [
+  data() {
+    return {
+      userId: "", // 保存 cookie
+      value: "选择门店",
+      options: [
         {
           value: "选项1",
           label: "黄金糕"
@@ -90,12 +90,11 @@ export default {
           value: "选项5",
           label: "北京烤鸭"
         }
-        ],
-     
-      }
-    },
+      ]
+    };
+  },
   computed: {
-    ...mapState(["shops"]),
+    ...mapState(["shops"])
   },
   methods: {
     ...mapActions(["getAllShopsAsync"]),
@@ -107,16 +106,13 @@ export default {
     },
     stock() {
       this.$router.push("/stock");
-    },
+    }
   },
   mounted() {
-    var ca = document.cookie.split("=");  // cookie
+    var ca = document.cookie.split("="); // cookie
     this.userId = ca[1];
-     this.getAllShopsAsync()
+    this.getAllShopsAsync();
   }
-  
-
-  
 };
 </script>
 <style>

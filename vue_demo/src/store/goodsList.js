@@ -9,6 +9,7 @@ export default ({
         totalPage: '0', // 总页数
         count: '0', // 总条数
         goods: [], // 信息
+        shopId:"",
         form: {
             _id: "",
             goodsName: "",

@@ -92,7 +92,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["totalPage", "count", "goods", "form"]),
+    ...mapState(["totalPage", "count", "goods", "form","shopId"]),
     eachPage: {
       get: mapState(["eachPage"]).eachPage,
       set: mapMutations(["setEachPage"]).setEachPage
@@ -124,7 +124,7 @@ export default {
   }
 };
 </script>
-
+db.goods.insert({goodsName:234,shopId:'5cd42c64119884258f11efaf', userId:"5cd4009e25e710ed6a27d758"})
 
 <style scoped>
 .updateForm {

@@ -20,6 +20,7 @@ const usersSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'shopsModel'
     }],
+
     // goodsId: [{  // 商品 id
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'goodsModel'
@@ -33,6 +34,7 @@ const usersSchema = new mongoose.Schema({
     //     ref: 'petsModel'
     // }],
 })
+
 
 mongoose.model('usersModel', usersSchema, "users");
 

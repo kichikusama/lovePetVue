@@ -21,6 +21,8 @@ const goodsSchema = new mongoose.Schema({
     shopId:String // 门店 id
 })
 
+
+
 mongoose.model('goodsModel', goodsSchema, "goods");
 
 module.exports.goodsModel = mongoose.model('goodsModel');
