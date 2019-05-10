@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { addService,getService,deteleService,getServiceBypage } = require('../service/serviceService.js');
+const { addService,getService,deteleService,getServiceBypage,getServiceById,updateServiceById } = require('../service/serviceService.js');
 
 //新增
 router.post('/addService', async function(req, res, next) {
@@ -21,5 +21,14 @@ router.get('/deteleService', async function (req, res, next) {
   // console.log(req.query);
   
   res.send(await deteleService(req.query))
+});
+
+// 通过 id 获取数据
+router.get('/getServiceById', async function (req, res, next) {
+  res.send(await getServiceById(req.query))
+});
+
+router.post('/updateServiceById', async function (req, res, next) {
+  res.send(await updateServiceById(req.body))
 });
 module.exports = router;

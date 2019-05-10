@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { addPets, getPets,deletePetByPage,getAllPets} = require('../service/petsService.js');
+const { addPets, getPets,deletePetByPage,getAllPets,getPetsById,updatePetsById} = require('../service/petsService.js');
 
 const { uploadFile } = require("../util/upload.js");
 
@@ -26,12 +26,22 @@ router.get('/getPets', async function (req, res, next) {
 
 //渲染分页列表
 router.post('/getAllPets', async function (req, res, next) {
-  res.send(await getAllPets(req.body))
+  res.send(await getAllPets(req.body))     //当请求方式是post时候  就要用req.body身上拿数据
 });
 
 //删除
 router.get('/deletePetByPage', async function (req, res, next) {
-  res.send(await deletePetByPage(req.query))
+  res.send(await deletePetByPage(req.query))   //当请求方式是get时候  就要用req.query身上拿数据
+});
+
+//通过ID获取数据
+router.get('/getPetsById', async function (req, res, next) {
+  res.send(await getPetsById(req.query))      //当请求方式是get时候  就要用req.query身上拿数据
+});
+
+//通过ID修改对应数据
+router.post('/updatePetsById', async function (req, res, next) {
+  res.send(await updatePetsById(req.body))      
 });
 
 module.exports = router;

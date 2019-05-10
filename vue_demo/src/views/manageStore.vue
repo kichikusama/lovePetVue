@@ -1,8 +1,7 @@
 <template>
    <div class="flex">
           <el-row class="tac">
-            <el-col :span="12">
-              <h5>门店管理</h5>
+             <div class="home"> <el-button icon="el-icon-back" type="text" @click="goBack" style="width:100%;color:red">返回首页</el-button></div>
               <el-menu
                 router
                 class="el-menu-vertical-demo"
@@ -23,13 +22,23 @@
                     <span >查找门店</span>
                   </template>
                 </el-menu-item>
-              </el-menu>
-            </el-col>
+              </el-menu>      
           </el-row>
-
           <router-view></router-view>
         </div>
 </template>
 <script>
-export default {};
+export default {
+  methods: {
+    goBack(){
+       this.$router.push(`/chooseServe`)
+    }
+  },
+};
 </script>
+
+<style >
+  .home{
+    background-color: green;
+  }
+</style>

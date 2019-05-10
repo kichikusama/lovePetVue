@@ -1,8 +1,8 @@
 <template>
-    <div>
-        删除
-    </div>
+  <div>删除</div>
 </template>
 <script>
-export default {};
+export default {
+    
+};
 </script>

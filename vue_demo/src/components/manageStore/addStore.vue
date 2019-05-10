@@ -153,6 +153,7 @@ export default {
       console.log(file, fileList);
     },
     heardPictureCardPreview(file) {
+      console.log('tupian',file)
       this.state.shopImg = file.data.url;
     },
     arrpush() {
