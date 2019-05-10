@@ -1,13 +1,13 @@
 import serPets from "../../servise/pets";
-import serGetPets from "../../servise/pets"
 import { Message } from 'element-ui';
 export default {
     namespaced: true,
     state: {
-        pets: {
-            currentPage: 1,
-            eachPage: 3,
+        total: 0,
+        currentPage: 1,
+        eachPage: 1,
 
+        pets:[ {
             petsSpecies: "", // 品称
             petsType: "", // 种类
             petsColor: "", // 颜色
@@ -16,7 +16,8 @@ export default {
             petCharacter: "", // 性格
             petsWeight: "", // 体重（5kg、10kg等）
             petsImg: "", // 图片
-        }
+        }],
+        data: []  //数据
     },
     mutations: {
         handleRemove: (state, payload) => {
@@ -38,26 +39,39 @@ export default {
         handleClick(row) {
             console.log(row);
         },
-        async getPetsByPage(state, payload){
-            const result = await serGetPets.getPets();
+        // getPetsByPage(state, payload) {
+        //     Object.assign(state.data, payload);
+        // },
+        //分页获取数据
+        getPetsByAllPage(state, payload) {
             Object.assign(state, payload);
-            console.log(state.pets);
-            
-            
-            if (result) {
-                Message.success("获取成功！");
-
-            } else {
-                Message.warning("获取失败！")
-            }
-        }
+        },
+        setEachPage: (state, eachPage) => state.eachPage = eachPage,
+        setCurPage: (state, currentPage) => state.currentPage = currentPage,
     },
     actions: {
-        async getPetsByPageAsync(context) {
-            const { currentPage, eachPage } = context.state;
-            const data = await serPets.getPets({ currentPage, eachPage });
+        // async getPetsByPageAsync(context) {
+        //     const data = await serPets.getPets();
+        //     context.commit("getPetsByPage", data);
+        // },
+        //分页获取数据
+        async getPetsByAllPageAsync({ commit, state },search) {
+            const data = await serPets.getAllPets({currentPage:state.currentPage,eachPage:state.eachPage,...search});
             console.log(data);
-            context.commit("getPets", data);
-        }
+            
+            commit("getPetsByAllPage", data);
+        },
+
+        async deletePetByPageAsync({ dispatch }, data) {
+            const result = await serPets.deletePetByPage(data);
+
+            if (result) {
+                Message.warning("修改成功！")
+                dispatch("getPetsByAllPageAsync");
+            } else {
+                Message.warning("修改失败！")
+            }
+
+        },
     }
 }

@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-const { addPets, getPets} = require('../service/petsService.js');
+const { addPets, getPets,deletePetByPage,getAllPets} = require('../service/petsService.js');
 
 const { uploadFile } = require("../util/upload.js");
 
+//新增图片
 router.post('/addImage', async function (req, res, next) {
   let result = await uploadFile(req, res, {
     fileType: 'pets',   // 图片保存文件名
@@ -13,15 +14,24 @@ router.post('/addImage', async function (req, res, next) {
   res.send(result);
 });
 
-/* GET users listing. */
+//新增宠物
 router.post('/addPets', async function (req, res, next) {
   res.send(await addPets(req.body))
 });
 
+//渲染列表
 router.get('/getPets', async function (req, res, next) {
-  console.log(await getPets());
-  
   res.send(await getPets())
+});
+
+//渲染分页列表
+router.post('/getAllPets', async function (req, res, next) {
+  res.send(await getAllPets(req.body))
+});
+
+//删除
+router.get('/deletePetByPage', async function (req, res, next) {
+  res.send(await deletePetByPage(req.query))
 });
 
 module.exports = router;
