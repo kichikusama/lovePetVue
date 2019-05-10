@@ -2,7 +2,9 @@ const {
     addService,
     getService,
     deteleService,
-    getServiceBypage
+    getServiceBypage,
+    getServiceById,
+    updateServiceById
 } = require('../dao/serviceDao.js');
 
 module.exports.addService = async function (data) {
@@ -19,6 +21,18 @@ module.exports.getService = async function (data) {
 
 //删除服务通过id
 module.exports.deteleService = async function (data) {
-    // console.log(data);
     return await deteleService(data); 
+}
+
+module.exports.getServiceById = async function (service) {
+    return await getServiceById(service);
+}
+
+module.exports.updateServiceById = async function (data) {
+    const result = await updateServiceById(data);
+    if (result.ok) {
+        return true
+    } else {
+        return false;
+    }
 }

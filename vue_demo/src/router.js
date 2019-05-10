@@ -12,8 +12,10 @@ import Auditing from './components/users/usersAuditing.vue'; // 用户审批 组
 import UsersIntroduce from './components/users/usersIntroduce.vue';// 用户详情 组件
 
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
+//李东岳
 import AddService from './components/service/addService.vue';// 新增服务 组件
 import FindService from './components/service/findService.vue';// 查询服务 组件
+import AddShopService from './components/service/addShopService.vue'// 新增门店服务 组件 
 
 //cq
 import ChooseServe from './views/chooseServe';//选择界面(新增门店，进入门店，进货管理)
@@ -183,6 +185,11 @@ const router = new Router({
           name: 'FindService',
           component: FindService,
         },
+        {
+          path: '/storeManagement/AddShopService',
+          name: 'AddShopService',
+          component: AddShopService,
+        },  
         {
           path: '/storeManagement/stores',
           name: 'storeManagementStores',

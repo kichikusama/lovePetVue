@@ -17,7 +17,15 @@ export default {
             serviceTime: "",
             serviceLevel: "",
             servicePrice: ""
-        }
+        },
+        form: {
+            _id: "",
+            serviceName: "",
+            serviceType: "",
+            serviceDetial: "",
+            servicePrice: ""
+        },
+        dialogFormVisible: false,
     },
 
     mutations: {
@@ -33,7 +41,20 @@ export default {
     },
     actions: {
         async onSubmit(state, payload) {
-            await serServuse.addService(state.state.service);
+            const result = await serServuse.addService(state.state.service);
+            if (result) {
+                Message.success("新增成功！");
+                state.state.serviceName = "";
+                state.state.serviceType = "";
+                state.state.serviceSchedule = "";
+                state.state.serviceCanFor = "";
+                state.state.serviceDetial = "";
+                state.state.serviceTime = "";
+                state.state.serviceLevel = "";
+                state.state.servicePrice = "";
+            } else {
+                Message.warning("新增成功！")
+            }
         },
         async getServiceAsync(context) {
             const data = await serServuse.getService(context.state.service)
@@ -49,5 +70,18 @@ export default {
             const data = await serServuse.getServiceBypage({currentPage:state.currentPage,eachPage:state.eachPage,...search})
             commit("getService", data)
         },//获取所有服务(具有分页)
+
+        async getServiceByIdAsync({ commit }, id) {
+            const [result] = await serServuse.getServiceById(id._id);
+            commit("getService", { form: result })
+        },
+
+        async updateServiceByIdAsync({ state, commit }, payload) {
+            const result = await serServuse.updateServiceById({ data: state.form, _id: payload })
+            if (result) {
+                const data = await serServuse.getServiceBypage({ currentPage: state.currentPage, eachPage: state.eachPage })
+                commit("getService", data);
+            }
+        }
     }
 }
