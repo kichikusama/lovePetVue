@@ -166,11 +166,17 @@ export default {
     }
   },
   mounted() {
-    var ca = document.cookie.split(';');
-    var arr = ca[1].split("=");
-    console.log(arr);
-    
-    this.state.userId=arr[1]
+    let userId;
+    for(let item of document.cookie){
+      if(item==';'){
+       var ca= document.cookie.split(';');
+        userId=ca[0].split('=')[1];
+        break
+      }else if(item=='='){
+        userId=document.cookie.split('=')[1]
+      }
+    }
+    this.state.userId=userId
   },
 };
 </script>

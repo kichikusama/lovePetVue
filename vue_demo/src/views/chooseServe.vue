@@ -35,9 +35,6 @@
             <div style="padding: 14px;">
               <div class="bottom clearfix">
                 <div style="height:40px"></div>
-                <div>
-                  <h2>{{userId}}</h2>
-                </div>
                 <el-button type="text" class="button" @click="addStore">门店管理</el-button>
               </div>
             </div>
@@ -69,6 +66,7 @@ export default {
       return {
          userId: "",  // 保存 cookie 
         value: '选择门店',
+        useId:'',
       }
     },
   computed: {
@@ -77,7 +75,8 @@ export default {
   methods: {
     ...mapActions(["getAllShopsAsync"]),
     storeManagement_login() {
-      this.$router.push(`/storeManagement/${this.value}`); // 跳转到门店页面
+      this.$router.push(`/storeManagement`); // 跳转到门店页面
+      document.cookie = "shopId=" + this.value;
     },
     addStore() {
       this.$router.push(`/manageStore`);
@@ -88,8 +87,20 @@ export default {
 
   },
   mounted() {
-    
-    
+    let userId;
+    for(let item of document.cookie){
+      if(item==';'){
+       var ca= document.cookie.split(';');
+        userId=ca[0].split('=')[1];
+        break
+      }else if(item=='='){
+        userId=document.cookie.split('=')[1]
+      }
+    }
+    this.userId=userId
+    // console.log(this.userId)
+    //  var ca = document.cookie.split('=');
+    // this.userId=ca[1];
     // for(var i=0; i<ca.length; i++) {
     //     var c = ca[i].trim();
     //     if (c.indexOf(name)==0) { return c.substring(name.length,c.length); }
@@ -99,7 +110,7 @@ export default {
 
     // var ca = document.cookie;  // cookie   .split("=")
     // this.userId = ca;//[1]
-     this.getAllShopsAsync()
+     this.getAllShopsAsync({userId:this.userId})
   }
 };
 </script>

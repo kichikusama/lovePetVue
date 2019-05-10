@@ -27,7 +27,7 @@ router.post('/getShopBypage',async function(req, res, next) {
 });//获取当前管理员所有门店（具有分页）
 
 router.post('/getShop',async function(req, res, next) {
-  res.send(await getShop())
+  res.send(await getShop(req.body))
 });//获取当前管理员所有门店
 
 

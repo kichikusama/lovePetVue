@@ -64,9 +64,6 @@
 
 <script>
 export default {
-  mounted() {
-     document.cookie = "shopId="+this.$route.params.storeId
-  },
 };
 </script>
 
