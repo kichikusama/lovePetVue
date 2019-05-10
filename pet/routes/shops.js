@@ -1,11 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-<<<<<<< HEAD
-const { addShop,getShopBypage,deteleShop,getShop,revisionShop } = require('../service/shopsService');
-=======
 const { addShop,getShopBypage,deteleShop,getShop,getShopById } = require('../service/shopsService');
->>>>>>> 79dcf948b923ee4cc749ea055125ffda4a1ef15e
 
 const {uploadFile} =require("../util/upload.js");
 router.post('/addShopsImage', async function (req, res, next) {
