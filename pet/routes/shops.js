@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { addShop,getShopBypage,deteleShop,getShop } = require('../service/shopsService');
+const { addShop,getShopBypage,deteleShop,getShop,revisionShop } = require('../service/shopsService');
 
 const {uploadFile} =require("../util/upload.js");
 router.post('/addShopsImage', async function (req, res, next) {
@@ -31,4 +31,8 @@ router.get('/deteleShop',async function(req, res, next) {
   res.send(await deteleShop(req.query))
 });//删除指定门店
 
+
+router.post('/revisionShop',async function(req, res, next) {
+  res.send(await revisionShop(req.body))
+});//修改指定门店
 module.exports = router;

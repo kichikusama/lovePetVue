@@ -31,7 +31,7 @@ import FindStore from './components/manageStore/findStore' //查找门店
 
 import AddGoods from "./components/goods/addGoods" // 门店管理 新增商品
 import GoodsList from "./components/goods/goodsList" // 门店管理 商品列表
-import MembersList from './components/members/membersList.vue';//宠主列表
+import MembersList from './components/members/membersList.vue';//宠主列表 
 
 import AddPets from './components/pets/addPets' //新增宠物
 import PetsList from './components/pets/petsList' //宠物列表
