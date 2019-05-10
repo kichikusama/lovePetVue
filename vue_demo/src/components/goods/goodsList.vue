@@ -113,7 +113,7 @@ export default {
     },
     currentPage: {
       get: mapState(["currentPage"]).currentPage,
-      set: mapMutations(["setEachPage"]).setCurrentPage
+      set: mapMutations(["setEachPage"]).setCurentPage
     }
   },
   methods: {

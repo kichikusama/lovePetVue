@@ -40,6 +40,14 @@ module.exports.getServiceBypage = async function ({ currentPage, eachPage, type,
 }
 //通过ID删除服务
 module.exports.deteleService = async function ({id}) {
-    // console.log(id)
     return await serviceModel.deleteOne({ _id:id }, (err, data) => { })
+}
+
+module.exports.getServiceById = async function ({ _id }) {
+    let a= await serviceModel.find({ _id });
+    return a;
+}
+
+module.exports.updateServiceById = async function ({ _id, data }) {
+    return await serviceModel.updateOne({ _id }, data);
 }
