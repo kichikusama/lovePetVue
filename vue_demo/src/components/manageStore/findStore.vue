@@ -6,12 +6,12 @@
         <div>
           <div style="margin-top: 15px;">
             <el-input placeholder="搜索" class="input-with-select" v-model="text">
-              <el-select v-model="type" slot="prepend" placeholder="请选择搜索条件" >
+              <el-select v-model="type" slot="prepend" placeholder="请选择搜索条件">
                 <el-option label="门店名称" value="shopName"></el-option>
                 <el-option label="电话" value="shopTel"></el-option>
                 <el-option label="营业地址" value="shopAdd"></el-option>
               </el-select>
-              <el-button slot="append" icon="el-icon-search"  @click="getShopsAsync({type,text})"></el-button>
+              <el-button slot="append" icon="el-icon-search" @click="getShopsAsync({type,text})"></el-button>
             </el-input>
           </div>
 
@@ -78,32 +78,32 @@ export default {
   data() {
     return {
       type: "", // 搜索条件
-      text:"",
+      text: ""
     };
   },
   watch: {
     eachPage() {
-      this.getShopsAsync({type:this.type,text:this.text});
+      this.getShopsAsync({ type: this.type, text: this.text });
     },
     currentPage() {
-      this.getShopsAsync({type:this.type,text:this.text});
+      this.getShopsAsync({ type: this.type, text: this.text });
     }
   },
   computed: {
-    ...mapState(["shops", "total",]),
+    ...mapState(["shops", "total"]),
     // ...mapMutations(["setEachPage", "setCurPage"])
     eachPage: {
       get: mapState(["eachPage"]).eachPage,
       set: mapMutations(["setEachPage"]).setEachPage
     },
-     currentPage: {
+    currentPage: {
       get: mapState(["currentPage"]).currentPage,
       set: mapMutations(["setCurPage"]).setCurPage
     }
   },
   methods: {
     ...mapActions(["getShopsAsync", "deteleShopsAsync"]),
-    ...mapMutations(["setEachPage", "setCurPage"]),
+    ...mapMutations(["setEachPage", "setCurPage"])
     // add(){
     //   this.getShopsAsync({select:select,text:text});
     // }
