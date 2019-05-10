@@ -1,5 +1,5 @@
 <template>
-    <el-form :model="pets" :rules="rules" ref="pets" label-width="100px" class="demo-pets">
+    <el-form :model="petsData" :rules="rules" ref="petsData" label-width="100px" class="demo-pets">
       <el-upload
         action="/pets/addImage"
         list-type="picture-card"
@@ -7,29 +7,26 @@
         :on-success="handleSuccess">
         <i class="el-icon-plus"></i>
       </el-upload>
-      <el-dialog :visible.sync="dialogVisible">
-        <img width="100%" :src="dialogImageUrl" alt="">
-      </el-dialog>
       <el-form-item label="品称" prop="petsSpecies">
-        <el-input v-model="pets.petsSpecies"></el-input>
+        <el-input v-model="petsData.petsSpecies"></el-input>
       </el-form-item>
       <el-form-item label="种类" prop="petsType">
-        <el-input v-model="pets.petsType"></el-input>
+        <el-input v-model="petsData.petsType"></el-input>
       </el-form-item>
       <el-form-item label="体重" prop="petsWeight">
-        <el-input v-model="pets.petsWeight"></el-input>
+        <el-input v-model="petsData.petsWeight"></el-input>
       </el-form-item>
       <el-form-item label="颜色" prop="petsColor">
-        <el-input v-model="pets.petsColor"></el-input>
+        <el-input v-model="petsData.petsColor"></el-input>
       </el-form-item>
       <el-form-item label="规格" prop="petsLevel">
-        <el-input v-model="pets.petsLevel"></el-input>
+        <el-input v-model="petsData.petsLevel"></el-input>
       </el-form-item>
       <el-form-item label="性格" prop="petCharacter">
-        <el-input v-model="pets.petCharacter"></el-input>
+        <el-input v-model="petsData.petCharacter"></el-input>
       </el-form-item>
       <el-form-item label="生日" prop="petsBirth">
-        <el-input v-model="pets.petsBirth"></el-input>
+        <el-input v-model="petsData.petsBirth"></el-input>
       </el-form-item>
       <!-- <el-form-item label="生日" required>
         <el-col :span="11">
@@ -53,8 +50,7 @@
       </el-form-item> -->
       
       <el-form-item>
-        <el-button type="primary" @click="submitForm('pets')">添加</el-button>
-        <el-button @click="resetForm('pets')">重置</el-button>
+        <el-button type="primary" @click="submitForm('data')">添加</el-button>
       </el-form-item>
 </el-form>
 </template>
@@ -90,7 +86,7 @@ import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers("pets");
   export default {
     computed: {
-    ...mapState(["pets"])
+    ...mapState(["petsData"])
   },
     data() {
       return {
