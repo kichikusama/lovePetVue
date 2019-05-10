@@ -101,9 +101,9 @@ const router = new Router({
           component:Serve
         },
         {
-          path:'/stock/pet',
-          name:"Pet",
-          component:Pet,
+          path: '/stock/addPets',//新增宠物    路由
+          name: 'AddPets',
+          component: AddPets,
         }
       ]
     },
@@ -197,11 +197,6 @@ const router = new Router({
           path: '/storeManagement/petsList',//宠物列表   路由
           name: "PetsList",
           component: PetsList,
-        },
-        {
-          path: '/storeManagement/addPets',//新增宠物    路由
-          name: 'AddPets',
-          component: AddPets,
         }]
     },
     {   // 通过对象进行描述
