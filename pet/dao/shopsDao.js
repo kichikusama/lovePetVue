@@ -8,18 +8,20 @@ module.exports.getShopBypage = async function ({ currentPage, eachPage, type, te
         shops = await shopsModel
             .find({
                 [type]: { $regex: [text], $options: '$i' },
-                userId
+                userId,
+                shopType:"0"
             })
             .skip((currentPage - 1) * eachPage).limit(eachPage - 0);
         let counts = await shopsModel
             .find({
                 [type]: { $regex: [text], $options: '$i' },
-                userId
+                userId,
+                shopType:"0"
             })
             total = counts.length
     } else {
-        shops = await shopsModel.find({userId}).skip((currentPage - 1) * eachPage).limit(eachPage - 0);
-        let counts = await shopsModel.find({userId});
+        shops = await shopsModel.find({userId,shopType:"0"}).skip((currentPage - 1) * eachPage).limit(eachPage - 0);
+        let counts = await shopsModel.find({userId,shopType:"0"});
         total = counts.length
     }
     let pageData = {
@@ -38,10 +40,9 @@ module.exports.addShop = async function (data) {
     return await shopsModel.create(data);
 }
 module.exports.deteleShop = async function ({id}) {
-    console.log(id)
     return await shopsModel.deleteOne({ _id:id }, (err, data) => { })
 }
 
-module.exports.getShopById = async function (userId) {  // 通过用户ID找门店   GM
-    return await shopsModel.find(userId);
+module.exports.revisionShop = async function ({_id,shopName,shopAdd,shopTel}) {
+    return await shopsModel.updateOne({ _id}, {shopName,shopAdd,shopTel})
 }

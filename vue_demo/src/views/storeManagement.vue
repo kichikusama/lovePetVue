@@ -18,7 +18,7 @@
               <span style="color:red">商品管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/storeManagement/addGoods">新增商品</el-menu-item>
+              <el-menu-item index="/storeManagement/addShopGoods">新增商品</el-menu-item>
               <el-menu-item index="/storeManagement/goodsList">查询商品</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
@@ -29,6 +29,7 @@
               <span style="color:red">服务管理</span>
             </template>
             <el-menu-item-group>
+              <el-menu-item index="/storeManagement/addShopService">商店新增服务</el-menu-item>
               <el-menu-item index="/storeManagement/addservice">新增服务</el-menu-item>
               <el-menu-item index="/storeManagement/findService">查询服务</el-menu-item>
             </el-menu-item-group>
