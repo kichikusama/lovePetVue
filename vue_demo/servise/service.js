@@ -19,10 +19,23 @@ const getService = async () => await fetch(`/service/getService`).then(response 
 
 const deteleService = async (id) => await fetch(`/service/deteleService?id=${id}`).then(response => response.json())//删除服务by id
 
+const getServiceById = async (_id) => await fetch(`/service/getServiceById?_id=${_id}`).then(response => response.json());
+
+const updateServiceById = async (data) => await fetch(`/service/updateServiceById`, {
+    headers: {
+        "Content-Type": "application/json",
+        // 'Accept':"application/json",
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+}).then(response => response.json())
+
 
 export default {
   addService,
   getService,
   deteleService,
-  getServiceBypage
+  getServiceBypage,
+  getServiceById,
+  updateServiceById
 }

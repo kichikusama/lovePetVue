@@ -27,11 +27,21 @@ const getShops = async (data) => await fetch(`/shops/getShop`,{
 }).then(response => response.json())//查看当前管理员所有门店
 
 
-const deteleShops = async (id) => await fetch(`/shops/deteleShop?id=${id}`).then(response => response.json())//查看所有门店
+const deteleShops = async (id) => await fetch(`/shops/deteleShop?id=${id}`).then(response => response.json())//删除指定门店
+
+const revisionShop = async (data) => await fetch(`/shops/revisionShop`,{
+  headers: { 
+      "Content-Type": "application/json",
+      // 'Accept':"application/json",
+  },
+  method:'POST',
+  body:  JSON.stringify(data)
+}).then(response => response.json())//修改指定门店
 
 export default {
   addShops,
   getShopsBypage,
   deteleShops,
-  getShops
+  getShops,
+  revisionShop
 }

@@ -67,10 +67,8 @@ export default {
     storeManagement_login(user) {
       this.$refs.gain.focus(); //input框自动获取焦点
       let data = { userPhone: this.userPhone, userPwd: this.userPwd };
-
       if (!this.userPhone || !this.userPwd) {
         //输入为空判断
-
         this.$message.error("请输入用户名或密码");
       } else if (!/^1[356789]\d{9}$/.test(data.userPhone)) {
         //手机号判断
