@@ -3,15 +3,6 @@
     <h1>注册</h1>
     <p v-show="showTishi" style="color:red">{{tishi}}</p>
     <el-form :label-position="labelPosition" label-width="80px">
-      <!-- <el-form-item label="名称">
-        <el-input v-model="formLabelAlign.name"></el-input>
-      </el-form-item>
-      <el-form-item label="活动区域">
-        <el-input v-model="formLabelAlign.region"></el-input>
-      </el-form-item>
-      <el-form-item label="活动形式">
-        <el-input v-model="formLabelAlign.type"></el-input>
-      </el-form-item>-->
       <el-form-item label="手机号：">
         <el-input
           v-model="username"
@@ -34,7 +25,6 @@
       <el-form-item label="邮箱：">
         <el-input v-model="mailbox" placeholder="请输入邮箱"></el-input>
       </el-form-item>
-
       <el-form-item>
         <el-button
           type="primary"
@@ -44,7 +34,6 @@
           :loading="isBtnLoading"
         >注册</el-button>
       </el-form-item>
-
       <span type="primary" @click="login">已有账号？立即登录</span>
     </el-form>
   </div>
@@ -106,6 +95,8 @@ export default {
         this.showTishi = true;
         this.username = "";
         this.password = "";
+        this.name = "";
+        this.mailbox = "";
         this.isBtnLoading = true;
         /*注册成功之后再跳回登录页*/
         setTimeout(
