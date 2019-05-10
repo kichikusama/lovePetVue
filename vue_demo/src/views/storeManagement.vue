@@ -29,6 +29,7 @@
               <span style="color:red">服务管理</span>
             </template>
             <el-menu-item-group>
+              <el-menu-item index="/storeManagement/addShopService">商店新增服务</el-menu-item>
               <el-menu-item index="/storeManagement/addservice">新增服务</el-menu-item>
               <el-menu-item index="/storeManagement/findService">查询服务</el-menu-item>
             </el-menu-item-group>

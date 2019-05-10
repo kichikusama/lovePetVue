@@ -11,7 +11,6 @@
                 <el-option label="电话" value="shopTel"></el-option>
                 <el-option label="营业地址" value="shopAdd"></el-option>
               </el-select>
-
               <el-button slot="append" icon="el-icon-search"  @click="getShopsAsync({type,text,userId})"></el-button>
             </el-input>
           </div>

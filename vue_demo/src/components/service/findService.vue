@@ -71,7 +71,9 @@ export default {
       text: "",
       id: "",
       formLabelWidth: "120px",
-      dialogFormVisible: false
+      dialogFormVisible: false,
+      userId:"",
+      shopsId:"",
     };
   },
   watch: {
@@ -129,6 +131,7 @@ export default {
     }
     console.log(shopsId);
     this.userId = userId;
+    this.shopsId = shopsId;
     this.getAllServiceAsync();
   }
 };
