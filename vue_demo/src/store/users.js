@@ -1,15 +1,18 @@
 import usersService from '../../servise/users';
+import shopService from '../../servise/shops';
 export default ({
     // 命名空间 
     namespaced: true,
     state: {
         currentPage: '1', // 当前页面
-        eachPage: '4', // 每页显示条数
+        eachPage: '5', // 每页显示条数
         totalPage: '0', // 总页数
         count: '0', // 总条数
         rows: [], // 信息
         usersIndroduce: {}, // 用户详情需要使用
-        isLogin:false  // 登录状态
+        isLogin:false,  // 登录状态
+        auditingUsers:[],
+        shops:[], // 门店数据
     },
     mutations: {
         isLogin:(state,payload)=>{
@@ -32,6 +35,7 @@ export default ({
 
             return state.currentPage = currentPage;
         },
+        // 将 所点击用户的信息保存在状态机中
         setUsersIntroduce: (state, userNow) => {  // 第二个参数 为 传递的参数，传什么就是什么
             // console.log(state);
             Object.assign(state, { usersIndroduce: userNow })
@@ -39,18 +43,13 @@ export default ({
         },
         searchUser:(state,payload)=>{
             Object.assign(state,{rows:payload})
+        },
+        getAuditingUsers:(state,payload)=>{
+            Object.assign(state,{auditingUsers:payload})
+        },
+        getShopsByUserId:(state,payload)=>{  // 设置门店数据
+            Object.assign(state,{shops:payload});
         }
-        // handleDelete:(state,payload)=>{  // 根据_id 删除用户
-        //     console.log(payload);
-
-        //       return payload._id;
-        // }
-        // handleUpdate(state,payload) {   // 修改用户信息
-        //     console.log(state);
-
-        //     console.log(payload);  // 所点击的用户所有信息 对象
-        //     // console.log(rows);         
-        // },
     },
     actions: {
         // 登录 //按姓名和密码查找用户
@@ -68,6 +67,12 @@ export default ({
             // console.log(data);
             commit('getUsers', data);
         },
+          // 获取 待审批 用户
+          async auditingUsersAsync({ commit, state }) {
+            const data = await usersService.auditingUsers();
+            console.log(data);
+            commit('getAuditingUsers', data);
+        },
         // 按条件搜索用户
         async searchUserAsync({ commit, state },info) {              
             const data = await usersService.searchUser(info);
@@ -75,17 +80,14 @@ export default ({
             commit('searchUser', data);
         },
          // 新增用户
-         async addUserAsync({ commit, state },info) {              
-            const data = await usersService.addUser(info);
-            console.log(data);
-            // commit('addUser', data);
+         async addUserAsync({ commit, state },add) {  
+             console.log(add);
+                         
+            const isRegister = await usersService.addUser(add);
+            return isRegister;     
+           
         },
-        // async usersListAsync({ commit ,state}) {
-        // const data =  await fetch(`/users/getUsers?currentPage=${state.currentPage}&eachPage=${state.eachPage}`)
-        //  .then(response => response.json());
-        // console.log(data);
-        // commit('getUsers',data);
-        // },
+        // 删除用户
         async deleteUserAsync({ dispatch }, rows) {
             const id = rows._id; // 所删除用户的 id
             const data = await fetch(`/users/deleteUserById?_id=${id}`)
@@ -94,6 +96,14 @@ export default ({
             if (data) {
                 dispatch("usersListAsync"); // 删除成功后 重新 fetch 请求数据
             }
-        }
+        },
+        // 根据用户 id 获取门店信息
+        async getShopsAsync({ commit, state },info) { 
+            // console.log(info);                       
+            // const data = await usersService.getShops(info);
+            const data = await shopService.getShopsBypage(info);
+            console.log(data);
+            commit('getShopsByUserId', data.shops);
+        },
     }
 })
