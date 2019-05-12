@@ -33,12 +33,14 @@ import FindStore from './components/manageStore/findStore' //查找门店
 
 import AddGoods from "./components/goods/addGoods" // 门店管理 新增商品
 import GoodsList from "./components/goods/goodsList" // 门店管理 商品列表
+import AddMembers from './components/members/addmembers'//新增宠主
 import MembersList from './components/members/membersList.vue';//宠主列表 
 
 import AddPets from './components/pets/addPets' //新增宠物
 import PetsList from './components/pets/petsList' //宠物列表
 
 Vue.use(Router)
+
 
 const router = new Router({
   routes: [
@@ -58,12 +60,29 @@ const router = new Router({
     {   // 通过对象进行描述
       path: '/chooseServe', // 接收参数
       name: 'ChooseServe',
-      component: ChooseServe
+      component: ChooseServe,
+      beforeEnter: (to, from, next) => {
+        console.log(document.cookie)
+        if(document.cookie){
+          next()
+        }else{
+          next({ path: '/'})
+        }
+      }//守卫
+      
     },
     {   // 通过对象进行描述
       path: '/manageStore', // 接收参数
       name: 'ManageStore',
       component: ManageStore,
+      beforeEnter: (to, from, next) => {
+        console.log(document.cookie)
+        if(document.cookie){
+          next()
+        }else{
+          next({ path: '/'})
+        }
+      },//守卫
       children:[
         {
           path:'/manageStore/addStore',
@@ -91,6 +110,14 @@ const router = new Router({
       path: '/stock', // 接收参数
       name: 'Stock',
       component: Stock,
+      beforeEnter: (to, from, next) => {
+        console.log(document.cookie)
+        if(document.cookie){
+          next()
+        }else{
+          next({ path: '/'})
+        }
+      },//守卫
       children:[
         {
           path:'/stock/addGoods',
@@ -124,6 +151,11 @@ const router = new Router({
       name: 'Management ',
       component: Management,
       children: [ // children 属性配置二级路径
+        {
+          path: '/management/addmembers',  // GM  用户列表
+          name: 'Addmembers',
+          component: AddMembers,
+        },
         {
           path: '/management/users',  // GM  用户列表
           name: 'Users',
@@ -225,6 +257,7 @@ const router = new Router({
   ],
 
 })
+
 export default router;
 
 

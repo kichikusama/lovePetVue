@@ -45,7 +45,7 @@
                     <span>宠主管理</span>
                   </template>
                   <el-menu-item-group>
-                    <el-menu-item index="/management">新增宠主</el-menu-item>
+                    <el-menu-item index="/management/addmembers">新增宠主</el-menu-item>
                     <el-menu-item index="/management/membersList">宠主列表</el-menu-item>
                   </el-menu-item-group>
                 </el-submenu>
