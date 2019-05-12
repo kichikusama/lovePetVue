@@ -53,7 +53,7 @@ export default {
 
 };
 </script>
-<style>
+<style scope>
 .show{
     width: 100%;
     height: 200px;

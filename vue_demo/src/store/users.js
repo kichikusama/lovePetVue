@@ -14,7 +14,7 @@ export default ({
         auditingUsers:[], // 待审批用户
         disabledUsers:[],  // 违规用户
         shops:[], // 门店数据
-
+        rulesRead:"readme"
     },
     mutations: {
         isLogin:(state,payload)=>{
@@ -54,6 +54,9 @@ export default ({
         },
         getDisabledUsers:(state,payload)=>{  // 设置 违规用户数据
             Object.assign(state,{disabledUsers:payload});
+        },
+        setRulesRead:(state)=>{
+            return state.rulesRead=""  // 管理须知 文件 已阅
         }
     },
     actions: {
@@ -67,10 +70,16 @@ export default ({
             // commit("isLogin",isLogin);
         },
         // 分页获取用户
-        async usersListAsync({ commit, state }) {
-            const data = await usersService.getUsers({ currentPage: state.currentPage, eachPage: state.eachPage });
+        async usersListAsync({ commit, state },params) {
+            // console.log(data.userStatus);
+            // let params = { 
+            //     currentPage: state.currentPage,
+            //      eachPage: state.eachPage,
+            //      userStatus
+            //  }
+            const re = await usersService.getUsers({currentPage: state.currentPage,eachPage: state.eachPage,...params});
             // console.log(data);
-            commit('getUsers', data);
+            commit('getUsers', re);
         },
         // 获取 待审批 用户
           async auditingUsersAsync({ commit, state }) {
@@ -89,12 +98,14 @@ export default ({
             const isAdopt = await usersService.adoptUsers(idAndStatus);
             if(isAdopt){
                 dispatch("auditingUsersAsync");  // 修改成功后 重新获取数据
+                dispatch("disabledUsersAsync");  // 修改成功后 重新获取数据
+
             }
             // commit('getAuditingUsers', data);
         },
          //审批用户违规状态  即 修改 
-        async againstUsersAsync({dispatch, state },idAndStatusAndReason) {
-            const isagainst = await usersService.againstUsers(idAndStatusAndReason);
+        async againstUsersAsync({dispatch, state },idStatusReasonAgainstTimes) {
+            const isagainst = await usersService.againstUsers(idStatusReasonAgainstTimes);
             if(isagainst){
                 dispatch("usersListAsync");  // 修改成功后 重新获取数据
             }
@@ -129,7 +140,7 @@ export default ({
             // console.log(info);                       
             // const data = await usersService.getShops(info);
             const data = await shopService.getShopsBypage(info);
-            // console.log(data);
+            console.log(data);
             commit('getShopsByUserId', data.shops);
         },
         // 

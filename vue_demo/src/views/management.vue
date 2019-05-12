@@ -23,7 +23,7 @@
                   <el-menu-item-group>
                    
                     <el-menu-item index="/management/users">用户列表</el-menu-item>
-                     <el-menu-item index="/management/auditing">用户审批</el-menu-item>
+                     <el-menu-item index="/management/blackList">黑名单</el-menu-item>
                   </el-menu-item-group>
                 </el-submenu>
 
@@ -33,7 +33,6 @@
                     <span>门店管理</span>
                   </template>
                   <el-menu-item-group>
-                    <template slot="title">分组一</template>
                     <el-menu-item index="/management/stores">门店</el-menu-item>
                   </el-menu-item-group>
                 </el-submenu>
@@ -76,7 +75,7 @@
 
 </template>
 
-<style>
+<style scope>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;

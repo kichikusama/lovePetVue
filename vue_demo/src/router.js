@@ -7,11 +7,13 @@ import Register from './views/register.vue';
 import Management from './views/management.vue'; // 平台管理员 主界面
 import StoreManagment from './views/storeManagement.vue'; // 门店管理员 界面
 
-import Users from './components/users/users.vue'; // 用户管理 组件
+import Users from './components/users/users.vue'; // 用户列表 组件
 import Auditing from './components/users/usersAuditing.vue'; // 用户审批 组件
 import UsersIntroduce from './components/users/usersIntroduce.vue';// 用户详情 组件
 import DisabledUsers from './components/users/usersDisabled.vue'; // 违规用户 组件
 import SomeRules from './components/users/someRules.vue'; // 管理须知 组件
+import BlackList from './components/users/blackList.vue'; // 黑名单 组件
+
 
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
 //李东岳
@@ -150,6 +152,11 @@ const router = new Router({
           path: '/management/auditing',   //GM 用户审批 路由
           name: 'Auditing',
           component: Auditing,
+        },
+        {
+          path: '/management/blackList',   //GM 黑名单 路由
+          name: 'BlackList',
+          component: BlackList,
         },
         {
           path: '/management/stores',  // 门店 路由

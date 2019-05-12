@@ -192,7 +192,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scope>
 .el-header,
 .el-footer {
   background-color: #545c64;

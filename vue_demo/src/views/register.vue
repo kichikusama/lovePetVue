@@ -103,6 +103,9 @@ export default {
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
+     handlePictureCardPreview(file) {
+      this.add.image = file.data.url;
+    },
     //    this.add.image = file.data.url;
     // },
     // 门店管理员 注册

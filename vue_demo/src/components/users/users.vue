@@ -1,8 +1,7 @@
 <template>
   <div class="main">
-     <h3>用户列表</h3>
+    <h3>用户列表</h3>
     <el-container>
-     
       <el-main>
         <div>
           <el-menu
@@ -16,12 +15,18 @@
             <el-submenu index="2">
               <template slot="title">
                 <span @mouseenter="auditing">处理中心</span>
-               </template>
-              <el-menu-item index="/management/auditing" @click="skipTo">待审核 <b style="color:red;font-size:10px">+{{auditingUsers.length}}</b></el-menu-item>
+              </template>
+              <el-menu-item index="/management/auditing" @click="skipTo">
+                待审核
+                <b style="color:red;font-size:10px">+{{auditingUsers.length}}</b>
+              </el-menu-item>
               <el-menu-item index="/management/disabledUsers" @click="skipToDisabled">违规用户</el-menu-item>
             </el-submenu>
             <el-menu-item index="3">
-              <a href="#/management/someRules" target="_blank">管理须知</a>
+             
+              <el-badge :value="rulesRead" class="iconItem">
+                 <a href="#/management/someRules">管理须知</a>
+              </el-badge>
             </el-menu-item>
           </el-menu>
 
@@ -83,12 +88,12 @@
             <el-table-column prop="userAcount" label="登录名" width="100"></el-table-column>
             <el-table-column prop="userPhone" label="联系方式" width="200"></el-table-column>
             <el-table-column prop="userMail" label="邮箱" width="200"></el-table-column>
-            <el-table-column prop="userType" label="角色" width="100"></el-table-column>
+            <el-table-column prop="againstTimes" label="违规数" width="100"></el-table-column>
             <el-table-column prop="userStatus" label="状态" width="100"></el-table-column>
             <!-- <el-table-column label="门店">
               <el-table-column prop label="门店1" width="120"></el-table-column>
               <el-table-column prop label="门店2" width="120"></el-table-column>
-            </el-table-column> -->
+            </el-table-column>-->
 
             <el-table-column label="操作">
               <template slot-scope="scope">
@@ -134,7 +139,7 @@ export default {
         userName: "", // 姓名
         userType: "1",
         userStatus: "1", // 申请中：0; 可用：1； 不可用：2；
-        shopId: [],
+        shopId: []
       }
     };
   },
@@ -149,10 +154,25 @@ export default {
     }
   },
   computed: {
-    ...mapState(["rows", "totalPage", "count", "eachPage", "currentPage","auditingUsers"])
+    ...mapState([
+      "rows",
+      "totalPage",
+      "count",
+      "eachPage",
+      "currentPage",
+      "auditingUsers",
+      "rulesRead"
+    ])
   },
   methods: {
-    ...mapActions(["usersListAsync", "deleteUserAsync", "searchUserAsync","auditingUsersAsync","getShopsAsync","disabledUsersAsync"]),
+    ...mapActions([
+      "usersListAsync",
+      "deleteUserAsync",
+      "searchUserAsync",
+      "auditingUsersAsync",
+      "getShopsAsync",
+      "disabledUsersAsync"
+    ]),
     ...mapMutations([
       "setEachPage",
       "setCurrentPage",
@@ -160,34 +180,45 @@ export default {
       "setUsersIntroduce"
     ]), //,"handleDelete"
 
-    usersIntroduce(userNow) { // 查看详情    
+    usersIntroduce(userNow) {
+      // 查看详情
       console.log(userNow);
       this.setUsersIntroduce(userNow); // 将 所点击用户的信息保存在状态机中
-      this.getShopsAsync({currentPage:1,eachPage:5,userId:userNow._id});// 根据用户id获取门店信息
-      this.$router.push({ path: `/management/usersIntroduce`}) // 跳转  /${userNow}
+      this.getShopsAsync({ currentPage: 1, eachPage: 5, userId: userNow._id }); // 根据用户id获取门店信息
+      this.$router.push({ path: `/management/usersIntroduce` }); // 跳转  /${userNow}
     },
-    auditing(){
+    auditing() {
       // console.log("in");
       this.auditingUsersAsync(); // 请求 待审核 用户数据
     },
-    skipTo(){
-      this.$router.push({ path: `/management/auditing`})  // 跳转 审核 组件
+    skipTo() {
+      this.$router.push({ path: `/management/auditing` }); // 跳转 审核 组件
     },
-    skipToDisabled(){
+    skipToDisabled() {
       this.disabledUsersAsync();
-      this.$router.push({ path: `/management/disabledUsers`})  // 跳转 违规用户 组件
+      this.$router.push({ path: `/management/disabledUsers` }); // 跳转 违规用户 组件
     }
   },
   mounted() {
     // 生命周期函数
-    this.usersListAsync();
+    this.usersListAsync({userStatus:"1"});  // 传参  状态为1，可用
     // console.log(this.films);
     //   console.log(this.a); // 这里拿不到a : undefind
     //   console.log(this); // this中 有a
   }
 };
 </script>
-<style>
+<style scope>
+.iconItem{
+  /* margin-top: -15px; */
+  margin-right: 40px;
+  /* top:17px; */
+
+}
+.el-badge__content{
+  height: 14px;
+  font-size: 4px;
+} 
 .el-header,
 .el-footer {
   background-color: #545c64;
@@ -210,5 +241,4 @@ export default {
 .input-with-select .el-input-group__prepend {
   background-color: #fff;
 }
-
 </style>
