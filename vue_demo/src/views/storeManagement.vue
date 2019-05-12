@@ -51,7 +51,7 @@
               <span style="color:red">订单管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="1-1">订单列表</el-menu-item>
+              <el-menu-item index="/storeManagement/ordersList">订单列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>

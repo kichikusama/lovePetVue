@@ -51,3 +51,25 @@ module.exports.getServiceById = async function ({ _id }) {
 module.exports.updateServiceById = async function ({ _id, data }) {
     return await serviceModel.updateOne({ _id }, data);
 }
+
+module.exports.getServiceByUserId = async function ({ userId, shopId }) {
+    const result = await serviceModel.find({ userId });
+    const data = [];
+    for (let item of result) {
+        if (!item.shopId.includes(shopId)) {
+            data.push(item)
+        }
+    }
+    return data;
+}
+
+module.exports.addShopIdToService = async function ({ serviceIds, shopId }) {
+    for (let item of serviceIds) {
+        const [data] = await serviceModel.find({ _id: item });
+        const arr = data.shopId;
+        arr.push(shopId);
+        await serviceModel.updateOne({ _id: item }, { shopId: arr });
+    }
+    return true
+    // return await ServiceModel.findByIdAndUpdate({ _id: { $in: ServiceIds } }, { shopId })
+}

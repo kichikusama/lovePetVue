@@ -34,10 +34,15 @@ import DeleteStore from './components/manageStore/deleteStore'//删除门店
 import FindStore from './components/manageStore/findStore' //查找门店
 //cq
 
-
-import AddGoods from "./components/goods/addGoods" // 门店管理 新增商品
+// cxy
+import AddGoods from "./components/goods/addGoods" // 门店管理 商品进货
+import AddShopGoods from "./components/goods/addShopGoods" // 门店新增商品
 import GoodsList from "./components/goods/goodsList" // 门店管理 商品列表
 import MembersList from './components/members/membersList.vue';//宠主列表 
+
+import OrdersList from "./components/orders/ordersList"; // 订单管理 订单列表
+
+//cxy
 
 import AddPets from './components/pets/addPets' //新增宠物
 import PetsList from './components/pets/petsList' //宠物列表
@@ -205,9 +210,19 @@ const router = new Router({
           component: Stores,
         },
         {
+          path: '/storeManagement/addShopGoods',
+          name: 'AddShopGoods',
+          component: AddShopGoods,
+        },
+        {
           path: '/storeManagement/goodsList',
           name: 'GoodsList',
           component: GoodsList,
+        },
+        {
+          path: '/storeManagement/ordersList',
+          name: 'OrdersList',
+          component: OrdersList,
         },
         {
           path: '/storeManagement/petsList',//宠物列表   路由
