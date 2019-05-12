@@ -95,7 +95,6 @@
   </el-form>
 </template>
 
-
 <script>
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers("goods");
@@ -106,6 +105,21 @@ export default {
   },
   methods: {
     ...mapMutations(["onSubmit", "handleRemove", "uploadSuccess"])
+  },
+  mounted() {
+    let userId;
+    let shopsId;
+    for (let item of document.cookie) {
+      if (item == ";") {
+        var ca = document.cookie.split(";");
+        userId = ca[0].split("=")[1];
+        shopsId = ca[1].split("=")[1];
+        break;
+      } else if (item == "=") {
+        userId = document.cookie.split("=")[1];
+      }
+    }
+    this.goods.userId = userId;
   }
 };
 </script>

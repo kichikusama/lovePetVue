@@ -10,6 +10,8 @@ import StoreManagment from './views/storeManagement.vue'; // 门店管理员 界
 import Users from './components/users/users.vue'; // 用户管理 组件
 import Auditing from './components/users/usersAuditing.vue'; // 用户审批 组件
 import UsersIntroduce from './components/users/usersIntroduce.vue';// 用户详情 组件
+import DisabledUsers from './components/users/usersDisabled.vue'; // 违规用户 组件
+import SomeRules from './components/users/someRules.vue'; // 管理须知 组件
 
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
 //李东岳
@@ -30,11 +32,16 @@ import DeleteStore from './components/manageStore/deleteStore'//删除门店
 import FindStore from './components/manageStore/findStore' //查找门店
 //cq
 
-
-import AddGoods from "./components/goods/addGoods" // 门店管理 新增商品
+// cxy
+import AddGoods from "./components/goods/addGoods" // 门店管理 商品进货
+import AddShopGoods from "./components/goods/addShopGoods" // 门店新增商品
 import GoodsList from "./components/goods/goodsList" // 门店管理 商品列表
 import AddMembers from './components/members/addmembers'//新增宠主
 import MembersList from './components/members/membersList.vue';//宠主列表 
+
+import OrdersList from "./components/orders/ordersList"; // 订单管理 订单列表
+
+//cxy
 
 import AddPets from './components/pets/addPets' //新增宠物
 import PetsList from './components/pets/petsList' //宠物列表
@@ -162,20 +169,20 @@ const router = new Router({
           component: Users,
         },
         {
+          path: '/management/disabledUsers',  // GM  违规用户列表
+          name: 'DisabledUsers',
+          component: DisabledUsers,
+        },
+        {
+          path: '/management/someRules',  // GM  用户须知 组件
+          name: 'SomeRules',
+          component: SomeRules,
+        },
+        {
           path: '/management/usersIntroduce',  // GM 用户详情
           name: 'UsersIntroduce',
           component: UsersIntroduce,
         },
-        // {   // 通过对象进行描述
-        //   path: '/management/usersIntroduce/:userNow', //GM 用户详情 接收参数
-        //   name: 'UsersIntroduceWithParams',
-        //   component:UsersIntroduce,
-        // },
-        // {
-        //    path: '/management/usersIntroduce',
-        //    component:UsersIntroduce,
-        //    props: (route) => ({ query:111}) 
-        // },
         {
           path: '/management/auditing',   //GM 用户审批 路由
           name: 'Auditing',
@@ -228,9 +235,19 @@ const router = new Router({
           component: Stores,
         },
         {
+          path: '/storeManagement/addShopGoods',
+          name: 'AddShopGoods',
+          component: AddShopGoods,
+        },
+        {
           path: '/storeManagement/goodsList',
           name: 'GoodsList',
           component: GoodsList,
+        },
+        {
+          path: '/storeManagement/ordersList',
+          name: 'OrdersList',
+          component: OrdersList,
         },
         {
           path: '/storeManagement/petsList',//宠物列表   路由

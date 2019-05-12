@@ -12,16 +12,16 @@
             active-text-color="#ffd04b"
             text-color="#fff"
           >
-            <el-menu-item index="1">新增用户</el-menu-item>
+            <!-- <el-menu-item index="1">新增用户</el-menu-item> -->
             <el-submenu index="2">
               <template slot="title">
                 <span @mouseenter="auditing">处理中心</span>
                </template>
               <el-menu-item index="/management/auditing" @click="skipTo">待审核 <b style="color:red;font-size:10px">+{{auditingUsers.length}}</b></el-menu-item>
-              <el-menu-item index="2-2">已审核</el-menu-item>
+              <el-menu-item index="/management/disabledUsers" @click="skipToDisabled">违规用户</el-menu-item>
             </el-submenu>
             <el-menu-item index="3">
-              <a href="https://github.com/eleme/element-angular" target="_blank">GITHUB</a>
+              <a href="#/management/someRules" target="_blank">管理须知</a>
             </el-menu-item>
           </el-menu>
 
@@ -152,7 +152,7 @@ export default {
     ...mapState(["rows", "totalPage", "count", "eachPage", "currentPage","auditingUsers"])
   },
   methods: {
-    ...mapActions(["usersListAsync", "deleteUserAsync", "searchUserAsync","auditingUsersAsync","getShopsAsync"]),
+    ...mapActions(["usersListAsync", "deleteUserAsync", "searchUserAsync","auditingUsersAsync","getShopsAsync","disabledUsersAsync"]),
     ...mapMutations([
       "setEachPage",
       "setCurrentPage",
@@ -168,11 +168,14 @@ export default {
     },
     auditing(){
       // console.log("in");
-      
       this.auditingUsersAsync(); // 请求 待审核 用户数据
     },
     skipTo(){
       this.$router.push({ path: `/management/auditing`})  // 跳转 审核 组件
+    },
+    skipToDisabled(){
+      this.disabledUsersAsync();
+      this.$router.push({ path: `/management/disabledUsers`})  // 跳转 违规用户 组件
     }
   },
   mounted() {
