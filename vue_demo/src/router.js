@@ -40,6 +40,7 @@ import PetsList from './components/pets/petsList' //宠物列表
 
 Vue.use(Router)
 
+
 const router = new Router({
   routes: [
     {   // 通过对象进行描述
@@ -58,7 +59,16 @@ const router = new Router({
     {   // 通过对象进行描述
       path: '/chooseServe', // 接收参数
       name: 'ChooseServe',
-      component: ChooseServe
+      component: ChooseServe,
+      beforeEnter: (to, from, next) => {
+        console.log(document.cookie)
+        if(document.cookie){
+          next()
+        }else{
+          next({ path: '/'})
+        }
+      }//守卫
+      
     },
     {   // 通过对象进行描述
       path: '/manageStore', // 接收参数
@@ -225,6 +235,8 @@ const router = new Router({
   ],
 
 })
+
+
 export default router;
 
 
