@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var express = require('express');
 var router = express.Router();
 
@@ -15,3 +16,20 @@ router.post('/deleteOrdersById', async function (req, res, next) {
 
 
 module.exports = router;
+=======
+var express = require('express');
+var router = express.Router();
+
+const {  } = require('../service/ordersService.js');
+
+/* GET users listing. */
+router.post('/addUser', async function(req, res, next) {
+  res.send(await addUser(req.body))
+});
+
+router.get('/getUsers',async function(req, res, next) {
+  res.send(await getUsers())
+});
+
+module.exports = router;
+>>>>>>> 6d7dcc34f2b68c9d1e225a2cdb1911f33f44b1d9

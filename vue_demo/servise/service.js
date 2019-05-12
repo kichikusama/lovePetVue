@@ -31,11 +31,31 @@ const updateServiceById = async (data) => await fetch(`/service/updateServiceByI
 }).then(response => response.json())
 
 
+//商店
+const getServiceByUserId = async (data) => await fetch(`/service/getServiceByUserId`, {
+  headers: {
+      "Content-Type": "application/json",
+  },
+  method: 'POST',
+  body: JSON.stringify(data)
+}).then(response => response.json())
+
+
+const addShopIdToService = async (data) => await fetch(`/service/addShopIdToService`, {
+  headers: {
+      "Content-Type": "application/json",
+  },
+  method: 'POST',
+  body: JSON.stringify(data)
+}).then(response => response.json())
+
 export default {
   addService,
   getService,
   deteleService,
   getServiceBypage,
   getServiceById,
-  updateServiceById
+  updateServiceById,
+  addShopIdToService,
+  getServiceByUserId
 }
