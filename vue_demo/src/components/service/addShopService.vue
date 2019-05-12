@@ -1,50 +1,63 @@
 <template>
-  <el-transfer
-    v-model="value4"
-    :props="{
-      key: 'value',
-      label: 'desc'
-    }"
-    :data="data3"
-  ></el-transfer>
+  <el-card class="box-card">
+    <div>
+      <el-select v-model="serviceIds" multiple placeholder="请选择门店商品">
+        <el-option v-for="item in service" :key="item._id" :label="item.serviceName" :value="item._id"></el-option>
+      </el-select>
+    </div>
+    <div>
+      <el-button type="primary" @click="addShopIdToServiceAsync({serviceIds,shopId})" round>确认新增</el-button>
+    </div>
+  </el-card>
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "addShopService"
+);
 export default {
   data() {
-    const generateData3 = _ => {
-      const data = [];
-      for (let i = 1; i <= 6; i++) {
-        data.push({
-          value: i,
-          desc: `备选项 ${i}`,
-        });
-      }
-      return data;
-    };
     return {
-      userId: "",
-      shopsId: "",
-      data3: generateData3(),
-      value4: []
+      shopId: "",
+      userId: ""
     };
+  },
+  computed: {
+    ...mapState(["service"]),
+    serviceIds: {
+      get: mapState(["serviceIds"]).serviceIds,
+      set: mapMutations(["setServicesIds"]).setServicesIds
+    }
+  },
+  
+  methods: {
+    ...mapMutations(["setServiceIds"]),
+    ...mapActions(["getServiceByUserIdAsync", "addShopIdToServiceAsync"])
+  },
+  mounted() {
+    let userId;
+    let shopsId;
+    for (let item of document.cookie) {
+      if (item == ";") {
+        var ca = document.cookie.split(";");
+        userId = ca[0].split("=")[1];
+        shopsId = ca[1].split("=")[1];
+        break;
+      } else if (item == "=") {
+        userId = document.cookie.split("=")[1];
+      }
+    }
+    this.shopId = shopsId;
+    this.userId = userId;
+    this.getServiceByUserIdAsync({userId:this.userId,shopId:this.shopId});
   }
-//   mounted() {
-//     let userId;
-//     let shopsId;
-//     for (let item of document.cookie) {
-//       if (item == ";") {
-//         var ca = document.cookie.split(";");
-//         userId = ca[0].split("=")[1];
-//         shopsId = ca[1].split("=")[1];
-//         break;
-//       } else if (item == "=") {
-//         userId = document.cookie.split("=")[1];
-//       }
-//     }
-//     console.log(shopsId);
-//     this.userId = userId;
-//     this.shopsId = shopsId;
-//   }
 };
 </script>
+
+<style scope>
+.transfer-footer {
+  margin-left: 20px;
+  padding: 6px 5px;
+}
+</style>

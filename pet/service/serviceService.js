@@ -4,7 +4,9 @@ const {
     deteleService,
     getServiceBypage,
     getServiceById,
-    updateServiceById
+    updateServiceById,
+    getServiceByUserId,
+    addShopIdToService
 } = require('../dao/serviceDao.js');
 
 module.exports.addService = async function (data) {
@@ -35,4 +37,12 @@ module.exports.updateServiceById = async function (data) {
     } else {
         return false;
     }
+}
+module.exports.getServiceByUserId = async function (userId) {
+    return await getServiceByUserId(userId);
+}
+
+module.exports.addShopIdToService = async function (data) {
+    return await addShopIdToService(data);
+
 }

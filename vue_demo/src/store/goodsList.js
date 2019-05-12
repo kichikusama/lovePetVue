@@ -1,5 +1,17 @@
 import goodsSer from "../../servise/goods";
 import { Message } from 'element-ui';
+let userId;
+let shopId;
+for (let item of document.cookie) {
+    if (item == ";") {
+        var ca = document.cookie.split(";");
+        userId = ca[0].split("=")[1];
+        shopId = ca[1].split("=")[1];
+        break;
+    } else if (item == "=") {
+        userId = document.cookie.split("=")[1];
+    }
+}
 export default ({
     // 命名空间 
     namespaced: true,
@@ -30,10 +42,11 @@ export default ({
     },
     actions: {
         async getGoodsByPageAsync({ commit, state }, search) {
-            const data = await goodsSer.getGoodsByPage({ currentPage: state.currentPage, eachPage: state.eachPage, ...search })
+            console.log(search);
+            const data = await goodsSer.getGoodsByPage({ currentPage: state.currentPage, eachPage: state.eachPage, shopId, ...search });
             commit("getGoodsByPage", data);
         },
-        async deleteGoodsByPageAsync({ dispatch }, data) {
+        async deleteGoodsByPageAsync({ dispatch, shopId }, data) {
             const result = await goodsSer.deleteGoodsByPage(data);
             if (result) {
                 dispatch("getGoodsByPageAsync");
@@ -42,14 +55,13 @@ export default ({
             }
         },
         async getGoodsByIdAsync({ commit }, id) {
-            const [result] = await goodsSer.getGoodsById(id);
+            const [result] = await goodsSer.getGoodsById({ shopId, _id: id });
             commit("getGoodsByPage", { form: result })
         },
-        async updateGoodsByIdAsync({ state, commit }, payload) {
+        async updateGoodsByIdAsync({ state, commit,dispatch }, payload) {
             const result = await goodsSer.updateGoodsById({ data: state.form, _id: payload })
             if (result) {
-                const data = await goodsSer.getGoodsByPage({ currentPage: state.currentPage, eachPage: state.eachPage })
-                commit("getGoodsByPage", data);
+                dispatch("getGoodsByPageAsync");
             }
         }
     }
