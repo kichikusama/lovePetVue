@@ -9,6 +9,7 @@ import pets from './store/pets';   //宠物管理
 import goodsList from "./store/goodsList" // 商品列表
 import service from './store/service'// 服务管理
 import addShopGoods from "./store/addShopGoods"; // 门店新增商品
+import orders from "./store/orders"; // 订单管理
 
 Vue.use(Vuex)
 
@@ -21,6 +22,7 @@ export default new Vuex.Store({
       pets,
       goodsList,
       service,
-      addShopGoods
+      addShopGoods,
+      orders
   }
 })

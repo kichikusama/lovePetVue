@@ -16,8 +16,6 @@ const usersSchema = new mongoose.Schema({
         default: "2" // 
     }, // 申请中：0; 可用：1； 不可用：2；
     image:String,  // 证件照
-<<<<<<< HEAD
-=======
     againstReason:{  // 违规原因     可不填写
         type:String,
         default:"-"
@@ -34,7 +32,6 @@ const usersSchema = new mongoose.Schema({
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'petsModel'
     // }],
->>>>>>> c0a4f10e91640d34255377b71804c4b7cd4fcb84
 })
 
 
