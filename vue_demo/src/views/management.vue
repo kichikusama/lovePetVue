@@ -1,3 +1,4 @@
+
  <template>
  
 
@@ -23,7 +24,11 @@
                   <el-menu-item-group>
                    
                     <el-menu-item index="/management/users">用户列表</el-menu-item>
+
                      <el-menu-item index="/management/blackList">黑名单</el-menu-item>
+
+                     <el-menu-item index="/management/auditing">用户审批</el-menu-item>
+
                   </el-menu-item-group>
                 </el-submenu>
 
@@ -44,7 +49,7 @@
                     <span>宠主管理</span>
                   </template>
                   <el-menu-item-group>
-                    <el-menu-item index="/management">新增宠主</el-menu-item>
+                    <el-menu-item index="/management/addmembers">新增宠主</el-menu-item>
                     <el-menu-item index="/management/membersList">宠主列表</el-menu-item>
                   </el-menu-item-group>
                 </el-submenu>
@@ -75,15 +80,6 @@
 
 </template>
 
-<style scope>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
-}
-.flex {
-  display: flex;
-}
-</style>
 <script>
 export default {
   name: "management",
@@ -97,3 +93,13 @@ export default {
   }
 };
 </script>
+
+<style>
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+.flex {
+  display: flex;
+}
+</style>
