@@ -30,13 +30,13 @@ module.exports.getMembers = async function ({ currentPage, eachPage, type, text 
             );
         total = counts.length
     }
-    let pageData = {
+    let membersData = {
         currentPage: currentPage - 0, // 当前页面
         eachPage, // 每页显示条数
         total, // 总条数
         members, // 宠主集合
     };
-    return pageData;
+    return membersData;
 }
 
 module.exports.deleteMembers = async function ({id}) {
