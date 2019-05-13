@@ -1,12 +1,42 @@
 {
   "pages": [
+    "pages/market/market",
     "pages/index/index"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "iconPath": "./assets/market/房子.png",
+        "selectedIconPath": "./assets/market/房子 (1).png",
+        "pagePath": "pages/index/index",
+        "text": "宠屋"
+      },
+      {
+        "iconPath": "./assets/market/商场 .png",
+        "selectedIconPath": "./assets/market/商场(1).png",
+        "pagePath": "pages/market/market",
+        "text": "宠物商城"
+      },
+      {
+        "iconPath": "./assets/market/购物车-23.png",
+        "selectedIconPath": "./assets/market/购物车-23 (1).png",
+        "pagePath": "pages/index/index",
+        "text": "购物车"
+      },
+      {
+        "iconPath": "./assets/market/我的.png",
+        "selectedIconPath": "./assets/market/我的 (1).png",
+        "pagePath": "pages/market/market",
+        "text": "我的"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }
