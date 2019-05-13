@@ -76,7 +76,7 @@ export default {
     member(data) {
       this.dialog = true;
       this.members = data;
-    }, //查看店铺成员
+    }, //违规数据
     adoptAuditing(updeteUser) {
       this.adoptUsersAsync({ _id: updeteUser._id, userStatus: "1" });
       // console.log(updeteUser);

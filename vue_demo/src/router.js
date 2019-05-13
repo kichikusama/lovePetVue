@@ -203,7 +203,7 @@ const router = new Router({
           path: '/management/membersList', //宠主 路由
           name: MembersList,
           component: MembersList,
-        }
+        },
       ]
     },
 

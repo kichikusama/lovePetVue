@@ -11,15 +11,15 @@
                 <el-option label="电话" value="memberPhone"></el-option>
                 <el-option label="昵称" value="memberAcount"></el-option>
               </el-select>
-              <el-button slot="append" icon="el-icon-search" @click="getShopsAsync({type,text})"></el-button>
+              <el-button slot="append" icon="el-icon-search" @click="getMembersAsync({type,text})"></el-button>
             </el-input>
           </div>
 
-          <el-table :data="shops" center="all" style="width: 100%;text-align:center;" border>
+          <el-table :data="members" center="all" style="width: 100%;text-align:center;" border>
             <el-table-column prop="memberName" label="姓名" width="100"></el-table-column>
             <el-table-column prop="memberAcount" label="昵称" width="100"></el-table-column>
-            <el-table-column prop="memberPhone" label="手机号" width="100"></el-table-column>
-            <el-table-column prop="memberCard" label="会员卡" width="100"></el-table-column>
+            <el-table-column prop="memberPhone" label="手机号" width="200"></el-table-column>
+            <el-table-column prop="memberCard" label="会员卡" width="200"></el-table-column>
             <el-table-column prop="memberArea" label="区域" width="100"></el-table-column>
             <el-table-column prop="memberPoint" label="积分" width="100"></el-table-column>
             <el-table-column label="宠物" width="100" fixed="right">
@@ -30,16 +30,16 @@
                   circle
                   class="aStyle"
                   icon="el-icon-search"
-                  @click.prevent="member(scope.row.shopEmployee)"
+                  @click.prevent="getPets(scope.row.memberPets)"
                 >详情</a>
               </template>
             </el-table-column>
-            <el-table-column label="操作" width="150" fixed="right">
+            <!-- <el-table-column label="操作" width="150" fixed="right">
               <template slot-scope="scope">
                 <el-button size="mini" @click="revision(scope.row._id)">修改</el-button>
                 <el-button size="mini" type="danger" @click="deteleShopsAsync(scope.row._id)">删除</el-button>
               </template>
-            </el-table-column>
+            </el-table-column> -->
           </el-table>
 
           <el-pagination
@@ -51,7 +51,7 @@
             :total="total"
           ></el-pagination>
 
-          <el-dialog title="宠物信息" :visible.sync="dialogFormVisible">
+          <!-- <el-dialog title="修改信息" :visible.sync="dialogFormVisible">
             <el-form :model="form">
               <el-form-item label="门店名称" :label-width="formLabelWidth">
                 <el-input v-model="form.name" autocomplete="off"></el-input>
@@ -64,7 +64,7 @@
               </el-form-item>
             </el-form>
             
-          </el-dialog>
+          </el-dialog> -->
 
           <el-dialog title="宠物信息" :visible.sync="dialog">
             <el-table :data="members">
@@ -92,12 +92,12 @@ export default {
   data() {
     return {
       type: "", // 搜索条件
-      text: "",
+      text: "",  // 搜索值
       dialogFormVisible: false,
-      dialog: false,
-      merberId: "",
+      dialog: false, // 宠物详情 弹窗 状态值
+      merberId: "",  // 
       pets:[],
-      form: {
+      form: {  // 修改信息所用
         name: "",
         site: "",
         phone: ""
@@ -107,14 +107,14 @@ export default {
   },
   watch: {
     eachPage() {
-      this.getShopsAsync({ type: this.type, text: this.text });
+      this.getMembersAsync({ type: this.type, text: this.text });
     },
     currentPage() {
-      this.getShopsAsync({ type: this.type, text: this.text });
+      this.getMembersAsync({ type: this.type, text: this.text });
     }
   },
   computed: {
-    ...mapState(["shops", "total"]),
+    ...mapState(["members", "total"]),
     // ...mapMutations(["setEachPage", "setCurPage"])
     eachPage: {
       get: mapState(["eachPage"]).eachPage,
@@ -124,30 +124,19 @@ export default {
       get: mapState(["currentPage"]).currentPage,
       set: mapMutations(["setCurPage"]).setCurPage
     },
-    // userId: {
-    //   get: mapState(["userId"]).userId,
-    //   set: mapMutations(["setUserId"]).setUserId
-    // }
   },
   methods: {
-    member(data) {
+    ...mapActions(["getMembersAsync"]),
+    ...mapMutations(["setEachPage", "setCurPage"]),
+     getPets(data) {//查看当前宠主 的所有宠物信息
       this.dialog = true;
-      this.members=data;
-    }, //查看店铺成员
-    ...mapActions(["getShopsAsync", "deteleShopsAsync", "revisionAsync"]),
-    ...mapMutations(["setEachPage", "setCurPage", "setUserId"]),
-    // add(){
-    //   this.getShopsAsync({select:select,text:text});
-    // }
-    revision(id) {
-      this.dialogFormVisible = true;
-      this.merberId = id;    // 根据宠主 id 修改信息
-    },
+      this.pets=data;
+    }, 
    
   },
   mounted() {
     // 生命周期函数
-    this.getShopsAsync();
+    this.getMembersAsync();
   }
 };
 </script>
