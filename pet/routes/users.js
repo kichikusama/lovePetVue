@@ -1,9 +1,22 @@
 var express = require('express');
 var router = express.Router();
 
-const {  getUsers,addUser,searchUser,deleteUserById,loginUser,auditing,disabledUsers,againstUsersById } = require('../service/usersService.js');
+
 
 /* GET users listing. */
+
+const {  getUsers,addUser,searchUser,deleteUserById,loginUser,auditing,adoptUsersById,disabledUsers,againstUsersById } = require('../service/usersService.js');
+
+/* GET users listing. */
+const {uploadFile} =require("../util/upload");
+router.post('/addUserImage', async function (req, res, next) {
+  let result = await uploadFile(req, res, {
+      fileType: 'users',   // 图片保存文件名
+      path: './public' // 图片保存文件路径
+  });
+  res.send(result);
+});
+
 
 // 新增 用户  post 请求方式 GM
 router.post('/addUser', async function(req, res, next) {

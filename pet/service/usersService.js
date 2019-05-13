@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const { getUsers, addUser, searchUser, deleteUserById, loginUser,auditing,disabledUsers,againstUsersById } = require('../dao/usersDao.js');
+=======
+const { getUsers, addUser, searchUser, deleteUserById, loginUser,auditing,adoptUsersById,disabledUsers,againstUsersById } = require('../dao/usersDao.js');
+>>>>>>> 64f4ad65f32ae9bf2a355bb1eb1984ae8ff9b9a1
 
 
 // 新增 用户  POST 请求方式 GM
@@ -18,12 +22,20 @@ module.exports.getUsers = async function (data) {
   // console.log("ss:"+ss);
   return ss;
 }
+<<<<<<< HEAD
 module.exports.auditing = async function () {
+=======
+module.exports.auditing = async function () {  // 获取待审批用户
+>>>>>>> 64f4ad65f32ae9bf2a355bb1eb1984ae8ff9b9a1
   let ss = await auditing();
   // console.log("ss:"+ss);
   return ss;
 }
+<<<<<<< HEAD
 module.exports.disabledUsers = async function () {
+=======
+module.exports.disabledUsers = async function () {  // 获取违规用户
+>>>>>>> 64f4ad65f32ae9bf2a355bb1eb1984ae8ff9b9a1
   let ss = await disabledUsers();
    return ss.filter(item => item.againstTimes < 4 )  // 违规次数小于4 
  // console.log("ss:"+ss);
@@ -52,3 +64,22 @@ module.exports.deleteUserById = async function (data) {
     return false
   }
 }
+<<<<<<< HEAD
+=======
+ //通过Id修改  待审批用户状态
+module.exports.adoptUsersById = async function (UsersDetails) {
+ let re = await adoptUsersById(UsersDetails);
+ if(re.ok>0){
+   return true
+ }
+ return false;
+}
+ //通过Id修改  违规用户状态
+ module.exports.againstUsersById = async function (UsersDetails) {
+  let re = await againstUsersById(UsersDetails);
+  if(re.ok>0){
+    return true
+  }
+  return false;
+ }
+>>>>>>> 64f4ad65f32ae9bf2a355bb1eb1984ae8ff9b9a1

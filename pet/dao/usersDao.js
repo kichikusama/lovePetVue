@@ -4,17 +4,18 @@ const { usersModel } = require("./Models/usersModel.js");
 // 新增 用户  post 请求方式 GM
 module.exports.addUser = async function (users) {
     console.log(users);
-    
+    // console.log(users); 
     return await usersModel.create(users);
-   
 }
 // 分页获取用户 get 请求方式 GM
-module.exports.getUsers = async function ({ currentPage, eachPage,againstTimes, }) {   
+
+
+module.exports.getUsers = async function ({ currentPage, eachPage,userStatus,againstTimes }) {  
+     console.log("userStatus"+userStatus);
     let count = await usersModel.countDocuments(); // 获取总条数
     let totalPage = Math.ceil(count / eachPage); // 总页数
-    let rows= [];
-    // 获取当前页数的用户信息
-    if(againstTimes){
+    let rows = [];
+    if(userStatus){  //  用户列表查询 传递 userStatus
         rows = await usersModel
         .find({userType:"0",againstTimes})   // 只查找 黑名单
         .skip((currentPage - 1) * eachPage)
@@ -78,5 +79,13 @@ module.exports.deleteUserById = async function (_id ) {
     let data = await usersModel.deleteOne({ _id }, (err, data) => { });
     console.log(data);   
     return data;
+}
+ //通过Id修改  待审批用户状态
+module.exports.adoptUsersById = async function (idAndStatus) {
+    return await usersModel.update({ _id: idAndStatus._id }, { userStatus: idAndStatus.userStatus})
+}
+ //通过Id修改 违规用户状态
+ module.exports.againstUsersById= async function (idStatusReasonAgainstTimes) {
+    return await usersModel.update({ _id: idStatusReasonAgainstTimes._id }, { userStatus: idStatusReasonAgainstTimes.userStatus,againstReason:idStatusReasonAgainstTimes.againstReason,againstTimes:idStatusReasonAgainstTimes.againstTimes})
 }
 
