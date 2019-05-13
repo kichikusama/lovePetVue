@@ -1,2 +1,7 @@
 <!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
+<scroll-view style="background-color:#f2f2f2">
+    <view class="header">
+        <text class="title">爱宠邦</text>
+        <swiper class="swiper" />
+    </view>
+</scroll-view>
