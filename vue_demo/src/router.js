@@ -6,7 +6,7 @@ import Login from './views/login.vue';
 import Register from './views/register.vue';
 import Management from './views/management.vue'; // 平台管理员 主界面
 import StoreManagment from './views/storeManagement.vue'; // 门店管理员 界面
-
+// gm
 import Users from './components/users/users.vue'; // 用户列表 组件
 import Auditing from './components/users/usersAuditing.vue'; // 用户审批 组件
 import UsersIntroduce from './components/users/usersIntroduce.vue';// 用户详情 组件
@@ -14,8 +14,9 @@ import DisabledUsers from './components/users/usersDisabled.vue'; // 违规用�
 import SomeRules from './components/users/someRules.vue'; // 管理须知 组件
 import BlackList from './components/users/blackList.vue'; // 黑名单 组件
 
-
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
+import ShopsAuditing from './components/stores/auditingShops.vue'  // 门店审批
+
 //李东岳
 import AddService from './components/service/addService.vue';// 新增服务 组件
 import FindService from './components/service/findService.vue';// 查询服务 组件
@@ -207,7 +208,13 @@ const router = new Router({
           path: '/management/stores',  // 门店 路由
           name: 'managementStores',
           component: Stores,
-        }, {
+        },
+        {
+          path: '/management/shopsAuditing',  // 门店 路由
+          name: 'ShopsAuditing',
+          component: ShopsAuditing,
+        },
+        {
           path: '/management/membersList', //宠主 路由
           name: MembersList,
           component: MembersList,
