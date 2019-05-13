@@ -1,4 +1,4 @@
-const { addPets, getPets, deletePetByPage, getAllPets, getPetsById,updatePetsById } = require('../dao/petsDao.js');
+const { addPets, getPets, deletePetByPage, getAllPets, getPetsById, updatePetsById, getPetsByUserId, addShopIdToPets } = require('../dao/petsDao.js');
 
 module.exports.addPets = async function (data) {
     const result = await addPets(data);
@@ -33,4 +33,13 @@ module.exports.deletePetByPage = async function (data) {
     } else {
         return false;
     }
+}
+
+module.exports.getPetsByUserId = async function (userId) {
+    return await getPetsByUserId(userId);
+}
+
+module.exports.addShopIdToPets = async function (data) {
+    return await addShopIdToPets(data);
+
 }
