@@ -1,8 +1,8 @@
 const {
     addService,
     getService,
-    deteleService,
-    getServiceBypage,
+    deleteServiceByPage,
+    getServiceByPage,
     getServiceById,
     updateServiceById,
     getServiceByUserId,
@@ -13,8 +13,9 @@ module.exports.addService = async function (data) {
     return await addService(data);
 }
 
-module.exports.getServiceBypage = async function (data) {
-    return await getServiceBypage(data); 
+
+module.exports.getServiceByPage = async function (data) {
+    return await getServiceByPage(data); 
 }
 
 module.exports.getService = async function (data) {
@@ -22,8 +23,13 @@ module.exports.getService = async function (data) {
 }
 
 //删除服务通过id
-module.exports.deteleService = async function (data) {
-    return await deteleService(data); 
+module.exports.deleteServiceByPage = async function (data) {
+    const result = await deleteServiceByPage(data);
+    if (result.ok) {
+        return true
+    } else {
+        return false;
+    }
 }
 
 module.exports.getServiceById = async function (service) {
