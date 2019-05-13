@@ -11,7 +11,9 @@ Component({
    * 组件的初始数据
    */
   data: {
-    src:""
+    src:"../../assets/home/dog.jpg",
+    servicePrice:"100",
+    serviceName:"宠物进口疫苗套餐"
   },
 
   /**

@@ -1,6 +1,18 @@
 <!--components/homeServiceItem/homeServiceItem.wxml-->
 <view>
-    <view>
-        <image src="{{}}" /> 
+    <view class="container">
+        <view>
+            <image class="img" src="{{src}}" />
+        </view>
+        <view class="text">
+            <view>
+                <text class="name">{{serviceName}}</text>
+            </view>
+            <view class="price">
+                <text style="color: #6e6e6e;">特惠价</text>
+                <text style="color:#ff713a"> ￥{{servicePrice}}</text>
+                <text style="color:#a6a6a6;text-decoration: line-through;margin-left: 10rpx;"> ￥门店价{{~~servicePrice+30}}</text>
+            </view>
+        </view>
     </view>
 </view>

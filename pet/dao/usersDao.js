@@ -90,7 +90,3 @@ module.exports.adoptUsersById = async function (idAndStatus) {
  module.exports.againstUsersById= async function (idStatusReasonAgainstTimes) {
     return await usersModel.update({ _id: idStatusReasonAgainstTimes._id }, { userStatus: idStatusReasonAgainstTimes.userStatus,againstReason:idStatusReasonAgainstTimes.againstReason,againstTimes:idStatusReasonAgainstTimes.againstTimes})
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 8a0dd6ec49cfd42a61c144586a99aed25bb8fa95

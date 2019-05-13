@@ -1,7 +1,7 @@
 {
   "pages": [
-    "components/my/my",
-    "pages/index/index"
+    "pages/index/index",
+    "components/my/my"
    
   ],
   "window": {

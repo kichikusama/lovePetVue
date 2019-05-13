@@ -1,6 +1,7 @@
 /* components/homeShopTiele/homeShopTiele.wxss */
 .title{
     display: flex;
+    margin-bottom: 55rpx;
 }
 .img{
     width: 160rpx;
