@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> 8a0dd6ec49cfd42a61c144586a99aed25bb8fa95
 const { getUsers, addUser, searchUser, deleteUserById, loginUser,auditing,adoptUsersById,disabledUsers,againstUsersById } = require('../dao/usersDao.js');
 
 
@@ -72,4 +75,7 @@ module.exports.adoptUsersById = async function (UsersDetails) {
   }
   return false;
  }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 8a0dd6ec49cfd42a61c144586a99aed25bb8fa95

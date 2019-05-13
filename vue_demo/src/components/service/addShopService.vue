@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card">
     <div>
-      <el-select v-model="serviceIds" multiple placeholder="请选择门店商品">
+      <el-select v-model="serviceIds" multiple placeholder="请选择门店服务">
         <el-option v-for="item in service" :key="item._id" :label="item.serviceName" :value="item._id"></el-option>
       </el-select>
     </div>
@@ -27,10 +27,9 @@ export default {
     ...mapState(["service"]),
     serviceIds: {
       get: mapState(["serviceIds"]).serviceIds,
-      set: mapMutations(["setServicesIds"]).setServicesIds
+      set: mapMutations(["setServiceIds"]).setServiceIds
     }
   },
-  
   methods: {
     ...mapMutations(["setServiceIds"]),
     ...mapActions(["getServiceByUserIdAsync", "addShopIdToServiceAsync"])

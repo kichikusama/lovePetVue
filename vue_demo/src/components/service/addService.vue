@@ -76,11 +76,8 @@ export default {
   methods: {
     ...mapActions(["onSubmit"]),
     add() {
-      this.onSubmit(),
-        this.$message({
-          message: "恭喜你，新增成功",
-          type: "success"
-        });
+      this.onSubmit()
+        
     }
   }
 };

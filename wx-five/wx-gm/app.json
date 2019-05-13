@@ -1,6 +1,8 @@
 {
   "pages": [
+    "components/my/my",
     "pages/index/index"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",

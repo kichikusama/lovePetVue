@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8a0dd6ec49cfd42a61c144586a99aed25bb8fa95
 const mongoose = require('mongoose');
+
 
 // 门店管理员和平台管理员
 const usersSchema = new mongoose.Schema({
@@ -16,10 +21,16 @@ const usersSchema = new mongoose.Schema({
         default: "0" // 
     }, // 申请中：0; 可用：1； 不可用：2；
     image:String,  // 证件照
+<<<<<<< HEAD
+    againstReason:{  // 违规原因     可不填写
+        type:String,
+        default:"-"
+=======
     againstReason:[],  // 违规原因     可不填
     againstTimes:{  // 用户违规次数
         type:Number,
         default:0,   
+>>>>>>> 8a0dd6ec49cfd42a61c144586a99aed25bb8fa95
     }
     // goodsId: [{  // 商品 id
     //     type: mongoose.Schema.Types.ObjectId,
@@ -43,3 +54,7 @@ module.exports.usersModel = mongoose.model('usersModel');
 // db.users.insert({ userAcount:"BBB", userPwd:"123456",userPhone:"13468151543",userMail:"5671456987@qq.com",userName:"bbb", userType:'0',userStatus:"1"})
 // db.users.insert({ userAcount:"gm", userPwd:"888888",userPhone:"13668151543",userMail:"321456987@qq.com",userName:"mmm", userType:'0',userStatus:"0"})
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8a0dd6ec49cfd42a61c144586a99aed25bb8fa95

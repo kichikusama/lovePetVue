@@ -57,7 +57,7 @@ export default ({
             const [result] = await goodsSer.getGoodsById({ shopId, _id: id });
             commit("getGoodsByPage", { form: result })
         },
-        async updateGoodsByIdAsync({ state, commit,dispatch }, payload) {
+        async updateGoodsByIdAsync({ state, commit }, payload) {
             const result = await goodsSer.updateGoodsById({ data: state.form, _id: payload })
             if (result) {
                 dispatch("getGoodsByPageAsync");
