@@ -15,9 +15,9 @@
             <!-- <el-menu-item index="1">新增用户</el-menu-item> -->
             <el-submenu index="2">
               <template slot="title">
-                <span @mouseenter="auditingShops">处理中心</span>
+                <span>处理中心</span>
               </template>
-              <el-menu-item index="/management/shopsAuditing" @click="skipToShopsAuditing">
+              <el-menu-item index="/management/shopsAuditing" @click="auditingShops">
                 待审核门店
                 <!-- <b style="color:red;font-size:10px">+{{auditingUsers.length}}</b> -->
               </el-menu-item>
@@ -183,11 +183,9 @@ export default {
     auditingShops() {
       // console.log("in");
       this.getShopsAsync({shopType:"0"}); // 请求 待审核门店数据
-    },
-    skipToShopsAuditing(){
       this.$router.push({ path: `/management/shopsAuditing` }); // 跳转 审核门店 组件
-
     },
+    
     revision(id) {
       this.dialogFormVisible = true;
       this.shopId = id;

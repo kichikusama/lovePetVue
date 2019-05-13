@@ -15,7 +15,7 @@
            
             <el-table-column label="操作" width="150" fixed="right">
               <template slot-scope="scope">
-                <el-button size="mini" @click="">通过</el-button>      
+                <el-button size="mini" @click="shopAuditing(scope.row)">通过</el-button>      
               </template>
             </el-table-column>
           </el-table>
@@ -29,7 +29,7 @@
         class="tipStyle"
         title=""
         type="info"
-        description=" 平台管理员拥有对新注册用户审批的权限，审批通过后用户拥有开店及营业功能，点击‘审批’；如果此人和你有仇，可拒绝审批。"
+        description=" 平台管理员拥有对新注册门店审批的权限，点击‘审批’。"
         show-icon
       ></el-alert>
     </div>
@@ -60,11 +60,11 @@ export default {
     ...mapState(["shops"])
   },
   methods: {
-        // ...mapActions(["adoptUsersAsync"]),
-        // adoptAuditing(updeteUser){
-        //   this.adoptUsersAsync({_id:updeteUser._id,userStatus:"1"});
-        //   // console.log(updeteUser);         
-        // }
+       ...mapActions(["shopAuditingAsync"]),
+         shopAuditing(updeteShop){
+          this.shopAuditingAsync({id:updeteShop._id,shopType:"1"});
+          // console.log(updeteUser);         
+        }
   },
 };
 </script>

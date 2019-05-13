@@ -8,8 +8,12 @@ module.exports.getPets = async function () {
     return await petsModel.find();
 }
 
-module.exports.deletePetByPage = async function ({data}) {
-    return await petsModel.deleteOne({ _id: data });
+module.exports.deletePetByPage = async function ({ _id, shopId }) {
+    const [result] = await petsModel.find({ _id });
+    const arr = result.shopId;
+    const index = arr.indexOf(shopId);
+    arr.splice(index, 1);
+    return await petsModel.update({ _id }, { shopId: arr })
 }
 //通过id获取
 module.exports.getPetsById = async function ({ _id }) {
@@ -20,30 +24,68 @@ module.exports.updatePetsById = async function ({ _id, data }) {
     return await petsModel.updateOne({ _id }, data);
 }
 
-module.exports.getAllPets = async function ({ currentPage, eachPage, type, text }) {
-    let total; // 获取总条数
-    // 获取当前页数的电影信息
+module.exports.getAllPets = async function ({ currentPage, eachPage, type, text, shopId }) {
+
+    let totalPage;
     let pets;
+    let total;
+    let skip = (currentPage - 1) * eachPage; // 从第几条数据开始取 
+    let limit = eachPage - 0; // 取几条数据
     if (text) {
-        pets = await petsModel
+        const result = await petsModel
             .find({
-                [type]: { $regex: [text], $options: '$i' }
+                [type]: { $regex: [text], $options: '$i' },
             })
-            .skip((currentPage - 1) * eachPage).limit(eachPage - 0);
-        let counts = await petsModel
-            .find({
-                [type]: { $regex: [text], $options: '$i' }
-            })
-            total = counts.length
+        const data = [];
+        for (let item of result) {
+            if (item.shopId.includes(shopId)) {
+                data.push(item)
+            }
+        }
+        total = data.length;
+        totalPage = Math.ceil(total / eachPage);
+        pets = data.splice(skip, limit)
     } else {
-        pets = await petsModel.find().skip((currentPage - 1) * eachPage).limit(eachPage - 0);
-        total = await petsModel.countDocuments();
+        const result = await petsModel.find();
+        const data = [];
+        for (let item of result) {
+            if (item.shopId.includes(shopId)) {
+                data.push(item)
+            }
+        }
+        total = data.length;
+        totalPage = Math.ceil(total / eachPage);
+        pets = data.splice(skip, limit)
     }
-    let pageData = {
+    let petsData = {
         currentPage: currentPage - 0, // 当前页面
         eachPage, // 每页显示条数
+        totalPage, // 总页数
         total, // 总条数
         pets, // 电影信息
     };
-    return pageData;
+    return petsData;
+}
+
+
+module.exports.getPetsByUserId = async function ({ userId, shopId }) {
+    const result = await petsModel.find({ userId });
+    const data = [];
+    for (let item of result) {
+        if (!item.shopId.includes(shopId)) {
+            data.push(item)
+        }
+    }
+    return data;
+}
+
+module.exports.addShopIdToPets = async function ({ petsIds, shopId }) {
+    for (let item of petsIds) {
+        const [data] = await petsModel.find({ _id: item });
+        const arr = data.shopId;
+        arr.push(shopId);
+        await petsModel.updateOne({ _id: item }, { shopId: arr });
+    }
+    return true
+
 }

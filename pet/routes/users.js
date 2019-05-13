@@ -63,6 +63,10 @@ router.post('/againstUsersById',async function(req, res, next) { // 修改用户
   console.log(req.body);
   res.send(await againstUsersById(req.body));
 });
+router.post('/adoptUsersById',async function(req, res, next) { // 审批用户 通过  ，以及给用户解禁
+  console.log(req.body);
+  res.send(await adoptUsersById(req.body));
+});
 
 //删除用户通过id
 router.get('/deleteUserById', async function (req, res, next) {
