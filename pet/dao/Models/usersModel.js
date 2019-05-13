@@ -13,12 +13,13 @@ const usersSchema = new mongoose.Schema({
     },
     userStatus:{   // 
         type: String,
-        default: "2" // 
-    }, // 申请中：0; 可用：1； 不可用：2；
+        default: "1" // 
+    }, // 申请中：0; 可用：1； 禁用：2；黑名单：3
     image:String,  // 证件照
-    againstReason:{  // 违规原因     可不填写
-        type:String,
-        default:"-"
+    againstReason:[],  // 违规原因     可不填
+    againstTimes:{  // 用户违规次数
+        type:Number,
+        default:0,   
     }
     // goodsId: [{  // 商品 id
     //     type: mongoose.Schema.Types.ObjectId,
@@ -33,6 +34,7 @@ const usersSchema = new mongoose.Schema({
     //     ref: 'petsModel'
     // }],
 })
+
 
 mongoose.model('usersModel', usersSchema, "users");
 

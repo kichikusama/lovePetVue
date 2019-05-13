@@ -1,14 +1,13 @@
-const {  } = require('../dao/membersDao.js');
+const { addMembers,getMembers,deleteMembers } = require('../dao/membersDao.js');
 
-module.exports.addUser = async function (data) {
-    const result = await addUser(data);
-    if (result) {
-        return true;
-    } else {
-        return false;
-    }
+module.exports.addMembers = async function (data) {
+    return await addMembers(data); 
 }
 
-module.exports.getUsers = async function () {
-  return await getUsers(); 
+module.exports.getMembers = async function (data) {
+  return await getMembers(data); 
 }
+
+module.exports.deleteMembers = async function (id) {
+    return await deleteMembers(id); 
+  }

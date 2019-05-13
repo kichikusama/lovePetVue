@@ -66,7 +66,7 @@
 </template>
 <script>
 import { createNamespacedHelpers } from "vuex";
-const { mapState,mapActions, mapMutations } = createNamespacedHelpers("shops");
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers("shops");
 export default {
    data() {
       return {
@@ -76,7 +76,7 @@ export default {
       }
     },
   computed: {
-    ...mapState(["shops"]),
+    ...mapState(["shops"])
   },
   methods: {
     ...mapActions(["getAllShopsAsync"]),
@@ -120,7 +120,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scope>
 .el-header {
   background-color: #409eff;
   color: #ffffff;

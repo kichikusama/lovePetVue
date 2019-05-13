@@ -26,7 +26,7 @@ router.post('/addUser', async function(req, res, next) {
 //   eachPage: this.pageData.eachPage,
 //},
 router.post('/getUsers',async function(req, res, next) {
-  // console.log(req.body);
+  console.log(req.body);
   res.send(await getUsers(req.body));
 });
 
@@ -51,7 +51,7 @@ router.post('/searchUser', async function (req, res, next) {
 router.post('/loginUser', async function (req, res, next) {
   console.log(req.body);
   let yy =await loginUser(req.body);
-  // console.log("登录用户："+ yy);
+  console.log("登录用户："+ yy);
   res.send(yy);
 });
 

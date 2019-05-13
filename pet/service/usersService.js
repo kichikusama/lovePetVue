@@ -26,7 +26,9 @@ module.exports.auditing = async function () {  // 获取待审批用户
 module.exports.disabledUsers = async function () {  // 获取违规用户
   let ss = await disabledUsers();
   // console.log("ss:"+ss);
-  return ss;
+  return  ss.filter( item => {
+     return item.againstTimes<4
+  });  // 做一次筛选，违规次数少于4的
 }
 //搜索框 搜索用户 get 请求方式 GM
 module.exports.searchUser = async function (search) {

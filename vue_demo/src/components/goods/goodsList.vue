@@ -24,7 +24,7 @@
       <el-input placeholder="请输入内容" v-model="text" class="input-with-select">
         <el-select v-model="type" slot="prepend" placeholder="请选择">
           <el-option label="名称" value="goodsName"></el-option>
-          <el-option label="产地" value="goodsRegion"></el-option>
+          <el-option label="供应商" value="goodsSupplier"></el-option>
           <el-option label="价格" value="goodsPrice"></el-option>
         </el-select>
         <el-button slot="append" @click="getGoodsByPageAsync({text,type})" icon="el-icon-search"></el-button>
@@ -53,7 +53,11 @@
       <el-table-column fixed="right" label="操作" width="200">
         <template slot-scope="scope">
           <el-button @click="handleUpdate(scope.row._id)" size="mini">编辑</el-button>
-          <el-button size="mini" type="danger" @click="deleteGoodsByPageAsync(scope.row._id)">删除</el-button>
+          <el-button
+            size="mini"
+            type="danger"
+            @click="deleteGoodsByPageAsync({_id:scope.row._id})"
+          >删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -76,10 +80,16 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
 export default {
   watch: {
     eachPage() {
-      this.getGoodsByPageAsync({ text: this.text, type: this.type });
+      this.getGoodsByPageAsync({
+        text: this.text,
+        type: this.type
+      });
     },
     currentPage() {
-      this.getGoodsByPageAsync({ text: this.text, type: this.type });
+      this.getGoodsByPageAsync({
+        text: this.text,
+        type: this.type
+      });
     }
   },
   data() {
@@ -122,23 +132,20 @@ export default {
   mounted() {
     let userId;
     let shopsId;
-    for(let item of document.cookie){
-      if(item==';'){
-       var ca= document.cookie.split(';');
-        userId=ca[0].split('=')[1];
-        shopsId=ca[1].split('=')[1]
-        break
-      }else if(item=='='){
-        userId=document.cookie.split('=')[1]
+    for (let item of document.cookie) {
+      if (item == ";") {
+        var ca = document.cookie.split(";");
+        userId = ca[0].split("=")[1];
+        shopsId = ca[1].split("=")[1];
+        break;
+      } else if (item == "=") {
+        userId = document.cookie.split("=")[1];
       }
     }
-    console.log(shopsId)
-    // this.userId=userId
-    this.getGoodsByPageAsync();
+    this.getGoodsByPageAsync({ shopId: shopsId });
   }
 };
 </script>
-
 
 <style scoped>
 .updateForm {
