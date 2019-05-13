@@ -24,9 +24,31 @@ const updatePetsById = async (data) => await fetch(`/pets/updatePetsById`,{
 
 const getPets = async () => await fetch(`/pets/getPets`).then(response => response.json());
 
-const deletePetByPage = async (data) => await fetch(`/pets/deletePetByPage?data=${data}`).then(response => response.json());
+const deletePetByPage = async (data) => await fetch(`/pets/deletePetByPage`, {
+    headers: {
+        "Content-Type": "application/json",
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+}).then(response => response.json())
 
 const getPetsById = async (_id) => await fetch(`/pets/getPetsById?_id=${_id}`).then(response => response.json());
+
+const getPetsByUserId = async (data) => await fetch(`/pets/getPetsByUserId`, {
+    headers: {
+        "Content-Type": "application/json",
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+}).then(response => response.json())
+
+const addShopIdToPets = async (data) => await fetch(`/pets/addShopIdToPets`, {
+    headers: {
+        "Content-Type": "application/json",
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+}).then(response => response.json())
 
 export default {
     addPets,
@@ -34,5 +56,7 @@ export default {
     deletePetByPage,
     getAllPets,
     getPetsById,
-    updatePetsById
+    updatePetsById,
+    getPetsByUserId,
+    addShopIdToPets
 }
