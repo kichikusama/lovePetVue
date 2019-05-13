@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { addShop,getShopBypage,deteleShop,getShop,getShopById } = require('../service/shopsService');
+const { addShop,getShopBypage,deteleShop,getShop,getShopById,auditingShopById } = require('../service/shopsService');
 
 const {uploadFile} =require("../util/upload.js");
 router.post('/addShopsImage', async function (req, res, next) {
@@ -16,8 +16,10 @@ router.post('/addShopsImage', async function (req, res, next) {
 /* GET users listing. */
 router.post('/addShop', async function(req, res, next) {
  console.log("gg"+req.body);
+ let re = await addShop(req.body);
  
-  res.send(await addShop(req.body))
+ 
+  res.send(re);
 });//添加门店
 
 router.post('/getShopBypage',async function(req, res, next) {
@@ -36,8 +38,13 @@ router.get('/deteleShop',async function(req, res, next) {
 });//删除指定门店
 
 router.post('/getShopById ',async function(req, res, next) { // 通过用户ID找门店   GM
- console.log("in");
+//  console.log("in");
  
   res.send(await getShopById(req.body))
+});
+router.post('/auditingShopById',async function(req, res, next) {//审批门店  gm  参数： shopId,shopType
+  console.log(req.body);
+ 
+  res.send(await auditingShopById(req.body))
 });
 module.exports = router;

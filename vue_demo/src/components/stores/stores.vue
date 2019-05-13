@@ -4,6 +4,33 @@
      <h3 style="background-color:white;text-align:center">所有门店</h3>
       <el-main>
         <div>
+          <div>
+           <el-menu
+            class="el-menu-demo"
+            mode="horizontal"
+            background-color="#C0C4CC"
+            active-text-color="#ffd04b"
+            text-color="#fff"
+          >
+            <!-- <el-menu-item index="1">新增用户</el-menu-item> -->
+            <el-submenu index="2">
+              <template slot="title">
+                <span>处理中心</span>
+              </template>
+              <el-menu-item index="/management/shopsAuditing" @click="auditingShops">
+                待审核门店
+                <!-- <b style="color:red;font-size:10px">+{{auditingUsers.length}}</b> -->
+              </el-menu-item>
+              <!-- <el-menu-item index="/management/disabledUsers" @click="skipToDisabled">违规用户</el-menu-item> -->
+            </el-submenu>
+            <!-- <el-menu-item index="3">
+             
+              <el-badge :value="rulesRead" class="iconItem">
+                 <a href="#/management/someRules">管理须知</a>
+              </el-badge>
+            </el-menu-item> -->
+          </el-menu>
+         </div>
           <div style="margin-top: 15px;">
             <el-input placeholder="搜索" class="input-with-select" v-model="text">
               <el-select v-model="type" slot="prepend" placeholder="请选择搜索条件">
@@ -121,10 +148,10 @@ export default {
   },
   watch: {
     eachPage() {
-      this.getShopsAsync({ type: this.type, text: this.text });
+      this.getShopsAsync({ type: this.type, text: this.text,shopType:"1" });
     },
     currentPage() {
-      this.getShopsAsync({ type: this.type, text: this.text });
+      this.getShopsAsync({ type: this.type, text: this.text,shopType:"1" });
     }
   },
   computed: {
@@ -153,6 +180,12 @@ export default {
     // add(){
     //   this.getShopsAsync({select:select,text:text});
     // }
+    auditingShops() {
+      // console.log("in");
+      this.getShopsAsync({shopType:"0"}); // 请求 待审核门店数据
+      this.$router.push({ path: `/management/shopsAuditing` }); // 跳转 审核门店 组件
+    },
+    
     revision(id) {
       this.dialogFormVisible = true;
       this.shopId = id;
@@ -173,7 +206,7 @@ export default {
     }
     this.userId = userId;
 
-    this.getShopsAsync();
+    this.getShopsAsync({shopType:"1"});
   }
 };
 </script>

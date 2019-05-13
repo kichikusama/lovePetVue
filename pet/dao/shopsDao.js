@@ -1,6 +1,7 @@
+
 const { shopsModel } = require("./Models/shopsModel.js");
 
-module.exports.getShopBypage = async function ({ currentPage, eachPage, type, text ,userId}) {
+module.exports.getShopBypage = async function ({ currentPage, eachPage, type, text ,userId, shopType}) {
     let total; // 获取总条数
     // 获取当前页数的电影信息
     let shops;
@@ -9,21 +10,26 @@ module.exports.getShopBypage = async function ({ currentPage, eachPage, type, te
             .find({
                 [type]: { $regex: [text], $options: '$i' },
                 userId,
-                shopType:"0"
+                shopType:"1"  // 1 为可用
             })
             .skip((currentPage - 1) * eachPage).limit(eachPage - 0);
         let counts = await shopsModel
             .find({
                 [type]: { $regex: [text], $options: '$i' },
                 userId,
-                shopType:"0"
+
+                shopType:"1"
             })
             total = counts.length
-    } else {
-        shops = await shopsModel.find({userId,shopType:"0"}).skip((currentPage - 1) * eachPage).limit(eachPage - 0);
-        let counts = await shopsModel.find({userId,shopType:"0"});
+    } else if(userId) {  // cq 根据 用户id 查找门店信息
+        shops = await shopsModel.find({userId,shopType:"1"}).skip((currentPage - 1) * eachPage).limit(eachPage - 0);
+        let counts = await shopsModel.find({userId,shopType:"1"});
         total = counts.length
-    }
+    }else{  // gm  查找所有门店信息
+        shops = await shopsModel.find({shopType}).skip((currentPage - 1) * eachPage).limit(eachPage - 0);
+        let counts = await shopsModel.find({shopType});
+            total = counts.length
+    } ;
     let pageData = {
         currentPage: currentPage - 0, // 当前页面
         eachPage, // 每页显示条数
@@ -45,4 +51,7 @@ module.exports.deteleShop = async function ({id}) {
 
 module.exports.revisionShop = async function ({_id,shopName,shopAdd,shopTel}) {
     return await shopsModel.updateOne({ _id}, {shopName,shopAdd,shopTel})
+}
+module.exports.auditingShopById = async function (idAndType) {//审批门店  gm ，参数： shopId,shopType
+    return await shopsModel.updateOne({ _id:idAndType.id}, {shopType:idAndType.shopType})
 }

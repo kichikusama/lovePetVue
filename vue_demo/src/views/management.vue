@@ -1,4 +1,3 @@
-
  <template>
  
 
@@ -27,7 +26,7 @@
 
                      <el-menu-item index="/management/blackList">黑名单</el-menu-item>
 
-                     <el-menu-item index="/management/auditing">用户审批</el-menu-item>
+                  
 
                   </el-menu-item-group>
                 </el-submenu>
@@ -49,12 +48,12 @@
                     <span>宠主管理</span>
                   </template>
                   <el-menu-item-group>
-                    <el-menu-item index="/management/addmembers">新增宠主</el-menu-item>
+                    <!-- <el-menu-item index="/management/addmembers">新增宠主</el-menu-item> -->
                     <el-menu-item index="/management/membersList">宠主列表</el-menu-item>
                   </el-menu-item-group>
                 </el-submenu>
 
-                <el-submenu index="4">
+                <!-- <el-submenu index="4">
                   <template slot="title">
                     <i class="el-icon-goods"></i>
                     <span>供应商管理</span>
@@ -71,7 +70,7 @@
                     <template slot="title">选项4</template>
                     <el-menu-item index="1-4-1">选项1</el-menu-item>
                   </el-submenu>
-                </el-submenu>
+                </el-submenu> -->
               </el-menu>
             </el-col>
           </el-row>

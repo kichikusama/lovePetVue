@@ -76,7 +76,7 @@ export default ({
             //      userStatus
             //  }
             const re = await usersService.getUsers({currentPage: state.currentPage,eachPage: state.eachPage,...params});
-            // console.log(data);
+            console.log(re);
             commit('getUsers', re);
         },
         // 获取 待审批 用户
