@@ -8,7 +8,7 @@ export default ({
         currentPage:1,
         eachPage:5,//每页显示条数
         shops:[],
-        userId:'123',
+        userId:'',
     },
     mutations: {
         getShops: (state, payload) => {

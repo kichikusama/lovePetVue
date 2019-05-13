@@ -120,7 +120,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scope>
 .el-header {
   background-color: #409eff;
   color: #ffffff;

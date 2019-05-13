@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+
+
+/* GET users listing. */
+
 const {  getUsers,addUser,searchUser,deleteUserById,loginUser,auditing,adoptUsersById,disabledUsers,againstUsersById } = require('../service/usersService.js');
 
 /* GET users listing. */
@@ -12,6 +16,7 @@ router.post('/addUserImage', async function (req, res, next) {
   });
   res.send(result);
 });
+
 
 // 新增 用户  post 请求方式 GM
 router.post('/addUser', async function(req, res, next) {
@@ -26,7 +31,7 @@ router.post('/addUser', async function(req, res, next) {
 //   eachPage: this.pageData.eachPage,
 //},
 router.post('/getUsers',async function(req, res, next) {
-  // console.log(req.body);
+  console.log(req.body);
   res.send(await getUsers(req.body));
 });
 
@@ -34,9 +39,9 @@ router.post('/auditingUsers',async function(req, res, next) {
   // console.log(req.body);
   res.send(await auditing());
 });
-router.post('/disabledUsers',async function(req, res, next) { // 获取违规用户
+router.post('/disabledUsers',async function(req, res, next) {
   // console.log(req.body);
-  res.send(await disabledUsers());
+  res.send(await disabledUsers());  // 获取违规用户
 });
 // 通过搜索框 搜索用户  get请求方式 GM 
 router.post('/searchUser', async function (req, res, next) {
@@ -54,20 +59,14 @@ router.post('/loginUser', async function (req, res, next) {
   // console.log("登录用户："+ yy);
   res.send(yy);
 });
+router.post('/againstUsersById',async function(req, res, next) { // 修改用户 状态为 禁用
+  console.log(req.body);
+  res.send(await againstUsersById(req.body));
+});
 
 //删除用户通过id
 router.get('/deleteUserById', async function (req, res, next) {
   res.send(await deleteUserById(req.query))
 });
 
- //通过Id修改  待审批用户状态
- router.post('/adoptUsersById', async function (req, res, next) {
-  // console.log("adoptUsersById")
-  res.send(await adoptUsersById(req.body));
-}); 
- //通过Id修改  违规用户状态
- router.post('/againstUsersById', async function (req, res, next) {
-  // console.log("adoptUsersById")
-  res.send(await againstUsersById(req.body));
-}); 
 module.exports = router;

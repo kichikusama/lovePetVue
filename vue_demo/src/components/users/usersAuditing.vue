@@ -17,6 +17,19 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-alert style="
+       position: absolute;
+       width: 300px;
+       height: 150px;
+       top: 100px;
+       right: 20px;
+      "
+        class="tipStyle"
+        title=""
+        type="info"
+        description=" 平台管理员拥有对新注册用户审批的权限，审批通过后用户拥有开店及营业功能，点击‘审批’；如果此人和你有仇，可拒绝审批。"
+        show-icon
+      ></el-alert>
     </div>
   </div>
 </template>

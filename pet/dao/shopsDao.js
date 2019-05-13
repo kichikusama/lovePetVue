@@ -9,19 +9,36 @@ module.exports.getShopBypage = async function ({ currentPage, eachPage, type, te
             .find({
                 [type]: { $regex: [text], $options: '$i' },
                 userId,
+<<<<<<< HEAD
+                shopType:"1"  // 1 为可用
+=======
                 shopType:"0"
+>>>>>>> 64f4ad65f32ae9bf2a355bb1eb1984ae8ff9b9a1
             })
             .skip((currentPage - 1) * eachPage).limit(eachPage - 0);
         let counts = await shopsModel
             .find({
                 [type]: { $regex: [text], $options: '$i' },
                 userId,
+<<<<<<< HEAD
+                shopType:"1"
+            })
+            total = counts.length
+    } else if(userId) {  // cq 根据 用户id 查找门店信息
+        shops = await shopsModel.find({userId,shopType:"1"}).skip((currentPage - 1) * eachPage).limit(eachPage - 0);
+        let counts = await shopsModel.find({userId,shopType:"1"});
+        total = counts.length
+    }else{  // gm  查找所有门店信息
+        shops = await shopsModel.find({shopType:"1"}).skip((currentPage - 1) * eachPage).limit(eachPage - 0);
+        let counts = await shopsModel.find({shopType:"1"});
+=======
                 shopType:"0"
             })
             total = counts.length
     } else {
         shops = await shopsModel.find({userId,shopType:"0"}).skip((currentPage - 1) * eachPage).limit(eachPage - 0);
         let counts = await shopsModel.find({userId,shopType:"0"});
+>>>>>>> 64f4ad65f32ae9bf2a355bb1eb1984ae8ff9b9a1
         total = counts.length
     }
     let pageData = {
