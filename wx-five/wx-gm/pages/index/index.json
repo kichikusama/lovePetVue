@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "swiper":"../../components/homeSwiper/homeSwiper",
+    "shopList":"../../components/homeShopList/homeShopList"
+  }
 }
