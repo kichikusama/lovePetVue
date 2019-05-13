@@ -53,9 +53,5 @@ export default {
   deteleShops,
   getShops,
   revisionShop,
-<<<<<<< HEAD
-  
-=======
   auditingShop
->>>>>>> 8a0dd6ec49cfd42a61c144586a99aed25bb8fa95
 }
