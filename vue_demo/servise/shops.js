@@ -43,5 +43,6 @@ export default {
   getShopsBypage,
   deteleShops,
   getShops,
-  revisionShop
+  revisionShop,
+  
 }

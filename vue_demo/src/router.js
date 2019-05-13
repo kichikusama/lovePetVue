@@ -101,9 +101,9 @@ const router = new Router({
           component:AddGoods,
         },
         {
-          path:'/stock/serve',
-          name:"Serve",
-          component:Serve
+          path:'/stock/addServe',
+          name:"AddService",
+          component:AddService
         },
         {
           path: '/stock/addPets',//新增宠物    路由
@@ -178,11 +178,7 @@ const router = new Router({
       name: 'StoreManagment',
       component: StoreManagment,
       children: [ // children 属性配置二级路径
-        {
-          path: '/storeManagement/AddService',
-          name: 'AddService',
-          component: AddService,
-        },
+        
         {
           path: '/storeManagement/FindService',
           name: 'FindService',

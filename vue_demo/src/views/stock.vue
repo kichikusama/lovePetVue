@@ -27,7 +27,7 @@
                     <span style="color:red">服务管理</span>
                   </template>
                   <el-menu-item-group>
-                    <el-menu-item index="/stock/serve">新增服务</el-menu-item>
+                    <el-menu-item index="/stock/addServe">新增服务</el-menu-item>
                   </el-menu-item-group>
                 </el-submenu>
 

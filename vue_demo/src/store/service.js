@@ -1,5 +1,17 @@
 import serServuse from "../../servise/service";
-
+import { Message } from 'element-ui';
+let userId;
+let shopId;
+for (let item of document.cookie) {
+    if (item == ";") {
+        var ca = document.cookie.split(";");
+        userId = ca[0].split("=")[1];
+        shopId = ca[1].split("=")[1];
+        break;
+    } else if (item == "=") {
+        userId = document.cookie.split("=")[1];
+    }
+}
 export default {
     namespaced: true,
     state: {
@@ -7,7 +19,7 @@ export default {
         eachPage: "10", // 每页显示条数
         totalPage: "0", // 总页数
         count: "0", // 总条数
-        data:[],
+        gg:[],
         service: {
             serviceName: "",
             serviceType: "",
@@ -16,7 +28,9 @@ export default {
             serviceDetial: "",
             serviceTime: "",
             serviceLevel: "",
-            servicePrice: ""
+            servicePrice: "",
+            userId:"",
+            shopId:[],
         },
         form: {
             _id: "",
@@ -41,6 +55,7 @@ export default {
     },
     actions: {
         async onSubmit(state, payload) {
+            state.state.service.userId=userId
             const result = await serServuse.addService(state.state.service);
             if (result) {
                 Message.success("新增成功！");
@@ -60,27 +75,29 @@ export default {
             const data = await serServuse.getService(context.state.service)
             context.commit("getService", data);
         },
-        async deteleServiceAsync({ dispatch,commit, state },id) {
-            const data = await serServuse.deteleService(id)
-            if(data.ok==1){
-                dispatch("getServiceAsync")
+        async deleteServiceByPageAsync({ dispatch, shopId }, data) {
+            const result = await serServuse.deleteServiceByPage(data);
+            if (result) {
+                dispatch("getAllServiceAsync");
+            } else {
+                Message.warning("修改成功！")
             }
-        },//删除指定服务
+        },
+        
         async getAllServiceAsync({ commit, state },search) {
-            const data = await serServuse.getServiceBypage({currentPage:state.currentPage,eachPage:state.eachPage,...search})
+            const data = await serServuse.getServiceByPage({currentPage:state.currentPage,eachPage:state.eachPage,shopId,...search})
             commit("getService", data)
         },//获取所有服务(具有分页)
 
         async getServiceByIdAsync({ commit }, id) {
-            const [result] = await serServuse.getServiceById(id._id);
+            const [result] = await serServuse.getServiceById({ shopId, _id: id });
             commit("getService", { form: result })
         },
 
         async updateServiceByIdAsync({ state, commit }, payload) {
             const result = await serServuse.updateServiceById({ data: state.form, _id: payload })
             if (result) {
-                const data = await serServuse.getServiceBypage({ currentPage: state.currentPage, eachPage: state.eachPage })
-                commit("getService", data);
+                dispatch("getAllServiceAsync");
             }
         }
     }
