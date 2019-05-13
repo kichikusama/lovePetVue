@@ -22,7 +22,6 @@ module.exports.getUsers = async function (data) {
 }
 
 module.exports.auditing = async function () {  // 获取待审批用户
-
   let ss = await auditing();
   // console.log("ss:"+ss);
   return ss;

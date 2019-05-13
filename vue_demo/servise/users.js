@@ -25,7 +25,7 @@ const auditingUsers = async () => await fetch(`/users/auditingUsers`,{  // 获�
   // body:  JSON.stringify(data)
 }).then(response => response.json())
 
-const adoptUsers = async (data) => await fetch(`/users/adoptUsersById`,{  // 审批 用户  即修改用户的 userStatus
+const adoptUsers = async (data) => await fetch(`/users/adoptUsersById`,{  // 审批，解禁 用户  即修改用户的 userStatus
   headers: { 
       "Content-Type": "application/json",
       "Accept":"application/json",
