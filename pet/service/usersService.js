@@ -1,4 +1,6 @@
+
 const { getUsers, addUser, searchUser, deleteUserById, loginUser,auditing,adoptUsersById,disabledUsers,againstUsersById } = require('../dao/usersDao.js');
+
 
 
 // 新增 用户  POST 请求方式 GM
@@ -18,21 +20,28 @@ module.exports.getUsers = async function (data) {
   // console.log("ss:"+ss);
   return ss;
 }
+
 module.exports.auditing = async function () {  // 获取待审批用户
+
   let ss = await auditing();
   // console.log("ss:"+ss);
   return ss;
 }
 module.exports.disabledUsers = async function () {  // 获取违规用户
   let ss = await disabledUsers();
-  // console.log("ss:"+ss);
-  return ss;
+   return ss.filter(item => item.againstTimes < 4 )  // 违规次数小于4 
+ // console.log("ss:"+ss);
+  
 }
 //搜索框 搜索用户 get 请求方式 GM
 module.exports.searchUser = async function (search) {
   return await searchUser(search);
 }
-
+module.exports.againstUsersById = async function (data) { // 修改用户 状态为 禁用
+  let ss = await againstUsersById(data);
+  // console.log("againstUsersById:"+ss);
+  return ss;
+}
 // 登录查询  post请求方式 GM 
 module.exports.loginUser = async function (user) {
   return await loginUser(user); 
@@ -47,6 +56,7 @@ module.exports.deleteUserById = async function (data) {
     return false
   }
 }
+
  //通过Id修改  待审批用户状态
 module.exports.adoptUsersById = async function (UsersDetails) {
  let re = await adoptUsersById(UsersDetails);
@@ -63,3 +73,4 @@ module.exports.adoptUsersById = async function (UsersDetails) {
   }
   return false;
  }
+

@@ -1,7 +1,7 @@
 <template>
   <el-container>
-    <el-header style="text-align: center; background-color: #B3C0D1;">
-      <h1>宠主列表</h1>
+    <el-header style="text-align: center; background-color: #B3C0D1;height:100px">
+      <h3>宠主列表</h3>
     </el-header>
 
     <el-main>
@@ -65,7 +65,8 @@
           @size-change="setEachPage"
           @current-change="setCurPage"
           :current-page="currentPage-0"
-          :page-sizes="[1, 2, 3, ]"
+          :page-sizes="[3, 8, 10]"
+          :page-size="3"
           layout="total, sizes, prev, pager, next, jumper"
           :total="total"
         ></el-pagination>

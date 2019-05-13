@@ -16,9 +16,10 @@ const usersSchema = new mongoose.Schema({
         default: "0" // 
     }, // 申请中：0; 可用：1； 不可用：2；
     image:String,  // 证件照
-    againstReason:{  // 违规原因     可不填写
-        type:String,
-        default:"-"
+    againstReason:[],  // 违规原因     可不填
+    againstTimes:{  // 用户违规次数
+        type:Number,
+        default:0,   
     }
     // goodsId: [{  // 商品 id
     //     type: mongoose.Schema.Types.ObjectId,

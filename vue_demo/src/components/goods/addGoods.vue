@@ -124,7 +124,7 @@ export default {
 };
 </script>
 
-<style>
+<style scope>
 .common {
   width: 100%;
 }

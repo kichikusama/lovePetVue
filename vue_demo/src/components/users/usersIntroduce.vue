@@ -4,7 +4,13 @@
       <h3>用户详情</h3>
     </div>
     <div el-main style="width:100%;background-color:#EBEEF5;position:relative">
-      <el-alert
+      <el-alert style="
+       position: absolute;
+       width: 400px;
+       height: 155px;
+       top: 20px;
+       right: 100px;
+      "
         class="tipStyle"
         title=""
         type="info"
@@ -12,7 +18,7 @@
         show-icon
       ></el-alert>
 
-      <div style="width:300px;position:relative">
+      <div style="width:300px;position:relative;margin-left:80px">
         <i class="istyle el-icon-custom">
           <img :src="usersIndroduce.image" alt style="width:100px;height:100px">
         </i>
@@ -110,7 +116,8 @@
       </div>
       <div class="menu">
         <el-dropdown>
-          <span class="el-dropdown-link" style="color:#909399">
+ 
+          <span class="el-dropdown-link" style="color:#909399;cursor: pointer;">
             设置
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
@@ -118,9 +125,9 @@
             <el-dropdown-item>
               <a @click="show()">修改</a>
             </el-dropdown-item>
-            <el-dropdown-item>
+            <!-- <el-dropdown-item>
               <a>删除用户</a>
-            </el-dropdown-item>
+            </el-dropdown-item> -->
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -165,7 +172,7 @@
                  
               ]"
             >
-              <el-select v-model="usersIndroduce.againstReason" placeholder="请选择" style="width:80%">
+              <el-select v-model="againstObj.reason" placeholder="请选择" style="width:80%">
                 <el-option label="刷单" value="刷单"></el-option>
                 <el-option label="卖假货" value="卖假货"></el-option>
                 <el-option label="延迟发货" value="延迟发货"></el-option>
@@ -178,7 +185,7 @@
           </el-form>
           <el-form formGroup="validateForm" inline size="small">
             <el-form-item>
-              <el-button type="primary" @click="sureUpdate">确认修改</el-button>
+              <el-button type="primary" @click="sureUpdate">打入冷宫</el-button>
             </el-form-item>
 
             <el-form-item>
@@ -202,12 +209,12 @@ export default {
     return {
       currentDate: new Date(),
       dialogTableVisible: false,
-      show1: false,
-      show2: false,
-      show3: false,
-      show4: false,
       isShow: false,
-      stars: []
+      stars: [],// 星星等级
+      againstObj:{
+        times:0,   // 违规次数
+        reason:"", // 违规原因
+      },
     };
   },
   watch: {},
@@ -231,11 +238,16 @@ export default {
       //   Object.assign(this.user, rows); // 更新 data中的user信息
       // console.log(this.user.userAcount);
     },
-    sureUpdate() {
+    
+    sureUpdate() { // 将正常用户 改为 违规用户，需要传递的参数：_id ,userstatus,againstReason,againstTimes
+      this.againstObj.times = this.usersIndroduce.againstReason.length+1;
+      this.usersIndroduce.againstReason.push(this.againstObj);
+      
       let data = {
         _id: this.usersIndroduce._id,
         userStatus: "2",
-        againstReason: this.usersIndroduce.againstReason
+        againstReason: this.usersIndroduce.againstReason,
+        againstTimes: this.usersIndroduce.againstTimes+1,  // 当用户 修改一次，则 againstTimes 属性 +1
       };
       this.againstUsersAsync(data);
       this.isShow = !this.isShow;
