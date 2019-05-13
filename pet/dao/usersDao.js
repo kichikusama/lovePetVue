@@ -85,4 +85,11 @@ module.exports.deleteUserById = async function (_id ) {
 module.exports.adoptUsersById = async function (idAndStatus) {
     return await usersModel.update({ _id: idAndStatus._id }, { userStatus: idAndStatus.userStatus})
 }
+<<<<<<< HEAD
 
+=======
+ //通过Id修改 违规用户状态
+ module.exports.againstUsersById= async function (idStatusReasonAgainstTimes) {
+    return await usersModel.update({ _id: idStatusReasonAgainstTimes._id }, { userStatus: idStatusReasonAgainstTimes.userStatus,againstReason:idStatusReasonAgainstTimes.againstReason,againstTimes:idStatusReasonAgainstTimes.againstTimes})
+}
+>>>>>>> 23b38a8d0c6bd53c3dfadc228e1a040fb0856a89

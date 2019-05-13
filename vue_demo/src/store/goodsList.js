@@ -42,7 +42,6 @@ export default ({
     },
     actions: {
         async getGoodsByPageAsync({ commit, state }, search) {
-            console.log(search);
             const data = await goodsSer.getGoodsByPage({ currentPage: state.currentPage, eachPage: state.eachPage, shopId, ...search });
             commit("getGoodsByPage", data);
         },
