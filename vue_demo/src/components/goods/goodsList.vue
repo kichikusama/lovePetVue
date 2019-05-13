@@ -99,8 +99,6 @@ export default {
       id: "",
       formLabelWidth: "120px",
       dialogFormVisible: false
-      // shopId: "",
-      // userId: ""
     };
   },
   computed: {

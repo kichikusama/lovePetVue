@@ -6,10 +6,7 @@ const ordersSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'membersModel'
     },
-    shopId: {  // 门店 id
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'shopsModel'
-    },
+    shopId: String,
     petsId: [{  // 宠物 id
         type: mongoose.Schema.Types.ObjectId,
         ref: 'petsModel'

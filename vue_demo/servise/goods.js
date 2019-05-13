@@ -12,7 +12,7 @@ const getGoodsByPage = async (data) => await fetch(`/goods/getGoodsByPage`, {
     },
     method: 'POST',
     body: JSON.stringify(data)
-}).then(response => response.json())//查看所有门店（具有分页）
+}).then(response => response.json())//查看当前门店下所有的商品信息（具有分页）
 
 const deleteGoodsByPage = async (data) => await fetch(`/goods/deleteGoodsByPage`, {
     headers: {

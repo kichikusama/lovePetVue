@@ -8,7 +8,7 @@ export default ({
         currentPage:1,
         eachPage:5,//每页显示条数
         shops:[],
-        userId:'123',
+        userId:'',
     },
     mutations: {
         getShops: (state, payload) => {
@@ -27,6 +27,8 @@ export default ({
         },//增加门店
         async getShopsAsync({ commit, state },search) {
             const data = await shopServe.getShopsBypage({currentPage:state.currentPage,eachPage:state.eachPage,userId:state.userId,...search})
+            console.log(data);
+            
             commit("getShops", data)
         },//获取所有门店(具有分页)
         async deteleShopsAsync({ dispatch,commit, state },id) {
@@ -45,9 +47,17 @@ export default ({
             const data = await shopServe.revisionShop(shopId)
             console.log(data)
             if(data.n==1){
-                console.log('xx')
+                // console.log('xx')
                 dispatch("getShopsAsync")
             }
         },//修改指定门店
+         async shopAuditingAsync({ dispatch,commit, state },shop) {
+            const data = await shopServe.auditingShop(shop)
+            console.log(data)
+            if(data.n==1){
+                console.log('xx')
+                dispatch("getShopsAsync",{shopType:"0"})
+            }
+        },//审批门店  gm
     }
 })

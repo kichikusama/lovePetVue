@@ -38,11 +38,24 @@ const revisionShop = async (data) => await fetch(`/shops/revisionShop`,{
   body:  JSON.stringify(data)
 }).then(response => response.json())//修改指定门店
 
+const auditingShop= async (data) => await fetch(`/shops/auditingShopById`,{
+  headers: { 
+      "Content-Type": "application/json",
+      // 'Accept':"application/json",
+  },
+  method:'POST',
+  body:  JSON.stringify(data)
+}).then(response => response.json())//审批门店  gm
+
 export default {
   addShops,
   getShopsBypage,
   deteleShops,
   getShops,
   revisionShop,
+<<<<<<< HEAD
   
+=======
+  auditingShop
+>>>>>>> 8a0dd6ec49cfd42a61c144586a99aed25bb8fa95
 }
