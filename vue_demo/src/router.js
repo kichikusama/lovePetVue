@@ -157,6 +157,14 @@ const router = new Router({
       path: '/management',
       name: 'Management ',
       component: Management,
+      beforeEnter: (to, from, next) => {
+        console.log(document.cookie)
+        if(document.cookie){
+          next()
+        }else{
+          next({ path: '/'})
+        }
+      },//守卫
       children: [ // children 属性配置二级路径
         {
           path: '/management/addmembers',  // GM  用户列表
@@ -205,6 +213,14 @@ const router = new Router({
       path: '/management/:username',
       name: 'ManagementWithParams',
       // component: Management,
+      beforeEnter: (to, from, next) => {
+        console.log(document.cookie)
+        if(document.cookie){
+          next()
+        }else{
+          next({ path: '/'})
+        }
+      },//守卫
       component: () => import(/* webpackChunkName: "about" */ './views/management.vue')// 实现延迟加载
     },
 
@@ -213,6 +229,14 @@ const router = new Router({
       path: '/storeManagement',
       name: 'StoreManagment',
       component: StoreManagment,
+      beforeEnter: (to, from, next) => {
+        console.log(document.cookie)
+        if(document.cookie){
+          next()
+        }else{
+          next({ path: '/'})
+        }
+      },//守卫
       children: [ // children 属性配置二级路径
         {
           path: '/storeManagement/AddService',

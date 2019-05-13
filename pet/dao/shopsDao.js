@@ -9,19 +9,19 @@ module.exports.getShopBypage = async function ({ currentPage, eachPage, type, te
             .find({
                 [type]: { $regex: [text], $options: '$i' },
                 userId,
-                shopType:"0"
+                shopType:"1"
             })
             .skip((currentPage - 1) * eachPage).limit(eachPage - 0);
         let counts = await shopsModel
             .find({
                 [type]: { $regex: [text], $options: '$i' },
                 userId,
-                shopType:"0"
+                shopType:"1"
             })
             total = counts.length
     } else {
-        shops = await shopsModel.find({userId,shopType:"0"}).skip((currentPage - 1) * eachPage).limit(eachPage - 0);
-        let counts = await shopsModel.find({userId,shopType:"0"});
+        shops = await shopsModel.find({userId,shopType:"1"}).skip((currentPage - 1) * eachPage).limit(eachPage - 0);
+        let counts = await shopsModel.find({userId,shopType:"1"});
         total = counts.length
     }
     let pageData = {
