@@ -5,7 +5,7 @@ export default {
     state: {
         total: 0,
         currentPage: 1,
-        eachPage: 1,
+        eachPage: 3,    //每页显示条数
 
         pets: [],
         data: {
@@ -39,13 +39,13 @@ export default {
         },
         submitForm(state, payload) {
             if (
-                state.petsData.petsSpecies &
-                state.petsData.petsType &
-                state.petsData.petsColor &
-                state.petsData.petsBirth &
-                state.petsData.petsLevel &
-                state.petsData.petCharacter &
-                state.petsData.petsWeight
+                !state.petsData.petsSpecies=="" ||
+                !state.petsData.petsType=="" ||
+                !state.petsData.petsColor=="" ||
+                !state.petsData.petsBirth=="" ||
+                !state.petsData.petsLevel=="" ||
+                !state.petsData.petCharacter=="" ||
+                !state.petsData.petsWeight==""
             ) {
                 const result = serPets.addPets(state.petsData);
                 if (result) {
@@ -59,11 +59,9 @@ export default {
                     state.petsData.petsWeight = "";
                     state.petsData.petsImg = "";
 
-                } else {
-                    Message.warning("新增失败！")
-                }
+                } 
             } else {
-                Message.warning("1111111111")
+                Message.warning("请完善资料！")
             }
 
         },
@@ -104,10 +102,10 @@ export default {
         async deletePetByPageAsync({ dispatch }, data) {
             const result = await serPets.deletePetByPage(data);
             if (result) {
-                Message.warning("修改成功！")
+                Message.success("删除成功！")
                 dispatch("getPetsByAllPageAsync");
             } else {
-                Message.warning("修改失败！")
+                Message.warning("删除失败！")
             }
 
         },
