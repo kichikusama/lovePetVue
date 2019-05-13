@@ -1,0 +1,6 @@
+<!--components/homeServiceItem/homeServiceItem.wxml-->
+<view>
+    <view>
+        <image src="{{}}" /> 
+    </view>
+</view>

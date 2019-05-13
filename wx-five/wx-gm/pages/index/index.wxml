@@ -1,2 +1,15 @@
 <!--pages/index/index.wxml-->
-<text>爱宠帮</text>
+<scroll-view style="background-color:#f2f2f2">
+    <view class="header">
+        <text class="title">爱宠邦</text>
+        <swiper class="swiper" />
+    </view>
+    <scroll-view class="container">
+        <view>
+            <blockquote class="list" wx:for="{{list}}" wx:key="{{item}}">
+                <text class="li">{{item}}</text>
+            </blockquote>
+            <shopList />
+        </view>
+    </scroll-view>
+</scroll-view>

@@ -1,0 +1,6 @@
+/* components/homeShopList/homeShopList.wxss */
+.container{
+    padding: 5% 0;
+    background-color: #ffffff;
+    
+}
