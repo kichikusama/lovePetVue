@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { addService,getService,deteleService,getServiceBypage,getServiceById,updateServiceById } = require('../service/serviceService.js');
+const { addService,getService,deteleService,getServiceBypage,getServiceById,updateServiceById,getServiceByUserId, addShopIdToService} = require('../service/serviceService.js');
 
 //新增
 router.post('/addService', async function(req, res, next) {
@@ -31,4 +31,21 @@ router.get('/getServiceById', async function (req, res, next) {
 router.post('/updateServiceById', async function (req, res, next) {
   res.send(await updateServiceById(req.body))
 });
+
+// 通过 shopId 获取数据
+router.post('/getServiceByUserId', async function (req, res, next) {
+  res.send(await getServiceByUserId(req.body))
+});
+
+// 向商品身上添加 shopId
+router.post('/addShopIdToService', async function (req, res, next) {
+  res.send(await addShopIdToService(req.body))
+});
+
+
+
+
+
+
+
 module.exports = router;

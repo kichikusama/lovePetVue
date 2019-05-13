@@ -4,9 +4,23 @@
       <h3>用户详情</h3>
     </div>
     <div el-main style="width:100%;background-color:#EBEEF5;position:relative">
-      <div style="width:300px;">
+      <el-alert style="
+       position: absolute;
+       width: 400px;
+       height: 155px;
+       top: 20px;
+       right: 100px;
+      "
+        class="tipStyle"
+        title=""
+        type="info"
+        description="当用户涉及违规操作时，可点击‘设置->修改’当前用户状态为‘禁用’，并且可设置禁用时长。当用户违规次数超过三次，将被平台拉入黑名单！"
+        show-icon
+      ></el-alert>
+
+      <div style="width:300px;position:relative;margin-left:80px">
         <i class="istyle el-icon-custom">
-            <img :src="usersIndroduce.image" alt style="width:100px;height:100px">
+          <img :src="usersIndroduce.image" alt style="width:100px;height:100px">
         </i>
         <br>
         <span style="font-size:14px;color:#909399">
@@ -15,25 +29,30 @@
         </span>
         <div>
           <span class="textStyle">等级：</span>
-           <template v-for="item in shops">
-              <img :key="item._id" src="../../assets/icon/star_1.png" style="width:16px;height:16px" alt="">
-           </template>
+          <template v-for="item in shops">
+            <img
+              :key="item._id"
+              src="../../assets/icon/star_1.png"
+              style="width:16px;height:16px"
+              alt
+            >
+          </template>
+          <span class="textStyle" v-if="shops.length>0">({{shops.length}}级)</span>
+          <span class="textStyle" v-else>新用户哦~</span>
         </div>
-       
         <span style="font-size:12px;color:#909399">ID:{{usersIndroduce._id}}</span>
       </div>
       <div class="box1">
         <div class="shop">
           <el-table :data="shops" style="width: 1000px;">
-             <el-table-column type="index" label="序号" width="100"></el-table-column>
+            <el-table-column type="index" label="序号" width="100"></el-table-column>
             <el-table-column prop="shopName" label="名称" width="150"></el-table-column>
             <el-table-column prop="shopLicenceNum" label="营业执照号码" width="150"></el-table-column>
             <el-table-column prop="shopAdd" label="营业地址" width="150"></el-table-column>
             <el-table-column prop="shopCommission" label="佣金比例" width="100"></el-table-column>
             <el-table-column prop="shopCorporate" label="法人" width="100"></el-table-column>
-            <el-table-column prop="" label="经营时长" width="100"></el-table-column>
-            <el-table-column prop="" label="月销量" ></el-table-column>
-
+            <el-table-column prop label="经营时长" width="100"></el-table-column>
+            <el-table-column prop label="月销量"></el-table-column>
           </el-table>
           <!-- <el-button @click="show1 = !show1">门店</el-button>
           <div>
@@ -97,7 +116,8 @@
       </div>
       <div class="menu">
         <el-dropdown>
-          <span class="el-dropdown-link" style="color:#909399">
+ 
+          <span class="el-dropdown-link" style="color:#909399;cursor: pointer;">
             设置
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
@@ -105,9 +125,9 @@
             <el-dropdown-item>
               <a @click="show()">修改</a>
             </el-dropdown-item>
-            <el-dropdown-item>
+            <!-- <el-dropdown-item>
               <a>删除用户</a>
-            </el-dropdown-item>
+            </el-dropdown-item> -->
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -139,38 +159,33 @@
               <el-input v-model="usersIndroduce.userMail" disabled></el-input>
             </el-form-item>
           </el-form>
-          <el-form>
-            <el-form-item label="状态" label-width="120">
-              <el-radio-group v-model="usersIndroduce.userStatus">
-                <el-radio :label="0">申请中</el-radio>
-                <el-radio :label="1">已审批</el-radio>
-                <el-radio :label="2">未审批</el-radio>
-              </el-radio-group>
+          <el-form style="width:480px;margin:20px auto ">
+            <el-form-item label="状态:" label-width="120" style="width:480px;margin:auto">
+              <el-radio v-model="usersIndroduce.userStatus" label="1">可用</el-radio>
+              <el-radio v-model="usersIndroduce.userStatus" label="2">禁用</el-radio>
             </el-form-item>
-          </el-form>
-          <el-form inline>
-            <el-form-item label="门店">
-              <el-input></el-input>
+            <el-form-item
+              label="违规原因："
+              label-Width="100px"
+              :rules="[
+                 { required: true, message: '原因不能为空'},
+                 
+              ]"
+            >
+              <el-select v-model="againstObj.reason" placeholder="请选择" style="width:80%">
+                <el-option label="刷单" value="刷单"></el-option>
+                <el-option label="卖假货" value="卖假货"></el-option>
+                <el-option label="延迟发货" value="延迟发货"></el-option>
+              </el-select>
             </el-form-item>
-          </el-form>
-          <el-form inline>
-            <el-form-item label="商品">
-              <el-input></el-input>
-            </el-form-item>
-          </el-form>
-          <el-form inline>
-            <el-form-item label="服务">
-              <el-input></el-input>
-            </el-form-item>
-          </el-form>
-          <el-form inline>
-            <el-form-item label="宠物">
-              <el-input></el-input>
-            </el-form-item>
+
+            <!-- <el-form-item label="自定义：" style="width:480px;margin:20px auto ">
+              <el-input type="textarea" v-model="usersIndroduce.againstReason"></el-input>
+            </el-form-item>-->
           </el-form>
           <el-form formGroup="validateForm" inline size="small">
             <el-form-item>
-              <el-button type="primary">确认修改</el-button>
+              <el-button type="primary" @click="sureUpdate">打入冷宫</el-button>
             </el-form-item>
 
             <el-form-item>
@@ -194,22 +209,20 @@ export default {
     return {
       currentDate: new Date(),
       dialogTableVisible: false,
-      show1: false,
-      show2: false,
-      show3: false,
-      show4: false,
-      isShow: false
+      isShow: false,
+      stars: [],// 星星等级
+      againstObj:{
+        times:0,   // 违规次数
+        reason:"", // 违规原因
+      },
     };
   },
   watch: {},
   computed: {
-    ...mapState([
-      "shops",
-      "usersIndroduce"
-    ])
+    ...mapState(["shops", "usersIndroduce"])
   },
   methods: {
-    ...mapActions(["usersListAsync", "deleteUserAsync"]),
+    ...mapActions(["usersListAsync", "deleteUserAsync", "againstUsersAsync"]),
     ...mapMutations([
       "setEachPage",
       "setCurrentPage",
@@ -224,12 +237,28 @@ export default {
       // console.log(rows);
       //   Object.assign(this.user, rows); // 更新 data中的user信息
       // console.log(this.user.userAcount);
+    },
+    
+    sureUpdate() { // 将正常用户 改为 违规用户，需要传递的参数：_id ,userstatus,againstReason,againstTimes
+      this.againstObj.times = this.usersIndroduce.againstReason.length+1;
+      this.usersIndroduce.againstReason.push(this.againstObj);
+      
+      let data = {
+        _id: this.usersIndroduce._id,
+        userStatus: "2",
+        againstReason: this.usersIndroduce.againstReason,
+        againstTimes: this.usersIndroduce.againstTimes+1,  // 当用户 修改一次，则 againstTimes 属性 +1
+      };
+      this.againstUsersAsync(data);
+      this.isShow = !this.isShow;
     }
   },
-  mounted() {}
+  mounted() {
+    // this.getStars();
+  }
 };
 </script>
-<style>
+<style scope>
 .transition-box {
   margin-bottom: 10px;
   width: 450px;
@@ -247,8 +276,9 @@ export default {
   position: relative;
   /* margin-top: 100px; */
 }
-.textStyle{
-  font-size:14px;color:#909399
+.textStyle {
+  font-size: 14px;
+  color: #909399;
 }
 .goods {
   width: 300px;
@@ -292,6 +322,13 @@ export default {
   display: inline-block;
   width: 100px;
   height: 100px;
-  border: 1px solid #909399;
+}
+.el-alert {
+  position: absolute;
+  width: 400px;
+  height: 155px;
+  /* border: 1px solid; */
+  top: 20px;
+  right: 100px;
 }
 </style>
