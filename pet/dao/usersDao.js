@@ -11,22 +11,23 @@ module.exports.addUser = async function (users) {
 
 
 module.exports.getUsers = async function ({ currentPage, eachPage,userStatus,againstTimes }) {  
-     console.log("userStatus"+userStatus);
+     console.log("againstTimes"+againstTimes);
     let count = await usersModel.countDocuments(); // 获取总条数
     let totalPage = Math.ceil(count / eachPage); // 总页数
     let rows = [];
     if(userStatus){  //  用户列表查询 传递 userStatus
         rows = await usersModel
-        .find({userType:"0",againstTimes})   // 只查找 黑名单
+        .find({userType:"0",userStatus:"1"})   //只查找 门店管理员,且状态值为可用 
         .skip((currentPage - 1) * eachPage)
         .limit(eachPage - 0)
 
     }else{
         rows = await usersModel
-        .find({userType:"0",userStatus:"1"})   // 只查找 门店管理员,且状态值为可用
+        .find({userType:"0",againstTimes})   // 只查找 黑名单
         .skip((currentPage - 1) * eachPage)
         .limit(eachPage - 0)
     }
+    console.log(rows);
     
 
     let pageData = {
@@ -83,9 +84,5 @@ module.exports.deleteUserById = async function (_id ) {
  //通过Id修改  待审批用户状态
 module.exports.adoptUsersById = async function (idAndStatus) {
     return await usersModel.update({ _id: idAndStatus._id }, { userStatus: idAndStatus.userStatus})
-}
- //通过Id修改 违规用户状态
- module.exports.againstUsersById= async function (idStatusReasonAgainstTimes) {
-    return await usersModel.update({ _id: idStatusReasonAgainstTimes._id }, { userStatus: idStatusReasonAgainstTimes.userStatus,againstReason:idStatusReasonAgainstTimes.againstReason,againstTimes:idStatusReasonAgainstTimes.againstTimes})
 }
 

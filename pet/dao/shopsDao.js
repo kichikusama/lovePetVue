@@ -51,3 +51,6 @@ module.exports.deteleShop = async function ({id}) {
 module.exports.revisionShop = async function ({_id,shopName,shopAdd,shopTel}) {
     return await shopsModel.updateOne({ _id}, {shopName,shopAdd,shopTel})
 }
+module.exports.auditingShopById = async function (idAndType) {//审批门店  gm ，参数： shopId,shopType
+    return await shopsModel.updateOne({ _id:idAndType.id}, {shopType:idAndType.shopType})
+}
