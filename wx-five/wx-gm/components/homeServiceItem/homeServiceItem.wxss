@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    padding-top: 14rpx;
+    margin-bottom: 40rpx;
+}
+.img{
+    width: 110rpx;
+    height: 110rpx;
+    border-radius: 50%;
+}
+.text{
+    margin-left: 40rpx;
+}
+.name{
+    font-size: 38rpx;
+    font-weight: bold;
+}
+.price{
+    margin-top: 30rpx;
+    font-size: 32rpx;
+}

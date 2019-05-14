@@ -1,0 +1,13 @@
+<view>
+    <myHead />
+    <myOrder />
+    <view style='height:100rpx;border-top: 1rpx solid #DDDDDD;border-bottom: 1rpx solid #DDDDDD'>
+        <view style='height:30rpx;background-color:#F0F8FF'>
+        </view>
+        <view style='margin:10rpx 30rpx;'>
+            <text style="font-size:38rpx;">相关</text>
+        </view>
+    </view>
+    <myOperation />
+</view>
+

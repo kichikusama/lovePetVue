@@ -6,17 +6,14 @@ import Login from './views/login.vue';
 import Register from './views/register.vue';
 import Management from './views/management.vue'; // 平台管理员 主界面
 import StoreManagment from './views/storeManagement.vue'; // 门店管理员 界面
-// gm
-import Users from './components/users/users.vue'; // 用户列表 组件
+
+import Users from './components/users/users.vue'; // 用户管理 组件
 import Auditing from './components/users/usersAuditing.vue'; // 用户审批 组件
 import UsersIntroduce from './components/users/usersIntroduce.vue';// 用户详情 组件
 import DisabledUsers from './components/users/usersDisabled.vue'; // 违规用户 组件
 import SomeRules from './components/users/someRules.vue'; // 管理须知 组件
-import BlackList from './components/users/blackList.vue'; // 黑名单 组件
 
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
-import ShopsAuditing from './components/stores/auditingShops.vue'  // 门店审批
-
 //李东岳
 import AddService from './components/service/addService.vue';// 新增服务 组件
 import FindService from './components/service/findService.vue';// 查询服务 组件
@@ -35,23 +32,17 @@ import DeleteStore from './components/manageStore/deleteStore'//删除门店
 import FindStore from './components/manageStore/findStore' //查找门店
 //cq
 
-// cxy
+
 import AddGoods from "./components/goods/addGoods" // 门店管理 商品进货
 import AddShopGoods from "./components/goods/addShopGoods" // 门店新增商品
 import GoodsList from "./components/goods/goodsList" // 门店管理 商品列表
-import AddMembers from './components/members/addmembers'//新增宠主
 import MembersList from './components/members/membersList.vue';//宠主列表 
-
-import OrdersList from "./components/orders/ordersList"; // 订单管理 订单列表
-
-//cxy
 
 import AddPets from './components/pets/addPets' //新增宠物
 import PetsList from './components/pets/petsList' //宠物列表
-import AddShopPets from './components/pets/addShopPets' //新增门店宠物
+import AddShopPets  from './components/pets/addShopPets'  //新增门店宠物
 
 Vue.use(Router)
-
 
 const router = new Router({
   routes: [
@@ -71,29 +62,12 @@ const router = new Router({
     {   // 通过对象进行描述
       path: '/chooseServe', // 接收参数
       name: 'ChooseServe',
-      component: ChooseServe,
-      beforeEnter: (to, from, next) => {
-        console.log(document.cookie)
-        if(document.cookie){
-          next()
-        }else{
-          next({ path: '/'})
-        }
-      }//守卫
-      
+      component: ChooseServe
     },
     {   // 通过对象进行描述
       path: '/manageStore', // 接收参数
       name: 'ManageStore',
       component: ManageStore,
-      beforeEnter: (to, from, next) => {
-        console.log(document.cookie)
-        if(document.cookie){
-          next()
-        }else{
-          next({ path: '/'})
-        }
-      },//守卫
       children:[
         {
           path:'/manageStore/addStore',
@@ -121,14 +95,6 @@ const router = new Router({
       path: '/stock', // 接收参数
       name: 'Stock',
       component: Stock,
-      beforeEnter: (to, from, next) => {
-        console.log(document.cookie)
-        if(document.cookie){
-          next()
-        }else{
-          next({ path: '/'})
-        }
-      },//守卫
       children:[
         {
           path:'/stock/addGoods',
@@ -136,9 +102,9 @@ const router = new Router({
           component:AddGoods,
         },
         {
-          path:'/stock/serve',
-          name:"Serve",
-          component:Serve
+          path:'/stock/addServe',
+          name:"AddService",
+          component:AddService
         },
         {
           path: '/stock/addPets',//新增宠物    路由
@@ -161,20 +127,7 @@ const router = new Router({
       path: '/management',
       name: 'Management ',
       component: Management,
-      beforeEnter: (to, from, next) => {
-        console.log(document.cookie)
-        if(document.cookie){
-          next()
-        }else{
-          next({ path: '/'})
-        }
-      },//守卫
       children: [ // children 属性配置二级路径
-        {
-          path: '/management/addmembers',  // GM  用户列表
-          name: 'Addmembers',
-          component: AddMembers,
-        },
         {
           path: '/management/users',  // GM  用户列表
           name: 'Users',
@@ -201,25 +154,14 @@ const router = new Router({
           component: Auditing,
         },
         {
-          path: '/management/blackList',   //GM 黑名单 路由
-          name: 'BlackList',
-          component: BlackList,
-        },
-        {
           path: '/management/stores',  // 门店 路由
           name: 'managementStores',
           component: Stores,
-        },
-        {
-          path: '/management/shopsAuditing',  // 门店 路由
-          name: 'ShopsAuditing',
-          component: ShopsAuditing,
-        },
-        {
+        }, {
           path: '/management/membersList', //宠主 路由
           name: MembersList,
           component: MembersList,
-        },
+        }
       ]
     },
 
@@ -228,14 +170,6 @@ const router = new Router({
       path: '/management/:username',
       name: 'ManagementWithParams',
       // component: Management,
-      beforeEnter: (to, from, next) => {
-        console.log(document.cookie)
-        if(document.cookie){
-          next()
-        }else{
-          next({ path: '/'})
-        }
-      },//守卫
       component: () => import(/* webpackChunkName: "about" */ './views/management.vue')// 实现延迟加载
     },
 
@@ -244,20 +178,8 @@ const router = new Router({
       path: '/storeManagement',
       name: 'StoreManagment',
       component: StoreManagment,
-      beforeEnter: (to, from, next) => {
-        console.log(document.cookie)
-        if(document.cookie){
-          next()
-        }else{
-          next({ path: '/'})
-        }
-      },//守卫
       children: [ // children 属性配置二级路径
-        {
-          path: '/storeManagement/AddService',
-          name: 'AddService',
-          component: AddService,
-        },
+        
         {
           path: '/storeManagement/FindService',
           name: 'FindService',
@@ -284,16 +206,12 @@ const router = new Router({
           component: GoodsList,
         },
         {
-          path: '/storeManagement/ordersList',
-          name: 'OrdersList',
-          component: OrdersList,
-        },
-        {
           path: '/storeManagement/petsList',//宠物列表   路由
           name: "PetsList",
           component: PetsList,
-        },{
-          path: '/storeManagement/addShopPets',//新增门店宠物   路由
+        },
+        {
+          path: '/storeManagement/addShopPets',//新增门店宠物  路由
           name: "AddShopPets",
           component: AddShopPets,
         }]
@@ -317,7 +235,6 @@ const router = new Router({
   ],
 
 })
-
 export default router;
 
 

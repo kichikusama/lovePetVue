@@ -1,4 +1,3 @@
-
 const { getUsers, addUser, searchUser, deleteUserById, loginUser,auditing,adoptUsersById,disabledUsers,againstUsersById } = require('../dao/usersDao.js');
 
 
@@ -72,4 +71,3 @@ module.exports.adoptUsersById = async function (UsersDetails) {
   }
   return false;
  }
-

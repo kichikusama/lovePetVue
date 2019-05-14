@@ -1,0 +1,13 @@
+<!--components/homeShopList/homeShopList.wxml-->
+<view class="container">
+    <shoptitle />
+    <serviceitem />
+    <serviceitem />
+    <serviceitem />
+    <serviceitem />
+    <veiw class="box">
+        <view class="button">
+            <text style="color:#5d5d5d;">查看更多门店套餐</text>
+        </view>
+    </veiw>
+</view>
