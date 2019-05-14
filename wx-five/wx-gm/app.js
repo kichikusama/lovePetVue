@@ -1,5 +1,5 @@
 //app.js
-App({
+App({   // 通过 app.json 的 pages 字段就可以知道你当前小程序的所有页面路径,写在 pages 字段的第一个页面就是这个小程序的首页,整个小程序只有一个 App 实例，是全部页面共享的
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []

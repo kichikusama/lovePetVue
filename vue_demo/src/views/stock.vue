@@ -1,11 +1,13 @@
- <template>
+z <template>
   <el-container>
     <el-header style="text-align: center; background-color: #B3C0D1;height:80px;">
       <h1>进货管理</h1>
     </el-header>
+
     <div class="flex">
       <el-row class="tac">
         <el-col :span="12">
+          <div class="home" style="width:201px;background-color: rgb(179, 192, 209)"> <el-button icon="el-icon-back" type="text" @click="goBack" style="width:75%;height:100px;color:coral">返回首页</el-button>
           <el-menu
             router
             default-active="/stock/shop"
@@ -44,6 +46,7 @@
               </el-menu-item-group>
             </el-submenu>
           </el-menu>
+          </div>
         </el-col>
       </el-row>
       <router-view></router-view>
@@ -65,5 +68,11 @@ h5 {
 }
 </style>
 <script>
-export default {};
+export default {
+  methods: {
+    goBack(){
+       this.$router.push(`/chooseServe`)
+    }
+  },
+};
 </script>
