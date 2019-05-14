@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/my/my",
     "pages/detail/detail",
     "pages/index/index",
-    "pages/market/market",
-    "pages/index/index",
-    "components/my/my"
+    "pages/market/market"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
