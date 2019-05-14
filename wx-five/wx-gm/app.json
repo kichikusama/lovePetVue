@@ -1,18 +1,19 @@
 {
   "pages": [
-    "pages/moreCommodities/moreCommodities",
+    "pages/market/market",
     "pages/store/store",
+    "pages/moreCommodities/moreCommodities",
+   
     "pages/index/index",
     "pages/qr/qr",
     "pages/cart/cart",
-    "pages/market/market",
+   
     "pages/my/my",
     "pages/detail/detail",
     "components/myHead/myHead",
     "components/myOperation/myOperation",
     "components/storeCommodity/storeCommodity",
     "components/storeBox/storeBox"
-   
   ],
   "window": {
     "groundTextStyle": "light",

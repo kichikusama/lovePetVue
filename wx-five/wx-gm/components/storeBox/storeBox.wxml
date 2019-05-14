@@ -1,5 +1,5 @@
 <view style="padding-top: 25rpx;margin-right: 30rpx">
-    <view>
+    <view style="height: 450rpx">
         <image style="width:200rpx;height: 280rpx;" src="../../assets/backImg/O1CN01fhsjRu1i40a3MKDgh_!!2981034358.jpg_430x430q90.jpg"/>
         <view style="width:200rpx;display:flex;justify-content:center;align-items: center;flex-wrap:wrap;font-size:28rpx;">
             <view style="width:100%;height: 60rpx;display: flex; justify-content:center;align-items: center;">
