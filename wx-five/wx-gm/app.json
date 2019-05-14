@@ -1,16 +1,16 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/qr/qr",
     "pages/cart/cart",
     "pages/store/store",
     "components/store/store",
     "pages/market/market",
     "pages/my/my",
     "pages/detail/detail",
-    "pages/index/index",
     "components/myHead/myHead",
     "components/myOperation/myOperation"
-],
-
+  ],
   "window": {
     "groundTextStyle": "light",
     "backvigationBarBackgroundColor": "#fff",
@@ -34,7 +34,7 @@
       {
         "iconPath": "./assets/market/购物车-23.png",
         "selectedIconPath": "./assets/market/购物车-23 (1).png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/cart/cart",
         "text": "购物车"
       },
       {
