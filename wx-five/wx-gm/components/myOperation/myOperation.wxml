@@ -1,41 +1,5 @@
-<view>
-    <view style="position: relative;">
-        <image mode="aspectFill" style="width:900rpx;height: 400rpx;-webkit-filter: blur(8rpx);" src="../../assets/my/889cf46b056d48d9be848d4aa3166cfa20170206090116.jpeg" />
-        <view style='display:flex;flex-direction: column;color: #42BD56;align-items: center;position:absolute;top:100rpx;left:250rpx;'>
-            <image style="width: 154rpx;height:154rpx;" src="../../assets/my/avatar/1.png" />
-            <text style="color: white;">小丑</text>
-            <text style="font-size:28rpx;color: orange;">点击编译个人信息</text>
-        </view>
-    </view>
-    <view style='height:120rpx;display:flex;justify-content:space-around;align-items: center;style="font-size:40rpx;'>
-        <view style="width: 28%;height:100%;display:flex;justify-content:space-around;align-items: center;">
-          <view >
-            <image style='width: 50rpx;height:50rpx' src="../../assets/my/avatar/家庭.png" />
-          </view>
-          <view >
-            <text>家庭预定</text>
-          </view>
-        </view>
-         <view style='width: 0rpx;height:30rpx;border: 1rpx solid #AAAAAA'></view>
-        <view style="width: 28%;height:100%;display:flex;justify-content:space-around;align-items: center;">
-          <view  >
-            <image style='width: 50rpx;height:50rpx' src="../../assets/my/avatar/订单.png" />
-          </view>
-          <view >
-            <text >商家订单</text>
-          </view>
-        </view>
-    </view>
 
-    <view style='height:100rpx;border-top: 1rpx solid #DDDDDD;border-bottom: 1rpx solid #DDDDDD'>
-        <view style='height:30rpx;background-color:#F0F8FF'>
-        </view>
-        <view style='margin:10rpx 30rpx;'>
-            <text style="font-size:38rpx;">相关</text>
-        </view>
-    </view>
-
-    <view style="font-size:30rpx;display:flex;flex-wrap:wrap;align-items: center;">
+<view style="font-size:30rpx;display:flex;flex-wrap:wrap;align-items: center;">
       <view style="width: 25%;height:200rpx;display:flex;justify-content:space-around;align-items: center;flex-wrap:wrap;">
         <view style="width: 100%;display:flex;justify-content:center">
           <image style="width: 60rpx;height:60rpx;" src="../../assets/my/avatar/申请.png" />
@@ -43,7 +7,6 @@
         <view>
           <text  style="width: 100%;">申请寄养家庭</text>
         </view>
-        
       </view>
      
       <view style="width: 25%;height:200rpx;display:flex;justify-content:space-around;align-items: center;flex-wrap:wrap;">
@@ -84,6 +47,3 @@
         </view>
       </view>
     </view>
-
-</view>
-
