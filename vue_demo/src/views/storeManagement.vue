@@ -42,6 +42,7 @@
               <span style="color:white">宠物管理</span>
             </template>
             <el-menu-item-group>
+              <el-menu-item index="/storeManagement/addShopPets">新增宠物</el-menu-item>
               <el-menu-item index="/storeManagement/petsList">宠物列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>

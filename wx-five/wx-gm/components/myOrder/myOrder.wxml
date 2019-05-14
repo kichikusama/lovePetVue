@@ -1,0 +1,19 @@
+  <view style='height:120rpx;display:flex;justify-content:space-around;align-items: center;style="font-size:40rpx;'>
+        <view style="width: 28%;height:100%;display:flex;justify-content:space-around;align-items: center;">
+          <view >
+            <image style='width: 50rpx;height:50rpx' src="../../assets/my/avatar/家庭.png" />
+          </view>
+          <view >
+            <text>家庭预定</text>
+          </view>
+        </view>
+         <view style='width: 0rpx;height:30rpx;border: 1rpx solid #AAAAAA'></view>
+        <view style="width: 28%;height:100%;display:flex;justify-content:space-around;align-items: center;">
+          <view  >
+            <image style='width: 50rpx;height:50rpx' src="../../assets/my/avatar/订单.png" />
+          </view>
+          <view >
+            <text >商家订单</text>
+          </view>
+        </view>
+    </view>

@@ -1,16 +1,28 @@
 {
   "pages": [
+<<<<<<< HEAD
     "pages/store/store",
     "pages/index/index",
     "components/my/my",
+=======
+    "components/store/store",
+    "pages/market/market",
+>>>>>>> 3bb13ab05fe967a0c1f07a974787fbf5e3c0e59b
     "pages/my/my",
+    "pages/cart/cart",
     "pages/detail/detail",
     "pages/index/index",
+<<<<<<< HEAD
     "pages/market/market"
   ],
+=======
+    "components/myHead/myHead",
+    "components/myOperation/myOperation"
+],
+>>>>>>> 3bb13ab05fe967a0c1f07a974787fbf5e3c0e59b
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "groundTextStyle": "light",
+    "backvigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
@@ -37,7 +49,7 @@
       {
         "iconPath": "./assets/market/我的.png",
         "selectedIconPath": "./assets/market/我的 (1).png",
-        "pagePath": "pages/market/market",
+        "pagePath": "pages/my/my",
         "text": "我的"
       }
     ]
