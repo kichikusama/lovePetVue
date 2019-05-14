@@ -1,6 +1,6 @@
  <template>
   <el-container>
-    <el-header style="text-align: center; background-color: green;height:80px;color:white">
+    <el-header style="text-align: center; background-color: #B3C0D1;height:80px;">
       <h1>进货管理</h1>
     </el-header>
     <div class="flex">
@@ -54,6 +54,7 @@
 <style>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
+  height: 700px;
   min-height: 400px;
 }
 .flex {
