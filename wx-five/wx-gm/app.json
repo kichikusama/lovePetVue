@@ -1,16 +1,16 @@
 {
   "pages": [
+    "components/store/store",
     "pages/market/market",
     "pages/my/my",
     "pages/detail/detail",
     "pages/index/index",
     "components/myHead/myHead",
-    "components/myOperation/myOperation",
-    "components/myOrder/myOrder"
-  ],
+    "components/myOperation/myOperation"
+],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "groundTextStyle": "light",
+    "backvigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },

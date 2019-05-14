@@ -14,7 +14,11 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.6",
+<<<<<<< HEAD
+	"appid": "wx05a186b2e63e76e2",
+=======
 	"appid": "wx723f1518994f0efe",
+>>>>>>> be82f57dee9666099d673cdd308d81896c838006
 	"projectname": "wx",
 	"debugOptions": {
 		"hidedInDevtools": []
