@@ -6,7 +6,7 @@
       </el-select>
     </div>
     <div>
-      <el-button type="primary" @click="addShopIdToServiceAsync({serviceIds,shopId})" round>确认新增</el-button>
+      <el-button size="mini" style="margin: 100px 0 0 30px;" @click="addShopIdToServiceAsync({serviceIds,shopId})">确认新增</el-button>
     </div>
   </el-card>
 </template>

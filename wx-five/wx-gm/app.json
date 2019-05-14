@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/cart/cart",
+    "pages/store/store",
     "components/store/store",
     "pages/market/market",
     "pages/my/my",
@@ -9,6 +10,7 @@
     "components/myHead/myHead",
     "components/myOperation/myOperation"
 ],
+
   "window": {
     "groundTextStyle": "light",
     "backvigationBarBackgroundColor": "#fff",

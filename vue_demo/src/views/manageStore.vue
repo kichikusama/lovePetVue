@@ -32,7 +32,6 @@ export default {
   methods: {
     goBack(){
        this.$router.push(`/chooseServe`)
-       
     }
   },
 };
