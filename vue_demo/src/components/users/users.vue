@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h3>用户列表</h3>
+    <h3 style="background-color:white;text-align:center">用户列表</h3>
     <el-container>
       <el-main>
         <div>
@@ -23,9 +23,8 @@
               <el-menu-item index="/management/disabledUsers" @click="skipToDisabled">违规用户</el-menu-item>
             </el-submenu>
             <el-menu-item index="3">
-             
               <el-badge :value="rulesRead" class="iconItem">
-                 <a href="#/management/someRules">管理须知</a>
+                <a href="#/management/someRules">管理须知</a>
               </el-badge>
             </el-menu-item>
           </el-menu>
@@ -201,7 +200,7 @@ export default {
   },
   mounted() {
     // 生命周期函数
-    this.usersListAsync({userStatus:"1"});  // 传参  状态为1，可用
+    this.usersListAsync({ userStatus: "1" }); // 传参  状态为1，可用
     // console.log(this.films);
     //   console.log(this.a); // 这里拿不到a : undefind
     //   console.log(this); // this中 有a
@@ -209,16 +208,15 @@ export default {
 };
 </script>
 <style scope>
-.iconItem{
+.iconItem {
   /* margin-top: -15px; */
   margin-right: 40px;
   /* top:17px; */
-
 }
-.el-badge__content{
+.el-badge__content {
   height: 14px;
   font-size: 4px;
-} 
+}
 .el-header,
 .el-footer {
   background-color: #545c64;

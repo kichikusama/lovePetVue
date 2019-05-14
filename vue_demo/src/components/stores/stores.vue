@@ -1,36 +1,36 @@
 <template>
   <div class="main">
+    <h3 style="background-color:white;text-align:center">所有门店</h3>
     <el-container>
-     <h3 style="background-color:white;text-align:center">所有门店</h3>
       <el-main>
         <div>
           <div>
-           <el-menu
-            class="el-menu-demo"
-            mode="horizontal"
-            background-color="#C0C4CC"
-            active-text-color="#ffd04b"
-            text-color="#fff"
-          >
-            <!-- <el-menu-item index="1">新增用户</el-menu-item> -->
-            <el-submenu index="2">
-              <template slot="title">
-                <span>处理中心</span>
-              </template>
-              <el-menu-item index="/management/shopsAuditing" @click="auditingShops">
-                待审核门店
-                <!-- <b style="color:red;font-size:10px">+{{auditingUsers.length}}</b> -->
-              </el-menu-item>
-              <!-- <el-menu-item index="/management/disabledUsers" @click="skipToDisabled">违规用户</el-menu-item> -->
-            </el-submenu>
-            <!-- <el-menu-item index="3">
+            <el-menu
+              class="el-menu-demo"
+              mode="horizontal"
+              background-color="#C0C4CC"
+              active-text-color="#ffd04b"
+              text-color="#fff"
+            >
+              <!-- <el-menu-item index="1">新增用户</el-menu-item> -->
+              <el-submenu index="2">
+                <template slot="title">
+                  <span>处理中心</span>
+                </template>
+                <el-menu-item index="/management/shopsAuditing" @click="auditingShops">
+                  待审核门店
+                  <!-- <b style="color:red;font-size:10px">+{{auditingUsers.length}}</b> -->
+                </el-menu-item>
+                <!-- <el-menu-item index="/management/disabledUsers" @click="skipToDisabled">违规用户</el-menu-item> -->
+              </el-submenu>
+              <!-- <el-menu-item index="3">
              
               <el-badge :value="rulesRead" class="iconItem">
                  <a href="#/management/someRules">管理须知</a>
               </el-badge>
-            </el-menu-item> -->
-          </el-menu>
-         </div>
+              </el-menu-item>-->
+            </el-menu>
+          </div>
           <div style="margin-top: 15px;">
             <el-input placeholder="搜索" class="input-with-select" v-model="text">
               <el-select v-model="type" slot="prepend" placeholder="请选择搜索条件">
@@ -49,7 +49,7 @@
               <template slot-scope="scope">
                 <img :src="scope.row.shopLicenceImg" alt style="width:100px;height:100px">
               </template>
-            </el-table-column> -->
+            </el-table-column>-->
             <el-table-column prop="shopAdd" label="营业地址" width="100"></el-table-column>
             <el-table-column prop="shopLocation" label="定位" width="100"></el-table-column>
             <el-table-column prop="shopCorporate" label="法人" width="100"></el-table-column>
@@ -58,7 +58,8 @@
             <el-table-column prop="shopCommission" label="佣金比例" width="100"></el-table-column>
             <el-table-column label="店员组成" width="100" fixed="right">
               <template slot-scope="scope">
-                <a href="#"
+                <a
+                  href="#"
                   size="mini"
                   type="primary"
                   circle
@@ -104,7 +105,6 @@
                 <el-input v-model="form.site" autocomplete="off"></el-input>
               </el-form-item>
             </el-form>
-            
           </el-dialog>
 
           <el-dialog title="店员信息" :visible.sync="dialog">
@@ -114,8 +114,6 @@
               <el-table-column property="empPhone" label="电话"></el-table-column>
             </el-table>
           </el-dialog>
-
-
         </div>
       </el-main>
     </el-container>
@@ -137,7 +135,7 @@ export default {
       dialogFormVisible: false,
       dialog: false,
       shopId: "",
-      members:[],
+      members: [],
       form: {
         name: "",
         site: "",
@@ -148,10 +146,10 @@ export default {
   },
   watch: {
     eachPage() {
-      this.getShopsAsync({ type: this.type, text: this.text,shopType:"1" });
+      this.getShopsAsync({ type: this.type, text: this.text, shopType: "1" });
     },
     currentPage() {
-      this.getShopsAsync({ type: this.type, text: this.text,shopType:"1" });
+      this.getShopsAsync({ type: this.type, text: this.text, shopType: "1" });
     }
   },
   computed: {
@@ -164,7 +162,7 @@ export default {
     currentPage: {
       get: mapState(["currentPage"]).currentPage,
       set: mapMutations(["setCurPage"]).setCurPage
-    },
+    }
     // userId: {
     //   get: mapState(["userId"]).userId,
     //   set: mapMutations(["setUserId"]).setUserId
@@ -173,7 +171,7 @@ export default {
   methods: {
     member(data) {
       this.dialog = true;
-      this.members=data;
+      this.members = data;
     }, //查看店铺成员
     ...mapActions(["getShopsAsync", "deteleShopsAsync", "revisionAsync"]),
     ...mapMutations(["setEachPage", "setCurPage", "setUserId"]),
@@ -182,15 +180,14 @@ export default {
     // }
     auditingShops() {
       // console.log("in");
-      this.getShopsAsync({shopType:"0"}); // 请求 待审核门店数据
+      this.getShopsAsync({ shopType: "0" }); // 请求 待审核门店数据
       this.$router.push({ path: `/management/shopsAuditing` }); // 跳转 审核门店 组件
     },
-    
+
     revision(id) {
       this.dialogFormVisible = true;
       this.shopId = id;
-    },
-   
+    }
   },
   mounted() {
     // 生命周期函数
@@ -206,18 +203,18 @@ export default {
     }
     this.userId = userId;
 
-    this.getShopsAsync({shopType:"1"});
+    this.getShopsAsync({ shopType: "1" });
   }
 };
 </script>
 <style scope>
-.aStyle:hover{
-   color:tomato;
-   cursor: pointer;
+.aStyle:hover {
+  color: tomato;
+  cursor: pointer;
 }
 .headerStyle,
 .el-footer {
-  background-color:white;
+  background-color: white;
   color: #333;
   text-align: center;
   line-height: 70px;
