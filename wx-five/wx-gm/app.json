@@ -1,12 +1,7 @@
 {
   "pages": [
-<<<<<<< HEAD
     "pages/index/index",
-=======
     "pages/market/market",
-    "pages/index/index",
-    
->>>>>>> d45d3119f14aa60e70ee1b074cf4f57cd41b6632
     "components/my/my"
    
   ],
