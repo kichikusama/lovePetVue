@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "myHead":"../../components/myHead/myHead",
+    "myOperation":"../../components/myOperation/myOperation",
+    "myOrder":"../../components/myOrder/myOrder"
+  }
+}

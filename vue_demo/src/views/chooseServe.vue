@@ -14,7 +14,7 @@
             >
             
             <div style="padding: 14px;" >
-              <el-select v-model="value" clearable>
+              <el-select v-model="value" >
                 <el-option
                   v-for="item in shops"
                   :key="item._id"
@@ -71,7 +71,7 @@ export default {
    data() {
       return {
          userId: "",  // 保存 cookie 
-        value: '选择门店',
+        value: '请选择门店',
         useId:'',
       }
     },
