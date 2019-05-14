@@ -10,7 +10,7 @@ const usersSchema = new mongoose.Schema({
     userName: String, // 姓名
     userType: {   // 角色
         type: String,
-        default: "0" // 门店管理员 ：0； 平台管理员：1；
+        default: "1" // 门店管理员 ：0； 平台管理员：1；
     },
     userStatus:{   // 
         type: String,

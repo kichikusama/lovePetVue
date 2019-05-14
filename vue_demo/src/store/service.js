@@ -16,7 +16,7 @@ export default {
     namespaced: true,
     state: {
         currentPage: "1",
-        eachPage: "10", // 每页显示条数
+        eachPage: "5", // 每页显示条数
         totalPage: "0", // 总页数
         count: "0", // 总条数
         gg:[],
@@ -50,6 +50,9 @@ export default {
             return state.eachPage = eachPage;
         },
         setCurrentPage: (state, currentPage) => {
+            console.log(state.currentPage);
+            console.log(currentPage);
+            
             return state.currentPage = currentPage;
         }
     },
@@ -94,7 +97,7 @@ export default {
             commit("getService", { form: result })
         },
 
-        async updateServiceByIdAsync({ state, commit }, payload) {
+        async updateServiceByIdAsync({ state, dispatch }, payload) {
             const result = await serServuse.updateServiceById({ data: state.form, _id: payload })
             if (result) {
                 dispatch("getAllServiceAsync");

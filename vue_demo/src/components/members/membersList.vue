@@ -1,7 +1,7 @@
 <template>
   <div class="main">
+    <h3 style="background-color:white;text-align:center">所有宠主</h3>
     <el-container>
-     <h3 style="background-color:white;text-align:center">所有宠主</h3>
       <el-main>
         <div>
           <div style="margin-top: 15px;">
@@ -24,7 +24,8 @@
             <el-table-column prop="memberPoint" label="积分" width="100"></el-table-column>
             <el-table-column label="宠物" width="100" fixed="right">
               <template slot-scope="scope">
-                <a href="#"
+                <a
+                  href="#"
                   size="mini"
                   type="primary"
                   circle
@@ -34,14 +35,7 @@
                 >详情</a>
               </template>
             </el-table-column>
-            <!-- <el-table-column label="操作" width="150" fixed="right">
-              <template slot-scope="scope">
-                <el-button size="mini" @click="revision(scope.row._id)">修改</el-button>
-                <el-button size="mini" type="danger" @click="deteleShopsAsync(scope.row._id)">删除</el-button>
-              </template>
-            </el-table-column> -->
           </el-table>
-
           <el-pagination
             @size-change="setEachPage"
             @current-change="setCurPage"
@@ -50,22 +44,6 @@
             layout="total, sizes, prev, pager, next, jumper"
             :total="total"
           ></el-pagination>
-
-          <!-- <el-dialog title="修改信息" :visible.sync="dialogFormVisible">
-            <el-form :model="form">
-              <el-form-item label="门店名称" :label-width="formLabelWidth">
-                <el-input v-model="form.name" autocomplete="off"></el-input>
-              </el-form-item>
-              <el-form-item label="联系电话" :label-width="formLabelWidth">
-                <el-input v-model="form.phone" autocomplete="off"></el-input>
-              </el-form-item>
-              <el-form-item label="营业地址" :label-width="formLabelWidth">
-                <el-input v-model="form.site" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-form>
-            
-          </el-dialog> -->
-
           <el-dialog title="宠物信息" :visible.sync="dialog">
             <el-table :data="members">
               <el-table-column property="petName" label="宠物名" width="150"></el-table-column>
@@ -73,8 +51,6 @@
               <el-table-column property="petType" label="种类"></el-table-column>
             </el-table>
           </el-dialog>
-
-
         </div>
       </el-main>
     </el-container>
@@ -92,12 +68,13 @@ export default {
   data() {
     return {
       type: "", // 搜索条件
-      text: "",  // 搜索值
+      text: "", // 搜索值
       dialogFormVisible: false,
       dialog: false, // 宠物详情 弹窗 状态值
-      merberId: "",  // 
-      pets:[],
-      form: {  // 修改信息所用
+      merberId: "", //
+      pets: [],
+      form: {
+        // 修改信息所用
         name: "",
         site: "",
         phone: ""
@@ -123,16 +100,16 @@ export default {
     currentPage: {
       get: mapState(["currentPage"]).currentPage,
       set: mapMutations(["setCurPage"]).setCurPage
-    },
+    }
   },
   methods: {
     ...mapActions(["getMembersAsync"]),
     ...mapMutations(["setEachPage", "setCurPage"]),
-     getPets(data) {//查看当前宠主 的所有宠物信息
+    getPets(data) {
+      //查看当前宠主 的所有宠物信息
       this.dialog = true;
-      this.pets=data;
-    }, 
-   
+      this.pets = data;
+    }
   },
   mounted() {
     // 生命周期函数
@@ -141,13 +118,13 @@ export default {
 };
 </script>
 <style scope>
-.aStyle:hover{
-   color:tomato;
-   cursor: pointer;
+.aStyle:hover {
+  color: tomato;
+  cursor: pointer;
 }
 .headerStyle,
 .el-footer {
-  background-color:white;
+  background-color: white;
   color: #333;
   text-align: center;
   line-height: 70px;

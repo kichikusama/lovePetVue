@@ -39,7 +39,7 @@ module.exports.getShopBypage = async function ({ currentPage, eachPage, type, te
     return pageData;
 }
 module.exports.getShop = async function ({userId}) {
-    return await shopsModel.find({userId});
+    return await shopsModel.find({userId,shopType:"1" });
 }
 
 module.exports.addShop = async function (data) {

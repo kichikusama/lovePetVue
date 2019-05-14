@@ -1,4 +1,3 @@
-<!--components/homeSwiper/homeSwiper.wxml-->
 <swiper 
 class="swiper"
 indicator-dots

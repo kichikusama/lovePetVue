@@ -64,7 +64,7 @@
             @size-change="setEachPage"
             @current-change="setCurPage"
             :current-page.sync="currentPage"
-            :page-sizes="[5, 15, 20, ]"
+            :page-sizes="[5,4,3,2,1 ]"
             layout="total, sizes, prev, pager, next, jumper"
             :total="total"
           ></el-pagination>
@@ -94,8 +94,6 @@
               <el-table-column property="empPhone" label="电话"></el-table-column>
             </el-table>
           </el-dialog>
-
-
         </div>
       </el-main>
     </el-container>
@@ -117,7 +115,7 @@ export default {
       dialogFormVisible: false,
       dialog: false,
       shopId: "",
-      members:[],
+      members: [],
       form: {
         name: "",
         site: "",
@@ -153,7 +151,7 @@ export default {
   methods: {
     member(data) {
       this.dialog = true;
-      this.members=data;
+      this.members = data;
     }, //查看店铺成员
     ...mapActions(["getShopsAsync", "deteleShopsAsync", "revisionAsync"]),
     ...mapMutations(["setEachPage", "setCurPage", "setUserId"]),

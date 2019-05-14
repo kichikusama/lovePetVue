@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>黑名单</h3>
+    <h3 style="background-color:white;text-align:center">黑名单</h3>
     <div>
       <el-table :data="rows" center="all" style="width: 100%;text-align:center;">
         <el-table-column type="index" label="序号" width="100"></el-table-column>
