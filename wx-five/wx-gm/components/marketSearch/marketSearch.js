@@ -1,4 +1,4 @@
-// components/homeServiceItem/homeServiceItem.js
+// components/marketSearch/marketSearch.js
 Component({
   /**
    * 组件的属性列表
@@ -11,9 +11,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    src:"../../assets/home/dog.jpg",
-    servicePrice:"100",
-    serviceName:"宠物进口疫苗套餐"
+
   },
 
   /**

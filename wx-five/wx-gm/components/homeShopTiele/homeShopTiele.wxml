@@ -1,4 +1,3 @@
-<!--components/homeShopTiele/homeShopTiele.wxml-->
 <veiw class="title">
     <view>
         <image class="img" src="{{shopImg}}"></image>

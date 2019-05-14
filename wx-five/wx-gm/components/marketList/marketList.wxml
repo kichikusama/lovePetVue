@@ -1,0 +1,20 @@
+<!--components/marketList/marketList.wxml-->
+<view style="margin-top: 20rpx;border-top: 1rpx solid gray;display: flex;">
+    <view style="width: 250rpx;background-color: #f2f2f2;padding-top: 40rpx;">
+        <block wx:for="{{serve}}" wx:key='{{item}}'>
+            <view style="padding: 20rpx;border-top: 1rpx solid gray;text-align: center ;color: gray;font-size: 35rpx">{{item}}</view>
+        </block>
+    </view>
+    <scroll-view scroll-y="true" style="margin-left: 20rpx;height:1000rpx;">
+        <marketPet />
+        <marketPet />
+        <marketPet />
+        <marketPet />
+        <marketPet />
+        <marketPet />
+        <marketPet />
+        <marketPet />
+        <marketPet />
+        <marketPet />
+    </scroll-view>
+</view>

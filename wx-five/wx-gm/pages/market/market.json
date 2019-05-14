@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "search":"../../components/marketSearch/marketSearch",
+    "marketList":"../../components/marketList/marketList"
+  }
+}
