@@ -1,0 +1,19 @@
+/* components/homeShopList/homeShopList.wxss */
+.container{
+    padding: 5% 5%;
+    background-color: #ffffff;
+    margin-bottom: 40rpx;
+    border-radius: 15rpx;
+}
+.button{
+    width: 398rpx;
+    height: 104rpx;
+    border: 1px solid #d2d2d2;
+    text-align: center;
+    line-height: 104rpx;
+    border-radius: 20rpx;
+}
+.box{
+    display: flex;
+    justify-content: space-around;
+}

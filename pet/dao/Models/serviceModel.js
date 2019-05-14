@@ -11,7 +11,7 @@ const serviceSchema = new mongoose.Schema({
     serviceLevel:String, // 服务员等级（普通，高级价格等）
     servicePrice:Number, // 价格
     userId:String, // 门店管理员 id
-    shopId:String // 门店 id
+    shopId:Array // 门店 id
 })
 
 mongoose.model('serviceModel', serviceSchema, "service");

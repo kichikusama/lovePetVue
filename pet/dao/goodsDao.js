@@ -73,6 +73,8 @@ module.exports.getGoodsByUserId = async function ({ userId, shopId }) {
 }
 
 module.exports.addShopIdToGoods = async function ({ goodsIds, shopId }) {
+    console.log(goodsIds, shopId);
+    
     for (let item of goodsIds) {
         const [data] = await goodsModel.find({ _id: item });
         const arr = data.shopId;

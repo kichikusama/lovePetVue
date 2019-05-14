@@ -1,0 +1,15 @@
+/* components/homeShopTiele/homeShopTiele.wxss */
+.title{
+    display: flex;
+    margin-bottom: 55rpx;
+}
+.img{
+    width: 160rpx;
+    height: 160rpx;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+.text{
+    margin-left: 46rpx;
+    padding-top: 20rpx;
+}

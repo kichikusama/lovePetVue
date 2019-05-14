@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 // 门店管理员和平台管理员
 const usersSchema = new mongoose.Schema({
     userAcount: String, // 登录名

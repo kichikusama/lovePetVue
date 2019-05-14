@@ -31,7 +31,7 @@
         <el-button slot="append" @click="getAllServiceAsync({type,text})" icon="el-icon-search"></el-button>
       </el-input>
     </div>
-    <el-table :data="data" border style="width: 100%">
+    <el-table :data="gg" border style="width: 100%">
       <el-table-column fixed prop="serviceName" label="名称" width="140"></el-table-column>
       <el-table-column prop="serviceType" label="服务类别" width="140"></el-table-column>
       <el-table-column prop="serviceSchedule" label="排期" width="220"></el-table-column>
@@ -42,7 +42,11 @@
       <el-table-column prop="servicePrice" label="价格" width="140"></el-table-column>
       <el-table-column fixed="right" label="操作" width="110">
         <template slot-scope="scope">
-          <el-button type="text" @click="handleClick(scope.row)" size="small">删除</el-button>
+           <el-button
+            size="mini"
+            type="text"
+            @click="deleteServiceByPageAsync({_id:scope.row._id})"
+          >删除</el-button>
           <el-button type="text" @click="update(scope.row)" size="small">更改</el-button>
         </template>
       </el-table-column>
@@ -64,7 +68,6 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
   "service" // 从状态机中获取 数据
 );
 export default {
-  name: "service",
   data() {
     return {
       type: "",
@@ -72,20 +75,27 @@ export default {
       id: "",
       formLabelWidth: "120px",
       dialogFormVisible: false,
-      userId:"",
-      shopsId:"",
+      // userId:"",
+      // shopsId:"",
     };
   },
+  
   watch: {
     eachPage() {
-      this.getAllServiceAsync();
+      this.getAllServiceAsync({
+        text: this.text,
+        type: this.type
+      });
     },
     currentPage() {
-      this.getAllServiceAsync();
+      this.getAllServiceAsync({
+        text: this.text,
+        type: this.type
+      });
     }
   },
   computed: {
-    ...mapState(["data", "count", "total", "form"]),
+    ...mapState(["gg", "count", "total", "form"]),
     eachPage: {
       get: mapState(["eachPage"]).eachPage,
       set: mapMutations(["setEachPage"]).setEachPage
@@ -100,13 +110,11 @@ export default {
     ...mapActions([
       "getServiceAsync",
       "getAllServiceAsync",
-      "deteleServiceAsync",
+      "deleteServiceByPageAsync",
       "updateServiceByIdAsync",
       "getServiceByIdAsync"
     ]),
-    handleClick(row) {
-      this.deteleServiceAsync(row._id);
-    },
+    
     update(payload) {
       this.dialogFormVisible = true;
       this.getServiceByIdAsync(payload);
@@ -129,10 +137,15 @@ export default {
         userId = document.cookie.split("=")[1];
       }
     }
-    console.log(shopsId);
     this.userId = userId;
     this.shopsId = shopsId;
-    this.getAllServiceAsync();
+    this.getAllServiceAsync({ shopId: shopsId });
   }
 };
 </script>
+
+<style scoped>
+.updateForm {
+  padding-left: 160px;
+}
+</style>

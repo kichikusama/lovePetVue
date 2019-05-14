@@ -1,0 +1,11 @@
+<!--components/marketPet/marketPet.wxml-->
+<view style="display: flex;padding: 15rpx" >
+   <image src="../../assets/market/u=422258053,3534806377&fm=200&gp=0.jpg" style="width: 200rpx;height: 160rpx;" />
+    <view style="display: flex;flex-direction: column;justify-content: space-between;margin-left: 15rpx;padding: 20rpx 0rpx;">
+        <text style="font-size: 34rpx">猫-2kg以下（洗澡）</text>
+        <view style="display: flex;justify-content: space-between">
+            <text style="color: rgb(255, 122, 67);font-size: 30rpx;">￥100</text>
+            <image src="../../assets/market/购物车.png" style="width: 50rpx;height: 50rpx;"/>
+        </view>
+    </view>
+</view>
