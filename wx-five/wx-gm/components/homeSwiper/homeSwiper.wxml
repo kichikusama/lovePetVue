@@ -1,0 +1,15 @@
+<!--components/homeSwiper/homeSwiper.wxml-->
+<swiper 
+indicator-dots
+indicator-color="white"
+indicator-active-color="#42bd56"
+autoplay
+interval="1500"
+circular
+style="height:400rpx;margin-bottom:30rpx">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" style="width:750rpx;height:400rpx"/>
+    </swiper-item>
+  </block>
+</swiper>

@@ -1,3 +1,4 @@
+
 const { shopsModel } = require("./Models/shopsModel.js");
 
 module.exports.getShopBypage = async function ({ currentPage, eachPage, type, text ,userId, shopType}) {

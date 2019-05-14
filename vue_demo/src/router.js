@@ -48,6 +48,7 @@ import OrdersList from "./components/orders/ordersList"; // 订单管理 订单�
 
 import AddPets from './components/pets/addPets' //新增宠物
 import PetsList from './components/pets/petsList' //宠物列表
+import AddShopPets from './components/pets/addShopPets' //新增门店宠物
 
 Vue.use(Router)
 
@@ -160,6 +161,14 @@ const router = new Router({
       path: '/management',
       name: 'Management ',
       component: Management,
+      beforeEnter: (to, from, next) => {
+        console.log(document.cookie)
+        if(document.cookie){
+          next()
+        }else{
+          next({ path: '/'})
+        }
+      },//守卫
       children: [ // children 属性配置二级路径
         {
           path: '/management/addmembers',  // GM  用户列表
@@ -219,6 +228,14 @@ const router = new Router({
       path: '/management/:username',
       name: 'ManagementWithParams',
       // component: Management,
+      beforeEnter: (to, from, next) => {
+        console.log(document.cookie)
+        if(document.cookie){
+          next()
+        }else{
+          next({ path: '/'})
+        }
+      },//守卫
       component: () => import(/* webpackChunkName: "about" */ './views/management.vue')// 实现延迟加载
     },
 
@@ -227,6 +244,14 @@ const router = new Router({
       path: '/storeManagement',
       name: 'StoreManagment',
       component: StoreManagment,
+      beforeEnter: (to, from, next) => {
+        console.log(document.cookie)
+        if(document.cookie){
+          next()
+        }else{
+          next({ path: '/'})
+        }
+      },//守卫
       children: [ // children 属性配置二级路径
         {
           path: '/storeManagement/AddService',
@@ -267,6 +292,10 @@ const router = new Router({
           path: '/storeManagement/petsList',//宠物列表   路由
           name: "PetsList",
           component: PetsList,
+        },{
+          path: '/storeManagement/addShopPets',//新增门店宠物   路由
+          name: "AddShopPets",
+          component: AddShopPets,
         }]
     },
     {   // 通过对象进行描述

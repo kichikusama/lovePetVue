@@ -10,6 +10,7 @@ import goodsList from "./store/goodsList" // 商品列表
 import service from './store/service'// 服务管理
 import addShopGoods from "./store/addShopGoods"; // 门店新增商品
 import orders from "./store/orders"; // 订单管理
+import addShopPets from './store/addShopPets'//门店宠物管理新增宠物
 import members from './store/members';
 
 Vue.use(Vuex)
@@ -25,6 +26,7 @@ export default new Vuex.Store({
       service,
       addShopGoods,
       orders,
+      addShopPets,
       members
   }
 })

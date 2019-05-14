@@ -1,5 +1,4 @@
 
-
 const { getUsers, addUser, searchUser, deleteUserById, loginUser,auditing,adoptUsersById,disabledUsers,againstUsersById } = require('../dao/usersDao.js');
 
 
@@ -23,12 +22,10 @@ module.exports.getUsers = async function (data) {
 }
 
 module.exports.auditing = async function () {  // 获取待审批用户
->>>>>>> 23b38a8d0c6bd53c3dfadc228e1a040fb0856a89
   let ss = await auditing();
   // console.log("ss:"+ss);
   return ss;
 }
-
 module.exports.disabledUsers = async function () {  // 获取违规用户
   let ss = await disabledUsers();
    return ss.filter(item => item.againstTimes < 4 )  // 违规次数小于4 

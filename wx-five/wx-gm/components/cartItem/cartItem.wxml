@@ -1,0 +1,21 @@
+<!--components/cartItem/cartItem.wxml-->
+<view style="display:flex;margin: 20rpx " bindtap="getIntroduce">
+    <image src='../../assets/cartImage/eae6ebb2d2cbb.jpg' style="padding-bottom: 24rpx;width:200rpx;height:200rpx;border-radius:6px;" />
+     <div style="display:flex;margin: 20rpx;flex-direction: column;">
+       <text style="width: 200rpx;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-size:14px">商品名</text>
+       <text style="font-size:14px">类型</text>
+       <div style="display:flex;flex-direction:row;">
+          <text style="font-size:14px;">颜色：</text>
+            <Select prop-array='{{selectArray}}'></Select>
+       </div>
+       <div style="display:flex;margin: 20rpx;flex-direction:row;justify-content: space-between;width:220px">
+           <text style="font-size:12px;">$价格</text>
+           <div style="display:flex;width:80px">
+               <button style="width:20px;height:25px;line-height:25px;">-</button>
+               <input type="text" placeholder="1" style="border:1px solid" />
+               <button style="width:20px;height:25px;line-height:25px;" >+</button>
+           </div>
+       </div>
+     </div>
+    
+</view>

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "CartItem":"../../components/cartItem/cartItem"
+  }
+}
