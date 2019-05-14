@@ -1,7 +1,7 @@
 
 <template>
   <div style="width:400px;margin:100px auto">
-    <h1>登录</h1>
+    <h1 style="margin:0 0 100px 200px;">登录</h1>
     <p v-show="showTishi" style="color:red">{{tishi}}</p>
     <el-form label-width="80px">
       <el-form-item label="手机号：">

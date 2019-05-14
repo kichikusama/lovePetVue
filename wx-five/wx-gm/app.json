@@ -1,33 +1,22 @@
 {
   "pages": [
-<<<<<<< HEAD
-    "components/store/store",
-=======
     "pages/store/store",
     "pages/index/index",
     "pages/qr/qr",
     "pages/cart/cart",
->>>>>>> bc7727b915df88bd5d60b1862ac3b8c848a80b41
     "pages/market/market",
     "pages/my/my",
     "pages/detail/detail",
-<<<<<<< HEAD
-    "pages/index/index",
-    "components/myHead/myHead",
-    "components/myOperation/myOperation"
-],
-=======
     "components/myHead/myHead",
     "components/myOperation/myOperation",
     "components/storeCommodity/storeCommodity",
     "components/storeBox/storeBox"
   ],
->>>>>>> bc7727b915df88bd5d60b1862ac3b8c848a80b41
   "window": {
     "groundTextStyle": "light",
-    "backvigationBarBackgroundColor": "#fff",
+    "backvigationBarBackgroundColor": "red",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "list": [
