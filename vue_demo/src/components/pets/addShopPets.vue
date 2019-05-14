@@ -2,7 +2,7 @@
   <el-card class="box-card">
     <div>
       <el-select v-model="petsIds" multiple placeholder="请选择门店宠物">
-        <el-option v-for="item in pets" :key="item._id" :label="item.petsSpecies" :value="item._id"></el-option>
+        <el-option v-for="item in pets" :key="item._id" :label="item.petsType" :value="item._id"></el-option>
       </el-select>
     </div>
     <div>
