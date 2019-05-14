@@ -1,4 +1,4 @@
-// components/storeBox/storeBox.js
+// pages/qr/qr.js
 Page({
 
   /**

@@ -1,0 +1,5 @@
+/* components/cartItem/cartItem.wxss */
+.btn{
+    width:20px;
+    height:20px;
+}
