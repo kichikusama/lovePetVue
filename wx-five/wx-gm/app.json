@@ -1,17 +1,12 @@
 {
   "pages": [
-<<<<<<< HEAD
     "pages/store/store",
     "pages/index/index",
-    
-    "components/my/my"
-=======
+    "components/my/my",
     "pages/my/my",
     "pages/detail/detail",
     "pages/index/index",
     "pages/market/market"
-    
->>>>>>> 5823e821ed7f9077be2e0de9459116edb08c011f
   ],
   "window": {
     "backgroundTextStyle": "light",

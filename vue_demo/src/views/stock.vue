@@ -2,7 +2,7 @@
         <div class="flex">
           <el-row class="tac">
             <el-col :span="12">
-              <h5>进货管理</h5>
+              <div class="home" style="width:200%;"> <el-button icon="el-icon-back" type="text" @click="goBack" style="width:75%;color:coral">返回首页</el-button>
               <el-menu
                 router
                 default-active="/stock/shop"
@@ -41,6 +41,7 @@
                   </el-menu-item-group>
                 </el-submenu>
               </el-menu>
+              </div>
             </el-col>
           </el-row>
           <router-view></router-view>
@@ -62,6 +63,10 @@ h5{
 </style>
 <script>
 export default {
- 
+  methods: {
+    goBack(){
+       this.$router.push(`/chooseServe`)
+    }
+  },
 };
 </script>
