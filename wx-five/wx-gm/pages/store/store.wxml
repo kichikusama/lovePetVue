@@ -3,7 +3,6 @@
     <view style="display:flex;align-items: center;flex-wrap:wrap;padding:20rpx;font-size:30rpx;">
         <view  style="width: 100%;height:50rpx;display:flex;align-items: center;">
             <image style="width: 32rpx;height: 32rpx;" src="../../assets/backImg/商铺.png" />
-
             <text style="margin-left: 10rpx">商铺：哈妮宠物</text>
         </view>
         <view style="width: 100%;height:50rpx;display:flex;align-items: center;">
