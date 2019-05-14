@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "shopTitle":"../../components/homeShopTiele/homeShopTiele",
+    "serviceItem":"../../components/homeServiceItem/homeServiceItem"
+  }
+}

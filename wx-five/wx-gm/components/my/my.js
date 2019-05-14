@@ -1,11 +1,11 @@
-// pages/index/index.js
+// miniprogram/pages/component/my/my.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list:["全部","美容","修甲","打疫苗","绝育"]
+
   },
 
   /**

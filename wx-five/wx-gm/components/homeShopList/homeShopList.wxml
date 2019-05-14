@@ -1,0 +1,5 @@
+<!--components/homeShopList/homeShopList.wxml-->
+<view class="container">
+    <shopTitle />
+    <serviceItem />
+</view>

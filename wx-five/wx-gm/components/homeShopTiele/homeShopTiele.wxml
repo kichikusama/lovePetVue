@@ -1,0 +1,15 @@
+<!--components/homeShopTiele/homeShopTiele.wxml-->
+<veiw class="title">
+    <view>
+        <image class="img" src="{{shopImg}}"></image>
+    </view>
+    <view class="text">
+        <view>
+            <text style="font-size:34rpx;">{{shopName}}</text>
+        </view>
+        <view>
+            <image style="width:32rpx;height:32rpx;" src="{{positionImg}}"></image>
+            <text style="font-size:32rpx;margin-left: 10rpx;color: #999999;">{{shopAdd}}</text>
+        </view>
+    </view>
+</veiw>
