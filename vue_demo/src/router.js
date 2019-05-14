@@ -40,6 +40,7 @@ import MembersList from './components/members/membersList.vue';//宠主列表
 
 import AddPets from './components/pets/addPets' //新增宠物
 import PetsList from './components/pets/petsList' //宠物列表
+import AddShopPets  from './components/pets/addShopPets'  //新增门店宠物
 
 Vue.use(Router)
 
@@ -208,6 +209,11 @@ const router = new Router({
           path: '/storeManagement/petsList',//宠物列表   路由
           name: "PetsList",
           component: PetsList,
+        },
+        {
+          path: '/storeManagement/addShopPets',//新增门店宠物  路由
+          name: "AddShopPets",
+          component: AddShopPets,
         }]
     },
     {   // 通过对象进行描述
