@@ -1,0 +1,22 @@
+<view style="padding-top: 50rpx;padding-left: 20rpx;padding-right: 24rpx">
+<view style="height: 520rpx;">
+    <view style="display: flex; justify-content: space-between;align-items: center;font-size:35rpx;">
+        <Text style="color: #00084E">商品</Text>
+        <view >
+            <Text style="color: #36496C"> 更多</Text>
+            <image style="width: 32rpx;height: 32rpx;" src="../../assets/backImg/更多.png" />
+        </view>
+    </view>
+    
+    <scroll-view scroll-x='true'>
+       <view style="display: flex;align-items: center">
+            <storeBox />
+            <storeBox />
+            <storeBox />
+            <storeBox />
+            <storeBox />
+       </view>
+    </scroll-view>
+</view>
+    
+</view>

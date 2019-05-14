@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "storeCommodity":"../../components/storeCommodity/storeCommodity"
+  }
+}

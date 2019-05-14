@@ -1,0 +1,15 @@
+<view>
+    <image style="width: 100%;height:360rpx;"  src="../../assets/backImg/bc.jpg" />
+    <view style="display:flex;align-items: center;flex-wrap:wrap;padding:20rpx;font-size:30rpx;">
+        <view  style="width: 100%;height:50rpx;">
+            <text>商铺：哈妮宠物</text>
+        </view>
+        <view style="width: 100%;height:50rpx;">
+            <text >地址：成都温江区光华大道三段160号</text>
+        </view>
+    </view>
+    <storeCommodity />
+     <storeCommodity />
+      <storeCommodity />
+   
+</view>
