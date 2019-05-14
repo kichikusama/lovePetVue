@@ -7,7 +7,7 @@ z <template>
     <div class="flex">
       <el-row class="tac">
         <el-col :span="12">
-          <div class="home" style="width:201px;background-color: rgb(179, 192, 209)"> <el-button icon="el-icon-back" type="text" @click="goBack" style="width:75%;height:100px;color:coral">返回首页</el-button>
+          <div class="home" style="width:201px;background-color:rgb(84, 92, 100)"> <el-button icon="el-icon-back" type="text" @click="goBack" style="width:75%;height:100px;color:coral">返回首页</el-button>
           <el-menu
             router
             default-active="/stock/shop"

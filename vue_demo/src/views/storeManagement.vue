@@ -1,22 +1,22 @@
  <template>
   <div>
     <el-row>
-      <h1>爱宠帮-门店</h1>
+      <el-header style="font-size:40px; color:white;height:80px;font-weight:bold;background-color:rgb(179, 192, 209);">爱宠邦</el-header>
       <input  type="hidden">
       <el-col class="container" style="display:flex" :span="24">
-        <div class="home" style="width:201px;background-color: rgb(179, 192, 209)"> <el-button icon="el-icon-back" type="text" @click="goBack" style="width:75%;height:100px;color:coral">返回首页</el-button>
+        <div class="home" style="width:201px;background-color: #545c64"> <el-button icon="el-icon-back" type="text" @click="goBack" style="width:75%;height:100px;color:coral">返回首页</el-button>
         <el-menu
           router
           default-active="2"
           class="el-menu-vertical-demo"
-          background-color="rgb(179, 192, 209)"
+          background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
           
         >
           <el-submenu index="/storeManagement">
             <template slot="title">
-              <i class="el-icon-location"></i>
+              <i class="el-icon-goods"></i>
               <span style="color:white">商品管理</span>
             </template>
             <el-menu-item-group>
@@ -27,7 +27,7 @@
 
           <el-submenu index="2">
             <template slot="title">
-              <i class="el-icon-location"></i>
+              <i class="el-icon-service"></i>
               <span style="color:white">服务管理</span>
             </template>
             <el-menu-item-group>
@@ -38,7 +38,7 @@
 
           <el-submenu index="3">
             <template slot="title">
-              <i class="el-icon-location"></i>
+              <i class="el-icon-menu"></i>
               <span style="color:white">宠物管理</span>
             </template>
             <el-menu-item-group>

@@ -1,9 +1,5 @@
 <template>
   <el-container>
-    <el-header style="text-align: center; background-color: #B3C0D1;height:100px">
-      <h3>宠主列表</h3>
-    </el-header>
-
     <el-main>
       <div>
         <el-dialog title="修改信息" :visible.sync="dialogFormVisible">
