@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/moreCommodities/moreCommodities",
     "pages/store/store",
     "pages/index/index",
     "pages/qr/qr",
@@ -11,6 +12,7 @@
     "components/myOperation/myOperation",
     "components/storeCommodity/storeCommodity",
     "components/storeBox/storeBox"
+   
   ],
   "window": {
     "groundTextStyle": "light",

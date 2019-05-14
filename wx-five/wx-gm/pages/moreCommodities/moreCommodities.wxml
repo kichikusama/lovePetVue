@@ -1,0 +1,10 @@
+
+<view style="padding-left: 30rpx;display: flex; justify-content: space-between;align-items: center;font-size:35rpx;flex-wrap:wrap;">
+    <storeBox />
+    <storeBox />
+    <storeBox />
+    <storeBox />
+    <storeBox />
+    <storeBox />
+    <storeBox />
+</view>
