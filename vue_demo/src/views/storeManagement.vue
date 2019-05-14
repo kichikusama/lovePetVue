@@ -4,7 +4,7 @@
       <h1>爱宠帮-门店</h1>
       <input  type="hidden">
       <el-col class="container" style="display:flex" :span="24">
-        <div class="home" style="width:13.4%;background-color: rgb(179, 192, 209)"> <el-button icon="el-icon-back" type="text" @click="goBack" style="width:75%;height:100px;color:coral">返回首页</el-button>
+        <div class="home" style="width:201px;background-color: rgb(179, 192, 209)"> <el-button icon="el-icon-back" type="text" @click="goBack" style="width:75%;height:100px;color:coral">返回首页</el-button>
         <el-menu
           router
           default-active="2"
@@ -12,6 +12,7 @@
           background-color="rgb(179, 192, 209)"
           text-color="#fff"
           active-text-color="#ffd04b"
+          
         >
           <el-submenu index="/storeManagement">
             <template slot="title">
