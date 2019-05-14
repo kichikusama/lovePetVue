@@ -1,8 +1,5 @@
 <template>
   <el-container>
-    <el-header style="text-align: center; background-color: #B3C0D1;">
-      <h1>新增宠主</h1>
-    </el-header>
   <el-main>
     <div style="width:300px">
       <el-form :model="petsData" :rules="rules" ref="petsData" label-width="200px" class="demo-pets" >
