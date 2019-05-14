@@ -1,4 +1,4 @@
-// components/store/store.js
+// pages/qr/qr.js
 Page({
 
   /**

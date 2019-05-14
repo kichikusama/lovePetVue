@@ -1,14 +1,28 @@
 {
   "pages": [
+<<<<<<< HEAD
     "components/store/store",
+=======
+    "pages/store/store",
+    "pages/index/index",
+    "pages/qr/qr",
+    "pages/cart/cart",
+>>>>>>> bc7727b915df88bd5d60b1862ac3b8c848a80b41
     "pages/market/market",
     "pages/my/my",
-    "pages/cart/cart",
     "pages/detail/detail",
+<<<<<<< HEAD
     "pages/index/index",
     "components/myHead/myHead",
     "components/myOperation/myOperation"
 ],
+=======
+    "components/myHead/myHead",
+    "components/myOperation/myOperation",
+    "components/storeCommodity/storeCommodity",
+    "components/storeBox/storeBox"
+  ],
+>>>>>>> bc7727b915df88bd5d60b1862ac3b8c848a80b41
   "window": {
     "groundTextStyle": "light",
     "backvigationBarBackgroundColor": "#fff",
@@ -32,7 +46,7 @@
       {
         "iconPath": "./assets/market/购物车-23.png",
         "selectedIconPath": "./assets/market/购物车-23 (1).png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/cart/cart",
         "text": "购物车"
       },
       {

@@ -1,10 +1,15 @@
-<view style="padding:34rpx;background-color:white;">
-  <view style="display:flex;justify-content:space-between;margin-bottom:34rpx;">
-    <image style="width:700rpx;height:300rpx;margin-left:10rpx;" src="../../assets/backImg/u=1548826898,834419297&fm=26&gp=0.jpg" />
-    <text style="color: #00084E;font-size: 28rpx;">提供</text>
-    <view style="align-items:center">
-      <text style="color: #00084E;font-size: 28rpx;">更多</text>
+<view>
+    <image style="width: 100%;height:360rpx;"  src="../../assets/backImg/bc.jpg" />
+    <view style="display:flex;align-items: center;flex-wrap:wrap;padding:20rpx;font-size:30rpx;">
+        <view  style="width: 100%;height:50rpx;">
+            <text>商铺：哈妮宠物</text>
+        </view>
+        <view style="width: 100%;height:50rpx;">
+            <text >地址：成都温江区光华大道三段160号</text>
+        </view>
     </view>
-  </view>
-
+    <storeCommodity />
+     <storeCommodity />
+      <storeCommodity />
+   
 </view>
