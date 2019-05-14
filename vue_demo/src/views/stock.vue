@@ -1,13 +1,13 @@
 z <template>
   <el-container>
-    <el-header style="text-align: center; background-color: green;height:80px;color:white">
+    <el-header style="text-align: center; background-color: #B3C0D1;height:80px;">
       <h1>进货管理</h1>
     </el-header>
 
     <div class="flex">
       <el-row class="tac">
         <el-col :span="12">
-          <div class="home" style="width:201px;background-color: rgb(179, 192, 209)"> <el-button icon="el-icon-back" type="text" @click="goBack" style="width:75%;height:100px;color:coral">返回首页</el-button>
+          <div class="home" style="width:201px;background-color:rgb(84, 92, 100)"> <el-button icon="el-icon-back" type="text" @click="goBack" style="width:75%;height:100px;color:coral">返回首页</el-button>
           <el-menu
             router
             default-active="/stock/shop"
@@ -57,6 +57,7 @@ z <template>
 <style>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
+  height: 700px;
   min-height: 400px;
 }
 .flex {

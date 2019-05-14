@@ -1,4 +1,4 @@
-// components/store/store.js
+// components/storeCommodity/storeCommodity.js
 Page({
 
   /**

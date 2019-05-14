@@ -4,7 +4,7 @@
         <div class="flex">
           <el-row class="tac">
             <el-col :span="12">
-              <h5>爱宠帮-平台</h5>
+              <el-header style="font-size:40px; color:white;height:80px;font-weight:bold;background-color:green;">爱宠邦</el-header>
               <el-menu
                 router
                 default-active="/management/users"
