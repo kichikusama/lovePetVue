@@ -12,8 +12,10 @@ import Auditing from './components/users/usersAuditing.vue'; // 用户审批 组
 import UsersIntroduce from './components/users/usersIntroduce.vue';// 用户详情 组件
 import DisabledUsers from './components/users/usersDisabled.vue'; // 违规用户 组件
 import SomeRules from './components/users/someRules.vue'; // 管理须知 组件
+import BlackList from './components/users/blackList.vue'; // 黑名单 组件
 
 import Stores from './components/stores/stores.vue'; // 门店管理 组件
+import ShopsAuditing from './components/stores/auditingShops.vue'; // 门店审批 组件
 //李东岳
 import AddService from './components/service/addService.vue';// 新增服务 组件
 import FindService from './components/service/findService.vue';// 查询服务 组件
@@ -154,10 +156,21 @@ const router = new Router({
           component: Auditing,
         },
         {
+          path: '/management/blackList',   //GM 黑名单 路由
+          name: 'BlackList',
+          component: BlackList,
+        },
+        {
           path: '/management/stores',  // 门店 路由
           name: 'managementStores',
           component: Stores,
-        }, {
+        }, 
+        {
+          path: '/management/shopsAuditing',  // 门店 路由
+          name: 'ShopsAuditing',
+          component: ShopsAuditing,
+        }, 
+        {
           path: '/management/membersList', //宠主 路由
           name: MembersList,
           component: MembersList,
